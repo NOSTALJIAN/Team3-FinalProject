@@ -1,3 +1,6 @@
+*.docx
+*.pdf
+
 application.properties
 HELP.md
 target/
