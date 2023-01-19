@@ -2,41 +2,44 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
-DROP TABLE IF EXISTS block_user;
+DROP TABLE IF EXISTS add_mate;
 DROP TABLE IF EXISTS board_reply;
 DROP TABLE IF EXISTS like_board;
 DROP TABLE IF EXISTS board;
 DROP TABLE IF EXISTS board_category;
-DROP TABLE IF EXISTS mate_user;
 DROP TABLE IF EXISTS message;
-DROP TABLE IF EXISTS users_profile;
 DROP TABLE IF EXISTS user_info;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS user_profile;
+DROP TABLE IF EXISTS user_relationship;
+DROP TABLE IF EXISTS user;
 
 
 
 
 /* Create Tables */
 
-CREATE TABLE block_user
+CREATE TABLE add_mate
 (
-	user_code int NOT NULL,
-	block_user int NOT NULL
+	uid varchar(20) NOT NULL,
+	receive_user varchar(20) NOT NULL,
+	send_time datetime DEFAULT (CURRENT_TIMESTAMP) NOT NULL,
+	mate_state int DEFAULT 0 NOT NULL
 );
 
 
 CREATE TABLE board
 (
-	board_id int NOT NULL AUTO_INCREMENT,
-	user_code int NOT NULL,
+	bid int NOT NULL AUTO_INCREMENT,
+	uid varchar(20) NOT NULL,
 	exercise_category_id int DEFAULT 0 NOT NULL,
-	board_title varchar(30) NOT NULL,
-	board_content varchar(1024) NOT NULL,
-	board_regTime datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
-	board_viewCount int DEFAULT 0 NOT NULL,
-	board_replyCount int DEFAULT 0 NOT NULL,
-	board_location varchar(50) NOT NULL,
-	PRIMARY KEY (board_id)
+	b_title varchar(30) NOT NULL,
+	b_content varchar(1024) NOT NULL,
+	b_regTime datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	b_viewCount int DEFAULT 0 NOT NULL,
+	b_replyCount int DEFAULT 0 NOT NULL,
+	b_location varchar(50) NOT NULL,
+	isDeleted int DEFAULT 0 NOT NULL,
+	PRIMARY KEY (bid)
 );
 
 
@@ -50,84 +53,83 @@ CREATE TABLE board_category
 
 CREATE TABLE board_reply
 (
-	reply_id int NOT NULL AUTO_INCREMENT,
-	board_id int NOT NULL,
-	user_code int NOT NULL,
-	reply_content varchar(300) NOT NULL,
-	reply_regTime datetime DEFAULT (CURRENT_TIMESTAMP) NOT NULL,
-	reply_origin_number int DEFAULT 0 NOT NULL,
-	reply_order int DEFAULT 0 NOT NULL,
-	reply_isMine int DEFAULT 0 NOT NULL,
-	PRIMARY KEY (reply_id)
+	r_id int NOT NULL AUTO_INCREMENT,
+	bid int NOT NULL,
+	uid varchar(20) NOT NULL,
+	r_content varchar(300) NOT NULL,
+	r_regTime datetime DEFAULT (CURRENT_TIMESTAMP) NOT NULL,
+	r_origin_number int DEFAULT 0 NOT NULL,
+	r_order int DEFAULT 0 NOT NULL,
+	r_isMine int DEFAULT 0 NOT NULL,
+	PRIMARY KEY (r_id)
 );
 
 
 CREATE TABLE like_board
 (
-	board_id int NOT NULL,
-	user_code int NOT NULL
-);
-
-
-CREATE TABLE mate_user
-(
-	send_user int NOT NULL,
-	receive_user int NOT NULL,
-	send_time datetime DEFAULT (CURRENT_TIMESTAMP) NOT NULL,
-	mate_state int DEFAULT 0 NOT NULL
+	bid int NOT NULL,
+	uid varchar(20) NOT NULL
 );
 
 
 CREATE TABLE message
 (
-	send_user_id int NOT NULL,
-	recieve_user_id int NOT NULL,
-	message_title varchar(30) NOT NULL,
-	message_content varchar(500) NOT NULL,
-	message_regTime datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
-	message_confirm int DEFAULT 0 NOT NULL
+	send_user_id varchar(20) NOT NULL,
+	recieve_user_id varchar(20) NOT NULL,
+	m_title varchar(30) NOT NULL,
+	m_content varchar(500) NOT NULL,
+	m_regTime datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	m_confirm int DEFAULT 0 NOT NULL
 );
 
 
-CREATE TABLE users
+CREATE TABLE user
 (
-	user_code int NOT NULL AUTO_INCREMENT,
-	user_id varchar(20) NOT NULL,
-	user_pwd char(60) NOT NULL,
-	user_name varchar(10) NOT NULL,
-	user_phone varchar(20) NOT NULL,
-	user_email varchar(40) NOT NULL,
-	user_nickname varchar(10) NOT NULL,
-	user_addr varchar(50) NOT NULL,
+	uid varchar(20) NOT NULL,
+	pwd char(60) NOT NULL,
+	uname varchar(10) NOT NULL,
+	phoneNum varchar(20) NOT NULL,
+	nickname varchar(10) NOT NULL,
+	email varchar(40) NOT NULL,
 	email_check int DEFAULT 0 NOT NULL,
-	user_role int DEFAULT 0 NOT NULL,
-	user_regDate date DEFAULT (CURRENT_DATE) NOT NULL,
-	PRIMARY KEY (user_code),
-	UNIQUE (user_id),
-	UNIQUE (user_email),
-	UNIQUE (user_nickname)
+	role int DEFAULT 0 NOT NULL,
+	u_regDate date DEFAULT (CURRENT_DATE) NOT NULL,
+	isDeleted int DEFAULT 0 NOT NULL,
+	PRIMARY KEY (uid),
+	UNIQUE (uid),
+	UNIQUE (phoneNum),
+	UNIQUE (nickname),
+	UNIQUE (email)
 );
 
 
-CREATE TABLE users_profile
+CREATE TABLE user_info
 (
-	user_code int NOT NULL,
-	user_image varchar(300),
-	user_grade varchar(10) DEFAULT 'BRONZE' NOT NULL,
+	uid varchar(20) NOT NULL,
+	u_addr varchar(50) NOT NULL,
+	like_exercise int DEFAULT 0 NOT NULL,
+	birth_date int NOT NULL,
+	gender varchar(4) NOT NULL,
+	u_rating float(3,2) unsigned zerofill DEFAULT 3 NOT NULL
+);
+
+
+CREATE TABLE user_profile
+(
+	uid varchar(20) NOT NULL,
+	u_image varchar(300),
+	grade varchar(10) DEFAULT 'BRONZE' NOT NULL,
 	level_high int DEFAULT 0 NOT NULL,
 	level_middle int DEFAULT 0,
 	level_low int DEFAULT 0 NOT NULL
 );
 
 
-CREATE TABLE user_info
+CREATE TABLE user_relationship
 (
-	user_code int NOT NULL,
-	user_rating float(3,2) unsigned zerofill DEFAULT 3 NOT NULL,
-	user_location varchar(50) NOT NULL,
-	user_like_exercise int DEFAULT 0 NOT NULL,
-	user_age date NOT NULL,
-	user_gender varchar(4) NOT NULL
+	uid varchar(20) NOT NULL,
+	user_code_2 varchar(20) NOT NULL,
+	rrelationship int DEFAULT 0 NOT NULL
 );
 
 
@@ -135,16 +137,16 @@ CREATE TABLE user_info
 /* Create Foreign Keys */
 
 ALTER TABLE board_reply
-	ADD FOREIGN KEY (board_id)
-	REFERENCES board (board_id)
+	ADD FOREIGN KEY (bid)
+	REFERENCES board (bid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE like_board
-	ADD FOREIGN KEY (board_id)
-	REFERENCES board (board_id)
+	ADD FOREIGN KEY (bid)
+	REFERENCES board (bid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -158,57 +160,41 @@ ALTER TABLE board
 ;
 
 
-ALTER TABLE block_user
-	ADD FOREIGN KEY (user_code)
-	REFERENCES users (user_code)
+ALTER TABLE add_mate
+	ADD FOREIGN KEY (uid)
+	REFERENCES user (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
-ALTER TABLE block_user
-	ADD FOREIGN KEY (block_user)
-	REFERENCES users (user_code)
+ALTER TABLE add_mate
+	ADD FOREIGN KEY (receive_user)
+	REFERENCES user (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE board
-	ADD FOREIGN KEY (user_code)
-	REFERENCES users (user_code)
+	ADD FOREIGN KEY (uid)
+	REFERENCES user (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE board_reply
-	ADD FOREIGN KEY (user_code)
-	REFERENCES users (user_code)
+	ADD FOREIGN KEY (uid)
+	REFERENCES user (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE like_board
-	ADD FOREIGN KEY (user_code)
-	REFERENCES users (user_code)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE mate_user
-	ADD FOREIGN KEY (receive_user)
-	REFERENCES users (user_code)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE mate_user
-	ADD FOREIGN KEY (send_user)
-	REFERENCES users (user_code)
+	ADD FOREIGN KEY (uid)
+	REFERENCES user (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -216,7 +202,7 @@ ALTER TABLE mate_user
 
 ALTER TABLE message
 	ADD FOREIGN KEY (send_user_id)
-	REFERENCES users (user_code)
+	REFERENCES user (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -224,23 +210,39 @@ ALTER TABLE message
 
 ALTER TABLE message
 	ADD FOREIGN KEY (recieve_user_id)
-	REFERENCES users (user_code)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE users_profile
-	ADD FOREIGN KEY (user_code)
-	REFERENCES users (user_code)
+	REFERENCES user (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE user_info
-	ADD FOREIGN KEY (user_code)
-	REFERENCES users (user_code)
+	ADD FOREIGN KEY (uid)
+	REFERENCES user (uid)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE user_profile
+	ADD FOREIGN KEY (uid)
+	REFERENCES user (uid)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE user_relationship
+	ADD FOREIGN KEY (user_code_2)
+	REFERENCES user (uid)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE user_relationship
+	ADD FOREIGN KEY (uid)
+	REFERENCES user (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
