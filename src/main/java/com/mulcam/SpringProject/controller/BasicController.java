@@ -12,7 +12,4 @@ public class BasicController {
 	public String list() {
 		return "board/list";
 	}
-	
-	
-
 }
