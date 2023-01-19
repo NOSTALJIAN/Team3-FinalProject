@@ -2,6 +2,7 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
+DROP TABLE IF EXISTS block_user;
 DROP TABLE IF EXISTS board_reply;
 DROP TABLE IF EXISTS like_board;
 DROP TABLE IF EXISTS board;
@@ -16,6 +17,13 @@ DROP TABLE IF EXISTS users;
 
 
 /* Create Tables */
+
+CREATE TABLE block_user
+(
+	user_code int NOT NULL,
+	block_user int NOT NULL
+);
+
 
 CREATE TABLE board
 (
@@ -105,7 +113,10 @@ CREATE TABLE users_profile
 (
 	user_code int NOT NULL,
 	user_image varchar(300),
-	user_grade varchar(10) DEFAULT 'BRONZE' NOT NULL
+	user_grade varchar(10) DEFAULT 'BRONZE' NOT NULL,
+	level_high int DEFAULT 0 NOT NULL,
+	level_middle int DEFAULT 0,
+	level_low int DEFAULT 0 NOT NULL
 );
 
 
@@ -116,10 +127,7 @@ CREATE TABLE user_info
 	user_location varchar(50) NOT NULL,
 	user_like_exercise int DEFAULT 0 NOT NULL,
 	user_age date NOT NULL,
-	user_gender varchar(4) NOT NULL,
-	exercise_level_high int DEFAULT 0 NOT NULL,
-	exercise_level_middle int DEFAULT 0 NOT NULL,
-	exercise_level_low int DEFAULT 0 NOT NULL
+	user_gender varchar(4) NOT NULL
 );
 
 
@@ -145,6 +153,22 @@ ALTER TABLE like_board
 ALTER TABLE board
 	ADD FOREIGN KEY (exercise_category_id)
 	REFERENCES board_category (exercise_category_id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE block_user
+	ADD FOREIGN KEY (user_code)
+	REFERENCES users (user_code)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE block_user
+	ADD FOREIGN KEY (block_user)
+	REFERENCES users (user_code)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
