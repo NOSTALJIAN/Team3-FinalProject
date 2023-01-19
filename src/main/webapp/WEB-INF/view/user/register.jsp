@@ -4,6 +4,7 @@
 <html>
 <head>
 	<%@ include file="../common/heading.jsp" %>
+	<script src="/js/jquery-3.6.3.min.js"></script>
 	<title>사용자 등록</title>
 </head>
 <body>
@@ -18,11 +19,11 @@
 			</tr>
 			<tr>
 				<td>패스워드</td>
-				<td><input type="password" name="pwd"></td>
+				<td><input type="password" name="pwd" id="pwd"></td>
 			</tr>
 			<tr>
 				<td>패스워드 확인</td>
-				<td><input type="password" name="pwd2"></td>
+				<td><input type="password" name="pwd2" id="pwd2"></td>
 			</tr>
 			<tr>
 				<td>닉네임</td>
@@ -50,8 +51,8 @@
 				<td>수신<input type="radio" name="email_check" value="1">수신거부<input type="radio" name="email_check" value="0"></td>
 			</tr>
 			<tr>
-				<td>성별</td>
-				<td>남<input type="radio" name="gender" value="남">여<input type="radio" name="gender" value="여"></td>
+				<td>주민번호</td>
+				<td><input type="number" name="birth_date" maxlength="6">-<input type="number" name="gender" maxlength="1"></td>
 			</tr>
 			<tr>
 				<td>관심운동</td>
@@ -62,7 +63,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4"><input onclick="min_checked()" type="button" value="제출"></td>
+				<td colspan="4"><input onclick="checked_submit()" type="button" value="제출"></td>
 			</tr>
 		</table>
 	</form>
@@ -70,22 +71,31 @@
 	<script>
 		let mc = 5;	// 체크박수 갯수 제한
 		let tc = 0; //카운트 증가
+		var checked_num = $("input[name=likeExercise]:checked").length;
+		console.log(checked_num);
+		console.log("확인용");
 		function limit(ff){
 			if (ff.checked)
-				tc +=1;
+				checked_num +=1;
 			else 
-				tc -=1;
+				checked_num -=1;
 
-			if (tc > mc){
+			if (checked_num > mc){
 				alert("5개까지만 선택해주세요");
 				ff.checked = false;
-				tc -= 1;
+				checked_num -= 1;
 			}
 		}
-		function min_checked(){
-			
-			console.log(tc);
-			if(tc < 3){
+		function checked_submit(){
+			var checked_num = $('input[name="likeExercise"]:checked').length;
+			const pwd = $('#pwd').val();
+			const pwd2 = $('#pwd2').val();
+			if (pwd != pwd2) {
+				alert("비밀번호가 일치하지 않습니다.");
+				return false;
+			} else if(checked_num < 3){
+				console.log(checked_num);
+				console.log("확인용");
 				alert("체크박스를 3개이상 선택해 주세요");
 				return false;
 			} else {
