@@ -25,6 +25,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	
 	@GetMapping("/register")
 	public String register() {
 		return "user/register";
@@ -39,10 +40,13 @@ public class UserController {
 		String email = req.getParameter("email").strip();
 		int email_check = Integer.parseInt(req.getParameter("email_check"));
 		int birth_date = Integer.parseInt(req.getParameter("birth_date"));
-		String gender_ = req.getParameter("gender");
+		String gender = req.getParameter("gender");
+		int u_postcode = Integer.parseInt(req.getParameter("postcode"));
 		String u_addr = req.getParameter("addr").strip();
+		String u_detailAddr = req.getParameter("detailAddr").strip();
 		String phoneNum = req.getParameter("phoneNum").strip();
 		String[] likeExercise_ = req.getParameterValues("likeExercise");
+		System.out.println("성별" + gender + "생년월일" + birth_date);
 		
 		User u = service.getUser(uid);
 		if (u != null) {
@@ -70,19 +74,13 @@ public class UserController {
 		}
 		
 		int like_exercise = 0;
-		String gender = null;
 		for (String i : likeExercise_) {
 			like_exercise += Integer.parseInt(i);
-		}
-		if (gender_.equals("1") || gender_.equals("3")) {
-			gender = "남";
-		} else {
-			gender = "여";
 		}
 		
 		u = new User(uid, pwd, uname, phoneNum, nickname, email, email_check);
 		service.register(u);
-		User_info u_i = new User_info(uid, u_addr, like_exercise, birth_date, gender);
+		User_info u_i = new User_info(uid, u_postcode, u_addr, u_detailAddr,like_exercise, birth_date, gender);
 		service.register_info(u_i);
 
 		return "user/login";
@@ -102,7 +100,7 @@ public class UserController {
 		case UserService.CORRECT_LOGIN :
 			session.setAttribute("sessionUid", uid);
 			session.setAttribute("sessionUname", userSession.getUname());
-			return "redirect:/board/list";
+			return "redirect:/board/index";
 		case UserService.UID_NOT_EXIST :
 			model.addAttribute("msg", "아이디를 잘못입력하셧습니다. 다시 확인해주세요.");
 			model.addAttribute("url", "/user/login");
@@ -119,6 +117,6 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/board/list";
+		return "redirect:/board/index";
 	}
 }
