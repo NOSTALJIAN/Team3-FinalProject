@@ -25,6 +25,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	
 	@GetMapping("/register")
 	public String register() {
 		return "user/register";
@@ -98,7 +99,7 @@ public class UserController {
 		case UserService.CORRECT_LOGIN :
 			session.setAttribute("sessionUid", uid);
 			session.setAttribute("sessionUname", userSession.getUname());
-			return "redirect:/board/list";
+			return "redirect:/board/index";
 		case UserService.UID_NOT_EXIST :
 			model.addAttribute("msg", "아이디를 잘못입력하셧습니다. 다시 확인해주세요.");
 			model.addAttribute("url", "/user/login");
@@ -115,6 +116,6 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/board/list";
+		return "redirect:/board/index";
 	}
 }
