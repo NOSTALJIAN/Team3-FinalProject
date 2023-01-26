@@ -46,7 +46,6 @@ public class UserController {
 		String u_detailAddr = req.getParameter("detailAddr").strip();
 		String phoneNum = req.getParameter("phoneNum").strip();
 		String[] likeExercise_ = req.getParameterValues("likeExercise");
-		System.out.println("성별" + gender + "생년월일" + birth_date);
 		
 		User u = service.getUser(uid);
 		if (u != null) {
