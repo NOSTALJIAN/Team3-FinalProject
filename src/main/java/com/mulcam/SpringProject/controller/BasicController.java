@@ -12,4 +12,9 @@ public class BasicController {
 	public String list() {
 		return "board/list";
 	}
+	
+	@GetMapping("/test")
+	public String test() {
+		return "board/test";
+	}
 }

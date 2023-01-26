@@ -106,7 +106,9 @@ CREATE TABLE users
 CREATE TABLE user_info
 (
 	uid varchar(20) NOT NULL,
+	u_postcode int DEFAULT 0 NOT NULL,
 	u_addr varchar(50) NOT NULL,
+	u_detailAddr varchar(20),
 	like_exercise int DEFAULT 0 NOT NULL,
 	birth_date int NOT NULL,
 	gender varchar(4) NOT NULL,
@@ -161,7 +163,7 @@ ALTER TABLE board
 
 
 ALTER TABLE add_mate
-	ADD FOREIGN KEY (receive_user)
+	ADD FOREIGN KEY (uid)
 	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
@@ -169,7 +171,7 @@ ALTER TABLE add_mate
 
 
 ALTER TABLE add_mate
-	ADD FOREIGN KEY (uid)
+	ADD FOREIGN KEY (receive_user)
 	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
@@ -201,7 +203,7 @@ ALTER TABLE like_board
 
 
 ALTER TABLE message
-	ADD FOREIGN KEY (recieve_user_id)
+	ADD FOREIGN KEY (send_user_id)
 	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
@@ -209,7 +211,7 @@ ALTER TABLE message
 
 
 ALTER TABLE message
-	ADD FOREIGN KEY (send_user_id)
+	ADD FOREIGN KEY (recieve_user_id)
 	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
@@ -233,7 +235,7 @@ ALTER TABLE user_profile
 
 
 ALTER TABLE user_relationship
-	ADD FOREIGN KEY (user_code_2)
+	ADD FOREIGN KEY (uid)
 	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
@@ -241,7 +243,7 @@ ALTER TABLE user_relationship
 
 
 ALTER TABLE user_relationship
-	ADD FOREIGN KEY (uid)
+	ADD FOREIGN KEY (user_code_2)
 	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
