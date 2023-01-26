@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<%@ include file="../common/heading.jsp" %>
-	<script src="/js/jquery-3.6.3.min.js"></script>
+	<%@ include file="../common/heading.jsp"%>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<title>사용자 등록</title>
 </head>
-<body>
+
+<body style="margin: 50px ">
    	<%@ include file="../common/top.jsp" %>
+   	
 	<h3>사용자 등록</h3>
 	<hr>
-	<form name="reg_sub" action="/user/register" method="post">
+	<form name="reg_sub" action="/user/register" method="post" style="margin: 500 px" style="margin-left:200 px ">
 		<table>
 			<tr>
 				<td>아이디</td>
@@ -87,8 +91,11 @@
 			}
 		}
 		function checked_submit(){
-			var checked_num = $('input[name="likeExercise"]:checked').length;
+			console.log("Test");
 			const pwd = $('#pwd').val();
+			console.log(pwd);
+			var checked_num = $("input[name=likeExercise]:checked").length;
+			//const pwd = $('#pwd').val();
 			const pwd2 = $('#pwd2').val();
 			if (pwd != pwd2) {
 				alert("비밀번호가 일치하지 않습니다.");

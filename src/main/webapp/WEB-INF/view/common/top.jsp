@@ -1,37 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-	<div class="container-fluid">
-       <ul class="navbar-nav">
-           <li class="nav-item ms-3">
-               <a class="nav-link ${(menu eq 'board') ? 'active' : 'null'}" href="/board/list?p=1&f=&q="><i class="far fa-list-alt"></i> 게시판</a>
-           </li>
-           <c:if test="${sessionUid eq 'admin'}">
-           <li class="nav-item ms-3">
-               <a class="nav-link ${(menu eq 'user') ? 'active' : 'null'}" href="/user/list/0"><i class="fas fa-user-friends"></i>관리자 페이지</a>
-           </li>
-           </c:if>
-           <c:if test="${(sessionUid ne 'admin') and (not empty sessionUid)}">
-           <li class="nav-item ms-3">
-               <a class="nav-link ${(menu eq 'user') ? 'active' : 'null'}" href="/user/update/${sessionUid}"><i class="fas fa-user-friends"></i>정보수정</a>
-           </li>
-           </c:if>
-           <li class="nav-item ms-3">
-           	<c:if test="${empty sessionUid}">
-               <a class="nav-link ${(menu eq 'login') ? 'active' : 'null'}" href="/user/login"><i class="fas fa-sign-out-alt"></i>로그인</a>
-           	</c:if>
-           	<c:if test="${not empty sessionUid}">
-               <a class="nav-link" href="/user/logout"><i class="fas fa-sign-out-alt"></i>로그아웃</a>
-           	</c:if>
-           	<c:if test="${empty sessionUid}">
-           	<li class="nav-item ms-3">
-               <a class="nav-link ${(menu eq 'user') ? 'active' : 'null'}" href="/user/register"><i class="fas fa-user-friends"></i>회원가입</a>
-           	</li>
-           	</c:if>
-           </li>
-       </ul>
-       <c:if test="${not empty sessionUid}">
-       <span class="navbar-text me-3">${sessionUid}님 환영합니다.</span>
-       </c:if>
-   </div>
+
+  <nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-5" tabindex="0">
+  <div class="container">
+    <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="/board/index">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+    <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z"/>
+    <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z"/>
+  </svg>
+  <span class="ms-md-1 mt-1 fw-bolder me-md-5">GOgo</span>
+</a>
+
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 list-group list-group-horizontal">
+      <li class="nav-item">
+  <a class="nav-link fs-5" href="/board/index" aria-label="Homepage">
+    Home
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link fs-5" href="#" aria-label="A sample content page">
+    Find
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link fs-5" href="/board/list" aria-label="A system message page">
+    Group
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link fs-5" href="#" aria-label="A system message page">
+    MyPage
+  </a>
+</li>
+
+	<c:choose>
+		<c:when test="${sessionUid eq 'admin'}">
+	<li class="nav-item">
+	  <a class="nav-link fs-5 ${menu eq 'user' ? 'active' : ''}" href="/user/list" aria-label="A system message page">
+	    사용자
+	  </a>
+	</li>
+		</c:when>
+	</c:choose>
+</ul>
+    
+    <c:choose>
+		<c:when test="${empty sessionUid}">
+      <a href="/user/login" aria-label="Download this template" class="btn btn-outline-light ${menu eq 'login' ? 'active' : ''}">
+        <small>Login</small>
+      </a>
+      <a href="/user/register" aria-label="Download this template" class="btn btn-outline-light ${menu eq 'reg' ? 'active' : ''}">
+        <small>Join</small>
+      </a>
+      </c:when>
+      <c:otherwise>
+      	<a href="/user/logout" aria-label="Download this template" class="btn btn-outline-light ">
+        	<small>Logout</small>
+      </a>
+      </c:otherwise>
+      </c:choose>
+      
+</div>
 </nav>
