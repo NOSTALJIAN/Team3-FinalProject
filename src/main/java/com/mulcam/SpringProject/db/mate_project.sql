@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS add_mate;
 DROP TABLE IF EXISTS board_reply;
 DROP TABLE IF EXISTS like_board;
 DROP TABLE IF EXISTS board;
-DROP TABLE IF EXISTS board_category;
 DROP TABLE IF EXISTS message;
 DROP TABLE IF EXISTS user_info;
 DROP TABLE IF EXISTS user_profile;
@@ -31,23 +30,17 @@ CREATE TABLE board
 (
 	bid int NOT NULL AUTO_INCREMENT,
 	uid varchar(20) NOT NULL,
-	exercise_category_id int DEFAULT 0 NOT NULL,
 	b_title varchar(30) NOT NULL,
+	b_category varchar(10) NOT NULL,
+	b_userCount int DEFAULT 0 NOT NULL,
 	b_content varchar(1024) NOT NULL,
 	b_regTime datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	b_viewCount int DEFAULT 0 NOT NULL,
 	b_replyCount int DEFAULT 0 NOT NULL,
 	b_location varchar(50) NOT NULL,
-	isDeleted int DEFAULT 0 NOT NULL,
+	b_files varchar(200),
+	b_isDeleted int DEFAULT 0 NOT NULL,
 	PRIMARY KEY (bid)
-);
-
-
-CREATE TABLE board_category
-(
-	exercise_category_id int NOT NULL AUTO_INCREMENT,
-	category_name varchar(10) NOT NULL,
-	PRIMARY KEY (exercise_category_id)
 );
 
 
@@ -94,7 +87,7 @@ CREATE TABLE users
 	email_check int DEFAULT 0 NOT NULL,
 	role int DEFAULT 0 NOT NULL,
 	u_regDate date DEFAULT (CURRENT_DATE) NOT NULL,
-	isDeleted int DEFAULT 0 NOT NULL,
+	u_isDeleted int DEFAULT 0 NOT NULL,
 	PRIMARY KEY (uid),
 	UNIQUE (uid),
 	UNIQUE (phoneNum),
@@ -149,14 +142,6 @@ ALTER TABLE board_reply
 ALTER TABLE like_board
 	ADD FOREIGN KEY (bid)
 	REFERENCES board (bid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE board
-	ADD FOREIGN KEY (exercise_category_id)
-	REFERENCES board_category (exercise_category_id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;

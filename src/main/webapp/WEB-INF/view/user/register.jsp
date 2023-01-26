@@ -163,7 +163,6 @@
 				reg_sub.submit();
 			}
 		}
-		
 	</script>
 </body>
 </html>
