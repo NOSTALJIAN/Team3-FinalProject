@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS message;
 DROP TABLE IF EXISTS user_info;
 DROP TABLE IF EXISTS user_profile;
 DROP TABLE IF EXISTS user_relationship;
-DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS users;
 
 
 
@@ -83,7 +83,7 @@ CREATE TABLE message
 );
 
 
-CREATE TABLE user
+CREATE TABLE users
 (
 	uid varchar(20) NOT NULL,
 	pwd char(60) NOT NULL,
@@ -106,7 +106,9 @@ CREATE TABLE user
 CREATE TABLE user_info
 (
 	uid varchar(20) NOT NULL,
+	u_postcode int DEFAULT 0 NOT NULL,
 	u_addr varchar(50) NOT NULL,
+	u_detailAddr varchar(20),
 	like_exercise int DEFAULT 0 NOT NULL,
 	birth_date int NOT NULL,
 	gender varchar(4) NOT NULL,
@@ -162,7 +164,7 @@ ALTER TABLE board
 
 ALTER TABLE add_mate
 	ADD FOREIGN KEY (uid)
-	REFERENCES user (uid)
+	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -170,7 +172,7 @@ ALTER TABLE add_mate
 
 ALTER TABLE add_mate
 	ADD FOREIGN KEY (receive_user)
-	REFERENCES user (uid)
+	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -178,7 +180,7 @@ ALTER TABLE add_mate
 
 ALTER TABLE board
 	ADD FOREIGN KEY (uid)
-	REFERENCES user (uid)
+	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -186,7 +188,7 @@ ALTER TABLE board
 
 ALTER TABLE board_reply
 	ADD FOREIGN KEY (uid)
-	REFERENCES user (uid)
+	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -194,7 +196,7 @@ ALTER TABLE board_reply
 
 ALTER TABLE like_board
 	ADD FOREIGN KEY (uid)
-	REFERENCES user (uid)
+	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -202,7 +204,7 @@ ALTER TABLE like_board
 
 ALTER TABLE message
 	ADD FOREIGN KEY (send_user_id)
-	REFERENCES user (uid)
+	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -210,7 +212,7 @@ ALTER TABLE message
 
 ALTER TABLE message
 	ADD FOREIGN KEY (recieve_user_id)
-	REFERENCES user (uid)
+	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -218,7 +220,7 @@ ALTER TABLE message
 
 ALTER TABLE user_info
 	ADD FOREIGN KEY (uid)
-	REFERENCES user (uid)
+	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -226,15 +228,7 @@ ALTER TABLE user_info
 
 ALTER TABLE user_profile
 	ADD FOREIGN KEY (uid)
-	REFERENCES user (uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE user_relationship
-	ADD FOREIGN KEY (user_code_2)
-	REFERENCES user (uid)
+	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -242,7 +236,15 @@ ALTER TABLE user_relationship
 
 ALTER TABLE user_relationship
 	ADD FOREIGN KEY (uid)
-	REFERENCES user (uid)
+	REFERENCES users (uid)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE user_relationship
+	ADD FOREIGN KEY (user_code_2)
+	REFERENCES users (uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;

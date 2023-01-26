@@ -13,7 +13,7 @@ public interface UserDao {
 	@Insert("insert into users values(#{uid}, #{pwd}, #{uname}, #{phoneNum}, #{nickname}, #{email}, #{email_check}, default, default, default)")
 	void insert(User u);
 
-	@Insert("insert into user_info values(#{uid}, #{u_addr}, #{like_exercise}, #{birth_date}, #{gender}, default)")
+	@Insert("insert into user_info values(#{uid}, #{u_postcode}, #{u_addr}, #{u_detailAddr}, #{like_exercise}, #{birth_date}, #{gender}, default)")
 	void insert_info(User_info u_i);
 	
 	@Select("select * from users where uid=#{uid}")
@@ -27,8 +27,5 @@ public interface UserDao {
 
 	@Select("select * from users where phoneNum=#{phoneNum}")
 	User getPhoneNum(String phoneNum);
-	
-	
-	User get(String uid);
 
 }
