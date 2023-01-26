@@ -5,13 +5,10 @@
 <html>
 <head>
 	<%@ include file="../common/heading.jsp"%>
-	
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<title>사용자 등록</title>
 </head>
-<body style="margin-left: 40px;">
+<body style="margin-left: 40px; margin-top: 50px;">
    	<%@ include file="../common/top.jsp" %>
-   	
 	<h3>사용자 등록</h3>
 	<hr>
 	<form name="reg_sub" action="/user/register" method="post">
