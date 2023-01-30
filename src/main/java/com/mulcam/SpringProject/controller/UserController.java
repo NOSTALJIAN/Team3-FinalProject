@@ -25,7 +25,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	
+	//회원가입
 	@GetMapping("/register")
 	public String register() {
 		return "user/register";
@@ -85,6 +85,7 @@ public class UserController {
 		return "user/login";
 	}
 	
+	//로그인
 	@GetMapping("/login")
 	public String loginform() {
 		return "user/login";
@@ -113,9 +114,17 @@ public class UserController {
 		}
 	}
 	
+	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/board/index";
+	}
+	
+	// 사용자 마이페이지
+	@GetMapping("/mypage")
+	public String mypage(HttpSession session) {
+		session.invalidate();
+		return "user/mypage";
 	}
 }

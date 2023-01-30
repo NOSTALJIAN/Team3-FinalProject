@@ -60,10 +60,7 @@
     <label for="pwd" class="form-label">Password</label>
     <input type="password" class="form-control form-control-lg bg-gray-800 border-dark" id="pwd" name="pwd" placeholder="패스워드">
   </div>
-  <div class="mb-3 form-checdddddk py-3">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">If you really don´t want any newsletter <strong>check this box</strong>. Then you just agree to receive our marketing mails and product stuff. If you check this box <strong>we will not send out our newsletter</strong> to you at all...on mondays.</label>
-  </div>
+  
   <input type="submit" value="로그인" class="btn btn-white btn-xl mb-4"> </input>
 </div>
 </form>
