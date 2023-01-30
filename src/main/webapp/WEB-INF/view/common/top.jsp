@@ -32,7 +32,6 @@
     MyPage
   </a>
 </li>
-
 	<c:choose>
 		<c:when test="${sessionUid eq 'admin'}">
 	<li class="nav-item">

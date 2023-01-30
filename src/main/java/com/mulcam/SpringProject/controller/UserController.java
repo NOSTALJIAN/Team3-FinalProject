@@ -1,9 +1,12 @@
 package com.mulcam.SpringProject.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,20 +14,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mulcam.SpringProject.entity.User;
-import com.mulcam.SpringProject.entity.User_info;
+import com.mulcam.SpringProject.entity.UserInfo;
+import com.mulcam.SpringProject.misc.MapUtill;
 import com.mulcam.SpringProject.service.UserService;
 import com.mulcam.SpringProject.session.UserSession;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	@Value("${naver.accessId}") private String accessId;	
+	@Value("${naver.secretKey}") private String secretKey;
 	
-	@Autowired
-	private UserSession userSession;
-	
-	@Autowired
-	private UserService service;
-	
+	@Autowired private UserSession userSession;	
+	@Autowired private UserService service;
+	@Autowired private MapUtill maputill;
+
 	
 	@GetMapping("/register")
 	public String register() {
@@ -32,18 +36,18 @@ public class UserController {
 	}
 	
 	@PostMapping("/register")
-	public String register2(HttpServletRequest req, Model model) {
+	public String register2(HttpServletRequest req, Model model) throws Exception {
 		String uid = req.getParameter("uid").strip();
 		String pwd = req.getParameter("pwd").strip();
 		String uname = req.getParameter("uname").strip();
 		String nickname = req.getParameter("nickname").strip();
 		String email = req.getParameter("email").strip();
-		int email_check = Integer.parseInt(req.getParameter("email_check"));
-		int birth_date = Integer.parseInt(req.getParameter("birth_date"));
+		int emailCheck = Integer.parseInt(req.getParameter("emailCheck"));
+		int birthDate = Integer.parseInt(req.getParameter("birthDate"));
 		String gender = req.getParameter("gender");
-		int u_postcode = Integer.parseInt(req.getParameter("postcode"));
-		String u_addr = req.getParameter("addr").strip();
-		String u_detailAddr = req.getParameter("detailAddr").strip();
+		int uPostcode = Integer.parseInt(req.getParameter("postcode"));
+		String uAddr = req.getParameter("addr").strip();
+		String uDetailAddr = req.getParameter("detailAddr").strip();
 		String phoneNum = req.getParameter("phoneNum").strip();
 		String[] likeExercise_ = req.getParameterValues("likeExercise");
 		
@@ -72,15 +76,22 @@ public class UserController {
 			return "common/alertMsg";
 		}
 		
-		int like_exercise = 0;
+		// 좋아하는 운동목록 숫자로 바꿔서 저장하기
+		int likeExercise = 0;
 		for (String i : likeExercise_) {
-			like_exercise += Integer.parseInt(i);
+			likeExercise += Integer.parseInt(i);
 		}
 		
-		u = new User(uid, pwd, uname, phoneNum, nickname, email, email_check);
+		// 유저의 주소에서 위도와 경도찾기
+		
+		List<Double> latlng = maputill.findLatLng(uAddr);
+		double lat = latlng.get(0);
+		double lng = latlng.get(1);
+		
+		u = new User(uid, pwd, uname, phoneNum, nickname, email, emailCheck);
 		service.register(u);
-		User_info u_i = new User_info(uid, u_postcode, u_addr, u_detailAddr,like_exercise, birth_date, gender);
-		service.register_info(u_i);
+		UserInfo ui = new UserInfo(uid, uPostcode, uAddr, uDetailAddr,likeExercise, birthDate, gender, lat, lng);
+		service.register_info(ui);
 
 		return "user/login";
 	}

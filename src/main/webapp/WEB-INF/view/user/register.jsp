@@ -26,9 +26,9 @@
 		<br><input type="tel" name="phoneNum">
 		<br>이메일
 		<br><input type="email" name="email">
-		<br>이메일수신여부 : 수신<input type="radio" name="email_check" value="1">수신거부<input type="radio" name="email_check" value="0">
+		<br>이메일수신여부 : 수신<input type="radio" name="emailCheck" value="1" checked>수신거부<input type="radio" name="emailCheck" value="0">
 		<br>생년월일
-		<br><input type="number" name="birth_date"  id="birth_date" placeholder="ex) 19920502">
+		<br><input type="number" name="birthDate"  id="birthDate" placeholder="ex) 19920502">
 		<br>성별
 		<br><select name="gender">
 			<option value="남">남자</option>
@@ -149,11 +149,11 @@
 			var checked_num = $("input[name=likeExercise]:checked").length;
 			//const pwd = $('#pwd').val();
 			const pwd2 = $('#pwd2').val();
-			const birth_date = $('#birth_date').val();
+			const birthDate = $('#birthDate').val();
 			if (pwd != pwd2) {
 				alert("비밀번호가 일치하지 않습니다.");
 				return false;
-			} else if (birth_date.length != 8) {
+			} else if (birthDate.length != 8) {
 				alert("생년월일 8자리를 입력해주세요");
 				return false;		
 			} else if(checked_num < 3){

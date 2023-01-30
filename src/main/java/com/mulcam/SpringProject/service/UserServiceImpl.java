@@ -1,5 +1,7 @@
 package com.mulcam.SpringProject.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.mulcam.SpringProject.dao.UserDao;
 import com.mulcam.SpringProject.entity.User;
-import com.mulcam.SpringProject.entity.User_info;
+import com.mulcam.SpringProject.entity.UserInfo;
 import com.mulcam.SpringProject.session.UserSession;
 
 @Service
@@ -27,8 +29,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void register_info(User_info u_i) {
-		userDao.insert_info(u_i);
+	public void register_info(UserInfo ui) {
+		userDao.insertInfo(ui);
 	}
 
 	@Override
@@ -75,6 +77,13 @@ public class UserServiceImpl implements UserService{
 			// uid가 없음
 		}
 		return UserService.UID_NOT_EXIST;
+	}
+	
+	
+	@Override
+	public List<UserInfo> getCoincide_info(String uid) {
+		List<UserInfo> list = userDao.getCoincide_info(uid);
+		return list;
 	}
 
 }
