@@ -30,7 +30,8 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService bsv;
-	@Value("{spring.servlet.multipart.location}") private String uploadDir;
+	
+	@Value("${spring.servlet.multipart.location}") private String uploadDir;
 	
 	/** C : HOME 화면 */
 	@GetMapping("/index")
@@ -47,13 +48,6 @@ public class BoardController {
 	}
 	
 	/** C : 게시물 디테일 */
-//	@GetMapping("/detail/{bid}")
-//	public String detail(@PathVariable int bid,HttpServletRequest req, Model model) {
-//		Board board = bsv.detail(bid);
-//		model.addAttribute("board", board);
-//		return "board/detail";
-//	}
-	
 	@GetMapping("/detail")
 	public String detail(HttpServletRequest req, Model model) {
 		int bid = Integer.parseInt(req.getParameter("bid"));
@@ -64,10 +58,10 @@ public class BoardController {
 		
 		// 조회수 증가. 단, 본인이 읽거나 댓글 작성후에는 제외.
 		if (option == null && (!uid.equals(sessionUid))) 
-			BoardService.increaseViewCount(bid);
+			bsv.increaseViewCount(bid);
 		
-		Board board = BoardService.insertBoard(bid);
-		String jsonFiles = board.getB_files();
+		Board board = bsv.getBoard(bid);
+		String jsonFiles = board.getbFiles();
 		if (!(jsonFiles == null || jsonFiles.equals(""))) {
 			JSONUtil json = new JSONUtil();
 			List<String> fileList = json.parse(jsonFiles);
@@ -87,15 +81,15 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String write(MultipartHttpServletRequest req, LocalDateTime b_appointment) {
+	public String write(MultipartHttpServletRequest req, LocalDateTime bAppointment) {
 		String uid = req.getParameter("uid");
-		String b_title = (String) req.getParameter("b_title");
-		String b_category = (String) req.getParameter("b_category");
-		int b_userCount =Integer.parseInt(req.getParameter("b_userCount"));
-		String b_content = (String) req.getParameter("b_content");
-		String b_location = (String) req.getParameter("b_location");
+		String bTitle = (String) req.getParameter("bTitle");
+		String bCategory = (String) req.getParameter("bCategory");
+		int bUserCount =Integer.parseInt(req.getParameter("bUserCount"));
+		String bContent = (String) req.getParameter("bContent");
+		String bLocation = (String) req.getParameter("bLocation");
 		
-		List<MultipartFile> fileList = req.getFiles("b_files");
+		List<MultipartFile> fileList = req.getFiles("bFiles");
 		List<String> list = new ArrayList<>();
 
 		// File upload
@@ -111,7 +105,7 @@ public class BoardController {
 		}
 		JSONUtil json = new JSONUtil();
 		String files = json.stringify(list);
-		Board board = new Board(uid, b_title, b_category, b_userCount, b_content, b_appointment, b_location, files); 
+		Board board = new Board(uid, bTitle, bCategory, bUserCount, bContent, bAppointment, bLocation, files); 
 		bsv.insertBoard(board);
 		return "redirect:/board/list?p=1&f=&q=";
 	}

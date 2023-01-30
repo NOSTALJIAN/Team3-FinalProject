@@ -38,7 +38,7 @@ public class UserController {
 		String uname = req.getParameter("uname").strip();
 		String nickname = req.getParameter("nickname").strip();
 		String email = req.getParameter("email").strip();
-		int email_check = Integer.parseInt(req.getParameter("email_check"));
+		int email_check = Integer.parseInt(req.getParameter("emailcheck"));
 		int birth_date = Integer.parseInt(req.getParameter("birth_date"));
 		String gender = req.getParameter("gender");
 		int u_postcode = Integer.parseInt(req.getParameter("postcode"));

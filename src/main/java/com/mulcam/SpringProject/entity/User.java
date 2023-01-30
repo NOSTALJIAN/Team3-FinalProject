@@ -9,105 +9,115 @@ public class User {
 	private String phoneNum;
 	private String nickname;
 	private String email;
-	private int email_check;
+	private int emailcheck;
 	private int role;
-	private int isDeleted;
-	private LocalDate u_regDate;
+	private int uIsDeleted;
+	private LocalDate uRegDate;
 	
 	public User() {}
-	
-	public User(String uid, String pwd, String uname, String phoneNum, String nickname, String email, int email_check) {
-		super();
+
+	public User(String uid, String pwd, String uname, String phoneNum, String nickname, String email, int emailcheck,
+			int role, int uIsDeleted, LocalDate uRegDate) {
 		this.uid = uid;
 		this.pwd = pwd;
 		this.uname = uname;
 		this.phoneNum = phoneNum;
 		this.nickname = nickname;
 		this.email = email;
-		this.email_check = email_check;
+		this.emailcheck = emailcheck;
+		this.role = role;
+		this.uIsDeleted = uIsDeleted;
+		this.uRegDate = uRegDate;
 	}
 
-	public User(String uid, String pwd, String uname, String phoneNum, String nickname, String email, int email_check,
-			int role, int isDeleted, LocalDate u_regDate) {
-		super();
-		this.uid = uid;
-		this.pwd = pwd;
-		this.uname = uname;
-		this.phoneNum = phoneNum;
-		this.nickname = nickname;
-		this.email = email;
-		this.email_check = email_check;
-		this.role = role;
-		this.isDeleted = isDeleted;
-		this.u_regDate = u_regDate;
-	}
+
 
 	public String getUid() {
 		return uid;
 	}
+
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
+
 	public String getPwd() {
 		return pwd;
 	}
+
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+
 	public String getUname() {
 		return uname;
 	}
+
 	public void setUname(String uname) {
 		this.uname = uname;
 	}
+
 	public String getPhoneNum() {
 		return phoneNum;
 	}
+
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
+
 	public String getNickname() {
 		return nickname;
 	}
+
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getEmail_check() {
-		return email_check;
+
+	public int getEmailcheck() {
+		return emailcheck;
 	}
-	public void setEmail_check(int email_check) {
-		this.email_check = email_check;
+
+	public void setEmailcheck(int emailcheck) {
+		this.emailcheck = emailcheck;
 	}
+
 	public int getRole() {
 		return role;
 	}
+
 	public void setRole(int role) {
 		this.role = role;
 	}
-	public int getIsDeleted() {
-		return isDeleted;
+
+	public int getuIsDeleted() {
+		return uIsDeleted;
 	}
-	public void setIsDeleted(int isDeleted) {
-		this.isDeleted = isDeleted;
+
+	public void setuIsDeleted(int uIsDeleted) {
+		this.uIsDeleted = uIsDeleted;
 	}
-	public LocalDate getU_regDate() {
-		return u_regDate;
+
+	public LocalDate getuRegDate() {
+		return uRegDate;
 	}
-	public void setU_regDate(LocalDate u_regDate) {
-		this.u_regDate = u_regDate;
+
+	public void setuRegDate(LocalDate uRegDate) {
+		this.uRegDate = uRegDate;
 	}
 
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", pwd=" + pwd + ", uname=" + uname + ", phoneNum=" + phoneNum + ", nickname="
-				+ nickname + ", email=" + email + ", email_check=" + email_check + ", role=" + role + ", isDeleted="
-				+ isDeleted + ", u_regDate=" + u_regDate + "]";
+				+ nickname + ", email=" + email + ", emailcheck=" + emailcheck + ", role=" + role + ", uIsDeleted="
+				+ uIsDeleted + ", uRegDate=" + uRegDate + "]";
 	}
+	
 	
 }

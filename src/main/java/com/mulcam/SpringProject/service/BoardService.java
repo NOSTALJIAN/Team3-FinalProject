@@ -13,33 +13,23 @@ import com.mulcam.SpringProject.entity.User;
 public interface BoardService {
 
 	/** 게시글목록 페이지 출력 */
-	List<Board> list();
+	public List<Board> list();
 	
 	/** 디테일 페이지 출력 */
-	Board detail(int bid);
+	public Board getBoard(int bid) ;
 	
 	/** 게시물 등록 
 	 * @return */
-	public static Board insertBoard(int bid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void insertBoard(Board board);
 	
 	public void updateBoard(Board board);
 	
 	public void deleteBoard(int bid);
 
-	static void increaseViewCount(int bid) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void increaseViewCount(int bid) ;
 
-	void insertBoard(Board board);
 
-	static List<Reply> getReplyList(int bid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 		
 	}
 	
