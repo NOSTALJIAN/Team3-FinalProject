@@ -9,14 +9,14 @@ public class User {
 	private String phoneNum;
 	private String nickname;
 	private String email;
-	private int email_check;
+	private int emailCheck;
 	private int role;
 	private int isDeleted;
-	private LocalDate u_regDate;
+	private LocalDate uRegDate;
 	
 	public User() {}
 	
-	public User(String uid, String pwd, String uname, String phoneNum, String nickname, String email, int email_check) {
+	public User(String uid, String pwd, String uname, String phoneNum, String nickname, String email, int emailCheck) {
 		super();
 		this.uid = uid;
 		this.pwd = pwd;
@@ -24,11 +24,11 @@ public class User {
 		this.phoneNum = phoneNum;
 		this.nickname = nickname;
 		this.email = email;
-		this.email_check = email_check;
+		this.emailCheck = emailCheck;
 	}
 
-	public User(String uid, String pwd, String uname, String phoneNum, String nickname, String email, int email_check,
-			int role, int isDeleted, LocalDate u_regDate) {
+	public User(String uid, String pwd, String uname, String phoneNum, String nickname, String email, int emailCheck,
+			int role, int isDeleted, LocalDate uRegDate) {
 		super();
 		this.uid = uid;
 		this.pwd = pwd;
@@ -36,10 +36,10 @@ public class User {
 		this.phoneNum = phoneNum;
 		this.nickname = nickname;
 		this.email = email;
-		this.email_check = email_check;
+		this.emailCheck = emailCheck;
 		this.role = role;
 		this.isDeleted = isDeleted;
-		this.u_regDate = u_regDate;
+		this.uRegDate = uRegDate;
 	}
 
 	public String getUid() {
@@ -78,11 +78,11 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getEmail_check() {
-		return email_check;
+	public int getEmailCheck() {
+		return emailCheck;
 	}
-	public void setEmail_check(int email_check) {
-		this.email_check = email_check;
+	public void setEmailCheck(int emailCheck) {
+		this.emailCheck = emailCheck;
 	}
 	public int getRole() {
 		return role;
@@ -96,18 +96,18 @@ public class User {
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-	public LocalDate getU_regDate() {
-		return u_regDate;
+	public LocalDate getURegDate() {
+		return uRegDate;
 	}
-	public void setU_regDate(LocalDate u_regDate) {
-		this.u_regDate = u_regDate;
+	public void setURegDate(LocalDate uRegDate) {
+		this.uRegDate = uRegDate;
 	}
 
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", pwd=" + pwd + ", uname=" + uname + ", phoneNum=" + phoneNum + ", nickname="
-				+ nickname + ", email=" + email + ", email_check=" + email_check + ", role=" + role + ", isDeleted="
-				+ isDeleted + ", u_regDate=" + u_regDate + "]";
+				+ nickname + ", email=" + email + ", emailCheck=" + emailCheck + ", role=" + role + ", isDeleted="
+				+ isDeleted + ", uRegDate=" + uRegDate + "]";
 	}
 	
 }

@@ -1,9 +1,11 @@
 package com.mulcam.SpringProject.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.mulcam.SpringProject.entity.User;
-import com.mulcam.SpringProject.entity.User_info;
+import com.mulcam.SpringProject.entity.UserInfo;
 
 @Service
 public interface UserService {
@@ -13,7 +15,7 @@ public interface UserService {
 	
 	void register(User u);
 
-	void register_info(User_info u_i);
+	void register_info(UserInfo ui);
 
 	User getUser(String uid);
 
@@ -24,6 +26,10 @@ public interface UserService {
 	User getPhoneNum(String phoneNum);
 
 	int login(String uid, String pwd);
+	
+	
+	// User_info 정보
+	List<UserInfo> getCoincide_info(String uid);
 	
 	
 	
