@@ -3,10 +3,14 @@ package com.mulcam.SpringProject.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mulcam.SpringProject.dao.BoardDao;
 import com.mulcam.SpringProject.entity.Board;
+import com.mulcam.SpringProject.entity.User;
+
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -24,4 +28,29 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.detail(bid);
 	}
 
-}
+	@Value("${spring.servlet.multipart.location}")
+	String uploadDir;
+
+
+	@Override
+	public void insertBoard(Board board) {
+		boardDao.insertBoard(board);
+	}
+
+	@Override
+	public void updateBoard(Board board) {
+		
+	}
+
+	@Override
+	public void deleteBoard(int bid) {
+		
+	}
+
+	
+
+	
+	}
+
+	
+

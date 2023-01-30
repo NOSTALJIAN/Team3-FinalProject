@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
   <nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-5" tabindex="0">
   <div class="container">
@@ -19,24 +20,30 @@
 </li>
 <li class="nav-item">
   <a class="nav-link fs-5" href="#" aria-label="A sample content page">
-    Find
+    일대일 운동친구
   </a>
 </li>
 <li class="nav-item">
   <a class="nav-link fs-5" href="/board/list" aria-label="A system message page">
-    Group
+    그룹운동
   </a>
 </li>
-<li class="nav-item">
-  <a class="nav-link fs-5" href="#" aria-label="A system message page">
-    MyPage
-  </a>
-</li>
+  <c:choose>
+	<c:when test="${!empty sessionUid}">
+		<li class="nav-item">
+		  <a class="nav-link fs-5" href="#" aria-label="A system message page">
+		    마이페이지
+		  </a>
+		</li>
+	</c:when>
+</c:choose>
+	
+
 	<c:choose>
 		<c:when test="${sessionUid eq 'admin'}">
 	<li class="nav-item">
 	  <a class="nav-link fs-5 ${menu eq 'user' ? 'active' : ''}" href="/user/list" aria-label="A system message page">
-	    사용자
+	    사용자관리
 	  </a>
 	</li>
 		</c:when>
@@ -46,15 +53,15 @@
     <c:choose>
 		<c:when test="${empty sessionUid}">
       <a href="/user/login" aria-label="Download this template" class="btn btn-outline-light ${menu eq 'login' ? 'active' : ''}">
-        <small>Login</small>
+        <small>로그인</small>
       </a>
       <a href="/user/register" aria-label="Download this template" class="btn btn-outline-light ${menu eq 'reg' ? 'active' : ''}">
-        <small>Join</small>
+        <small>회원가입</small>
       </a>
       </c:when>
       <c:otherwise>
       	<a href="/user/logout" aria-label="Download this template" class="btn btn-outline-light ">
-        	<small>Logout</small>
+        	<small>로그아웃</small>
       </a>
       </c:otherwise>
       </c:choose>

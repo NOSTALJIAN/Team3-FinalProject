@@ -19,8 +19,10 @@ import com.mulcam.SpringProject.service.UserService;
 @RequestMapping("/test")
 public class BasicController {
 	
+
 	@Autowired
 	private UserService service;
+
 	
 	@GetMapping("/list")
 	public String list() {
