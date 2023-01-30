@@ -21,8 +21,14 @@
 	<meta name="HandheldFriendly" content="true">
 	<title>같이운동하러Gogo</title>
 	<link rel="stylesheet" href="/css/theme.min.css">
-   <style>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+ 
+   <style>
+  @font-face {font-family: 'Yeon Sung', cursive;}
+  
 /* inter-300 - latin */
 @font-face {
   font-family: 'Inter';
