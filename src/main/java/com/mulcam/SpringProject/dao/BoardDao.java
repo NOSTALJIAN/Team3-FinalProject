@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.mulcam.SpringProject.entity.Board;
 
@@ -12,15 +13,16 @@ import com.mulcam.SpringProject.entity.Board;
 public interface BoardDao {
 
 	@Select("select * from board")
-	List<Board> list();
+	public List<Board> list();
 	
-	@Select("select * from board where bid=#{bid};")
-	Board detail(int bid);
+	@Select("select * from board where bid=#{bid}")
+	public Board getBoard(int bid);
 	
-//	@Insert("insert into board values where (default, #{uid}, #{exercise_category_id}, #{b_title}, #{b_content}, #{b_regTime}, #{b_viewCount}, #{b_replyCount}, #{b_location}, default)")
-//	void bInsert(Board b) {
-		
-	@Insert("INSERT INTO board VALUES(#{bid}, #{uid}, #{b_title}, #{b_content}, #{b_regTime}"
-			+ " DEFAULT, DEFAULT, #{b_location}, DEFAULT")
+	@Insert("INSERT INTO board VALUES(DEFAULT, #{uid}, #{bTitle},#{bCategory},#{bUserCount}, #{bContent}, DEFAULT, #{bAppointment}, "
+			+ " DEFAULT, DEFAULT, #{bLocation}, #{bFiles}, DEFAULT")
 	public void insertBoard(Board board);
+
+
+	@Update("UPDATE board SET ${field}=${field}+1 WHERE bid=#{bid}")
+	public void increaseCount(int bid, String field);
 }

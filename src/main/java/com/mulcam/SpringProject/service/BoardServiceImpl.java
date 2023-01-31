@@ -24,15 +24,16 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Board detail(int bid) {
-		return boardDao.detail(bid);
+	public Board getBoard(int bid) {
+		Board board = boardDao.getBoard(bid);
+		return board;
 	}
+
 
 	@Value("${spring.servlet.multipart.location}")
 	String uploadDir;
 
 
-	@Override
 	public void insertBoard(Board board) {
 		boardDao.insertBoard(board);
 	}
@@ -44,6 +45,13 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void deleteBoard(int bid) {
+		
+	}
+
+	@Override
+	public void increaseViewCount(int bid) {
+		String field = "viewCount";
+		boardDao.increaseCount(bid, field);
 		
 	}
 

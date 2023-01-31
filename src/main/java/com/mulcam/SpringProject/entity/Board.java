@@ -6,53 +6,52 @@ public class Board {
 
 	private int bid;
 	private String uid;
-	private String b_title;
-	private String b_category;
-	private int b_userCount;
-	private String b_content;
-	private LocalDateTime b_regTime;
-	private LocalDateTime b_appointment;
-	private int b_viewCount;
-	private int b_replyCount;
-	private String b_location;
-	private String b_files;
-	private int b_isDeleted;
+	private String bTitle;
+	private String bCategory;
+	private int bUserCount;
+	private String bContent;
+	private LocalDateTime bRegTime;
+	private LocalDateTime bAppointment;
+	private int bViewCount;
+	private int bReplyCount;
+	private String bLocation;
+	private String bFiles;
+	private int bIsDeleted;
 	
 	public Board() {}
 
-	//게시글 작성시 생성자
-	public Board(String uid, String b_title, String b_category, int b_userCount, String b_content,
-			LocalDateTime b_appointment, String b_location, String b_files) {
-		super();
+	// 게시물 작성시 생성자
+	public Board(String uid, String bTitle, String bCategory, int bUserCount, String bContent,
+			LocalDateTime bAppointment, String bLocation, String bFiles) {
 		this.uid = uid;
-		this.b_title = b_title;
-		this.b_category = b_category;
-		this.b_userCount = b_userCount;
-		this.b_content = b_content;
-		this.b_appointment = b_appointment;
-		this.b_location = b_location;
-		this.b_files = b_files;
+		this.bTitle = bTitle;
+		this.bCategory = bCategory;
+		this.bUserCount = bUserCount;
+		this.bContent = bContent;
+		this.bAppointment = bAppointment;
+		this.bLocation = bLocation;
+		this.bFiles = bFiles;
 	}
 	
 	
-	public Board(int bid, String uid, String b_title, String b_category, int b_userCount, String b_content,
-			LocalDateTime b_regTime, LocalDateTime b_appointment, int b_viewCount, int b_replyCount, String b_location,
-			String b_files, int b_isDeleted) {
-		super();
+	public Board(int bid, String uid, String bTitle, String bCategory, int bUserCount, String bContent,
+			LocalDateTime bRegTime, LocalDateTime bAppointment, int bViewCount, int bReplyCount, String bLocation,
+			String bFiles, int bIsDeleted) {
 		this.bid = bid;
 		this.uid = uid;
-		this.b_title = b_title;
-		this.b_category = b_category;
-		this.b_userCount = b_userCount;
-		this.b_content = b_content;
-		this.b_regTime = b_regTime;
-		this.b_appointment = b_appointment;
-		this.b_viewCount = b_viewCount;
-		this.b_replyCount = b_replyCount;
-		this.b_location = b_location;
-		this.b_files = b_files;
-		this.b_isDeleted = b_isDeleted;
+		this.bTitle = bTitle;
+		this.bCategory = bCategory;
+		this.bUserCount = bUserCount;
+		this.bContent = bContent;
+		this.bRegTime = bRegTime;
+		this.bAppointment = bAppointment;
+		this.bViewCount = bViewCount;
+		this.bReplyCount = bReplyCount;
+		this.bLocation = bLocation;
+		this.bFiles = bFiles;
+		this.bIsDeleted = bIsDeleted;
 	}
+
 
 
 	public int getBid() {
@@ -71,101 +70,102 @@ public class Board {
 		this.uid = uid;
 	}
 
-	public String getB_title() {
-		return b_title;
+	public String getbTitle() {
+		return bTitle;
 	}
 
-	public void setB_title(String b_title) {
-		this.b_title = b_title;
+	public void setbTitle(String bTitle) {
+		this.bTitle = bTitle;
 	}
 
-	public String getB_category() {
-		return b_category;
+	public String getbCategory() {
+		return bCategory;
 	}
 
-	public void setB_category(String b_category) {
-		this.b_category = b_category;
+	public void setbCategory(String bCategory) {
+		this.bCategory = bCategory;
 	}
 
-	public int getB_userCount() {
-		return b_userCount;
+	public int getbUserCount() {
+		return bUserCount;
 	}
 
-	public void setB_userCount(int b_userCount) {
-		this.b_userCount = b_userCount;
+	public void setbUserCount(int bUserCount) {
+		this.bUserCount = bUserCount;
 	}
 
-	public String getB_content() {
-		return b_content;
+	public String getbContent() {
+		return bContent;
 	}
 
-	public void setB_content(String b_content) {
-		this.b_content = b_content;
+	public void setbContent(String bContent) {
+		this.bContent = bContent;
 	}
 
-	public LocalDateTime getB_regTime() {
-		return b_regTime;
+	public LocalDateTime getbRegTime() {
+		return bRegTime;
 	}
 
-	public void setB_regTime(LocalDateTime b_regTime) {
-		this.b_regTime = b_regTime;
+	public void setbRegTime(LocalDateTime bRegTime) {
+		this.bRegTime = bRegTime;
 	}
 
-	public LocalDateTime getB_appointment() {
-		return b_appointment;
+	public LocalDateTime getbAppointment() {
+		return bAppointment;
 	}
 
-	public void setB_appointment(LocalDateTime b_appointment) {
-		this.b_appointment = b_appointment;
+	public void setbAppointment(LocalDateTime bAppointment) {
+		this.bAppointment = bAppointment;
 	}
 
-	public int getB_viewCount() {
-		return b_viewCount;
+	public int getbViewCount() {
+		return bViewCount;
 	}
 
-	public void setB_viewCount(int b_viewCount) {
-		this.b_viewCount = b_viewCount;
+	public void setbViewCount(int bViewCount) {
+		this.bViewCount = bViewCount;
 	}
 
-	public int getB_replyCount() {
-		return b_replyCount;
+	public int getbReplyCount() {
+		return bReplyCount;
 	}
 
-	public void setB_replyCount(int b_replyCount) {
-		this.b_replyCount = b_replyCount;
+	public void setbReplyCount(int bReplyCount) {
+		this.bReplyCount = bReplyCount;
 	}
 
-	public String getB_location() {
-		return b_location;
+	public String getbLocation() {
+		return bLocation;
 	}
 
-	public void setB_location(String b_location) {
-		this.b_location = b_location;
+	public void setbLocation(String bLocation) {
+		this.bLocation = bLocation;
 	}
 
-	public String getB_files() {
-		return b_files;
+	public String getbFiles() {
+		return bFiles;
 	}
 
-	public void setB_files(String b_files) {
-		this.b_files = b_files;
+	public void setbFiles(String bFiles) {
+		this.bFiles = bFiles;
 	}
 
-	public int getB_isDeleted() {
-		return b_isDeleted;
+	public int getbIsDeleted() {
+		return bIsDeleted;
 	}
 
-	public void setB_isDeleted(int b_isDeleted) {
-		this.b_isDeleted = b_isDeleted;
+	public void setbIsDeleted(int bIsDeleted) {
+		this.bIsDeleted = bIsDeleted;
 	}
 
 	@Override
 	public String toString() {
-		return "Board [bid=" + bid + ", uid=" + uid + ", b_title=" + b_title + ", b_category=" + b_category
-				+ ", b_userCount=" + b_userCount + ", b_content=" + b_content + ", b_regTime=" + b_regTime
-				+ ", b_appointment=" + b_appointment + ", b_viewCount=" + b_viewCount + ", b_replyCount=" + b_replyCount
-				+ ", b_location=" + b_location + ", b_files=" + b_files + ", b_isDeleted=" + b_isDeleted + "]";
+		return "Board [bid=" + bid + ", uid=" + uid + ", bTitle=" + bTitle + ", bCategory=" + bCategory
+				+ ", bUserCount=" + bUserCount + ", bContent=" + bContent + ", bRegTime=" + bRegTime + ", bAppointment="
+				+ bAppointment + ", bViewCount=" + bViewCount + ", bReplyCount=" + bReplyCount + ", bLocation="
+				+ bLocation + ", bFiles=" + bFiles + ", bIsDeleted=" + bIsDeleted + "]";
 	}
+
 	
 	
 }
