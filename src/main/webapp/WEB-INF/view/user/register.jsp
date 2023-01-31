@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body style="margin-left: 40px; margin-top: 50px;">
