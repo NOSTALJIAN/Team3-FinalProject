@@ -1,6 +1,6 @@
 package com.mulcam.SpringProject.entity;
 
-public class User_info {
+public class UserInfo {
 	private String uid;
 	private int uPostcode;
 	private String uAddr;
@@ -9,13 +9,14 @@ public class User_info {
 	private int birthDate;
 	private String gender;
 	private float uRating;
-	private float uLat;
-	private float uLng;
+	private int coincideExer;
+	private double uLat;
+	private double uLng;
 	
-	public User_info() {}
-
-	public User_info(String uid, int uPostcode, String uAddr, String uDetailAddr, int likeExercise, int birthDate,
-			String gender, float uRating, float uLat, float uLng) {
+	public UserInfo() {}
+	// 회원가입용
+	public UserInfo(String uid, int uPostcode, String uAddr, String uDetailAddr, int likeExercise, int birthDate,
+			String gender, double uLat, double uLng) {
 		this.uid = uid;
 		this.uPostcode = uPostcode;
 		this.uAddr = uAddr;
@@ -23,98 +24,94 @@ public class User_info {
 		this.likeExercise = likeExercise;
 		this.birthDate = birthDate;
 		this.gender = gender;
-		this.uRating = uRating;
 		this.uLat = uLat;
 		this.uLng = uLng;
 	}
 
-
+	// 사용자와 운동 목록중 하나라도 일치하는데이터 가져오기용
+	public UserInfo(String uid, int uPostcode, String uAddr, int likeExercise, int birthDate, String gender,
+			float uRating, int coincideExer) {
+		super();
+		this.uid = uid;
+		this.uPostcode = uPostcode;
+		this.uAddr = uAddr;
+		this.likeExercise = likeExercise;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.uRating = uRating;
+		this.coincideExer = coincideExer;
+	}
 	public String getUid() {
 		return uid;
 	}
-
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-
 	public int getuPostcode() {
 		return uPostcode;
 	}
-
 	public void setuPostcode(int uPostcode) {
 		this.uPostcode = uPostcode;
 	}
-
 	public String getuAddr() {
 		return uAddr;
 	}
-
 	public void setuAddr(String uAddr) {
 		this.uAddr = uAddr;
 	}
-
 	public String getuDetailAddr() {
 		return uDetailAddr;
 	}
-
 	public void setuDetailAddr(String uDetailAddr) {
 		this.uDetailAddr = uDetailAddr;
 	}
-
 	public int getLikeExercise() {
 		return likeExercise;
 	}
-
 	public void setLikeExercise(int likeExercise) {
 		this.likeExercise = likeExercise;
 	}
-
 	public int getBirthDate() {
 		return birthDate;
 	}
-
 	public void setBirthDate(int birthDate) {
 		this.birthDate = birthDate;
 	}
-
 	public String getGender() {
 		return gender;
 	}
-
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
 	public float getuRating() {
 		return uRating;
 	}
-
 	public void setuRating(float uRating) {
 		this.uRating = uRating;
 	}
-
-	public float getuLat() {
+	public int getCoincideExer() {
+		return coincideExer;
+	}
+	public void setCoincideExer(int coincideExer) {
+		this.coincideExer = coincideExer;
+	}
+	public double getuLat() {
 		return uLat;
 	}
-
-	public void setuLat(float uLat) {
+	public void setuLat(double uLat) {
 		this.uLat = uLat;
 	}
-
-	public float getuLng() {
+	public double getuLng() {
 		return uLng;
 	}
-
-	public void setuLng(float uLng) {
+	public void setuLng(double uLng) {
 		this.uLng = uLng;
 	}
-
 	@Override
 	public String toString() {
-		return "User_info [uid=" + uid + ", uPostcode=" + uPostcode + ", uAddr=" + uAddr + ", uDetailAddr="
-				+ uDetailAddr + ", likeExercise=" + likeExercise + ", birthDate=" + birthDate + ", gender=" + gender
-				+ ", uRating=" + uRating + ", uLat=" + uLat + ", uLng=" + uLng + "]";
+		return "UserInfo [uid=" + uid + ", uPostcode=" + uPostcode + ", uAddr=" + uAddr + ", uDetailAddr=" + uDetailAddr
+				+ ", likeExercise=" + likeExercise + ", birthDate=" + birthDate + ", gender=" + gender + ", uRating="
+				+ uRating + ", coincideExer=" + coincideExer + ", uLat=" + uLat + ", uLng=" + uLng + "]";
 	}
-	
 	
 }
