@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../common/heading.jsp" %>
 </head>
 
 <body style="margin-left: 40px; margin-top: 50px;">
