@@ -37,11 +37,14 @@ public interface UserDao {
 //			+ "AND uid !=#{uid3};")
 //	userInfo getCoincide_info(String uid, String uid2, String uid3);
 	
-	@Select("select uid, uPostcode, uAddr, likeExercise, birthDate, gender, uRating, "
-			+ " BIN(likeExercise & (SELECT likeExercise FROM userInfo WHERE uid = #{uid})) coincideExer"
+	@Select("select uid, uPostcode, uAddr, likeExercise, birthDate, gender, uRating, uLat, uLng, "
+			+ " CONVERT(BIN(likeExercise & (SELECT likeExercise FROM userInfo WHERE uid = #{uid})), CHAR(12)) coincideExer"
 			+ "	FROM userInfo"
 			+ "	WHERE (likeExercise & (SELECT likeExercise FROM userInfo WHERE uid=#{uid})) != 0"
 			+ "	AND uid != #{uid};")
-	List<UserInfo> getCoincide_info(String uid);
+	List<UserInfo> getCoincideInfo(String uid);
+
+	@Select("SELECT uid, uAddr, likeExercise, birthDate, gender, uRating, uLat, uLng from userInfo WHERE uid = #{sessionUid};")
+	UserInfo getUserInfo(String sessionUid);
 
 }

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/css/style.css">
+<%@ include file="../common/heading.jsp" %>
 </head>
 
 <body style="margin-left: 40px; margin-top: 50px;">
