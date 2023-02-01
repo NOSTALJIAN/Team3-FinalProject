@@ -3,9 +3,12 @@ package com.mulcam.SpringProject.misc;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ExerciseUtill {
 	
-	// 1이 몇번째 들어가있는지 찾는 함수
+	/** 1이 몇번째 들어가있는지 찾는 함수 */
 	public List<Integer> findIndexes(String document) {
 		String word = "1";
 		List<Integer> indexList = new ArrayList<Integer>();
@@ -19,32 +22,30 @@ public class ExerciseUtill {
 		return indexList;
 	}
 	
-	// 2진수(스트링 타입)에서 어떤 운동 들어가 있는지 찾는 함수
+	/** 2진수(스트링 타입)에서 어떤 운동 들어가 있는지 찾는 함수 */
 	public List<String> findExercise(String document) {
 		String word = "1";
 		int index = document.indexOf(word);
-		String[] exercise_list = {"축구", "농구", "야구", "E-sports", "등산", "당구", "볼링", "싸이클", "테니스", "조깅", "수영", "헬스"};
-		List<String> like_exercise_List = new ArrayList<String>();
+		String[] exerciseList = {"헬스", "수영", "조깅", "테니스", "싸이클", "볼링", "당구", "등산", "E-sports", "야구", "농구", "축구"};
+		List<String> coincideList = new ArrayList<String>();
 		while(index != -1) {
-			like_exercise_List.add(exercise_list[index-1]);	
-			index = document.indexOf(word, index+word.length());	
+			coincideList.add(exerciseList[index]);	
+			index = document.indexOf(word, index+1);	
 		}
 		
-		return like_exercise_List;
+		return coincideList;
 	}
 	
-	// 1이 몇개 들어가있는지 찾는 함수
+	/** 1이 몇개 들어가있는지 찾는 함수 */
 	public Integer countOne(String document) {
 		String word = "1";
-		int count = -1;
-		int index= 0;// 0
+		int count = 0;
+		int index= document.indexOf(word);	// 몇번째에 1이있는지 찾는다.
 		
 		while(index != -1) {
-			index = document.indexOf(word, index+word.length());	//1+0
+			index = document.indexOf(word, index+1);
 			count++;
 		}
-		
-		// lastIndexOf로 하면 0,1,4,5,6,8
 		return count;
 	}
 }

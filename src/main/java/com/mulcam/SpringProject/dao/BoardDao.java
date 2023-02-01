@@ -19,7 +19,7 @@ public interface BoardDao {
 	public Board getBoard(int bid);
 	
 	@Insert("INSERT INTO board VALUES(DEFAULT, #{uid}, #{bTitle},#{bCategory},#{bUserCount}, #{bContent}, DEFAULT, #{bAppointment}, "
-			+ " DEFAULT, DEFAULT, #{bLocation}, #{bFiles}, DEFAULT")
+			+ " DEFAULT, DEFAULT, #{bLocation}, #{bFiles}, DEFAULT)")
 	public void insertBoard(Board board);
 
 

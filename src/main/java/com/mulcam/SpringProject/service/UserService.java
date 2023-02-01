@@ -15,7 +15,7 @@ public interface UserService {
 	
 	void register(User u);
 
-	void register_info(UserInfo ui);
+	void registerInfo(UserInfo ui);
 
 	User getUser(String uid);
 
@@ -28,9 +28,11 @@ public interface UserService {
 	int login(String uid, String pwd);
 	
 	
-	// User_info 정보
-	List<UserInfo> getCoincide_info(String uid);
+	/** 사용자와 일치하는 유저 정보들 */
+	List<UserInfo> getCoincideInfo(String uid);
 	
+	/** 사용자 정보*/
+	UserInfo getUserInfo(String sessionUid);
 	
 	
 }
