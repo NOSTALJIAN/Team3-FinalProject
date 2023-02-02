@@ -11,7 +11,7 @@
 <body style="margin: 200px" >
 <%@ include file="../common/top.jsp" %>
 	<div class="">
-		<h3 class="board-title">그룹운동 게시판</h3>
+		<h3 class="board-title">그룹운동 게시판</h3>
 		<hr>
 		<div class="">
 			<button type="button" class="btn-hover color-8 fix-position" onclick="location.href='/board/write'">+글쓰기</button>
@@ -19,8 +19,8 @@
 			<tr>
 				<th><label>제목</label></th>
 				<th><label>운동종목</label></th>
-				<th><label>작성시간</label></th>	
-				<th><label>인원수</label></th>
+				<th><label>작성시간</label></th>	
+				<th><label>인원수</label></th>
 			</tr>
 			<c:forEach var="b" items="${blist}">
 				<tr>
@@ -33,6 +33,7 @@
 		</table> 
 		</div>
 	
+
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/aos.js"></script>
 <script>

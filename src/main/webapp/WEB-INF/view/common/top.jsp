@@ -41,7 +41,6 @@
               </c:when>
             </c:choose>
 
-
             <c:choose>
               <c:when test="${sessionUid eq 'admin'}">
                 <li class="nav-item">

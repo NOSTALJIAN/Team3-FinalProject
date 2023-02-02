@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../common/heading.jsp" %>
-<link rel="stylesheet" href="/css/board.css">
-<meta charset="UTF-8">
-<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppKey}&libraries=services"></script>
-<link rel="stylesheet" href="/css/map.css" />
+  <%@ include file="../common/heading.jsp" %>
+  <link rel="stylesheet" href="/css/board.css">
+  <meta charset="UTF-8">
+  <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppKey}&libraries=services"></script>
+  <link rel="stylesheet" href="/css/map.css" />
 </head>
 
 <body style="margin: 100px ">

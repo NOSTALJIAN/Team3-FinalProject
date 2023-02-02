@@ -21,6 +21,7 @@ public class Board {
 	
 	public Board() {}
 	
+
 	public Board(int bid, String uid, String bTitle, String bCategory, int bUserCount, String bContent,
 			LocalDateTime bRegTime, LocalDateTime bAppointment, int bViewCount, int bReplyCount, String bLocation,
 			String bFiles, int bIsDeleted, String bAddr) {
@@ -54,25 +55,6 @@ public class Board {
 			this.bAddr = bAddr;
 			this.bFiles = bFiles;
 		}
-
-	public Board(int bid, String uid, String bTitle, String bCategory, int bUserCount, String bContent,
-			LocalDateTime bRegTime, LocalDateTime bAppointment, int bViewCount, int bReplyCount, String bLocation,
-			String bFiles, int bIsDeleted) {
-		this.bid = bid;
-		this.uid = uid;
-		this.bTitle = bTitle;
-		this.bCategory = bCategory;
-		this.bUserCount = bUserCount;
-		this.bContent = bContent;
-		this.bRegTime = bRegTime;
-		this.bAppointment = bAppointment;
-		this.bViewCount = bViewCount;
-		this.bReplyCount = bReplyCount;
-		this.bLocation = bLocation;
-		this.bFiles = bFiles;
-		this.bIsDeleted = bIsDeleted;
-	}
-
 
 
 	public int getBid() {
@@ -162,6 +144,14 @@ public class Board {
 	public void setbLocation(String bLocation) {
 		this.bLocation = bLocation;
 	}
+	
+	public String getbAddr() {
+		return bAddr;
+	}
+
+	public void setbAddr(String bAddr) {
+		this.bAddr = bAddr;
+	}
 
 	public String getbFiles() {
 		return bFiles;
@@ -179,13 +169,6 @@ public class Board {
 		this.bIsDeleted = bIsDeleted;
 	}
 
-	public String getbAddr() {
-		return bAddr;
-	}
-
-	public void setbAddr(String bAddr) {
-		this.bAddr = bAddr;
-	}
 
 	@Override
 	public String toString() {
@@ -193,8 +176,11 @@ public class Board {
 				+ ", bUserCount=" + bUserCount + ", bContent=" + bContent + ", bRegTime=" + bRegTime + ", bAppointment="
 				+ bAppointment + ", bViewCount=" + bViewCount + ", bReplyCount=" + bReplyCount + ", bLocation="
 				+ bLocation + ", bFiles=" + bFiles + ", bIsDeleted=" + bIsDeleted + ", bAddr=" + bAddr + "]";
+
 	}
 
+
+	
 
 	
 	
