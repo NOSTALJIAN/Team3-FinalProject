@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void register_info(UserInfo ui) {
+	public void registerInfo(UserInfo ui) {
 		userDao.insertInfo(ui);
 	}
 
@@ -81,9 +81,15 @@ public class UserServiceImpl implements UserService{
 	
 	
 	@Override
-	public List<UserInfo> getCoincide_info(String uid) {
-		List<UserInfo> list = userDao.getCoincide_info(uid);
+	public List<UserInfo> getCoincideInfo(String uid) {
+		List<UserInfo> list = userDao.getCoincideInfo(uid);
 		return list;
+	}
+
+	@Override
+	public UserInfo getUserInfo(String sessionUid) {
+			UserInfo userinfo = userDao.getUserInfo(sessionUid);
+		return userinfo;
 	}
 
 }

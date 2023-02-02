@@ -20,6 +20,7 @@ public interface BoardDao {
 	
 	@Insert("INSERT INTO board VALUES(DEFAULT, #{uid}, #{bTitle}, #{bCategory}, #{bUserCount}, #{bContent}, DEFAULT, #{bAppointment}, "
 			+ " DEFAULT, DEFAULT, #{bLocation}, #{bAddr}, #{bFiles}, DEFAULT)")
+
 	public void insertBoard(Board board);
 
 	@Update("UPDATE board SET ${field}=${field}+1 WHERE bid=#{bid}")

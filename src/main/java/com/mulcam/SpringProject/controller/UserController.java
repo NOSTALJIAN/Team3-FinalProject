@@ -28,13 +28,15 @@ public class UserController {
 
 	@Autowired private UserSession userSession;	
 	@Autowired private UserService service;
-	@Autowired private MapUtill maputill;
-
+	@Autowired private MapUtill mapUtill;
+	
+	/** 회원가입 페이지*/
 	@GetMapping("/register")
 	public String register() {
 		return "user/register";
 	}
 	
+	/** 회원가입 */
 	@PostMapping("/register")
 	public String register2(HttpServletRequest req, Model model) throws Exception {
 		String uid = req.getParameter("uid").strip();
@@ -83,25 +85,25 @@ public class UserController {
 		}
 		
 		// 유저의 주소에서 위도와 경도찾기
-		
-		List<Double> latlng = maputill.findLatLng(uAddr);
+		System.out.println(uAddr);
+		List<Double> latlng = mapUtill.findLatLng(uAddr);
 		double lat = latlng.get(0);
 		double lng = latlng.get(1);
 		
 		u = new User(uid, pwd, uname, phoneNum, nickname, email, emailCheck);
 		service.register(u);
 		UserInfo ui = new UserInfo(uid, uPostcode, uAddr, uDetailAddr,likeExercise, birthDate, gender, lat, lng);
-		service.register_info(ui);
+		service.registerInfo(ui);
 
 		return "user/login";
 	}
 	
-	//로그인
+	/** 로그인 페이지 */
 	@GetMapping("/login")
 	public String loginform() {
 		return "user/login";
 	}
-	
+	/** 로그인*/
 	@PostMapping("/login")
 	public String login(HttpServletRequest req, Model model, HttpSession session) {
 		String uid = req.getParameter("uid").strip();
@@ -125,14 +127,14 @@ public class UserController {
 		}
 	}
 	
-	// 로그아웃
+	/** 로그아웃*/
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/board/index";
 	}
 	
-	// 사용자 마이페이지
+	/** 사용자 페이지*/
 	@GetMapping("/mypage")
 	public String mypage(HttpSession session) {
 		session.invalidate();

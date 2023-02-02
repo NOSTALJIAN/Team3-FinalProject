@@ -9,12 +9,12 @@ public class UserInfo {
 	private int birthDate;
 	private String gender;
 	private float uRating;
-	private int coincideExer;
+	private String coincideExer;
 	private double uLat;
 	private double uLng;
 	
 	public UserInfo() {}
-	// 회원가입용
+	/** 회원가입용 */
 	public UserInfo(String uid, int uPostcode, String uAddr, String uDetailAddr, int likeExercise, int birthDate,
 			String gender, double uLat, double uLng) {
 		this.uid = uid;
@@ -27,10 +27,11 @@ public class UserInfo {
 		this.uLat = uLat;
 		this.uLng = uLng;
 	}
+	
 
-	// 사용자와 운동 목록중 하나라도 일치하는데이터 가져오기용
+	/** 사용자와 운동 목록중 하나라도 일치하는데이터 가져오기용 */
 	public UserInfo(String uid, int uPostcode, String uAddr, int likeExercise, int birthDate, String gender,
-			float uRating, int coincideExer) {
+			float uRating, String coincideExer, double uLat, double uLng) {
 		super();
 		this.uid = uid;
 		this.uPostcode = uPostcode;
@@ -40,7 +41,23 @@ public class UserInfo {
 		this.gender = gender;
 		this.uRating = uRating;
 		this.coincideExer = coincideExer;
+		this.uLat = uLat;
+		this.uLng = uLng;
 	}
+	
+	/** 알고리즘 계산에 필요한 사용자 정보 가져오기용*/
+	public UserInfo(String uid, int likeExercise, int birthDate, String gender, float uRating, double uLat,
+			double uLng) {
+		super();
+		this.uid = uid;
+		this.likeExercise = likeExercise;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.uRating = uRating;
+		this.uLat = uLat;
+		this.uLng = uLng;
+	}
+	
 	public String getUid() {
 		return uid;
 	}
@@ -89,10 +106,10 @@ public class UserInfo {
 	public void setuRating(float uRating) {
 		this.uRating = uRating;
 	}
-	public int getCoincideExer() {
+	public String getCoincideExer() {
 		return coincideExer;
 	}
-	public void setCoincideExer(int coincideExer) {
+	public void setCoincideExer(String coincideExer) {
 		this.coincideExer = coincideExer;
 	}
 	public double getuLat() {
