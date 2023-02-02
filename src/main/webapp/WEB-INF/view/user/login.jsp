@@ -4,13 +4,11 @@
 <html class="h-100" lang="ko">
 
 <head>
-	<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-	<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-	<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-	
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />  
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 	<meta name="description" content="A well made and handcrafted Bootstrap 5 template">
@@ -24,6 +22,7 @@
 	<title>GOgo</title>
 	<link rel="stylesheet" href="/css/theme.min.css">
 </head>
+
 <body class="d-flex h-100 w-100 bg-black text-white" data-bs-spy="scroll" data-bs-target="#navScroll">
 	<div class="h-100 container-fluid">
     	<div class="h-100 row d-flex align-items-stretch">
@@ -62,4 +61,5 @@
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/aos.js"></script>
  </body>
+
 </html>
