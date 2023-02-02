@@ -15,14 +15,15 @@ public class Board {
 	private int bViewCount;
 	private int bReplyCount;
 	private String bLocation;
+	private String bAddr;
 	private String bFiles;
 	private int bIsDeleted;
 	
 	public Board() {}
-
+	
 	// 게시물 작성시 생성자
 	public Board(String uid, String bTitle, String bCategory, int bUserCount, String bContent,
-			LocalDateTime bAppointment, String bLocation, String bFiles) {
+			LocalDateTime bAppointment, String bLocation, String bAddr, String bFiles) {
 		this.uid = uid;
 		this.bTitle = bTitle;
 		this.bCategory = bCategory;
@@ -30,6 +31,7 @@ public class Board {
 		this.bContent = bContent;
 		this.bAppointment = bAppointment;
 		this.bLocation = bLocation;
+		this.bAddr = bAddr;
 		this.bFiles = bFiles;
 	}
 	
@@ -141,6 +143,14 @@ public class Board {
 	public void setbLocation(String bLocation) {
 		this.bLocation = bLocation;
 	}
+	
+	public String getbAddr() {
+		return bAddr;
+	}
+
+	public void setbAddr(String bAddr) {
+		this.bAddr = bAddr;
+	}
 
 	public String getbFiles() {
 		return bFiles;
@@ -163,8 +173,10 @@ public class Board {
 		return "Board [bid=" + bid + ", uid=" + uid + ", bTitle=" + bTitle + ", bCategory=" + bCategory
 				+ ", bUserCount=" + bUserCount + ", bContent=" + bContent + ", bRegTime=" + bRegTime + ", bAppointment="
 				+ bAppointment + ", bViewCount=" + bViewCount + ", bReplyCount=" + bReplyCount + ", bLocation="
-				+ bLocation + ", bFiles=" + bFiles + ", bIsDeleted=" + bIsDeleted + "]";
+				+ bLocation + ", bAddr=" + bAddr + ", bFiles=" + bFiles + ", bIsDeleted=" + bIsDeleted + "]";
 	}
+
+	
 
 	
 	
