@@ -57,10 +57,10 @@
                 	</div>
                 	<div class="space"></div>
                 	<!-- Info -->	
-                    <div class="col-8">
+                    <div class="">
 	                    <table class="board-view-infomation">
-	                    	<tr>
-	                        	<th>${b.bid} ${b.bTitle}</th>
+	                    	<tr style="width: 100px">
+	                        	<th>${b.bTitle}</th>
 	                        </tr>
 	                        <tr>
 								<th>작성 일자</th>
@@ -91,7 +91,7 @@
                    </div>
                 </div>
             </div>
-        <div id="map" style="width:100%;height:350px;"></div>
+        <div id="map" style="width:50%;height:350px;"></div>
         <script>
           var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
               mapOption = {

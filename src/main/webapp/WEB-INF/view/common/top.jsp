@@ -22,7 +22,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-5" href="#" aria-label="A sample content page">
+              <a class="nav-link fs-5" href="/matching/list" aria-label="A sample content page">
                 1:1 운동
               </a>
             </li>
