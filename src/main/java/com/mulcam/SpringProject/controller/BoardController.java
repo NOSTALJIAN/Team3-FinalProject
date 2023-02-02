@@ -34,13 +34,13 @@ public class BoardController {
 	@Value("${spring.servlet.multipart.location}") private String uploadDir;
 	@Value("${kakao.AppKey}") private String kakaoAppKey;
 	
-	/** C : HOME 화면 */
+	/** HOME 화면 */
 	@GetMapping("/index")
 	public String index() {
 		return "board/index";
 	}
 	
-	/** C : 게시물 목록 */
+	/** 게시물 목록 */
 	@GetMapping("/list")
 	public String list(HttpServletRequest req, Model model){
 		List<Board> list = bsv.list();
@@ -48,34 +48,16 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	/** C : 게시물 디테일 */
+	/** 게시물 디테일 */
 	@GetMapping("/detail/{bid}")
 	public String detail(HttpServletRequest req, Model model, @PathVariable int bid) {
-		String uid = req.getParameter("uid");
-		String option = req.getParameter("option");
-		HttpSession session = req.getSession();
-		String sessionUid = (String) session.getAttribute("sessionUid");
-		
-		// 조회수 증가. 단, 본인이 읽거나 댓글 작성후에는 제외.
-//		if (option == null && (!uid.equals(sessionUid))) 
-//			bsv.increaseViewCount(bid);
-		
 		Board board = bsv.getBoard(bid);
-		String jsonFiles = board.getbFiles();
-		if (!(jsonFiles == null || jsonFiles.equals(""))) {
-			JSONUtil json = new JSONUtil();
-			List<String> fileList = json.parse(jsonFiles);
-			model.addAttribute("fileList", fileList);
-		}
 		model.addAttribute("b", board);
 		model.addAttribute("kakaoAppKey", kakaoAppKey);
-//		List<Reply> replyList = BoardService.getReplyList(bid);
-//		model.addAttribute("replyList", replyList);
-		
 		return "board/detail";
 	}
 	
-	/** C : 게시물 작성 */
+	/** 게시물 작성 */
 	@GetMapping("/write")
 	public String writeForm(Model model) {
 		model.addAttribute("kakaoAppKey", kakaoAppKey);
@@ -83,7 +65,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String write(MultipartHttpServletRequest req) {
+	public String write(MultipartHttpServletRequest req) throws Exception {
 		String uid = req.getParameter("uid");
 		String bTitle = (String) req.getParameter("bTitle");
 		String bCategory = (String) req.getParameter("bCategory");
@@ -92,29 +74,16 @@ public class BoardController {
 		String bContent = (String) req.getParameter("bContent");
 		String bLocation = (String) req.getParameter("bLocation");
 		String bAddr = (String) req.getParameter("bAddr");
-		System.out.println(bAddr + " write");
+
+		// 썸네일 File upload 한개만
+		MultipartFile file = req.getFile("bFiles");
+		String fileName = file.getOriginalFilename();
+		String uploadFile = uploadDir + "/" + fileName;
+		file.transferTo(new File(uploadFile));
 		
-		List<MultipartFile> fileList = req.getFiles("bFiles");
-		List<String> list = new ArrayList<>();
-		
-		// File upload
-		for (MultipartFile file: fileList) {
-			list.add(file.getOriginalFilename());
-			String uploadFile = uploadDir + "/" + file.getOriginalFilename();
-			File fileName = new File(uploadFile);
-			try {
-				file.transferTo(fileName);
-			} catch (Exception e) {
-//						e.printStackTrace();
-			}
-		}
-		JSONUtil json = new JSONUtil();
-		String files = json.stringify(list);
-		Board board = new Board(uid, bTitle, bCategory, bUserCount, bContent, bAppointment, bLocation, bAddr, files); 
+		Board board = new Board(uid, bTitle, bCategory, bUserCount, bContent, bAppointment, bLocation, bAddr, fileName); 
 		bsv.insertBoard(board);
-		
-		
-		return "redirect:/board/list?p=1&f=&q=";
+		return "redirect:/board/list";
 	}
 			
 

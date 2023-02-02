@@ -108,7 +108,7 @@ public class UserController {
 	public String login(HttpServletRequest req, Model model, HttpSession session) {
 		String uid = req.getParameter("uid").strip();
 		String pwd = req.getParameter("pwd").strip();
-		int result = service.login(uid,pwd);
+		int result = service.login(uid, pwd);
 		switch (result) {
 		case UserService.CORRECT_LOGIN :
 			session.setAttribute("sessionUid", uid);

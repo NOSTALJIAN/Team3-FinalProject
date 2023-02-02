@@ -53,7 +53,6 @@ public class MapUtill {
 		String lng_ = (String) address.get("x");
 		String lat_ = (String) address.get("y");
 		double lat = Float.parseFloat(lat_);
-
 		double lng = Float.parseFloat(lng_);
 
 		indexList.add(lat);

@@ -3,17 +3,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<!-- <link rel="stylesheet" href="/css/style.css"> -->
-	<%@ include file="../common/heading.jsp" %>
-
+  	<%@ include file="../common/heading.jsp" %>
+  	<link rel="stylesheet" href="/css/board.css">
+	<style >
+	body {
+		padding: 10px; margin: 0px;
+	}
+	table {
+		border-spacing: 50px;
+	    }
+	th, td {
+		padding: 15px;
+		padding-top: 10px;
+	    padding-bottom: 20px;
+	    padding-left: 30px;
+	    padding-right: 40ox;
+	   }
+	</style>
 </head>
 
-<body style="margin-left: 40px; margin-top: 50px;">
-   	<%@ include file="../common/top.jsp" %>
-	<h3>사용자 등록</h3>
+<body style="margin-left: 400px; margin-top: 300px; margin-bottom: 100px;">
+   <%@ include file="../common/top.jsp" %>
+	<h3>회원가입</h3>
 	<hr>
-	<form name="reg_sub" action="/user/register" method="post">
+		<form name="reg_sub" action="/user/register" method="post">
+			<table>
+				 <tr>
+					<th>아이디</th>
+					<td><input type="text" name="uid" placeholder="*아이디" maxlength="12" required /></td>
+				</tr>
+					<tr>
+						<th>패스워드</th>
+						<td><input type="password" name="pwd" id="pwd" placeholder="*패스워드" maxlength="60" required /></td>
+					</tr>
+					<tr>
+						<th>패스워드 확인</th>
+						<td><input type="password" name="pwd2"  id="pwd2" placeholder="*패스워드 확인" maxlength="60" required /></td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td><input type="text" name="uname" placeholder="*이름" maxlength="10" required /></td>
+					</tr>
+					<tr>
+						<th>닉네임</th>
+						<td><input type="text" name="nickname" placeholder="*닉네임" maxlength="10" required /></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><input type="email" name="email" placeholder="*이메일" maxlength="40"  />
+						</td>
+					</tr>
+					<tr>
+						<th>이메일 수신</th>
+						<td>수신<input type="radio" name="emailCheck" value="1" checked />
+						 수신거부<input type="radio" name="emailCheck" value="0" />
+						</td>
+					</tr>
+					<tr>
+						<th>휴대폰번호</th>
+						<td><input type="tel" name="phoneNum" placeholder="('-'없이 번호만 입력해 주세요)" maxlength="40" />
+						</td>
+					</tr>
+					<tr>
+						<th>생년월일</th>
+						<td><input type="number" name="birthDate" id="birthDate" placeholder="ex) 19920502" />
+						</td>
+					</tr>
+					<tr>
+						<th>성별</th>
+						<td>여자<input type="radio" name="gender" value="여"  checked/>
+						 남자<input type="radio" name="gender" value="남" />
+						</td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td><input type="text" id="postcode" name="postcode" placeholder="우편번호" /><input class="btn-hover color-8" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" />
+						<br><input type="text" id="addr" name="addr" placeholder="주소" />
+						<br><input type="text" id="detailAddr" name="detailAddr" placeholder="상세주소" />
+						<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+						<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+						</div>
+						</td>
+					</tr>
+					<tr>
+						<th>관심운동</th>
+						<td>축구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="1">농구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="2">야구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="4">E-sports<input onclick="limit(this)" type="checkbox" name="likeExercise" value="8">
+						<br>등산<input onclick="limit(this)" type="checkbox" name="likeExercise" value="16">당구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="32">볼링<input onclick="limit(this)" type="checkbox" name="likeExercise" value="64">싸이클<input onclick="limit(this)" type="checkbox" name="likeExercise" value="128">
+						<br>테니스<input onclick="limit(this)" type="checkbox" name="likeExercise" value="256">조깅<input onclick="limit(this)" type="checkbox" name="likeExercise" value="512">수영<input onclick="limit(this)" type="checkbox" name="likeExercise" value="1024">헬스<input onclick="limit(this)" type="checkbox" name="likeExercise" value="2048">
+						</td>
+					</tr>
+					<tr>		
+						<td><input class="btn-hover color-8" onclick="checked_submit()" type="button" value="회원가입"></td>
+					</tr>
+					
+			</table>
+		</form>
+	<!-- 
 		아이디
 		<br><input type="text" name="uid">
 		<br>패스워드
@@ -43,12 +128,34 @@
 		<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 		</div>
+		
 		<br>관심운동
 		<br>축구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="1">농구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="2">야구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="4">E-sports<input onclick="limit(this)" type="checkbox" name="likeExercise" value="8">
 		<br>등산<input onclick="limit(this)" type="checkbox" name="likeExercise" value="16">당구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="32">볼링<input onclick="limit(this)" type="checkbox" name="likeExercise" value="64">싸이클<input onclick="limit(this)" type="checkbox" name="likeExercise" value="128">
 		<br>테니스<input onclick="limit(this)" type="checkbox" name="likeExercise" value="256">조깅<input onclick="limit(this)" type="checkbox" name="likeExercise" value="512">수영<input onclick="limit(this)" type="checkbox" name="likeExercise" value="1024">헬스<input onclick="limit(this)" type="checkbox" name="likeExercise" value="2048">
-		<br><input onclick="checked_submit()" type="button" value="제출">
-	</form>
+		
+		<tr>
+			<td>
+				관심운동<br>
+				<select name="likeExercise">
+					<option value="축구">축구</option>
+					<option value="농구">농구</option>
+					<option value="야구">야구</option>
+					<option value="E-sports">E-sports</option>
+					<option value="등산">등산</option>
+					<option value="당구">당구</option>
+					<option value="볼링">볼링</option>
+					<option value="싸이클">싸이클</option>
+					<option value="테니스">테니스</option>
+					<option value="조깅">조깅</option>
+					<option value="수영">수영</option>
+					<option value="헬스">헬스</option>
+				</select>
+			</td>
+		</tr>
+		<br><input onclick="checked_submit()" type="button" value="제출"> -->
+		
+
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	    // 우편번호 찾기 찾기 화면을 넣을 element
@@ -145,6 +252,7 @@
 			}
 		}
 		function checked_submit(){
+			
 			console.log("Test");
 			const pwd = $('#pwd').val();
 			console.log(pwd);
@@ -152,6 +260,7 @@
 			//const pwd = $('#pwd').val();
 			const pwd2 = $('#pwd2').val();
 			const birthDate = $('#birthDate').val();
+			console.log(birthDate);
 			if (pwd != pwd2) {
 				alert("비밀번호가 일치하지 않습니다.");
 				return false;
