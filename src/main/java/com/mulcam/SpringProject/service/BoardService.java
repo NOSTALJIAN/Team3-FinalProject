@@ -18,8 +18,7 @@ public interface BoardService {
 	/** 디테일 페이지 출력 */
 	public Board getBoard(int bid) ;
 	
-	/** 게시물 등록 
-	 * @return */
+	/** 게시물 등록 */
 	public void insertBoard(Board board);
 	
 	public void updateBoard(Board board);

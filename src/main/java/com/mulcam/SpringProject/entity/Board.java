@@ -17,23 +17,44 @@ public class Board {
 	private String bLocation;
 	private String bFiles;
 	private int bIsDeleted;
+	private String bAddr;
 	
 	public Board() {}
-
-	// 게시물 작성시 생성자
-	public Board(String uid, String bTitle, String bCategory, int bUserCount, String bContent,
-			LocalDateTime bAppointment, String bLocation, String bFiles) {
+	
+	public Board(int bid, String uid, String bTitle, String bCategory, int bUserCount, String bContent,
+			LocalDateTime bRegTime, LocalDateTime bAppointment, int bViewCount, int bReplyCount, String bLocation,
+			String bFiles, int bIsDeleted, String bAddr) {
+		super();
+		this.bid = bid;
 		this.uid = uid;
 		this.bTitle = bTitle;
 		this.bCategory = bCategory;
 		this.bUserCount = bUserCount;
 		this.bContent = bContent;
+		this.bRegTime = bRegTime;
 		this.bAppointment = bAppointment;
+		this.bViewCount = bViewCount;
+		this.bReplyCount = bReplyCount;
 		this.bLocation = bLocation;
 		this.bFiles = bFiles;
+		this.bIsDeleted = bIsDeleted;
+		this.bAddr = bAddr;
 	}
-	
-	
+
+		// 게시물 작성시 생성자
+		public Board(String uid, String bTitle, String bCategory, int bUserCount, String bContent,
+				LocalDateTime bAppointment, String bLocation, String bAddr, String bFiles) {
+			this.uid = uid;
+			this.bTitle = bTitle;
+			this.bCategory = bCategory;
+			this.bUserCount = bUserCount;
+			this.bContent = bContent;
+			this.bAppointment = bAppointment;
+			this.bLocation = bLocation;
+			this.bAddr = bAddr;
+			this.bFiles = bFiles;
+		}
+
 	public Board(int bid, String uid, String bTitle, String bCategory, int bUserCount, String bContent,
 			LocalDateTime bRegTime, LocalDateTime bAppointment, int bViewCount, int bReplyCount, String bLocation,
 			String bFiles, int bIsDeleted) {
@@ -158,13 +179,22 @@ public class Board {
 		this.bIsDeleted = bIsDeleted;
 	}
 
+	public String getbAddr() {
+		return bAddr;
+	}
+
+	public void setbAddr(String bAddr) {
+		this.bAddr = bAddr;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [bid=" + bid + ", uid=" + uid + ", bTitle=" + bTitle + ", bCategory=" + bCategory
 				+ ", bUserCount=" + bUserCount + ", bContent=" + bContent + ", bRegTime=" + bRegTime + ", bAppointment="
 				+ bAppointment + ", bViewCount=" + bViewCount + ", bReplyCount=" + bReplyCount + ", bLocation="
-				+ bLocation + ", bFiles=" + bFiles + ", bIsDeleted=" + bIsDeleted + "]";
+				+ bLocation + ", bFiles=" + bFiles + ", bIsDeleted=" + bIsDeleted + ", bAddr=" + bAddr + "]";
 	}
+
 
 	
 	

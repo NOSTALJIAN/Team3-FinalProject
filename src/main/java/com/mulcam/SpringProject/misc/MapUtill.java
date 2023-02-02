@@ -54,8 +54,8 @@ public class MapUtill {
 		String lat_ = (String) address.get("y");
 		double lng = Float.parseFloat(lng_);
 		double lat = Float.parseFloat(lat_);
-		indexList.add(lng);
 		indexList.add(lat);
+		indexList.add(lng);
 		
 		return indexList;
 	}

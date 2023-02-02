@@ -2,34 +2,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@ include file="../common/heading.jsp" %>
-	<meta charset="UTF-8"> 
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-	<link rel="stylesheet" href="/css/board.css">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="src/main/resources/static/css/board.css">
 </head>
 
 <body style="margin: 200px" >
-<%@ include file="../common/top.jsp" %>
-	<div class="">
-		<h3 class="board-title">그룹운동 게시판</h3>
+	<div class="inputtb content-title pb-4">
+		<h3 class="board-title">그룹운동 게시판</h3>
 		<hr>
-		<div class="">
-			<button type="button" class="btn-hover color-8 fix-position" onclick="location.href='/board/write'">+글쓰기</button>
-	<table class="board-list">
+		<div class="buttons">
+		<a href="/board/write" class="btn-hover color-8 fix-position">+글쓰기</a></div>
+	<table>
+			<colgroup>
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+			</colgroup>
 			<tr>
 				<th><label>제목</label></th>
 				<th><label>운동종목</label></th>
-				<th><label>작성시간</label></th>	
-				<th><label>인원수</label></th>
+				<th><label>작성일자</label></th>
+				<th><label>인원수</label></th>
 			</tr>
 			<c:forEach var="b" items="${blist}">
 				<tr>
-			 		<td onclick="location.href='/board/detail/${b.bid}'" >${b.bTitle}</td>
+					<%-- <td><a href="/board/detail/${b.bid}">${b.bid}</a></td>
+					<td><img src="/board/download?file=${b.bFiles }" height="40" onclick="location.href='/board/detail/${b.bid}" /></td>
+			 --%>	<td onclick="location.href='/board/detail/${b.bid}'" >${b.bTitle}</td>
 					<td>${b.bCategory}</td>
 					<td>${fn:replace(b.bRegTime, 'T', ' ')}</td>
 					<td>${b.bUserCount}명</td>
 				</tr>
 			</c:forEach>
+		
 		</table> 
 		</div>
 	
