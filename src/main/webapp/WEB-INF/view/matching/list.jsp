@@ -70,6 +70,7 @@
 			data: {'receiveUser': uid},
 			success: function(result){
 				console.log(result);
+				
 			}
 		  });
 	  }
