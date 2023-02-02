@@ -1,24 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<%@ include file="../common/heading.jsp" %>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/css/board.css">
 </head>
-<body style="margin-left: 40px; margin-top: 50px;">
+
+<body style="margin: 200px" >
 	<%@ include file="../common/top.jsp" %>
-	<h2>매칭 리스트</h2>
-	<div class="container" style="margin-top: 80px;">
-	<c:forEach var="user" items="${matchingList}">
-		<div>아이디 : ${user.uid}</div>
-		<div>거리 : ${user.distance}</div>
-		<div>나이 : ${user.age}</div>
-		<div>일치하는 운동 목록 : ${user.coincideExer}</div>
-		<div>성별 : ${user.gender}</div>
-		<div>평점 : ${user.uRating}</div>
-		<div>매칭점수 : ${user.score}</div>
-		<hr>
-	</c:forEach>
-	</div>
+	<h3>그룹운동 게시판</h3>
+	<a href="/board/write" class="btn btn-outline-light write-btn">
+		<small>+글쓰기</small></a>
+	   	
+   	<div class=" content-list">
+		<c:forEach var="m" items="${matchingList}">
+   		<div class="content-list-col" >
+	    	<div class="board-card " data-aos="zoom-in-up">
+				<div class="bg-dark shadow rounded-5 p-0">
+					<img src="/img/avatar_man.png" width="582" height="442" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" 
+			          loading="lazy">
+					<div class="p-5">
+						<h2 style="color: white">${m.uid}</h2>
+						<p class="pb-4 text-secondary" style="color: white;">거리: ${m.distance}</p>
+			            <p class="pb-4 text-secondary" style="color: white;">나이: ${m.age}</p>
+			            <p class="pb-4 text-secondary" style="color: white;">성별: ${m.gender}</p>
+			            <p class="pb-4 text-secondary" style="color: white;">평점: ${m.uRating}</p>
+			            <p class="pb-4 text-secondary" style="color: white;">공유하는 운동 목록 : ${m.coincideExer}</p>
+			            <button onclick="addMate('${m.uid}')" style="background-color:white; color:black;">친구추가</button>
+			     	</div>
+				</div>
+			</div>
+   		</div>
+		</c:forEach>
+   	</div>
+	   	
+	<script src="/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/aos.js"></script>
+	<script>
+	AOS.init({
+	 duration: 800, // values from 0 to 3000, with step 50ms
+	});
+	</script>
+	<script>
+	  let scrollpos = window.scrollY
+	  const header = document.querySelector(".navbar")
+	  const header_height = header.offsetHeight
+	
+	  const add_class_on_scroll = () => header.classList.add("scrolled", "shadow-sm")
+	  const remove_class_on_scroll = () => header.classList.remove("scrolled", "shadow-sm")
+	
+	  window.addEventListener('scroll', function() {
+	    scrollpos = window.scrollY;
+	
+	    if (scrollpos >= header_height) { add_class_on_scroll() }
+	    else { remove_class_on_scroll() }
+	
+	    /* console.log(scrollpos) */
+	  })
+	  function addMate(uid){
+		  console.log(uid);
+		  $.ajax({
+			type:'GET',
+			url: '/matching/addMate',
+			data: {'receiveUser': uid},
+			success: function(result){
+				console.log(result);
+			}
+		  });
+	  }
+	  
+	</script>
 </body>
 </html>

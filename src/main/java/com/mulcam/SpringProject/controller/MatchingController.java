@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mulcam.SpringProject.entity.MatchingUsers;
 import com.mulcam.SpringProject.misc.MatchingUtill;
@@ -36,6 +37,16 @@ public class MatchingController {
 		model.addAttribute("matchingList", matchingList);
 		return "matching/list";
 	}
+	
+	@ResponseBody
+	@GetMapping("/addMate")
+	public String addMate(String receiveUser) {
+		String user = userSession.getUid();
+		
+		
+		return "친구신청중";
+	}
+	
 	
 
 }
