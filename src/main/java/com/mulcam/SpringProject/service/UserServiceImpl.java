@@ -46,12 +46,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User getNickname(String nickname) {
-		User user = userDao.getNickname(nickname);
-		return user;
-	}
-
-	@Override
 	public User getPhoneNum(String phoneNum) {
 		User user = userDao.getPhoneNum(phoneNum);
 		return user;

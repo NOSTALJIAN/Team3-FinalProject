@@ -21,12 +21,9 @@ public interface UserService {
 
 	User getEmail(String email);
 
-	User getNickname(String nickname);
-
 	User getPhoneNum(String phoneNum);
 
 	int login(String uid, String pwd);
-	
 	
 	/** 사용자와 일치하는 유저 정보들 */
 	List<UserInfo> getCoincideInfo(String uid);

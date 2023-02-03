@@ -42,7 +42,6 @@ public class UserController {
 		String uid = req.getParameter("uid").strip();
 		String pwd = req.getParameter("pwd").strip();
 		String uname = req.getParameter("uname").strip();
-		String nickname = req.getParameter("nickname").strip();
 		String email = req.getParameter("email").strip();
 		int emailCheck = Integer.parseInt(req.getParameter("emailCheck"));
 		int birthDate = Integer.parseInt(req.getParameter("birthDate"));
@@ -65,12 +64,6 @@ public class UserController {
 			model.addAttribute("url", "/user/register");
 			return "common/alertMsg";
 		}
-		u = service.getNickname(nickname);
-		if(u != null) {
-			model.addAttribute("msg", "중복 닉네임입니다.");
-			model.addAttribute("url", "/user/register");
-			return "common/alertMsg";
-		}
 		u = service.getPhoneNum(phoneNum);
 		if(u != null) {
 			model.addAttribute("msg", "중복 전화번호 입니다.");
@@ -90,7 +83,7 @@ public class UserController {
 		double lat = latlng.get(0);
 		double lng = latlng.get(1);
 		
-		u = new User(uid, pwd, uname, phoneNum, nickname, email, emailCheck);
+		u = new User(uid, pwd, uname, phoneNum, email, emailCheck);
 		service.register(u);
 		UserInfo ui = new UserInfo(uid, uPostcode, uAddr, uDetailAddr,likeExercise, birthDate, gender, lat, lng);
 		service.registerInfo(ui);
