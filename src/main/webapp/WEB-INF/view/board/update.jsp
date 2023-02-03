@@ -22,7 +22,7 @@
 				<div class="">
 				<table>
 				<tr>
-				<td class="col-6" style="text-align: left;"><h3 class="board-title">게시글 쓰기</h3></td>
+				<td class="col-6" style="text-align: left;"><h3 class="board-title">게시글 수정</h3></td>
 				<td class="col-2">
 						<button onclick="location.href='/board/list'" class="btn-hover color-8 ">List</button>
 					</td>
@@ -32,29 +32,30 @@
 				<!-- 타이틀 끝 -->
 				<form action="/board/write" class="pt-4 mx-3" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="uid" value="${sessionUid}" />
+					<input type="hidden" name="bid" value="${b.bid}" />
 					<input type="hidden" name="bAddr" id="bAddr">
 					<table class="board-desc">
 						<tr>
 							<td><input style="border: 1px solid #d1d1d1;"
-								class="board-input" type="text" placeholder="제목" name="bTitle"
+								class="board-input" type="text" placeholder="제목" name="bTitle" value="${b.bTitle}"
 								maxlength="128" required /></td>
 						</tr>
 						<tr>
 							<td><input style="border: 1px solid #d1d1d1;"
-								class="board-input" type="text" placeholder="운동장소" name="bLocation"
+								class="board-input" type="text" placeholder="운동장소" name="bLocation" value="${b.bLocation}"
 								 id="bLocation" maxlength="128" required /></td>
 						</tr>
 						<tr>
 							<td><input style="border: 1px solid #d1d1d1;"
-								class="board-input" type="number" placeholder="인원수" name="bUserCount"/></td>
+								class="board-input" type="number" placeholder="인원수" name="bUserCount" value="${b.bUserCount}"/></td>
 						</tr>
 						<tr>
 							<td><input style="border: 1px solid #d1d1d1;"
-								class="board-input" type="datetime-local" placeholder="운동시간" name="bAppointment" maxlength="128" /></td>
+								class="board-input" type="datetime-local" placeholder="운동시간" name="bAppointment" value="${b.bAppointment}" maxlength="128" /></td>
 						</tr>
 						<tr>
 							<td>
-								<select name="bCategory" class="board-input" style="border: 1px solid #d1d1d1;">
+								<select name="bCategory" class="board-input" style="border: 1px solid #d1d1d1;" >
 									<option value="축구">축구</option>
 									<option value="농구">농구</option>
 									<option value="야구">야구</option>
@@ -76,7 +77,7 @@
 						</tr>
 					
 						<tr>
-							<td><textarea class="board-input" name="bContent" placeholder="내용" maxlength="5000" rows="10"></textarea></td>
+							<td><textarea class="board-input" name="bContent" placeholder="내용" maxlength="5000" rows="10">${b.bContent}</textarea></td>
 						</tr>
 					</table>
 						<div class="buttons">
@@ -103,7 +104,7 @@
 		        <div id="pagination"></div>
 		    </div>
 	    </div>
-	    <script src="/js/map.js?q=1"></script>
+	    <script src="/js/map.js"></script>
     </div>
 	
 	<script>

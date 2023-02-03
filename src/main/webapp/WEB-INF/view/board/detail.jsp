@@ -33,7 +33,8 @@
                     
                     <!-- 본인만 수정 가능 -->
                     <c:if test="${b.uid eq uid}">
-                		 <button onclick="location.href='/board/update?bid=${b.bid}'" class="btn-hover color-8 " type="button" value="글쓰기">수정</button>                 
+                    	<a href="/board/update?bid=${board.bid}" class="ms-3"><i class="far fa-edit"></i> 수정</a>  <!-- bid -->
+                		<%-- <button onclick="location.href='/board/update?bid=${b.bid}'" class="btn-hover color-8 " type="button" value="글쓰기">수정</button>  --%>                
                     </c:if>
                     <c:if test="${b.uid ne uid}">
                         <a href="#" class="ms-3 disabled-link"><i class="far fa-edit"></i> 수정</a>  
@@ -41,7 +42,8 @@
                     
                     <!-- 본인만 삭제 가능 -->
                     <c:if test="${b.uid eq uid}">
-                    	 <button onclick="location.href='/board/delete?bid=${b.bid}'" class="btn-hover color-8 " type="button" value="글쓰기">삭제</button>                                          
+                    	<a href="/board/delete?bid=${board.bid}" class="ms-3"><i class="fas fa-trash-alt"></i> 삭제</a>
+                    	<%-- <button onclick="location.href='/board/delete?bid=${b.bid}'" class="btn-hover color-8 " type="button" value="글쓰기">삭제</button> --%>                                          
                     </c:if>
                     <c:if test="${b.uid ne uid}">
                         <a href="#" class="ms-3 disabled-link"><i class="fas fa-trash-alt"></i> 삭제</a>
