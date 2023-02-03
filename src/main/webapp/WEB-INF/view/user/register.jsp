@@ -191,14 +191,11 @@
 		}
 		function checked_submit(){
 			
-			console.log("Test");
 			const pwd = $('#pwd').val();
-			console.log(pwd);
 			var checked_num = $("input[name=likeExercise]:checked").length;
 			//const pwd = $('#pwd').val();
 			const pwd2 = $('#pwd2').val();
 			const birthDate = $('#birthDate').val();
-			console.log(birthDate);
 			if (pwd != pwd2) {
 				alert("비밀번호가 일치하지 않습니다.");
 				return false;
@@ -206,8 +203,6 @@
 				alert("생년월일 8자리를 입력해주세요");
 				return false;		
 			} else if(checked_num < 3){
-				console.log(checked_num);
-				console.log("확인용");
 				alert("체크박스를 3개이상 선택해 주세요");
 				return false;
 			} else {
