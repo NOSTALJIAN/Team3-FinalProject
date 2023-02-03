@@ -23,7 +23,7 @@
       <h1 class="display-huge mt-3 mb-3 lh-1">Find your Health mate near by you</h1>
     </div>
     <div class="col-12 col-xl-8">
-      <p class="lead text-secondary">We are some sort of DAO working with AI, NFT´s, web 4.0 and the so called blockchain...in the Metaverse. You don´t understand a word? No problem, we neither!</p>
+      <p class="lead text-secondary">근처에 있는 동네 운동친구를 만들어보세요! 그룹운동 게시판을 통해서 다같이 운동을 해보세요!</p>
     </div>
     <div class="col-12 text-center">
       <a href="/user/register" class="btn btn-xl btn-light">Join us

@@ -6,22 +6,20 @@
 	<meta charset="UTF-8"> 
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="/css/board.css">
-	
 	<style>
-  table {
-    width: 100%;
-    border-top: 1px solid #444444;
-    border-collapse: collapse;
-  }
-  th, td {
-    border-bottom: 1px solid #444444;
-    padding: 10px;
-  }
-</style>
-	
+	  table {
+	    width: 100%;
+	    border-top: 1px solid #444444;
+	    border-collapse: collapse;
+	  }
+	  th, td {
+	    border-bottom: 1px solid #444444;
+	    padding: 10px;
+	  }
+	</style>
 </head>
 
-<body style="margin: 200px" >
+<body style="margin: 170px" >
 <%@ include file="../common/top.jsp" %>
 	<div class="board-title">
 		<h3 class="board-title">그룹운동 게시판</h3>
@@ -48,6 +46,6 @@
 		</div>
 	
 
-
+<%@ include file="../common/top.jsp" %>
 </body>
 </html>

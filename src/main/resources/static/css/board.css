@@ -1,8 +1,18 @@
 /*게시글 쓰기 */
-.board-desc {
-	width: 100%;
+.map_wrap {
+	border: 1px solid black;
+	width: 400px;
+	height: 400px;
+	position: absolute;
+	left: 45%
 }
 
+
+
+.board-desc {
+	width: 50%;
+	margin-left: 50px;
+}
 .board-desc tr,
 .board-desc td,
 .board-desc th {
@@ -18,15 +28,27 @@
 
 .write-btn {
 	width: 200px;
-	margin-top: 200px;
-    
+	margin-top: 170px;
 }
 
+.btn-place  {
+	margin-bottom: 200px;
+	margin-left: 140px;
+}
 
+/*  .map_wrap {
+ 	position: absolute;
+ 	left: 60%
+ }
+ */
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+.cotent  {
+	width: 50%;
+	margin-left: 50px;
 }
 
 .buttons {
@@ -119,7 +141,8 @@ input[type='text'].board-input,
 	display: flex;
   	flex-wrap: wrap;
 }
-.content-list-col{
+
+.content-list-col {
 	 width: 33.3333333333333333%;
  	 padding: 0.6rem;
 }
@@ -132,7 +155,7 @@ input[type='text'].board-input,
   height: 300px;
   object-fit: cover;
   transition: opacity 0.6s;
-  margin-left: 300px;
+  margin-left: 260px;
   margin-top: 20px;
 }
 
@@ -141,25 +164,97 @@ input[type='text'].board-input,
   height: auto;
   display: inline-block;
 }
-.board-view-infomation {
+ .board-view-infomation {
 	margin-left: 650px;
-	width: 300px;
-  	height: 300px;
-	padding-right: 40px;
+	padding-right: 10px;
+	width: 400px;
+	
 }
-
+/*
 .board-view-infomation td,
 .board-view-infomation th,
 .board-view-infomation tr {
   border-block: 1px solid #eee;
-  width: 200px;
   height: auto;
+  width : 400px;
   padding-right: 40px;
+  
+} */
+
+.board-view-infomation tbody,
+.board-view-infomation td,
+.board-view-infomation tfoot,
+.board-view-infomation th,
+.board-view-infomation thead,
+.board-view-infomation tr {
+  padding-block: 0.95rem;
+  border-block: 1px solid #eee;
+
 }
+
+.board-view-infomation th {
+  width: 25%;
+}
+.board-view-infomation td {
+	padding-left: 40px;
+}
+.board-view-infomation tbody {
+	height: 300px;
+	}
 
 .board-view-content {
-	text-align: center;
+	border: 1px solid black;
+	width: 400px;
+	height: 400px;
+	position: absolute;
+	left: 45%
 }
 
+.board-view-map {
+	margin-left: 40px;
+	width:500px; height:400px;
+	margin-bottom: 700px;
+	position: absolute;
+}
 
+.detail-btn {
+	width: 100px;
+}
 
+/* 회원가입 */
+.register-input tbody {
+	border-spacing: 50px;
+}
+.register-input th,
+.register-input td {
+	padding: 15px;
+		padding-top: 10px;
+	    padding-bottom: 20px;
+	    padding-left: 30px;
+	    padding-right: 40ox;
+}
+
+input[type='text'].register-input, 
+[type='password'].register-input, 
+[type='email'].register-input, 
+[type='tel'].register-input, 
+[type='number'].register-input,
+[type='radio'].register-input 
+ {
+	  border: 1px solid #808080;
+	  background-color: transparent;
+	  font-size: 16px;
+	  padding-inline: 20px;
+	  padding-block: 12px;
+	  border-radius: 5px;
+	  width: 60%;
+}
+
+.form-check-label{
+	margin-right: 0.5rem;
+	margin-left: 2px;
+}
+.form-check-input{
+	margin-right: 0.3rem;
+	margin-top: 5px;
+}

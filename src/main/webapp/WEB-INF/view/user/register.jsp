@@ -22,7 +22,7 @@
 	</style>
 </head>
 
-<body style="margin-left: 400px; margin-top: 300px; margin-bottom: 100px;">
+<body style="margin-left: 400px; margin-top: 180px; margin-bottom: 100px;">
    <%@ include file="../common/top.jsp" %>
 	<h3>회원가입</h3>
 	<hr>
@@ -30,23 +30,23 @@
 		<table>
 			 <tr>
 				<th>아이디</th>
-				<td><input type="text" name="uid" placeholder="*아이디" maxlength="12" required /></td>
+				<td><input class="register-input" type="text" name="uid" placeholder="*아이디" maxlength="12" required /></td>
 			</tr>
 				<tr>
 					<th>패스워드</th>
-					<td><input type="password" name="pwd" id="pwd" placeholder="*패스워드" maxlength="60" required /></td>
+					<td><input class="register-input" type="password" name="pwd" id="pwd" placeholder="*패스워드" maxlength="60" required /></td>
 				</tr>
 				<tr>
 					<th>패스워드 확인</th>
-					<td><input type="password" name="pwd2"  id="pwd2" placeholder="*패스워드 확인" maxlength="60" required /></td>
+					<td><input class="register-input" type="password" name="pwd2"  id="pwd2" placeholder="*패스워드 확인" maxlength="60" required /></td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input type="text" name="uname" placeholder="*이름" maxlength="10" required /></td>
+					<td><input class="register-input" type="text" name="uname" placeholder="*이름" maxlength="10" required /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="email" placeholder="*이메일" maxlength="40"  />
+					<td><input class="register-input" type="email" name="email" placeholder="*이메일" maxlength="40"  />
 					</td>
 				</tr>
 				<tr>
@@ -57,12 +57,12 @@
 				</tr>
 				<tr>
 					<th>휴대폰번호</th>
-					<td><input type="tel" name="phoneNum" placeholder="('-'없이 번호만 입력해 주세요)" maxlength="40" />
+					<td><input class="register-input" type="tel" name="phoneNum" placeholder="('-'없이 번호만 입력해 주세요)" maxlength="40" />
 					</td>
 				</tr>
 				<tr>
 					<th>생년월일</th>
-					<td><input type="number" name="birthDate" id="birthDate" placeholder="ex) 19920502" />
+					<td><input class="register-input" type="number" name="birthDate" id="birthDate" placeholder="ex) 19920502" />
 					</td>
 				</tr>
 				<tr>
@@ -73,9 +73,9 @@
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td><input type="text" id="postcode" name="postcode" placeholder="우편번호" /><input class="btn-hover color-8" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" />
-					<br><input type="text" id="addr" name="addr" placeholder="주소" />
-					<br><input type="text" id="detailAddr" name="detailAddr" placeholder="상세주소" />
+					<td><input class="btn-hover color-8" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" /><input class="register-input" type="text" id="postcode" name="postcode" placeholder="우편번호" />
+					<br><input class="register-input" type="text" id="addr" name="addr" placeholder="주소" />
+					<br><input class="register-input" type="text" id="detailAddr" name="detailAddr" placeholder="상세주소" />
 					<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 					<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 					</div>
@@ -83,9 +83,18 @@
 				</tr>
 				<tr>
 					<th>관심운동</th>
-					<td>축구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="1">농구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="2">야구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="4">E-sports<input onclick="limit(this)" type="checkbox" name="likeExercise" value="8">
-					<br>등산<input onclick="limit(this)" type="checkbox" name="likeExercise" value="16">당구<input onclick="limit(this)" type="checkbox" name="likeExercise" value="32">볼링<input onclick="limit(this)" type="checkbox" name="likeExercise" value="64">싸이클<input onclick="limit(this)" type="checkbox" name="likeExercise" value="128">
-					<br>테니스<input onclick="limit(this)" type="checkbox" name="likeExercise" value="256">조깅<input onclick="limit(this)" type="checkbox" name="likeExercise" value="512">수영<input onclick="limit(this)" type="checkbox" name="likeExercise" value="1024">헬스<input onclick="limit(this)" type="checkbox" name="likeExercise" value="2048">
+					<td>축구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="1"><label class="form-check-label"></label>
+					농구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="2"><label class="form-check-label"></label>
+					야구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="4"><label class="form-check-label"></label>
+					E-sports<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="8"><label class="form-check-label"></label>
+					<br>등산<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="16"><label class="form-check-label"></label>
+					당구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="32"><label class="form-check-label"></label>
+					볼링<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="64"><label class="form-check-label"></label>
+					싸이클<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="128"><label class="form-check-label"></label>
+					<br>테니스<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="256">조깅<label class="form-check-label"></label>
+					<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="512"><label class="form-check-label"></label>
+					수영<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="1024"><label class="form-check-label"></label>
+					헬스<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="2048"><label class="form-check-label"></label>
 					</td>
 				</tr>
 				<tr>		
@@ -211,5 +220,6 @@
 			}
 		}
 	</script>
+	<%@ include file="../common/top.jsp" %>
 </body>
 </html>

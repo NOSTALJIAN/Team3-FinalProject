@@ -19,18 +19,19 @@
 
 			<div class="inputtb content col-lg-8">
 				<!-- 타이틀 -->
-				<div class="">
+				<div class="" style="margin: 30px">
 				<table>
-				<tr>
-				<td class="col-6" style="text-align: left;"><h3 class="board-title">게시글 쓰기</h3></td>
-				<td class="col-2">
-						<button onclick="location.href='/board/list'" class="btn-hover color-8 ">List</button>
-					</td>
+					<tr>
+						<td class="col-6" style="text-align: left;"><h3 class="board-title">게시글 쓰기</h3></td>
+						<td class="col-2">
+								<button onclick="location.href='/board/list'" class="btn-hover color-8 ">목록</button>
+						</td>
 					</tr>
-					</table>
+				</table>
 				</div>
 				<!-- 타이틀 끝 -->
-				<form action="/board/write" class="pt-4 mx-3" method="post" enctype="multipart/form-data">
+				<div class="write-zone">
+				<form action="/board/write" class="content" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="uid" value="${sessionUid}" />
 					<input type="hidden" name="bAddr" id="bAddr">
 					<table class="board-desc">
@@ -79,16 +80,17 @@
 							<td><textarea class="board-input" name="bContent" placeholder="내용" maxlength="5000" rows="10"></textarea></td>
 						</tr>
 					</table>
-						<div class="buttons">
+						<div class="btn-place board-desc">
 						  <button class="btn-hover color-8 write-btn" type="submit" value="글쓰기">글쓰기</button>
 						  <button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
 						</div>
 				</form>
 			</div>
 		</div>
+	</div>
+			
 		<div class="map_wrap">	
-		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-		    
+		    <div id="map" style="width:50%;height:50%;position:relative;overflow:hidden;"></div>
 		    <div id="menu_wrap" class="bg_white">
 		        <div class="option">
 		            <div>
@@ -105,7 +107,6 @@
 	    </div>
 	    <script src="/js/map.js"></script>
     </div>
-	
 	<script>
 		CKEDITOR.replace('bContent', {
 			filebrowserImageUploadUrl : '/board/upload',
@@ -113,5 +114,6 @@
 			height : 400
 		})
 	</script>
+	<%@ include file="../common/top.jsp" %>
 </body>
 </html>

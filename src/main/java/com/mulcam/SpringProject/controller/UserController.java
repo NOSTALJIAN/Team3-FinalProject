@@ -25,7 +25,6 @@ public class UserController {
 	@Value("${naver.accessId}") private String accessId;	
 	@Value("${naver.secretKey}") private String secretKey;
 	
-
 	@Autowired private UserSession userSession;	
 	@Autowired private UserService service;
 	@Autowired private MapUtill mapUtill;
