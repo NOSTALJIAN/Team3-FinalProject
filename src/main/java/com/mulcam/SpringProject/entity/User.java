@@ -7,7 +7,6 @@ public class User {
 	private String pwd;
 	private String uname;
 	private String phoneNum;
-	private String nickname;
 	private String email;
 	private int emailCheck;
 	private int role;
@@ -16,32 +15,30 @@ public class User {
 	
 	public User() {}
 	
-	public User(String uid, String pwd, String uname, String phoneNum, String nickname, String email, int emailCheck) {
+	public User(String uid, String pwd, String uname, String phoneNum, String email, int emailCheck) {
 		super();
 		this.uid = uid;
 		this.pwd = pwd;
 		this.uname = uname;
 		this.phoneNum = phoneNum;
-		this.nickname = nickname;
 		this.email = email;
 		this.emailCheck = emailCheck;
 	}
+	
 
-	public User(String uid, String pwd, String uname, String phoneNum, String nickname, String email, int emailCheck,
-			int role, int isDeleted, LocalDate uRegDate) {
+	public User(String uid, String pwd, String uname, String phoneNum, String email, int emailCheck, int role,
+			int isDeleted, LocalDate uRegDate) {
 		super();
 		this.uid = uid;
 		this.pwd = pwd;
 		this.uname = uname;
 		this.phoneNum = phoneNum;
-		this.nickname = nickname;
 		this.email = email;
 		this.emailCheck = emailCheck;
 		this.role = role;
 		this.isDeleted = isDeleted;
 		this.uRegDate = uRegDate;
 	}
-
 	public String getUid() {
 		return uid;
 	}
@@ -65,12 +62,6 @@ public class User {
 	}
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
-	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
 	}
 	public String getEmail() {
 		return email;
@@ -96,18 +87,18 @@ public class User {
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-	public LocalDate getURegDate() {
+	public LocalDate getuRegDate() {
 		return uRegDate;
 	}
-	public void setURegDate(LocalDate uRegDate) {
+	public void setuRegDate(LocalDate uRegDate) {
 		this.uRegDate = uRegDate;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "User [uid=" + uid + ", pwd=" + pwd + ", uname=" + uname + ", phoneNum=" + phoneNum + ", nickname="
-				+ nickname + ", email=" + email + ", emailCheck=" + emailCheck + ", role=" + role + ", isDeleted="
-				+ isDeleted + ", uRegDate=" + uRegDate + "]";
+		return "User [uid=" + uid + ", pwd=" + pwd + ", uname=" + uname + ", phoneNum=" + phoneNum + ", email=" + email
+				+ ", emailCheck=" + emailCheck + ", role=" + role + ", isDeleted=" + isDeleted + ", uRegDate="
+				+ uRegDate + "]";
 	}
 	
 }
