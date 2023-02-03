@@ -84,26 +84,32 @@ function displayPlaces(places) {
 
         // 마커와 검색결과 항목에 클릭 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
-        (function(marker, title, addr) {
+        (function(marker, title, addr1, addr2) {
             kakao.maps.event.addListener(marker, 'click', function() {
                 displayInfowindow(marker, title);
-                console.log(addr);
                 const bLocation = document.getElementById('bLocation');
                 bLocation.value = title;
                 const bAddr = document.getElementById('bAddr');
-                bAddr.value = addr;
+                if (!addr1) {
+					bAddr.value = addr2; 
+				} else {
+					bAddr.value = addr1;
+				}
             });
 
             itemEl.onclick =  function () {
                 displayInfowindow(marker, title);
-                console.log(addr);
                 const bLocation = document.getElementById('bLocation');
                 bLocation.value = title;
                 const bAddr = document.getElementById('bAddr');
-                bAddr.value = addr;
+                if (!addr1) {
+					bAddr.value = addr2; 
+				} else {
+					bAddr.value = addr1;
+				}
             };
 
-        })(marker, places[i].place_name, places[i].road_address_name);
+        })(marker, places[i].place_name, places[i].road_address_name, places[i].address_name);
 
         fragment.appendChild(itemEl);
     }
