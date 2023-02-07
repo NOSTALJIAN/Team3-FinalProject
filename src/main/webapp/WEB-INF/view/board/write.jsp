@@ -55,24 +55,14 @@
 						<tr>
 							<td>
 								<select name="bCategory" class="board-input" style="border: 1px solid #d1d1d1;">
-									<option value="축구">축구</option>
-									<option value="농구">농구</option>
-									<option value="야구">야구</option>
-									<option value="E-sports">E-sports</option>
-									<option value="등산">등산</option>
-									<option value="당구">당구</option>
-									<option value="볼링">볼링</option>
-									<option value="싸이클">싸이클</option>
-									<option value="테니스">테니스</option>
-									<option value="조깅">조깅</option>
-									<option value="수영">수영</option>
-									<option value="헬스">헬스</option>
+									<c:forEach var="sports" items="${sportsArray}">
+										<option value="${sports}">${sports}</option>
+									</c:forEach>
 								</select>
 							</td>
 						</tr>
 						<tr>
-							<td><input style="border: 1px solid #d1d1d1;"
-								class="board-input" type="file" name="bFiles"/></td>
+							<td><input style="border: 1px solid #d1d1d1;" class="board-input" type="file" name="bFiles"/></td>
 						</tr>
 					
 						<tr>
