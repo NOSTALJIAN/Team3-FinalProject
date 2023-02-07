@@ -32,20 +32,20 @@
                 		 <button onclick="location.href='/board/list'" class="btn-hover color-8 " type="button" value="글쓰기">목록</button>
                     
                     <!-- 본인만 수정 가능 -->
-                    <c:if test="${b.uid eq uid}">
-                    	<a href="/board/update?bid=${board.bid}" class="ms-3"><i class="far fa-edit"></i> 수정</a>  <!-- bid -->
+                    <c:if test="${b.uid eq sessionUid}">
+                    	<a href="/board/update?bid=${b.bid}" class="ms-3"><i class="far fa-edit"></i> 수정</a>  <!-- bid -->
                 		<%-- <button onclick="location.href='/board/update?bid=${b.bid}'" class="btn-hover color-8 " type="button" value="글쓰기">수정</button>  --%>                
                     </c:if>
-                    <c:if test="${b.uid ne uid}">
+                    <c:if test="${b.uid ne sessionUid}">
                         <a href="#" class="ms-3 disabled-link"><i class="far fa-edit"></i> 수정</a>  
                     </c:if>
                     
                     <!-- 본인만 삭제 가능 -->
-                    <c:if test="${b.uid eq uid}">
-                    	<a href="/board/delete?bid=${board.bid}" class="ms-3"><i class="fas fa-trash-alt"></i> 삭제</a>
+                    <c:if test="${b.uid eq sessionUid}">
+                    	<a href="/board/delete?bid=${b.bid}" class="ms-3"><i class="fas fa-trash-alt"></i> 삭제</a>
                     	<%-- <button onclick="location.href='/board/delete?bid=${b.bid}'" class="btn-hover color-8 " type="button" value="글쓰기">삭제</button> --%>                                          
                     </c:if>
-                    <c:if test="${b.uid ne uid}">
+                    <c:if test="${b.uid ne sessionUid}">
                         <a href="#" class="ms-3 disabled-link"><i class="fas fa-trash-alt"></i> 삭제</a>
                     </c:if>
                     </span>

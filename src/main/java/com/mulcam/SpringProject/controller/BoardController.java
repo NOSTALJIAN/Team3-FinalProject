@@ -1,6 +1,7 @@
 package com.mulcam.SpringProject.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.mulcam.SpringProject.entity.Board;
 import com.mulcam.SpringProject.service.BoardService;
@@ -33,6 +35,8 @@ public class BoardController {
 	
 	@Value("${spring.servlet.multipart.location}") private String uploadDir;
 	@Value("${kakao.AppKey}") private String kakaoAppKey;
+	
+	private String sportsArray[] = {"축구", "농구", "야구", "E-sports", "등산", "당구", "볼링", "사이클", "테니스", "조깅", "수영", "헬스"};
 	
 	/** HOME 화면 */
 	@GetMapping("/index")
@@ -54,13 +58,17 @@ public class BoardController {
 		Board board = bsv.getBoard(bid);
 		model.addAttribute("b", board);
 		model.addAttribute("kakaoAppKey", kakaoAppKey);
+		HttpSession session = req.getSession();
+		String sessionUid = (String) session.getAttribute("sessionUid");
 		return "board/detail";
 	}
 	
 	/** 게시물 작성 */
 	@GetMapping("/write")
 	public String writeForm(Model model) {
+		model.addAttribute("sportsArray", sportsArray);
 		model.addAttribute("kakaoAppKey", kakaoAppKey);
+		model.addAttribute("uploadDir", uploadDir);
 		return "board/write";
 	}
 	
@@ -85,6 +93,63 @@ public class BoardController {
 		bsv.insertBoard(board);
 		return "redirect:/board/list";
 	}
-			
+	
+	/** 게시물 수정 */
+	@GetMapping("/update")
+	public String updateForm(HttpServletRequest req, Model model) {
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		Board board = bsv.getBoard(bid);
+		
+		model.addAttribute("uploadDir", uploadDir);
+		model.addAttribute("sportsArray", sportsArray);
+		model.addAttribute("b", board);
+		model.addAttribute("kakaoAppKey", kakaoAppKey);
+		return "board/update";
+	}
+	
+	@PostMapping("/update")
+	public String update(MultipartHttpServletRequest req, Model model) throws Exception{
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		String bTitle = (String) req.getParameter("bTitle");
+		String bCategory = (String) req.getParameter("bCategory");
+		int bUserCount =Integer.parseInt(req.getParameter("bUserCount"));
+		String bContent = (String) req.getParameter("bContent");
+		LocalDateTime bAppointment = LocalDateTime.parse(req.getParameter("bAppointment").replace(" ", "T") + ":00");
+		String bLocation = (String) req.getParameter("bLocation");
+		String bAddr = (String) req.getParameter("bAddr");
+		
+		// 썸네일 File upload 한개만
+		MultipartFile file = req.getFile("bFiles");
+		String originName = req.getParameter("bFileName");
+		String fileName = file.getOriginalFilename();
+		if(fileName == null || fileName.equals("")) {
+			fileName = originName;
+		} else {
+			String uploadFile = uploadDir + "/" + fileName;
+			file.transferTo(new File(uploadFile));
+		}
+				
+		Board board = new Board(bid, bTitle, bCategory, bUserCount, bContent, bAppointment, bLocation, bAddr, fileName); 
+		bsv.updateBoard(board);
+		
+		return "redirect:/board/detail/" + bid;
+	}
+	
+	/** 게시물 삭제 */
+	@GetMapping("/delete")
+	public String delete(HttpServletRequest req, Model model) {
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		model.addAttribute("bid", bid);
+		return "board/delete";
+	}
+	
+	@GetMapping("/deleteConfirm")
+	public String deleteConfirm(HttpServletRequest req) {
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		bsv.deleteBoard(bid);
+		
+		HttpSession session = req.getSession();
+		return "redirect:/board/list?p=" + session.getAttribute("currentBoardPage") + "&f=&q=";
+	}
 
 }

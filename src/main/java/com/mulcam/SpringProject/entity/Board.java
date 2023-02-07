@@ -42,21 +42,34 @@ public class Board {
 		this.bAddr = bAddr;
 	}
 
-		// 게시물 작성시 생성자
-		public Board(String uid, String bTitle, String bCategory, int bUserCount, String bContent,
-				LocalDateTime bAppointment, String bLocation, String bAddr, String bFiles) {
-			this.uid = uid;
-			this.bTitle = bTitle;
-			this.bCategory = bCategory;
-			this.bUserCount = bUserCount;
-			this.bContent = bContent;
-			this.bAppointment = bAppointment;
-			this.bLocation = bLocation;
-			this.bAddr = bAddr;
-			this.bFiles = bFiles;
-		}
-
-
+	// 게시물 작성시 생성자
+	public Board(String uid, String bTitle, String bCategory, int bUserCount, String bContent,
+			LocalDateTime bAppointment, String bLocation, String bAddr, String bFiles) {
+		this.uid = uid;
+		this.bTitle = bTitle;
+		this.bCategory = bCategory;
+		this.bUserCount = bUserCount;
+		this.bContent = bContent;
+		this.bAppointment = bAppointment;
+		this.bLocation = bLocation;
+		this.bAddr = bAddr;
+		this.bFiles = bFiles;
+	}
+	
+	// 게시물 수정시 생성자
+	public Board(int bid, String bTitle, String bCategory, int bUserCount, String bContent,
+			LocalDateTime bAppointment, String bLocation, String bAddr, String bFiles) {
+		this.bid = bid;
+		this.bTitle = bTitle;
+		this.bCategory = bCategory;
+		this.bUserCount = bUserCount;
+		this.bContent = bContent;
+		this.bAppointment = bAppointment;
+		this.bLocation = bLocation;
+		this.bAddr = bAddr;
+		this.bFiles = bFiles;
+	}
+		
 	public int getBid() {
 		return bid;
 	}
