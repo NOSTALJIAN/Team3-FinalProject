@@ -22,31 +22,31 @@
 	</style>
 </head>
 
-<body style="margin-left: 400px; margin-top: 180px; margin-bottom: 100px;">
+<body style="margin-left: 400px; margin-top: 180px; margin-bottom: 100px; background-color: black;" class="register">
    <%@ include file="../common/top.jsp" %>
-	<h3>회원가입</h3>
-	<hr>
-	<form name="reg_sub" action="/user/register" method="post">
+	<h3 style="color: white;">회원가입</h3>
+	<hr style="color: white;">
+	<form name="reg_sub" action="/user/register" method="post" class="mb-auto col-12 text">
 		<table>
 			 <tr>
 				<th>아이디</th>
-				<td><input class="register-input" type="text" name="uid" placeholder="*아이디" maxlength="12" required /></td>
+				<td><input style="width: 250px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" placeholder="*아이디" maxlength="12" required /></td>
 			</tr>
 				<tr>
 					<th>패스워드</th>
-					<td><input class="register-input" type="password" name="pwd" id="pwd" placeholder="*패스워드" maxlength="60" required /></td>
+					<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd" id="pwd" placeholder="*패스워드" maxlength="60" required /></td>
 				</tr>
 				<tr>
 					<th>패스워드 확인</th>
-					<td><input class="register-input" type="password" name="pwd2"  id="pwd2" placeholder="*패스워드 확인" maxlength="60" required /></td>
+					<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd2"  id="pwd2" placeholder="*패스워드 확인" maxlength="60" required /></td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input class="register-input" type="text" name="uname" placeholder="*이름" maxlength="10" required /></td>
+					<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="uname" placeholder="*이름" maxlength="10" required /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input class="register-input" type="email" name="email" placeholder="*이메일" maxlength="40"  />
+					<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" placeholder="*이메일" maxlength="40"  />
 					</td>
 				</tr>
 				<tr>
@@ -57,12 +57,12 @@
 				</tr>
 				<tr>
 					<th>휴대폰번호</th>
-					<td><input class="register-input" type="tel" name="phoneNum" placeholder="('-'없이 번호만 입력해 주세요)" maxlength="40" />
+					<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="tel" name="phoneNum" placeholder="('-'없이 번호만 입력)" maxlength="40" />
 					</td>
 				</tr>
 				<tr>
 					<th>생년월일</th>
-					<td><input class="register-input" type="number" name="birthDate" id="birthDate" placeholder="ex) 19920502" />
+					<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="number" name="birthDate" id="birthDate" placeholder="ex) 20230101" />
 					</td>
 				</tr>
 				<tr>
@@ -73,9 +73,9 @@
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td><input class="btn-hover color-8" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" /><input class="register-input" type="text" id="postcode" name="postcode" placeholder="우편번호" />
-					<br><input class="register-input" type="text" id="addr" name="addr" placeholder="주소" />
-					<br><input class="register-input" type="text" id="detailAddr" name="detailAddr" placeholder="상세주소" />
+					<td><input class="btn-hover color-8" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" /><input class="form-control  bg-gray-800 border-dark" type="text" id="postcode" name="postcode" placeholder="우편번호" />
+					<br><input class="form-control  bg-gray-800 border-dark" type="text" id="addr" name="addr" placeholder="주소" />
+					<br><input class="form-control  bg-gray-800 border-dark" type="text" id="detailAddr" name="detailAddr" placeholder="상세주소" />
 					<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 					<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 					</div>
@@ -97,8 +97,9 @@
 					헬스<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" value="2048"><label class="form-check-label"></label>
 					</td>
 				</tr>
-				<tr>		
+				<tr style="margin-left: 60px;">		
 					<td><input class="btn-hover color-8" onclick="checked_submit()" type="button" value="회원가입"></td>
+					<td><input class="btn-hover color-8" onclick="checked_submit()" type="reset" value="취소"></td>
 				</tr>
 				
 		</table>

@@ -7,32 +7,31 @@
 <html lang="ko">
 <head>
     <%@ include file="../common/heading.jsp" %>
-    <link rel="stylesheet" href="/css/board.css">
     <style>
         .disabled-link { pointer-events: none; }
+        table {
+		padding: 0.4px;
+		height: 300px;
+		padding-bottom: 0.3px;
+		padding-top: 0.2px;
+}
     </style>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppKey}&libraries=services"></script>
 </head>
 
-<body style="height: 2000px">
+<body>
     <%@ include file="../common/top.jsp" %>
-
-    <div class="container" style="margin: 50px">
+    <div class="container" style="margin: 120px; padding-bottom: 500px;">
         <div class="row" style="justify-content: space-evenly">
-			<div class="inputtb content-title pb-4">
-				<div style="margin: 80px ">
-				</div>
-			</div>          
             <!-- =================== main =================== -->
             <div class="">
-                <h3 class=""><strong>게시글 상세 조회</strong>
+                <h3 class=""><strong>게시글 상세 조회</strong></h3>
                 	<span style="font-size: 0.6em; margin-left: 450px" >
                 		 <button onclick="location.href='/board/list'" class="btn-hover color-8 " type="button" value="글쓰기">목록</button>
-                    
                     <!-- 본인만 수정 가능 -->
-                    <c:if test="${b.uid eq uid}">
+                   <c:if test="${b.uid eq uid}">
                 		 <button onclick="location.href='/board/update?bid=${b.bid}'" class="btn-hover color-8 " type="button" value="수정">수정</button>                 
-                    	<a href="/board/update?bid=${board.bid}" class="ms-3"><i class="far fa-edit"></i> 수정</a>  <!-- bid -->
+                    	<a href="/board/update?bid=${b.bid}" class="ms-3"><i class="far fa-edit"></i> 수정</a>  <!-- bid -->
                     </c:if>
                     <c:if test="${b.uid ne uid}">
                         <a href="#" class="ms-3 disabled-link"><i class="far fa-edit"></i> 수정</a>  
@@ -41,24 +40,23 @@
                     <!-- 본인만 삭제 가능 -->
                     <c:if test="${b.uid eq uid}">
                     	 <button onclick="location.href='/board/delete?bid=${b.bid}'" class="btn-hover color-8 " type="button" value="삭제">삭제</button>                                          
-                    	<a href="/board/delete?bid=${board.bid}" class="ms-3"><i class="fas fa-trash-alt"></i> 삭제</a>
+                    	<a href="/board/delete?bid=${b.bid}" class="ms-3"><i class="fas fa-trash-alt"></i> 삭제</a>
                     </c:if>
                     <c:if test="${b.uid ne uid}">
                         <a href="#" class="ms-3 disabled-link"><i class="btn-hover color-8 "></i> 삭제</a>
                     </c:if>
                     </span>
-                </h3> 
-                <hr>
-            </div>
+                    <hr>
+             </div>
                 <div class="detail-title">
                 	<!-- 이미지 -->
                 	<div class="detailbox">
-                		<img src="/board/download?file=${b.bFiles }" class="img-size" />
+                		<img src="/board/download?file=${b.bFiles }" class="img-size rounded-3" style="margin-top: 50px;" />
                 	</div>
                 	<div class="space"></div>
                 	<!-- Info -->	
                     <div class="">
-	                    <table class="board-view-infomation">
+	                    <table class="rwd-table" style="margin-left: 650px; margin-top:-14px; width: 400px;height: 400px;">
 	                    	<%-- <tr>
 	                    	<th></th>
 	                    		<td>조회수${board.viewCount}&nbsp;&nbsp;댓글 ${board.replyCount}</td>
@@ -93,7 +91,7 @@
                 </div>
             </div>
             
-            <div class="board-view-content">
+            <div class="board-view-content" style="color: white;">
                       ${fn:replace(b.bContent, newline, '<br>')}
             </div>
         	<div class="board-view-map" id="map"></div>

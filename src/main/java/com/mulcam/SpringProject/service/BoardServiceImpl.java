@@ -2,14 +2,13 @@ package com.mulcam.SpringProject.service;
 
 import java.util.List;
 
+import org.openqa.selenium.devtools.Reply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.mulcam.SpringProject.dao.BoardDao;
 import com.mulcam.SpringProject.entity.Board;
-import com.mulcam.SpringProject.entity.User;
 
 
 @Service
@@ -19,8 +18,11 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDao boardDao;
 	
 	@Override
-	public List<Board> list() {
-		return boardDao.list();
+	public List<Board> getBoardList(int page, String field, String query) {
+		int offset = (page - 1) * 10;
+		query = "%"+query+"%";
+		List<Board> list = boardDao.getBoardList(offset, field, query);
+		return list;
 	}
 
 	@Override
@@ -44,15 +46,46 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteBoard(int bid) {
 		
 	}
+	
+	@Override
+	public int getBoardCount(String field, String query) {
+		query = "%"+query+"%";
+		int count = boardDao.getBoardCount(field, query);
+		return count;
+	}
 
 	@Override
 	public void increaseViewCount(int bid) {
-		String field = "viewCount";
+		String field = "bViewCount";
 		boardDao.increaseCount(bid, field);
 		
 	}
-
+	@Override
+	public void increaseReplyCount(int bid) {
+		String field = "bReplyCount";
+		boardDao.increaseCount(bid, field);
 	}
+
+	@Override
+	public List<Reply> getReplyList(int bid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertReply(Reply reply) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*
+	 * @Override public List<Reply> getReplyList(int bid) { List<Reply> list =
+	 * replyDao.getReplyList(bid); return list; }
+	 * 
+	 * @Override public void insertReply(Reply reply) { replyDao.insertReply(reply);
+	 * }
+	 */
+}
 
 
 	

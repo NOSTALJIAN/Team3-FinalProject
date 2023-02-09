@@ -21,6 +21,7 @@
 	<meta name="HandheldFriendly" content="true">
 	<title>같이운동하러Gogo</title>
 	<link rel="stylesheet" href="/css/theme.min.css">
+	<link rel="stylesheet" href="/css/board.css">
 
 <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
