@@ -1,6 +1,7 @@
 package com.mulcam.SpringProject.controller;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,12 +10,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.openqa.selenium.devtools.Reply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +26,13 @@ import org.springframework.web.multipart.MultipartRequest;
 import com.mulcam.SpringProject.entity.Board;
 import com.mulcam.SpringProject.service.BoardService;
 import com.mulcam.SpringProject.service.JSONUtil;
+import com.mulcam.SpringProject.session.UserSession;
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
 	
+	@Autowired private UserSession userSession;
 	@Autowired
 	private BoardService bsv;
 	
@@ -47,19 +50,70 @@ public class BoardController {
 	/** 게시물 목록 */
 	@GetMapping("/list")
 	public String list(HttpServletRequest req, Model model){
-		List<Board> list = bsv.list();
+//		List<Board> list = bsv.list();
+		String page_ = req.getParameter("p");
+		String field = req.getParameter("f");
+		String query = req.getParameter("q");
+		
+		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
+		field = (field == null || field.equals("")) ? "title" : field;
+		query = (query == null || query.equals("")) ? "" : query;
+		List<Board> list = bsv.getBoardList(page, field, query);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("currentBoardPage", page);
+		model.addAttribute("field", field);
+		model.addAttribute("query", query);
 		model.addAttribute("blist", list);
+		
+		int totalBoardNo = bsv.getBoardCount("bid", "");
+		int totalPages = (int) Math.ceil(totalBoardNo / 10.);
+		
+		int startPage = (int)(Math.ceil((page-0.5)/10) - 1) * 10 + 1;
+		int endPage = Math.min(totalPages, startPage + 9);
+		List<String> pageList = new ArrayList<>();
+		for (int i = startPage; i <= endPage; i++) 
+			pageList.add(String.valueOf(i));
+		model.addAttribute("pageList", pageList);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPages", totalPages);
+		
+		String today = LocalDate.now().toString(); // 2022-12-28
+		model.addAttribute("today", today);
+		
 		return "board/list";
 	}
 	
 	/** 게시물 디테일 */
-	@GetMapping("/detail/{bid}")
-	public String detail(HttpServletRequest req, Model model, @PathVariable int bid) {
+	@GetMapping("/detail")
+	public String detail(HttpServletRequest req, Model model) {
+		int bid = Integer.parseInt((String)req.getParameter("bid"));
 		Board board = bsv.getBoard(bid);
+		String uid = req.getParameter("uid");
+		String option = req.getParameter("option");
 		model.addAttribute("b", board);
 		model.addAttribute("kakaoAppKey", kakaoAppKey);
 		HttpSession session = req.getSession();
-		String sessionUid = (String) session.getAttribute("sessionUid");
+		String sessionUid = userSession.getUid();
+//		String sessionUid = (String) session.getAttribute("uid");
+		
+		// 조회수 증가. 단, 본인이 읽거나 댓글 작성후에는 제외.
+		if (option == null && (!uid.equals(sessionUid))) 
+			bsv.increaseViewCount(bid);
+		
+		String jsonFiles = board.getbFiles();
+		/*
+		 * if (!(jsonFiles == null || jsonFiles.equals(""))) { JSONUtil json = new
+		 * JSONUtil(); List<String> fileList = json.parse(jsonFiles);
+		 * model.addAttribute("fileList", fileList); }
+		 */
+		System.out.println(jsonFiles);
+		model.addAttribute("fileList", jsonFiles);
+		model.addAttribute("b", board);
+		List<Reply> replyList = bsv.getReplyList(bid);
+		model.addAttribute("replyList", replyList);
+
 		return "board/detail";
 	}
 	
@@ -117,6 +171,7 @@ public class BoardController {
 		LocalDateTime bAppointment = LocalDateTime.parse(req.getParameter("bAppointment").replace(" ", "T") + ":00");
 		String bLocation = (String) req.getParameter("bLocation");
 		String bAddr = (String) req.getParameter("bAddr");
+		String uid = (String) req.getParameter("uid");
 		
 		// 썸네일 File upload 한개만
 		MultipartFile file = req.getFile("bFiles");
@@ -132,7 +187,7 @@ public class BoardController {
 		Board board = new Board(bid, bTitle, bCategory, bUserCount, bContent, bAppointment, bLocation, bAddr, fileName); 
 		bsv.updateBoard(board);
 		
-		return "redirect:/board/detail/" + bid;
+		return "redirect:/board/detail?bid=" + bid + "&uid=" + uid ;
 	}
 	
 	/** 게시물 삭제 */

@@ -34,7 +34,7 @@
 				<form action="/board/update" class="pt-4 mx-3" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="uid" value="${sessionUid}" />
 					<input type="hidden" name="bid" value="${b.bid}" />
-					<input type="hidden" name="bAddr" id="bAddr">
+					<input type="hidden" name="bAddr" id="bAddr" value="${b.bAddr}"/>
 					<input type="hidden" name="bFileName" value="${b.bFiles}">
 					<table class="board-desc">
 						<tr>

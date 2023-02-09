@@ -11,27 +11,24 @@
 	<link rel="stylesheet" href="/css/board.css">
 </head>
 
-<body style="margin: 200px" >
+<body style="margin: 170px" >
 	<%@ include file="../common/top.jsp" %>
-	<h3>그룹운동 게시판</h3>
-	<a href="/board/write" class="btn btn-outline-light write-btn">
-		<small>+글쓰기</small></a>
-	   	
+	<h3><strong>1:1운동 게시판</strong></h3>
    	<div class=" content-list">
 		<c:forEach var="m" items="${matchingList}">
-   		<div class="content-list-col" >
+   		<div class="content-list-col " >
 	    	<div class="board-card " data-aos="zoom-in-up">
 				<div class="bg-dark shadow rounded-5 p-0">
 					<img src="/img/avatar_man.png" width="582" height="442" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" 
 			          loading="lazy">
-					<div class="p-5">
+					<div class="mtc-info">
 						<h2 style="color: white">${m.uid}</h2>
-						<p class="pb-4 text-secondary" style="color: white;">거리: ${m.distance}</p>
-			            <p class="pb-4 text-secondary" style="color: white;">나이: ${m.age}</p>
-			            <p class="pb-4 text-secondary" style="color: white;">성별: ${m.gender}</p>
-			            <p class="pb-4 text-secondary" style="color: white;">평점: ${m.uRating}</p>
-			            <p class="pb-4 text-secondary" style="color: white;">공유하는 운동 목록 : ${m.coincideExer}</p>
-			            <button onclick="addMate('${m.uid}')" style="background-color:white; color:black;">친구추가</button>
+						<p class="" style="color: white;">거리: ${m.distance}</p>
+			            <p class="" style="color: white;">나이: ${m.age}</p>
+			            <p class="" style="color: white;">성별: ${m.gender}</p>
+			            <p class="" style="color: white;">평점: ${m.uRating}</p>
+			            <p class="" style="color: white;">공유하는 운동 목록 : ${m.coincideExer}</p>
+			            <button onclick="addMate('${m.uid}')" style="background-color:white; color:black;" >친구추가</button>
 			     	</div>
 				</div>
 			</div>
