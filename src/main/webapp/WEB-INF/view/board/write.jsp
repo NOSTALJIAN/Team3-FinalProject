@@ -46,19 +46,10 @@
 						</tr>
 						<tr>
 							<td>
-								<select class="board-input" name="bCategory" class="board-input rounded-3" style="border: 1px solid #808080;">
-									<option value="축구">축구</option>
-									<option value="농구">농구</option>
-									<option value="야구">야구</option>
-									<option value="E-sports">E-sports</option>
-									<option value="등산">등산</option>
-									<option value="당구">당구</option>
-									<option value="볼링">볼링</option>
-									<option value="싸이클">싸이클</option>
-									<option value="테니스">테니스</option>
-									<option value="조깅">조깅</option>
-									<option value="수영">수영</option>
-									<option value="헬스">헬스</option>
+								<select name="bCategory" class="board-input" style="border: 1px solid #d1d1d1">
+									<c:forEach var="sports" items="${sportsArray}">
+										<option value="${sports}">${sports}</option>
+									</c:forEach>
 								</select>
 							</td>
 						</tr>
