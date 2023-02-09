@@ -124,12 +124,12 @@ public class UserController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/board/index";
-	}
+	}	
 	
 	/** 사용자 페이지*/
 	@GetMapping("/mypage")
-	public String mypage(HttpSession session) {
-		session.invalidate();
+	public String mypage() {
+		
 		return "user/mypage";
 	}
 }
