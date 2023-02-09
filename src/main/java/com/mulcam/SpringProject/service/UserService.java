@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.mulcam.SpringProject.entity.Mate;
 import com.mulcam.SpringProject.entity.User;
 import com.mulcam.SpringProject.entity.UserInfo;
 
@@ -30,6 +31,12 @@ public interface UserService {
 	
 	/** 사용자 정보*/
 	UserInfo getUserInfo(String sessionUid);
+	
+	String getUname(String uid);
+	
+
+	
+	
 	
 	
 }

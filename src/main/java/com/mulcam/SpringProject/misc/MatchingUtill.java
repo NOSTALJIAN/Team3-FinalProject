@@ -8,13 +8,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mulcam.SpringProject.entity.Mate;
 import com.mulcam.SpringProject.entity.MatchingUsers;
 import com.mulcam.SpringProject.entity.UserInfo;
+import com.mulcam.SpringProject.service.MateService;
 import com.mulcam.SpringProject.service.UserService;
 
 @Service
 public class MatchingUtill {
 	@Autowired private UserService service;
+	@Autowired private MateService mateService;
 	@Autowired private ExerciseUtill exerciseUtill;
 	@Autowired private MapUtill mapUtill;
 	
@@ -35,6 +38,15 @@ public class MatchingUtill {
 		List<MatchingUsers> matchingList = new ArrayList<>();
 		for (UserInfo ui : coincideList) {
 			String uid = ui.getUid();
+			// 친구 추가신청 되있는지 확인
+			int confirmNum = mateService.confirm(new Mate(sessionUid ,uid));
+			if (confirmNum >=1)
+				continue;
+			// 친구상태인지 확인
+			int confirmNum2 = mateService.confirm2(new Mate(sessionUid ,uid));
+			if (confirmNum2 >=1)
+				continue;
+			
 			String gender = ui.getGender();
 			float uRating = ui.getuRating();
 			// 거리계산
@@ -54,7 +66,8 @@ public class MatchingUtill {
 			// 알고리즘 점수 계산
 			float score = (float) (exerciseUtill.countOne(coincideNum)*30 + uRating*10 - dist);
 			
-			MatchingUsers matchingUser = new MatchingUsers(uid, distance, age, coincideExer, gender, uRating, score);
+			String uname = service.getUname(uid);
+			MatchingUsers matchingUser = new MatchingUsers(uid, uname, distance, age, coincideExer, gender, uRating, score);
 			matchingList.add(matchingUser);
 		}
 		

@@ -13,7 +13,7 @@ public class Demo1Application {
 	}
 	
 	@Bean
-	public ServerEndpointExporter serverEndpoingExpoter() {
+	public ServerEndpointExporter serverEndpointExpoter() {
 		return new ServerEndpointExporter();
 	}
 }
