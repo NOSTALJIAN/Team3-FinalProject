@@ -8,15 +8,12 @@
 	<link rel="stylesheet" href="/css/board.css">
 </head>
 
-<body style="margin: 200px" >
+<body style="margin: 170px" >
 	<%@ include file="../common/top.jsp" %>
-	<h3>그룹운동 게시판</h3>
-	<a href="/board/write" class="btn btn-outline-light write-btn">
-		<small>+글쓰기</small></a>
-	   	
+	<h3><strong>1:1운동 게시판</strong></h3>
    	<div class=" content-list">
 		<c:forEach var="m" items="${matchingList}">
-   		<div class="content-list-col" >
+   		<div class="content-list-col " >
 	    	<div class="board-card " data-aos="zoom-in-up">
 				<div class="bg-dark shadow rounded-5 p-0">
 					<img src="/img/avatar_man.png" width="582" height="442" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" 

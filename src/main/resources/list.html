@@ -1,7 +1,8 @@
 
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
 <head>
+	<!-- heading -->
 	<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<script
@@ -21,8 +22,8 @@
 	<meta name="generator" content="Eleventy v2.0.0">
 	<meta name="HandheldFriendly" content="true">
 	<title>같이운동하러Gogo</title>
-	<link rel="stylesheet" href="css/theme.min.css" />
-	<link rel="stylesheet" href="/src/main/resources/static/css/board.css" />
+	<link rel="stylesheet" href="../resources/static/css/theme.min.css" />
+	<link rel="stylesheet" href="../resources/static/css/board.css" />
 
 <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,6 +80,7 @@ font-family: 'Jua', sans-serif;
 }
 
 </style>
+<!-- heading -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
@@ -102,7 +104,8 @@ font-family: 'Jua', sans-serif;
 </head>
 
 <body style="margin: 100px ">
-	<nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-2" tabindex="0" style="height: 90px">
+	<!--Top -->
+	<nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-2" tabindex="0" style="height: 65px; padding-top: 8px;">
         <div class="container">
           <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="/board/index">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stack"
@@ -174,111 +177,64 @@ font-family: 'Jua', sans-serif;
 
         </div>
       </nav>
+	  <!--Top -->
 
-	<div class="container">
-		<div class="row" style="justify-content: space-evenly" >
-			<div class=" col-lg-6">
-				<!-- 타이틀 -->
-				<div class="inputtb content-title pb-4">
-					<h3 class="board-title">게시글 쓰기</h3>
-					<div>
-						<button onclick="location.href='/board/list'">&lt; List</button>
-					</div>
-				</div>
-				<!-- 타이틀 끝 -->
-				<form action="/board/write" class="pt-4 mx-3" method="post" enctype="multipart/form-data">
-					<input type="hidden" name="uid" value="${sessionUid}" />
-					<table class="board-desc">
-						<tr>
-							<td><input style="border: 1px solid #d1d1d1;"
-								class="board-input" type="text" placeholder="제목" name="bTitle"
-								maxlength="128" required /></td>
-						</tr>
-						<tr>
-							<td><input style="border: 1px solid #d1d1d1;"
-								class="board-input" type="text" placeholder="운동장소" name="bLocation"
-								maxlength="128" required /></td>
-						</tr>
-						<tr>
-							<td><input style="border: 1px solid #d1d1d1;"
-								class="board-input" type="number" placeholder="인원수" name="bUserCount"/></td>
-						</tr>
-						<tr>
-							<td><input style="border: 1px solid #d1d1d1;"
-								class="board-input" type="datetime-local" placeholder="운동시간" name="bAppointment" maxlength="128" /></td>
-						</tr>
-						<tr>
-							<td>
-								운동 선택<br>
-								<select name="bCategory" class="board-input">
-									<option value="축구">축구</option>
-									<option value="농구">농구</option>
-									<option value="야구">야구</option>
-									<option value="E-sports">E-sports</option>
-									<option value="등산">등산</option>
-									<option value="당구">당구</option>
-									<option value="볼링">볼링</option>
-									<option value="싸이클">싸이클</option>
-									<option value="테니스">테니스</option>
-									<option value="조깅">조깅</option>
-									<option value="수영">수영</option>
-									<option value="헬스">헬스</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td><input style="border: 1px solid #d1d1d1;"
-								class="board-input" type="file" name="bFiles"/></td>
-						</tr>
-					
-						<tr>
-							<td><textarea class="board-input" name="bContent" placeholder="내용" maxlength="5000" rows="10"></textarea></td>
-						</tr>
-						<!-- <tr>
-							<td colspan="2" class="multibtn pt-4"><input type="submit" class="btn full maincolor" value="글쓰기" />
-							<input type="reset" class="btn full subcolor" value="취소" /></td>
-						</tr> -->
-					</table>
-						<div class="buttons">
-						  <button class="btn-hover color-8 write-btn" type="submit" value="글쓰기">글쓰기</button>
-						  <button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
-						</div>
-				</form>
-			</div>
+
+	<div class="inputtb content-title pb-4">
+		<h3 class="board-title">그룹운동 게시판</h3>
+		<hr>
+		<div class="buttons">
+		<a href="/board/write" class="btn-hover color-8 fix-position">+글쓰기</a></div>
+	<table>
+			<colgroup>
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+			</colgroup>
+			<tr>
+				<th><label>제목</label></th>
+				<th><label>운동종목</label></th>
+				<th><label>작성일자</label></th>
+				<th><label>인원수</label></th>
+			</tr>
+			<c:forEach var="b" items="${blist}">
+				<tr>
+					<%-- <td><a href="/board/detail/${b.bid}">${b.bid}</a></td>
+					<td><img src="/board/download?file=${b.bFiles }" height="40" onclick="location.href='/board/detail/${b.bid}'" /></td>
+			 --%>	<td onclick="location.href='/board/detail/${b.bid}'" >${b.bTitle}</td>
+					<td>${b.bCategory}</td>
+					<td>${fn:replace(b.bRegTime, 'T', ' ')}</td>
+					<td>${b.bUserCount}명</td>
+				</tr>
+			</c:forEach>
+		
+		</table> 
 		</div>
-		<div class="col-6">	
-		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-		    <div id="menu_wrap" class="bg_white">
-		        <div class="option">
-		            <div>
-		                키워드 : <input type="text" value="" id="keyword" size="15">
-		                <form onsubmit="searchPlaces(); return false;">
-		                    <button type="submit">검색하기</button> 
-		                </form>
-		            </div>
-		        </div>
-		        <hr>
-		        <ul id="placesList"></ul>
-		        <div id="pagination"></div>
-		    </div>
-	    </div>
-	    <script src="/js/map.js?q=1"></script>
-    </div>
-	<script>
-		CKEDITOR.replace('bContent', {
-			filebrowserImageUploadUrl : '/board/upload',
-			filebrowserUploadMethod : 'form',
-			height : 400
-		})
-	</script>
-	</div>
 	
-	<script>
-		CKEDITOR.replace('bContent', {
-			filebrowserImageUploadUrl : '/board/upload',
-			filebrowserUploadMethod : 'form',
-			height : 400
-		})
-	</script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/aos.js"></script>
+<script>
+AOS.init({
+ duration: 800, // values from 0 to 3000, with step 50ms
+});
+</script>
+<script>
+  let scrollpos = window.scrollY
+  const header = document.querySelector(".navbar")
+  const header_height = header.offsetHeight
+
+  const add_class_on_scroll = () => header.classList.add("scrolled", "shadow-sm")
+  const remove_class_on_scroll = () => header.classList.remove("scrolled", "shadow-sm")
+
+  window.addEventListener('scroll', function() {
+    scrollpos = window.scrollY;
+
+    if (scrollpos >= header_height) { add_class_on_scroll() }
+    else { remove_class_on_scroll() }
+
+    console.log(scrollpos)
+  })
+</script>
 </body>
 </html>

@@ -2,17 +2,16 @@ package com.mulcam.SpringProject.service;
 
 import java.util.List;
 
+import org.openqa.selenium.devtools.Reply;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.mulcam.SpringProject.entity.Board;
-import com.mulcam.SpringProject.entity.User;
 
 @Service
 public interface BoardService {
 
 	/** 게시글목록 페이지 출력 */
-	public List<Board> list();
+	public List<Board> getBoardList(int page, String field, String query);
 	
 	/** 디테일 페이지 출력 */
 	public Board getBoard(int bid) ;
@@ -24,9 +23,15 @@ public interface BoardService {
 	
 	public void deleteBoard(int bid);
 
+	public int getBoardCount(String field, String query);
+	
 	public void increaseViewCount(int bid) ;
 
-
+	public void increaseReplyCount(int bid);
+	
+	public List<Reply> getReplyList(int bid);
+	
+	public void insertReply(Reply reply);
 
 		
 	}
