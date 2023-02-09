@@ -68,23 +68,14 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Reply> getReplyList(int bid) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void insertReply(Reply reply) {
-		// TODO Auto-generated method stub
 		
 	}
 
-	/*
-	 * @Override public List<Reply> getReplyList(int bid) { List<Reply> list =
-	 * replyDao.getReplyList(bid); return list; }
-	 * 
-	 * @Override public void insertReply(Reply reply) { replyDao.insertReply(reply);
-	 * }
-	 */
 }
 
 

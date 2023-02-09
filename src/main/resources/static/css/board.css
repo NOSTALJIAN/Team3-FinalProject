@@ -45,7 +45,7 @@
 }
 
 .btn-hover {
-    width: 140px;
+    width: 130px;
     font-size: 16px;
     font-weight: 600;
     color: #fff;
@@ -281,7 +281,7 @@ input[type='text'].register-input,
 
 * {font-family: 'Open Sans', sans-serif;}
 
-.rwd-table {
+/* .rwd-table {
   margin: auto;
   min-width: 300px;
   max-width: 100%;
@@ -378,7 +378,7 @@ input[type='text'].register-input,
   .rwd-table td {
     padding: 1em !important;
   }
-}
+} */
 
 
 /* THE END OF THE IMPORTANT STUFF */
@@ -393,7 +393,7 @@ background: linear-gradient(to left, #4B79A1 , #283E51);   */
 h2 {
   text-align: center;
   font-size: 2.4em;
-  color: #0b63b5cd;
+  color: white;
 }
 .container {
   display: block;

@@ -14,29 +14,27 @@
 
 <body style="margin: 100px ">
 	<%@ include file="../common/top.jsp" %>
-
-	<div class="container" style="margin: 50px">
-		<div class="row" style="justify-content: space-evenly" >
-
-			<div class="inputtb content col-lg-8">
+	<div class="container" >
+		<div class="inputtb content">
 				<!-- 타이틀 -->
-				<div class="">
+				<div class="board-title" >
 				<table>
-				<tr>
-				<td class="col-6" style="text-align: left;"><h3 class="board-title">게시글 수정</h3></td>
-				<td class="col-2">
-						<button onclick="location.href='/board/list'" class="btn-hover color-8 ">List</button>
-					</td>
+					<tr>
+						<td class="col-6" style="text-align: left;"><h3 class="board-title"><strong>게시글 수정</strong></h3></td>
+						<td class="col-2">
+								<button onclick="location.href='/board/list'" class="btn-hover color-8 ">목록</button>
+						</td>
 					</tr>
-					</table>
+				</table>
 				</div>
 				<!-- 타이틀 끝 -->
-				<form action="/board/update" class="pt-4 mx-3" method="post" enctype="multipart/form-data">
+				<div class="write-zone center ">
+				<form action="/board/update" class="content-center" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="uid" value="${sessionUid}" />
 					<input type="hidden" name="bid" value="${b.bid}" />
 					<input type="hidden" name="bAddr" id="bAddr" value="${b.bAddr}"/>
 					<input type="hidden" name="bFileName" value="${b.bFiles}">
-					<table class="board-desc">
+					<table class="board-desc" style="margin-left: 230px;">
 						<tr>
 							<td><input style="border: 1px solid #d1d1d1;"
 								class="board-input" type="text" placeholder="제목" name="bTitle" value="${b.bTitle}"
@@ -73,15 +71,15 @@
 						</tr>
 					</table>
 						<div class="buttons">
-						  <button class="btn-hover color-8 write-btn" type="submit" value="글쓰기">글쓰기</button>
+						  <button class="btn-hover color-8 write-btn" type="submit" value="글쓰기">수정</button>
 						  <button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
 						</div>
 				</form>
 			</div>
 		</div>
+		
 		<div class="map_wrap">	
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-		    
 		    <div id="menu_wrap" class="bg_white">
 		        <div class="option">
 		            <div>
@@ -98,6 +96,7 @@
 	    </div>
 	    <script src="/js/map.js?q=1"></script>
     </div>
+    
 	
 	<script>
 		CKEDITOR.replace('bContent', {

@@ -19,8 +19,10 @@ public interface BoardService {
 	/** 게시물 등록 */
 	public void insertBoard(Board board);
 	
+	/** 게시물 수정 */
 	public void updateBoard(Board board);
 	
+	/** 게시물 삭제 */
 	public void deleteBoard(int bid);
 
 	public int getBoardCount(String field, String query);
