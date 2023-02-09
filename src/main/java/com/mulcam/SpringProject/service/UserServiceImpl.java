@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.SpringProject.dao.UserDao;
+import com.mulcam.SpringProject.entity.Mate;
 import com.mulcam.SpringProject.entity.User;
 import com.mulcam.SpringProject.entity.UserInfo;
 import com.mulcam.SpringProject.session.UserSession;
@@ -85,5 +86,13 @@ public class UserServiceImpl implements UserService{
 			UserInfo userinfo = userDao.getUserInfo(sessionUid);
 		return userinfo;
 	}
+	
+	@Override
+	public String getUname(String uid) {
+		String uname = userDao.getUname(uid);
+		return uname;
+	}
+
+
 
 }

@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,13 +22,13 @@
 					<img src="/img/avatar_man.png" width="582" height="442" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" 
 			          loading="lazy">
 					<div class="p-5">
-						<h2 style="color: white">${m.uid}</h2>
+						<h2 style="color: white">${m.uname}</h2>
 						<p class="pb-4 text-secondary" style="color: white;">거리: ${m.distance}</p>
 			            <p class="pb-4 text-secondary" style="color: white;">나이: ${m.age}</p>
 			            <p class="pb-4 text-secondary" style="color: white;">성별: ${m.gender}</p>
 			            <p class="pb-4 text-secondary" style="color: white;">평점: ${m.uRating}</p>
 			            <p class="pb-4 text-secondary" style="color: white;">공유하는 운동 목록 : ${m.coincideExer}</p>
-			            <button onclick="addMate('${m.uid}')" style="background-color:white; color:black;">친구추가</button>
+			            <button onclick="addMate('${m.uid}')" style="background-color:white; color:black;" id="${m.uid}">친구신청</button>
 			     	</div>
 				</div>
 			</div>
@@ -63,16 +60,31 @@
 	    /* console.log(scrollpos) */
 	  })
 	  function addMate(uid){
-		  console.log(uid);
-		  $.ajax({
-			type:'GET',
-			url: '/matching/addMate',
-			data: {'receiveUser': uid},
-			success: function(result){
-				console.log(result);
-				
-			}
-		  });
+		  const mateuid = document.getElementById(uid);
+		  if (mateuid.innerText =='친구신청'){
+			  $.ajax({
+				type:'GET',
+				url: '/mate/addMate',
+				data: {'receiveUser': uid},
+				success: function(result){
+					mateuid.innerText = result;
+					console.log(result);
+					mateuid.style.cssText = 'background-color:black; color:white;'
+				}
+			  });
+		  }
+		  else if (mateuid.innerText =='친구신청중'){
+			  $.ajax({
+				type:'GET',
+				url: '/mate/mateCancle',
+				data: {'receiveUser': uid},
+				success: function(result){
+					mateuid.innerText = result;
+					console.log(result);
+					mateuid.style.cssText = 'background-color:white; color:black;'
+				}
+			  });
+		  }
 	  }
 	  
 	</script>
