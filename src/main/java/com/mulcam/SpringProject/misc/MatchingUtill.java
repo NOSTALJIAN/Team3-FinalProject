@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.SpringProject.entity.Mate;
+import com.mulcam.SpringProject.entity.MatchingCondition;
 import com.mulcam.SpringProject.entity.MatchingUsers;
 import com.mulcam.SpringProject.entity.UserInfo;
 import com.mulcam.SpringProject.service.MateService;
@@ -26,11 +27,21 @@ public class MatchingUtill {
 		
 		// 오늘자 연도(나이계산을 위해서)
 		int year =  LocalDate.now().getYear();
-		UserInfo user = service.getUserInfo(sessionUid);
+		
 		// 거리 계산용
+		UserInfo user = service.getUserInfo(sessionUid);
 		double lat1 = user.getuLat();
 		double lng1 = user.getuLng();
 		String distance = "";
+		
+		// 좋아하는 운동과 필터링용
+		MatchingCondition mC = service.getCondition(sessionUid);
+		String bestExercise = mC.getBestExercise();
+		int minAge = mC.getMinAge();
+		int maxAge = mC.getMaxAge();
+		int minDistance = mC.getMinDistance();
+		int maxDistance = mC.getMaxDistance();
+		String pGender = mC.getpGender();
 		
 		
 		// 좋아하는 운동이 하나라도 일치하는 사람들의 리스트
@@ -48,26 +59,52 @@ public class MatchingUtill {
 				continue;
 			
 			String gender = ui.getGender();
+			//성별 필터링
+			if (!pGender.equals(gender)) {
+				if (!pGender.equals("모두"))
+					continue;
+			}
+			
 			float uRating = ui.getuRating();
 			// 거리계산
 			double lat2 = ui.getuLat();
 			double lng2 = ui.getuLng();
 			double dist = mapUtill.distance(lat1, lng1, lat2, lng2);
+			// 거리 필터링
+			if (dist <= minDistance || maxDistance <= dist) {
+				continue;
+			}
+			// km로 표기할지 m으로 표기할지 결정
 			if (dist >= 1.0) {
 				distance =  String.format("%.1f" , dist) + "km";
 			} else {
 				distance =  (int) (dist*1000) + "m";
 			}
-			// 일치하는 운동 보여주기
-			String coincideNum = String.format("%12s", ui.getCoincideExer());
-			List<String> coincideExer = exerciseUtill.findExercise(coincideNum);
+			
 			// 나이계산
 			int age = year - (ui.getBirthDate()/10000);
+			// 나이 필터링
+			if (age <= minAge || maxAge <= age) {
+				continue;
+			}
+			
+			// 관심운동 목록 가져오기
+			String likeExercise = service.getLikeExercise(uid);
+			String likeExerNum = String.format("%12s", likeExercise);
+			List<String> likeExerList = exerciseUtill.findExercise(likeExerNum);
+			
+			if(likeExerList.contains(bestExercise) == false)
+				continue;
+			// 이름 가져오기
+			String uname = service.getUname(uid);
+			
+			// 일치하는 운동 계산(공백 + 2진수)
+			String coincideNum = String.format("%12s", ui.getCoincideExer());
+			
 			// 알고리즘 점수 계산
 			float score = (float) (exerciseUtill.countOne(coincideNum)*30 + uRating*10 - dist);
 			
-			String uname = service.getUname(uid);
-			MatchingUsers matchingUser = new MatchingUsers(uid, uname, distance, age, coincideExer, gender, uRating, score);
+			MatchingUsers matchingUser = new MatchingUsers(uid, uname, distance, age, likeExerList, gender, uRating, score);
 			matchingList.add(matchingUser);
 		}
 		
