@@ -97,11 +97,11 @@ public class BoardController {
 			bsv.increaseViewCount(bid);
 		
 		String jsonFiles = board.getbFiles();
-		/*
-		 * if (!(jsonFiles == null || jsonFiles.equals(""))) { JSONUtil json = new
-		 * JSONUtil(); List<String> fileList = json.parse(jsonFiles);
-		 * model.addAttribute("fileList", fileList); }
-		 */
+	
+	/*		 if (!(jsonFiles == null || jsonFiles.equals(""))) { JSONUtil json = new
+			 JSONUtil(); List<String> fileList = json.parse(jsonFiles);
+			 model.addAttribute("fileList", fileList); } */
+		 
 		System.out.println(jsonFiles);
 		model.addAttribute("fileList", jsonFiles);
 		model.addAttribute("b", board);

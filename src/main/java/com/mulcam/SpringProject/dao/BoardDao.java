@@ -12,7 +12,7 @@ import com.mulcam.SpringProject.entity.Board;
 @Mapper
 public interface BoardDao {
 
-	@Select("SELECT b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount,"
+	@Select("SELECT b.bid, b.uid, b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount,"
 			+ " b.bRegTime, b.bViewCount, b.bReplyCount, u.uname FROM board AS b"
 			+ "	JOIN users AS u"
 			+ "	ON b.uid=u.uid"
