@@ -43,7 +43,7 @@ public interface UserDao {
 	@Select("SELECT uid, uAddr, likeExercise, birthDate, gender, uRating, uLat, uLng from userInfo WHERE uid = #{sessionUid};")
 	UserInfo getUserInfo(String sessionUid);
 
-	@Select("SELECT CONVERT(BIN (likeExercise), CHAR(12)) FROM userinfo WHERE uid = #{uid};")
+	@Select("SELECT CONVERT(BIN (likeExercise), CHAR(12)) FROM userInfo WHERE uid = #{uid};")
 	String getLikeExercise(String uid);
 
 	@Select("SELECT * FROM matchingCondition WHERE uid = #{uid};")

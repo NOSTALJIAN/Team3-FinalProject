@@ -33,13 +33,15 @@ public class MatchingController {
 	@GetMapping("/list")
 	public String register(HttpSession session, Model model) {
 		// login안했으면 로그인페이지로(임시)
-		if (userSession.getUid() == null)
+		String uid = userSession.getUid();
+		if (uid == null)
 			return "user/login";
-		// 오늘자 연도(나이계산을 위해서)
-		String sessionUid = userSession.getUid();
+		MatchingCondition mC = service.getCondition(uid);
+		if (mC==null)
+			return "redirect:/matching/condition";
 		
 		// 매칭리스트 호출
-		List<MatchingUsers> matchingList = matchingUtill.matchingList(sessionUid);
+		List<MatchingUsers> matchingList = matchingUtill.matchingList(uid);
 		
 		model.addAttribute("matchingList", matchingList);
 		return "matching/list";
