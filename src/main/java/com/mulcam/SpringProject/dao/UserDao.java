@@ -13,7 +13,8 @@ import com.mulcam.SpringProject.entity.UserInfo;
 @Mapper
 public interface UserDao {
 	
-	@Insert("INSERT into users values(#{uid}, #{pwd}, #{uname}, NULL,#{phoneNum}, #{email}, #{emailCheck}, default, default, default)")	void insert(User u);
+	@Insert("INSERT into users values(#{uid}, #{pwd}, #{uname}, NULL,#{phoneNum}, #{email}, #{emailCheck}, default, default, default)")
+	void insert(User u);
 
 	@Insert("INSERT into userInfo values(#{uid}, #{uPostcode}, #{uAddr}, #{uDetailAddr}, #{likeExercise}, #{birthDate}, #{gender}, default, #{uLat}, #{uLng})")
 	void insertInfo(UserInfo ui);

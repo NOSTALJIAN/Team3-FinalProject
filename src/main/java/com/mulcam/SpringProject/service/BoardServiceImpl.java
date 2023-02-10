@@ -2,13 +2,14 @@ package com.mulcam.SpringProject.service;
 
 import java.util.List;
 
-import org.openqa.selenium.devtools.Reply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.SpringProject.dao.BoardDao;
+import com.mulcam.SpringProject.dao.ReplyDao;
 import com.mulcam.SpringProject.entity.Board;
+import com.mulcam.SpringProject.entity.Reply;
 
 
 @Service
@@ -16,6 +17,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired 
 	private BoardDao boardDao;
+	@Autowired
+	private ReplyDao replyDao;
 	
 	@Override
 	public List<Board> getBoardList(int page, String field, String query) {
@@ -61,19 +64,30 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 	@Override
-	public void increaseReplyCount(int bid) {
+	public void increaseReplyCount(int bid, int count) {
 		String field = "bReplyCount";
 		boardDao.increaseCount(bid, field);
 	}
 
 	@Override
 	public List<Reply> getReplyList(int bid) {
-		return null;
+		List<Reply> list = replyDao.getReplyList(bid);
+		return list;
 	}
 
 	@Override
 	public void insertReply(Reply reply) {
-		
+		replyDao.insertReply(reply);
+	}
+	
+	@Override
+	public void updateReply(Reply reply) {
+		replyDao.updateReply(reply);
+	}
+
+	@Override
+	public void deleteReply(int rid) {
+		replyDao.deleteReply(rid);
 	}
 
 }

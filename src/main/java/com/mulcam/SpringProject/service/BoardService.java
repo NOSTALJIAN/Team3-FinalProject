@@ -2,10 +2,10 @@ package com.mulcam.SpringProject.service;
 
 import java.util.List;
 
-import org.openqa.selenium.devtools.Reply;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.SpringProject.entity.Board;
+import com.mulcam.SpringProject.entity.Reply;
 
 @Service
 public interface BoardService {
@@ -29,12 +29,15 @@ public interface BoardService {
 	
 	public void increaseViewCount(int bid) ;
 
-	public void increaseReplyCount(int bid);
+	public void increaseReplyCount(int bid, int count);
 	
 	public List<Reply> getReplyList(int bid);
 	
 	public void insertReply(Reply reply);
 
+	public void updateReply(Reply reply);
+
+	public void deleteReply(int rid);
 		
 	}
 	
