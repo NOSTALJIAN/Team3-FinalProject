@@ -51,7 +51,7 @@ public class BoardController {
 		String query = req.getParameter("q");
 		
 		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
-		field = (field == null || field.equals("")) ? "title" : field;
+		field = (field == null || field.equals("")) ? "bTitle" : field;
 		query = (query == null || query.equals("")) ? "" : query;
 		List<Board> list = bsv.getBoardList(page, field, query);
 		
@@ -75,7 +75,7 @@ public class BoardController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("totalPages", totalPages);
 		
-		String today = LocalDate.now().toString(); // 2022-12-28
+		String today = LocalDate.now().toString(); 
 		model.addAttribute("today", today);
 		
 		return "board/list";

@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%@ include file="../common/heading.jsp" %>
-  <link rel="stylesheet" href="/css/board.css">
-  <meta charset="UTF-8">
-  <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppKey}&libraries=services"></script>
-  <link rel="stylesheet" href="/css/map.css" />
+	<%@ include file="../common/heading.jsp" %>
+	<link rel="stylesheet" href="/css/board.css">
+	<meta charset="UTF-8">
+	<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppKey}&libraries=services"></script>
+	<link rel="stylesheet" href="/css/map.css" />
 </head>
 
 <body style="margin: 100px ">
@@ -22,7 +22,7 @@
 					<tr>
 						<td class="col-6" style="text-align: left;"><h3 class="board-title"><strong>게시글 수정</strong></h3></td>
 						<td class="col-2">
-								<button onclick="location.href='/board/list'" class="btn-hover color-8 ">목록</button>
+							<button onclick="location.href='/board/list'" class="btn-hover color-8 ">목록</button>
 						</td>
 					</tr>
 				</table>
@@ -70,10 +70,10 @@
 							<td><textarea class="board-input" name="bContent" placeholder="내용" maxlength="5000" rows="10">${b.bContent}</textarea></td>
 						</tr>
 					</table>
-						<div class="buttons" style="margin-left: 15px; margin-top: 10px;">
-						  <button class="btn-hover color-8 write-btn" type="submit" value="글쓰기">수정</button>
-						  <button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
-						</div>
+					<div class="buttons" style="margin-left: 15px; margin-top: 10px;">
+						<button class="btn-hover color-8 write-btn" type="submit" value="글쓰기">수정</button>
+						<button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
+					</div>
 				</form>
 			</div>
 		</div>
