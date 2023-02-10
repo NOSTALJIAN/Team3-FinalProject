@@ -36,26 +36,26 @@
 					<input type="hidden" name="bFileName" value="${b.bFiles}">
 					<table class="board-desc" style="margin-left: 230px;">
 						<tr>
-							<td><input style="border: 1px solid #d1d1d1;"
+							<td><input style="border: 1px solid #808080;"
 								class="board-input" type="text" placeholder="제목" name="bTitle" value="${b.bTitle}"
 								maxlength="128" required /></td>
 						</tr>
 						<tr>
-							<td><input style="border: 1px solid #d1d1d1;"
+							<td><input style="border: 1px solid #808080;"
 								class="board-input" type="text" placeholder="운동장소" name="bLocation" value="${b.bLocation}"
 								 id="bLocation" maxlength="128" required/></td>
 						</tr>
 						<tr>
-							<td><input style="border: 1px solid #d1d1d1;"
+							<td><input style="border: 1px solid #808080;"
 								class="board-input" type="number" placeholder="인원수" name="bUserCount" value="${b.bUserCount}"/></td>
 						</tr>
 						<tr>
-							<td><input style="border: 1px solid #d1d1d1;"
+							<td><input style="border: 1px solid #808080;"
 								class="board-input" type="datetime-local" placeholder="운동시간" name="bAppointment" value="${b.bAppointment}" maxlength="128" /></td>
 						</tr>
 						<tr>
 							<td>
-								<select name="bCategory" class="board-input" style="border: 1px solid #d1d1d1;">
+								<select name="bCategory" class="board-input" style="border: 1px solid #808080;">
 									<c:forEach var="sports" items="${sportsArray}">
 										<option value="${sports}" ${b.bCategory eq sports ? "selected" : ""}>${sports}</option>
 									</c:forEach>
@@ -63,14 +63,14 @@
 							</td>
 						</tr>
 						<tr>
-							<td><input style="border: 1px solid #d1d1d1;" class="board-input" type="file" name="bFiles"/>${b.bFiles}</td>
+							<td><input style="border: 1px solid #808080;" class="board-input" type="file" name="bFiles"/>${b.bFiles}</td>
 						</tr>
 					
 						<tr>
 							<td><textarea class="board-input" name="bContent" placeholder="내용" maxlength="5000" rows="10">${b.bContent}</textarea></td>
 						</tr>
 					</table>
-						<div class="buttons">
+						<div class="buttons" style="margin-left: 15px; margin-top: 10px;">
 						  <button class="btn-hover color-8 write-btn" type="submit" value="글쓰기">수정</button>
 						  <button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
 						</div>
@@ -78,7 +78,7 @@
 			</div>
 		</div>
 		
-		<div class="map_wrap">	
+		<div class="map_wrap"  style="margin-top: -100px;">	
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		    <div id="menu_wrap" class="bg_white">
 		        <div class="option">

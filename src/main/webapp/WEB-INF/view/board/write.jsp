@@ -46,7 +46,7 @@
 						</tr>
 						<tr>
 							<td>
-								<select name="bCategory" class="board-input" style="border: 1px solid #d1d1d1">
+								<select name="bCategory" class="board-input" style="border: 1px solid #808080">
 									<c:forEach var="sports" items="${sportsArray}">
 										<option value="${sports}">${sports}</option>
 									</c:forEach>
@@ -66,14 +66,14 @@
 							<td><textarea class="board-input" style="border: 1px solid #808080;" name="bContent" placeholder="내용" maxlength="5000" rows="10"></textarea></td>
 						</tr>
 					</table>
-					<div class="btn-place" style="margin-left: 15px;">
-					  <button class="btn-hover color-8 write-btn" type="submit" value="글쓰기">글쓰기</button>
+					<div class="btn-place" style="margin-left: -20px;">
+					  <button class="btn-hover color-8 write-btn" type="submit" value="글쓰기" style="margin-left: -20px;">글쓰기</button>
 					  <button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
 					</div>
 				</form>
 			</div>
 		</div>
-		<div class="map_wrap">	
+		<div class="map_wrap" style="margin-top: -150px;">	
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		    <div id="menu_wrap" class="bg_white">
 		        <div class="option">

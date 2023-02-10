@@ -15,8 +15,8 @@
 		<c:forEach var="m" items="${matchingList}">
    		<div class="content-list-col " >
 	    	<div class="board-card " data-aos="zoom-in-up">
-				<div class="bg-dark shadow rounded-5 p-0">
-					<img src="/img/avatar_man.png" width="582" height="442" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" 
+				<div class="bg-dark shadow rounded-5 p-0" style="width: 300px; height: 400px;">
+					<img src="/img/avatar_man.png" height="200px;" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" 
 			          loading="lazy">
 					<div class="p-5">
 						<h2 style="color: white">${m.uname}</h2>

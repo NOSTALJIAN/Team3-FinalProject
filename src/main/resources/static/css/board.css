@@ -202,7 +202,7 @@ select.board-input {
 	}
 
 .board-view-content {
-	border: 1px solid black;
+	border: 2px solid black;
 	width: 400px;
 	height: 400px;
 	position: absolute;

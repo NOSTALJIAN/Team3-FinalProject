@@ -35,7 +35,7 @@
 
 <body>
     <%@ include file="../common/top.jsp" %>
-    <div class="container" style="margin: 120px; padding-bottom: 500px;">
+    <div class="container" style="margin: 120px; padding-bottom: 400px;">
         <div class="row" style="justify-content: space-evenly">
             <!-- =================== main =================== -->
             <div class="">
@@ -101,7 +101,7 @@
                 </div>
             </div>
             
-            <div class="board-view-content" style="text-align: left;">
+            <div class="board-view-content rounded-3" style="text-align: left;">
                       ${fn:replace(b.bContent, newline, '<br>')}
             </div>
         	<div class="board-view-map" id="map"></div>
@@ -109,7 +109,7 @@
         	
         	        <!-- 댓글 -->
 	       	<div class="col-12"></div>
-	       	<div class="col-12" style="margin-top: 500px;">
+	       	<div class="col-12" style="margin-top: 480px;">
 	        	<c:forEach var="reply" items="${replyList}">
 				<c:if test="${r.rIsMine eq 0}">
 	            	<div class="d-flex flex-row mt-1">
