@@ -10,7 +10,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.openqa.selenium.devtools.Reply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -24,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.mulcam.SpringProject.entity.Board;
+import com.mulcam.SpringProject.entity.Reply;
 import com.mulcam.SpringProject.service.BoardService;
 import com.mulcam.SpringProject.service.JSONUtil;
 import com.mulcam.SpringProject.session.UserSession;
@@ -33,8 +33,7 @@ import com.mulcam.SpringProject.session.UserSession;
 public class BoardController {
 	
 	@Autowired private UserSession userSession;
-	@Autowired
-	private BoardService bsv;
+	@Autowired private BoardService bsv;
 	
 	@Value("${spring.servlet.multipart.location}") private String uploadDir;
 	@Value("${kakao.AppKey}") private String kakaoAppKey;
@@ -94,9 +93,7 @@ public class BoardController {
 		String option = req.getParameter("option");
 		model.addAttribute("b", board);
 		model.addAttribute("kakaoAppKey", kakaoAppKey);
-		HttpSession session = req.getSession();
 		String sessionUid = userSession.getUid();
-//		String sessionUid = (String) session.getAttribute("uid");
 		
 		// 조회수 증가. 단, 본인이 읽거나 댓글 작성후에는 제외.
 		if (option == null && (!uid.equals(sessionUid))) 
@@ -111,8 +108,10 @@ public class BoardController {
 		System.out.println(jsonFiles);
 		model.addAttribute("fileList", jsonFiles);
 		model.addAttribute("b", board);
+		
 		List<Reply> replyList = bsv.getReplyList(bid);
 		model.addAttribute("replyList", replyList);
+		System.out.println(replyList);
 
 		return "board/detail";
 	}
@@ -205,6 +204,54 @@ public class BoardController {
 		
 		HttpSession session = req.getSession();
 		return "redirect:/board/list?p=" + session.getAttribute("currentBoardPage") + "&f=&q=";
+	}
+	
+	//=================================== 댓글 등록, 수정, 삭제===========================================	
+	/** 댓글 등록 */
+	@PostMapping("/reply")
+	public String reply(HttpServletRequest req, Model model, HttpSession session) {
+		String rContent = req.getParameter("rContent");
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		String uid = req.getParameter("uid"); // 게시글의 uid
+		int count = 1;
+		
+		// 게시글의 uid와 댓글을 쓰려고 하는 사람의 uid가 같으면 isMine이 1
+		String sessionUid = userSession.getUid();
+		System.out.println(sessionUid);
+		int rIsMine = (uid.equals(sessionUid)) ? 1 : 0;
+		
+		Reply reply = new Reply(bid, sessionUid, rContent, rIsMine);
+		bsv.insertReply(reply);
+		bsv.increaseReplyCount(bid, count);
+		return "redirect:/board/detail?bid=" + bid + "&uid=" + uid;
+	}
+	
+	/** 댓글 수정 */
+	@PostMapping("/replyUpdate")
+	public String replyUpdate(HttpServletRequest req, Model model, HttpSession session) {
+		System.out.println(req.getParameter("rid"));
+		String rContent = req.getParameter("rContent");
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		String uid = req.getParameter("uid"); // 게시글의 uid
+		int rid = Integer.parseInt(req.getParameter("rid"));
+		
+		// 게시글의 uid와 댓글을 쓰려고 하는 사람의 uid가 같으면 isMine이 1
+		Reply reply = new Reply(rid, rContent);
+		bsv.updateReply(reply);
+		return "redirect:/board/detail?bid=" + bid + "&uid=" + uid;	
+	}
+	
+	/** 댓글 삭제 */
+	@GetMapping("/reply/delete")
+	public String replyDelete(HttpServletRequest req, Model model) {
+		String uid = req.getParameter("uid");
+		int rid = Integer.parseInt(req.getParameter("rid"));
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		
+		int count = -1;
+		bsv.deleteReply(rid);
+		bsv.increaseReplyCount(bid, count);
+		return "redirect:/board/detail?bid=" + bid + "&uid=" + uid;
 	}
 
 }
