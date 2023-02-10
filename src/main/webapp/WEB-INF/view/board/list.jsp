@@ -16,7 +16,7 @@
 	<div class="container" style="margin: 120px; padding-bottom: 260px;">
 		<div class="row" style="justify-content: space-evenly">
 			<!-- =================== main =================== -->
-			<div class="col-sm-9" style="margin-top: ;" >
+			<div class="col-sm-9"  >
 				<table class="table table-sm table-borderless" style="margin-left: 200px;">
 					<tr class="d-flex">
 						<td class="col-6" style="text-align: left;">
@@ -54,13 +54,13 @@
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 인원 : ${b.bUserCount}명</p>
 									<button class="btn-hover color-8 write-btn" type="submit" value="신청">신청</button>
 								</div>
-								<div class="col-12 col-lg-4 offset-lg-1 bg-gray-900 p-5 mt-5" >
+								<!--  div class="col-12 col-lg-4 offset-lg-1 bg-gray-900 p-5 mt-5" >
 									<p class="text-secondary">작성일 </p>
 									<p class="text-secondary">: ${fn:replace(b.bRegTime, 'T', ' ')}</p>
 									<p class="text-secondary">조회수 : ${b.bViewCount } </p>
 									<p class="text-secondary">댓글 : ${b.bReplyCount }  </p>
 									<p class="text-secondary">마감일정: D-4 </p>
-								</div>
+								</div> -->
 							</div>
 							</c:forEach>
 						</div>
