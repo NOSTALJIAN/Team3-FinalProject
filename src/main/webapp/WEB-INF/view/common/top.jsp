@@ -34,7 +34,7 @@
             <c:choose>
               <c:when test="${!empty sessionUid}">
                 <li class="nav-item">
-                  <a class="nav-link fs-5" href="/user/mypage" aria-label="A system message page">
+                  <a class="nav-link nav-size" href="/user/mypage" aria-label="A system message page">
                     마이페이지
                   </a>
                 </li>

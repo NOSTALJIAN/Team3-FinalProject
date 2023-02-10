@@ -2,7 +2,6 @@ package com.mulcam.SpringProject.controller;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,17 +14,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 
 import com.mulcam.SpringProject.entity.Board;
 import com.mulcam.SpringProject.entity.Reply;
 import com.mulcam.SpringProject.service.BoardService;
-import com.mulcam.SpringProject.service.JSONUtil;
 import com.mulcam.SpringProject.session.UserSession;
 
 @Controller
@@ -64,6 +60,7 @@ public class BoardController {
 		model.addAttribute("field", field);
 		model.addAttribute("query", query);
 		model.addAttribute("blist", list);
+		model.addAttribute("sportsArray", sportsArray);
 		
 		int totalBoardNo = bsv.getBoardCount("bid", "");
 		int totalPages = (int) Math.ceil(totalBoardNo / 10.);

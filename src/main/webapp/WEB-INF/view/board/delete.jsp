@@ -23,7 +23,7 @@
 			        <div class="col-3"></div>
 			        <div class="col-6">
 						<div class="card border-warning mt-3">
-			                <div class="card-body">
+			                <div class="card-body center" style="border-color: black;">
 			                    <strong class="card-title">정말로 삭제하시겠습니까?</strong>
 			                    <p class="card-text text-center">
 			                        <br>

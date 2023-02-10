@@ -15,6 +15,7 @@
   <meta name="HandheldFriendly" content="true">
   <title>List Design Test</title>
   <link rel="stylesheet" href="../resources/static/css/theme.min.css" />
+  <link rel="stylesheet" href="../resources/static/css/board.css" />
 	<!-- <link rel="stylesheet" href="../resources/static/css/board.css" /> -->
 
    <style>
@@ -68,7 +69,7 @@
   <body class="bg-black text-white mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
 
     <!--Top -->
-    <nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-5" tabindex="0">
+    <nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-5" tabindex="0" style="height: 65px; padding-top: 8px;">
   <div class="container">
     <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="index.html">
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
@@ -101,12 +102,61 @@
       </a>
 </div>
 </nav>
-    <!--Top -->
 
+    <!--Top -->
+    <!-- <div class="container" style="margin: 120px; padding-bottom: 300px;">
+      <div class="row" style="justify-content: space-evenly">
+          <!-- =================== main =================== -->
+          <!-- <div class="">
+  <h3><strong>그룹운동 게시판</strong></h3>
+  <div class="board-list">
+    <button type="button" class="btn-hover color-8 fix-position " onclick="location.href='/board/write'">+글쓰기</button>
+
+    <div class="row">
+      <div class="col " >
+        <select name="job">
+          <option value="">운동선택</option>
+          <option value="학생">학생</option>
+          <option value="회사원">회사원</option>
+          <option value="기타">기타</option>
+      </select>
+      </div>
+      <div class="col-md-auto">
+        <input class="form-control me-2" type="search" placeholder="검색 내용" name="q" id="query">
+      </div>
+      <div class="col col-lg-2">
+        <button class="" onclick="search()">검색</button>
+      </div>
+    </div> --> -->
+
+    <div class="col-sm-9" style="margin-top: 100px;" >
+      <table class="table table-sm table-borderless" style="margin-left: 500px;">
+          <tr class="d-flex">
+              <td class="col-6" style="text-align: left;">
+                  <h3><strong>그룹운동 게시판</strong></h3>
+                  <div class="board-list">
+                    <button type="button" class="btn-hover color-8 fix-position " onclick="location.href='/board/write'">+글쓰기</button>                
+              </td>
+              <td class="col-2" style="margin-left: 100px;">
+                  <select class=" board-input" name="f" id="field" style="background-color: white; width: 100px; height: 42px;">
+                      <option value="title" selected>제목</option>
+                      <option value="content">본문</option>
+                      <option value="uname">글쓴이</option>
+                  </select>
+              </td>
+              <td class="col-3" >
+                  <input class="form-control me-2" type="search" placeholder="검색 내용" name="q" id="query" style="width: 150px;">
+              </td>
+              <td class="col-2" >
+                  <button class="btn btn-outline-light" onclick="search()" style="width: 70px;">검색</button>
+              </td>
+          </tr>
+      </table>
+    
     <!---Main-->
     <main>
       <div class="container">
-  <div class="row d-flex justify-content-center py-vh-5 pb-0">
+      <div class="row d-flex justify-content-center py-vh-5 pb-0">
         <div class="col-12 col-lg-10 col-xl-8">
       <div class="row d-flex align-items-start" data-aos="fade-right">
         <div class="col-12 col-lg-7">
@@ -116,7 +166,6 @@
             <p>운동인원 : 4명</p>
         </div>
         <div class="col-12 col-lg-4 offset-lg-1 bg-gray-900 p-5 mt-5">
-          <h3 class="h6">tl;dr</h3>
           <p class="text-secondary">
             Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet
           </p>
@@ -194,93 +243,6 @@
 </div>
 
     </main>
-
-    <footer class="bg-black border-top border-dark">
-  <div class="container py-vh-4 text-secondary fw-lighter">
-    <div class="row">
-      <div class="col-12 col-lg-5 py-4 text-center text-lg-start">
-            <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="index.html">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
-    <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z"/>
-    <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z"/>
-  </svg>
-  <span class="ms-md-1 mt-1 fw-bolder me-md-5">Klar</span>
-</a>
-
-      </div>
-      <div class="col border-end border-dark">
-        <span class="h6">Company</span>
-<ul class="nav flex-column">
-  <li class="nav-item">
-    <a href="#" class="link-fancy link-fancy-light">About us</a>
-  </li>
-  <li class="nav-item">
-    <a href="#" class="link-fancy link-fancy-light">Legal</a>
-  </li>
-
-  <li class="nav-item">
-    <a href="#" class="link-fancy link-fancy-light">Career</a>
-  </li>
-  <li class="nav-item">
-    <a href="#" class="link-fancy link-fancy-light">Contact</a>
-  </li>
-</ul>
-      </div>
-      <div class="col border-end border-dark">
-                <span class="h6">Services</span>
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="#" class="link-fancy link-fancy-light">Pricing</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="link-fancy link-fancy-light">Products</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="#" class="link-fancy link-fancy-light">Customers</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="link-fancy link-fancy-light">Portfolio</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="link-fancy link-fancy-light">Success Stories</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="link-fancy link-fancy-light">More</a>
-                  </li>
-                </ul>
-      </div>
-      <div class="col">
-                <span class="h6">Support</span>
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="#" class="link-fancy link-fancy-light">About us</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="link-fancy link-fancy-light">Legal</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="#" class="link-fancy link-fancy-light">Career</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="link-fancy link-fancy-light">Contact</a>
-                  </li>
-                </ul>
-      </div>
-    </div>
-  </div>
-  <div class="container text-center small py-vh-2 border-top border-dark">Made by
-    <a href="https://templatedeck.com" class="link-fancy link-fancy-light" target="_blank">templatedeck.com</a>
-  </div>
-</footer>
-
-
-
-
-
-
-
 
 <script src="../resources/static/js/bootstrap.bundle.min.js"></script>
 <script src="../resources/static/js/aos.js"></script>
