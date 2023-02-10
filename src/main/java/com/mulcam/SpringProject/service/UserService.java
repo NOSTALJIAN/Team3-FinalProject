@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.mulcam.SpringProject.entity.MatchingCondition;
 import com.mulcam.SpringProject.entity.Mate;
 import com.mulcam.SpringProject.entity.User;
 import com.mulcam.SpringProject.entity.UserInfo;
@@ -33,6 +34,18 @@ public interface UserService {
 	UserInfo getUserInfo(String sessionUid);
 	
 	String getUname(String uid);
+
+	/** 최대 관심운동 가져오기*/
+	String getLikeExercise(String uid);
+	
+	/** 매칭조건 가져오기 */
+	MatchingCondition getCondition(String uid);
+	
+	/** 매칭조건 입력*/
+	void insertCondition(MatchingCondition mC);
+	
+	/** 매칭조건 수정*/
+	void updateCondition(MatchingCondition mC);
 	
 
 	
