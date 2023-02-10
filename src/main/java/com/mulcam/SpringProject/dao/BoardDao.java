@@ -12,7 +12,13 @@ import com.mulcam.SpringProject.entity.Board;
 @Mapper
 public interface BoardDao {
 
-	@Select("select * from board WHERE bIsDeleted=0 order by bid desc ")
+	@Select("SELECT b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount,"
+			+ " b.bRegTime, b.bViewCount, b.bReplyCount, u.uname FROM board AS b"
+			+ "	JOIN users AS u"
+			+ "	ON b.uid=u.uid"
+			+ "	WHERE b.bIsDeleted=0 AND ${field} LIKE #{query}"
+			+ " ORDER BY bid DESC"
+			+ "	LIMIT 10 OFFSET #{offset};")
 	public List<Board> getBoardList(int offset, String field, String query);
 	
 	@Select("SELECT COUNT(bid) FROM board AS b"
