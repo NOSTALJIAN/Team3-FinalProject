@@ -26,10 +26,15 @@
 							</div>
 						</td>
 						<td class="col-2" style="margin-left:50px;">
-							<select name="f" class="board-input" id="field" style="background-color: white; width: 100px; height: 42px;">
-								<c:forEach var="sports" items="${sportsArray}">
-									<option value="${sports}">${sports}</option>
-								</c:forEach>
+							<select class="board-input" name="f" id="field" style="background-color: white; width: 100px; height: 42px;">
+								<option value="bCategory" selected>종목</option>
+								<option value="bLocation">장소</option>
+								<option value="bUserCount">인원</option>
+							</select>
+							<select class="board-input" name="period" id="period" style="background-color: white; width: 100px; height: 42px;">
+								<option value="all" selected>모든 날짜</option>
+								<option value="week">일주일</option>
+								<option value="month">한달</option>
 							</select>
 						</td>
 						<td class="col-3" >
@@ -106,6 +111,16 @@
 			
 			console.log(scrollpos)
 		})
+	</script>
+	<!-- 게시판 검색 -->
+    <script>
+    	function search() {
+    		const field = document.getElementById("field").value;
+    		const query = document.getElementById("query").value;
+    		const period = document.getElementById("period").value;
+    		console.log("search()", field, query, period);
+    		location.href = "/board/list?p=${currentBoardPage}&f=" + field + "&q=" + query +"&period=" + period;
+    	}
 	</script>
 </body>
 </html>

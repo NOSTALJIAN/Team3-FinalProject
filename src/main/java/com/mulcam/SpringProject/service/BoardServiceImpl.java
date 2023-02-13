@@ -27,6 +27,14 @@ public class BoardServiceImpl implements BoardService {
 		List<Board> list = boardDao.getBoardList(offset, field, query);
 		return list;
 	}
+	
+	@Override
+	public List<Board> getBoardListByPeriod(int page, String field, String query, String startDate, String endDate) {
+		int offset = (page - 1) * 10;
+		query = "%"+query+"%";
+		List<Board> list = boardDao.getBoardListByPeriod(offset, field, query, startDate, endDate);
+		return list;
+	}
 
 	@Override
 	public Board getBoard(int bid) {

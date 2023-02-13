@@ -254,15 +254,7 @@
     		}
     	}
     </script>
-    <!-- 게시판 검색 -->
-    <script>
-    	function search() {
-    		const field = document.getElementById("field").value;
-    		const query = document.getElementById("query").value;
-    		console.log("search()", field, query);
-    		location.href = "/board/list?p=${currentBoardPage}&f=" + field + "&q=" + query;
-    	}
-	</script>
+    
 <%@ include file="../common/top.jsp" %>
 </body>
 </html>
