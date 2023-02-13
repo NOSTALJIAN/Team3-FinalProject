@@ -157,3 +157,8 @@ body {
   /* appearance를 해야 위의 스타일들을 볼 수 있음 */
   -webkit-appearance: none;
 }
+
+.mypage {
+	width: 800px;
+	margin: 0 auto;
+}

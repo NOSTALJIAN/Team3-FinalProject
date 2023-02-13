@@ -33,11 +33,18 @@
             </li>
             <c:choose>
               <c:when test="${!empty sessionUid}">
-                <li class="nav-item">
-                  <a class="nav-link nav-size" href="/user/mypage" aria-label="A system message page">
-                    마이페이지
-                  </a>
-                </li>
+            <a class="nav-link nav-size " href="/user/mypage" aria-label="A system message page">
+                MyPage
+              </a>   
+             <!--  <li class="nav-item dropdown">
+              <a class="nav-link nav-size dropdown-toggle" href="/user/mypage" role="button" data-bs-toggle="dropdown" aria-label="A system message page">
+                MyPage
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item " href="/user/mypage">1:1운동</a></li>
+                <li><a class="dropdown-item " href="/user/board">그룹운동</a></li>
+              </ul>
+            </li>--> 
               </c:when>
             </c:choose>
 

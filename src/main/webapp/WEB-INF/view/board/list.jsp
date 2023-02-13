@@ -14,10 +14,10 @@
 <body class="bg-black text-white mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
 	<%@ include file="../common/top.jsp" %>
 	<div class="container" style="margin: 120px; padding-bottom: 260px;">
-		<div class="row" style="justify-content: space-evenly">
+		<div class="row" style="justify-content: space-evenly; margin-left:70px;">
 			<!-- =================== main =================== -->
-			<div class="col-sm-9"  >
-				<table class="table table-sm table-borderless" style="margin-left: 200px;">
+			<div class="col" >
+				<table class="table table-sm table-borderless" >
 					<tr class="d-flex">
 						<td class="col-6" style="text-align: left;">
 							<h3 style="color: white; margin-left: 90px;"><strong>그룹운동 게시판</strong></h3>
@@ -36,17 +36,17 @@
 							<input class="form-control me-2" type="search" placeholder="검색 내용" name="q" id="query" style="width: 200px;">
 						</td>
 						<td class="col-2" >
-							<button class="btn btn-outline-light" onclick="search()" style="width: 70px; margin-left:-200px;">검색</button>
+							<button class="btn btn-outline-light" onclick="search()" style="width: 70px; margin-left:-220px;">검색</button>
 						</td>
 					</tr>
 				</table>
 				
 				<div class="container" style="margin-top: -60px">
-					<div class="row d-flex justify-content-center py-vh-5 pb-0">
-						<div class="col-12 col-lg-10 col-xl-8">
+					<div class="row ">
+						<div class="content-list>
 							<c:forEach var="b" items="${blist}">
-							<div class="row d-flex align-items-start" data-aos="fade-right">
-								<div class="col-12 col-lg-7">
+							<div class="content-list-col" data-aos="fade-right">
+								<div class="">
 									<h4 class="h3 mt-5 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h4>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 종목 : ${b.bCategory}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 장소 : ${b.bLocation}</p>
@@ -54,14 +54,7 @@
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 인원 : ${b.bUserCount}명</p>
 									<button class="btn-hover color-8 write-btn" type="submit" value="신청">신청</button>
 								</div>
-								<!--  div class="col-12 col-lg-4 offset-lg-1 bg-gray-900 p-5 mt-5" >
-									<p class="text-secondary">작성일 </p>
-									<p class="text-secondary">: ${fn:replace(b.bRegTime, 'T', ' ')}</p>
-									<p class="text-secondary">조회수 : ${b.bViewCount } </p>
-									<p class="text-secondary">댓글 : ${b.bReplyCount }  </p>
-									<p class="text-secondary">마감일정: D-4 </p>
-								</div> -->
-							</div>
+							</div>	
 							</c:forEach>
 						</div>
 					</div>
@@ -89,8 +82,7 @@
 			</div>
 		</div>
 	</div>
-		
-	
+
 	<script src="/js/bootstrap.bundle.min.js"></script>
 	<script src="/js/aos.js"></script>
 	<script>
