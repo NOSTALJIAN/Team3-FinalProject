@@ -14,7 +14,6 @@ function getRoom() {
 function createRoom() {
   $('#createRoom').click(function () {
     var msg = { mTitle: $('#mTitle').val() };
-
     commonAjax('/createRoom', msg, 'post', function (result) {
       createChattingRoom(result);
     });
@@ -47,22 +46,22 @@ function createChattingRoom(res) {
         '")\'>참여</button></td>' +
         '</tr>';
     });
-    $('#chatList').empty().append(tag);
+    $('#roomList').empty().append(tag);
   }
 }
 
-function commonAjax(url, parameter, type, calbak, contentType) {
+function commonAjax(url, parameter, type, callback, contentType) {
   $.ajax({
-    url: url,
+    url: '/websocket' + url,
     data: parameter,
     type: type,
-    contentType: contentType != null ? contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+    contentType: contentType != null ? contentType : 'application/x-www-form-urlencoded; charset=UTF-8;',
     success: function (res) {
-      calbak(res);
+      callback(res);
     },
     error: function (err) {
       console.log('error');
-      calbak(err);
+      callback(err);
     },
   });
 }

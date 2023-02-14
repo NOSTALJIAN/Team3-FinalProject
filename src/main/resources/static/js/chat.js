@@ -1,6 +1,9 @@
 var ws = null;
 
-window.onload = wsOpen();
+window.onload = function () {
+  getName();
+  wsOpen();
+};
 
 /** 채팅 메세지를 화면에 표시 */
 function addLineToChatBox(_line) {
@@ -15,6 +18,7 @@ function addLineToChatBox(_line) {
 function wsOpen() {
   host = 'localhost:8080';
   ws = new WebSocket('ws://' + host + '/websocket');
+  console.log(ws);
   /** 웹소켓 접속 성공시 실행 */
   ws.onopen = function (message) {
     addLineToChatBox('서버 연결 성공 🥳');
@@ -30,22 +34,21 @@ function wsOpen() {
   });
 }
 
-function chatName() {
-  var userName = $('#userName').val();
-  if (userName == null || userName.trim() == '') {
-    alert('사용자 이름을 입력해주십시오.');
-    $('#userName').focus();
-  } else {
-    $('#yourName').hide();
+function getName() {
+  var uid = $('#uid').val();
+  console.log(uid);
+  if (uid != null || uid.trim() != '') {
     $('#yourMsg').show();
   }
 }
 
 function send() {
-  var uN = $('#userName').val();
+  var uN = $('#uid').val();
   var msg = $('#inputMsgBox').val();
-  if (msg != '' && uN != '') {
-    ws.send(uN + ' : ' + msg);
-    $('#inputMsgBox').val('');
+  if (msg != '') {
+    if (msg != '' && uN != '') {
+      ws.send(uN + ' : ' + msg);
+      $('#inputMsgBox').val('');
+    }
   }
 }

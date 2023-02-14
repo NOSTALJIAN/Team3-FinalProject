@@ -33,6 +33,16 @@
             </li>
             <c:choose>
               <c:when test="${!empty sessionUid}">
+            <li class="nav-item">
+              <a class="nav-link nav-size " href="/chat/test" aria-label="A system message page">
+                1:1 채팅
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-size " href="/chat/room" aria-label="A system message page">
+                그룹 채팅
+              </a>
+            </li>
                 <li class="nav-item">
                   <a class="nav-link fs-5" href="/user/mypage" aria-label="A system message page">
                     마이페이지

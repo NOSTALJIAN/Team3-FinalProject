@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/chat")
 public class ChatController {
 	
-	List<Chat> chatList = new ArrayList<>();
+	List<ChatRoom> chatList = new ArrayList<>();
 	static int mNumber = 0;
 	
 	@GetMapping("/test")
@@ -39,41 +39,4 @@ public class ChatController {
 		return mv;
 	}
 	
-	/**
-	 * 방 정보 가져오기
-	 * @param params
-	 * @return
-	 */
-	@GetMapping("/createRoom")
-	public @ResponseBody List<Chat> createRoom(@RequestParam HashMap<Object, Object> params) {
-		String mTitle = (String) params.get("mTitle");
-		if (mTitle != null && !mTitle.trim().equals("")) {
-			Chat chat = new Chat();
-			chat.setmNumber(++mNumber);
-			chat.setmTitle(mTitle);
-			chatList.add(chat);
-		}
-		return chatList;
-	}
-	
-	/**
-	 * 채팅방
-	 * @param params
-	 * @return
-	 */
-	@GetMapping("/moveChatting")
-	public ModelAndView chatting(@RequestParam HashMap<Object, Object> params) {
-		ModelAndView mv = new ModelAndView();
-		int mNumber = Integer.parseInt((String) params.get("mNumber"));
-		
-		List<Chat> new_list = chatList.stream().filter(o -> o.getmNumber() == mNumber).collect(Collectors.toList());
-		if  (new_list != null && new_list.size() > 0) {
-			mv.addObject("mTitle", params.get("mTitle"));
-			mv.addObject("mNumber", params.get("mNumber"));
-			mv.setViewName("/chatting/test");
-		} else {
-			mv.setViewName("/chatting/room");
-		}
-		return mv;
-	}
 }
