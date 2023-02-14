@@ -6,14 +6,16 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
+import com.mulcam.SpringProject.entity.MatchingCondition;
 import com.mulcam.SpringProject.entity.User;
 import com.mulcam.SpringProject.entity.UserInfo;
 
 @Mapper
 public interface UserDao {
 	
-	@Insert("INSERT into users values(#{uid}, #{pwd}, #{uname}, #{phoneNum}, #{email}, #{emailCheck}, default, default, default)")
+	@Insert("INSERT into users values(#{uid}, #{pwd}, #{uname}, NULL,#{phoneNum}, #{email}, #{emailCheck}, default, default, default)")
 	void insert(User u);
 
 	@Insert("INSERT into userInfo values(#{uid}, #{uPostcode}, #{uAddr}, #{uDetailAddr}, #{likeExercise}, #{birthDate}, #{gender}, default, #{uLat}, #{uLng})")
@@ -40,6 +42,19 @@ public interface UserDao {
 
 	@Select("SELECT uid, uAddr, likeExercise, birthDate, gender, uRating, uLat, uLng from userInfo WHERE uid = #{sessionUid};")
 	UserInfo getUserInfo(String sessionUid);
+
+	@Select("SELECT CONVERT(BIN (likeExercise), CHAR(12)) FROM userInfo WHERE uid = #{uid};")
+	String getLikeExercise(String uid);
+
+	@Select("SELECT * FROM matchingCondition WHERE uid = #{uid};")
+	MatchingCondition getCondition(String uid);
+
+	@Insert("INSERT into matchingCondition values(#{uid}, #{bestExercise}, #{minAge}, #{maxAge}, #{minDistance}, #{maxDistance}, #{pGender})")
+	void insertCondition(MatchingCondition mC);
+
+	@Update("UPDATE matchingCondition SET bestExercise=#{bestExercise}, minAge=#{minAge}, maxAge=#{maxAge},minDistance=#{minDistance}, "
+			+ "maxDistance=${maxDistance}, pGender=#{pGender} WHERE uid=#{uid};")
+	void updateCondition(MatchingCondition mC);
 
 
 }

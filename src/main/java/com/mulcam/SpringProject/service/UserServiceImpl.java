@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.SpringProject.dao.UserDao;
+import com.mulcam.SpringProject.entity.MatchingCondition;
 import com.mulcam.SpringProject.entity.Mate;
 import com.mulcam.SpringProject.entity.User;
 import com.mulcam.SpringProject.entity.UserInfo;
@@ -91,6 +92,28 @@ public class UserServiceImpl implements UserService{
 	public String getUname(String uid) {
 		String uname = userDao.getUname(uid);
 		return uname;
+	}
+
+	@Override
+	public String getLikeExercise(String uid) {
+		String exerciseList = userDao.getLikeExercise(uid);
+		return exerciseList;
+	}
+	
+	@Override
+	public MatchingCondition getCondition(String uid) {
+		MatchingCondition mC = userDao.getCondition(uid);
+		return mC;
+	}
+
+	@Override
+	public void insertCondition(MatchingCondition mC) {
+		userDao.insertCondition(mC);
+	}
+
+	@Override
+	public void updateCondition(MatchingCondition mC) {
+		userDao.updateCondition(mC);
 	}
 
 

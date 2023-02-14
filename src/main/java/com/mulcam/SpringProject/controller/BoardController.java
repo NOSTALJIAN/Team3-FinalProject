@@ -2,7 +2,6 @@ package com.mulcam.SpringProject.controller;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,22 +9,22 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.openqa.selenium.devtools.Reply;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 
 import com.mulcam.SpringProject.entity.Board;
+import com.mulcam.SpringProject.entity.Reply;
 import com.mulcam.SpringProject.service.BoardService;
-import com.mulcam.SpringProject.service.JSONUtil;
 import com.mulcam.SpringProject.session.UserSession;
 
 @Controller
@@ -33,8 +32,7 @@ import com.mulcam.SpringProject.session.UserSession;
 public class BoardController {
 	
 	@Autowired private UserSession userSession;
-	@Autowired
-	private BoardService bsv;
+	@Autowired private BoardService bsv;
 	
 	@Value("${spring.servlet.multipart.location}") private String uploadDir;
 	@Value("${kakao.AppKey}") private String kakaoAppKey;
@@ -54,17 +52,33 @@ public class BoardController {
 		String page_ = req.getParameter("p");
 		String field = req.getParameter("f");
 		String query = req.getParameter("q");
+		String period = req.getParameter("period");
+		
+		LocalDate startDate = LocalDate.now();
+		LocalDate endDate = null;
+		
+		// 일주일, 한달 내의 게시글만 보여주기
+		if (period == null) {
+			endDate = LocalDate.parse("2999-12-31");
+		} else if (period.equals("week")) {
+			endDate = startDate.plusWeeks(1);
+		} else if (period.equals("month")) {
+			endDate = startDate.plusMonths(1);
+		} else {
+			endDate = LocalDate.parse("2999-12-31");
+		}
 		
 		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
-		field = (field == null || field.equals("")) ? "title" : field;
+		field = (field == null || field.equals("")) ? "bCategory" : field;
 		query = (query == null || query.equals("")) ? "" : query;
-		List<Board> list = bsv.getBoardList(page, field, query);
+		List<Board> list = bsv.getBoardListByPeriod(page, field, query, startDate.toString(), endDate.toString());
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("currentBoardPage", page);
 		model.addAttribute("field", field);
 		model.addAttribute("query", query);
 		model.addAttribute("blist", list);
+		model.addAttribute("sportsArray", sportsArray);
 		
 		int totalBoardNo = bsv.getBoardCount("bid", "");
 		int totalPages = (int) Math.ceil(totalBoardNo / 10.);
@@ -79,7 +93,7 @@ public class BoardController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("totalPages", totalPages);
 		
-		String today = LocalDate.now().toString(); // 2022-12-28
+		String today = LocalDate.now().toString(); 
 		model.addAttribute("today", today);
 		
 		return "board/list";
@@ -94,25 +108,25 @@ public class BoardController {
 		String option = req.getParameter("option");
 		model.addAttribute("b", board);
 		model.addAttribute("kakaoAppKey", kakaoAppKey);
-		HttpSession session = req.getSession();
 		String sessionUid = userSession.getUid();
-//		String sessionUid = (String) session.getAttribute("uid");
 		
 		// 조회수 증가. 단, 본인이 읽거나 댓글 작성후에는 제외.
 		if (option == null && (!uid.equals(sessionUid))) 
 			bsv.increaseViewCount(bid);
 		
 		String jsonFiles = board.getbFiles();
-		/*
-		 * if (!(jsonFiles == null || jsonFiles.equals(""))) { JSONUtil json = new
-		 * JSONUtil(); List<String> fileList = json.parse(jsonFiles);
-		 * model.addAttribute("fileList", fileList); }
-		 */
+	
+	/*		 if (!(jsonFiles == null || jsonFiles.equals(""))) { JSONUtil json = new
+			 JSONUtil(); List<String> fileList = json.parse(jsonFiles);
+			 model.addAttribute("fileList", fileList); } */
+		 
 		System.out.println(jsonFiles);
 		model.addAttribute("fileList", jsonFiles);
 		model.addAttribute("b", board);
+		
 		List<Reply> replyList = bsv.getReplyList(bid);
 		model.addAttribute("replyList", replyList);
+		System.out.println(replyList);
 
 		return "board/detail";
 	}
@@ -205,6 +219,54 @@ public class BoardController {
 		
 		HttpSession session = req.getSession();
 		return "redirect:/board/list?p=" + session.getAttribute("currentBoardPage") + "&f=&q=";
+	}
+	
+	//=================================== 댓글 등록, 수정, 삭제===========================================	
+	/** 댓글 등록 */
+	@PostMapping("/reply")
+	public String reply(HttpServletRequest req, Model model, HttpSession session) {
+		String rContent = req.getParameter("rContent");
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		String uid = req.getParameter("uid"); // 게시글의 uid
+		int count = 1;
+		
+		// 게시글의 uid와 댓글을 쓰려고 하는 사람의 uid가 같으면 isMine이 1
+		String sessionUid = userSession.getUid();
+		System.out.println(sessionUid);
+		int rIsMine = (uid.equals(sessionUid)) ? 1 : 0;
+		
+		Reply reply = new Reply(bid, sessionUid, rContent, rIsMine);
+		bsv.insertReply(reply);
+		bsv.increaseReplyCount(bid, count);
+		return "redirect:/board/detail?bid=" + bid + "&uid=" + uid;
+	}
+	
+	/** 댓글 수정 */
+	@PostMapping("/replyUpdate")
+	public String replyUpdate(HttpServletRequest req, Model model, HttpSession session) {
+		System.out.println(req.getParameter("rid"));
+		String rContent = req.getParameter("rContent");
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		String uid = req.getParameter("uid"); // 게시글의 uid
+		int rid = Integer.parseInt(req.getParameter("rid"));
+		
+		// 게시글의 uid와 댓글을 쓰려고 하는 사람의 uid가 같으면 isMine이 1
+		Reply reply = new Reply(rid, rContent);
+		bsv.updateReply(reply);
+		return "redirect:/board/detail?bid=" + bid + "&uid=" + uid;	
+	}
+	
+	/** 댓글 삭제 */
+	@GetMapping("/reply/delete")
+	public String replyDelete(HttpServletRequest req, Model model) {
+		String uid = req.getParameter("uid");
+		int rid = Integer.parseInt(req.getParameter("rid"));
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		
+		int count = -1;
+		bsv.deleteReply(rid);
+		bsv.increaseReplyCount(bid, count);
+		return "redirect:/board/detail?bid=" + bid + "&uid=" + uid;
 	}
 
 }

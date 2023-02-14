@@ -1,6 +1,7 @@
 package com.mulcam.SpringProject.misc;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -27,13 +28,13 @@ public class ExerciseUtill {
 		String word = "1";
 		int index = document.indexOf(word);
 		String[] exerciseList = {"헬스", "수영", "조깅", "테니스", "싸이클", "볼링", "당구", "등산", "E-sports", "야구", "농구", "축구"};
-		List<String> coincideList = new ArrayList<String>();
+		List<String> likeExerList = new ArrayList<String>();
 		while(index != -1) {
-			coincideList.add(exerciseList[index]);	
+			likeExerList.add(exerciseList[index]);	
 			index = document.indexOf(word, index+1);	
 		}
-		
-		return coincideList;
+		Collections.reverse(likeExerList);
+		return likeExerList;
 	}
 	
 	/** 1이 몇개 들어가있는지 찾는 함수 */

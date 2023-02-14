@@ -24,7 +24,7 @@ public class ChatController {
 	
 	@GetMapping("/test")
 	public String test(Locale locale, Model model) {
-		System.out.println("chat test");
+//		System.out.println("chat test");
 		return "chatting/test";
 	}
 	
