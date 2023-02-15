@@ -6,15 +6,55 @@
 	<%@ include file="../common/heading.jsp" %>
   	<link rel="stylesheet" href="/css/board.css">
   	<link rel="stylesheet" href="/css/matchingCondition.css">
+  	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+  	
 	<title>매칭 조건</title>
+	<style type="text/css">
+	tr {
+		padding-bottom: 30px;
+	}
+	</style>
 </head>
-<body>
+<body style="padding-bottom: 200px;">
 	<%@ include file="../common/top.jsp" %>
-	<br><br><br><br><br><br>
-	<h3 style="color: white;">매칭 조건</h3>
-	<hr style="color: white;">
+	 <div class="container" style="margin-top: 150px;">
+         <div class="row frame">
+            <div class="col custom-btn btn-5">
+                <a class="nav-link fs-5" href="/mate/addMateForm" aria-label="A sample content page">보낸 친구신청</a></div>
+            <div class="col custom-btn btn-5">
+                <a class="nav-link fs-5" href="/mate/receiveMateForm" aria-label="A sample content page">받은 친구신청</a></div>
+            <div class="col custom-btn btn-5">
+                <a class="nav-link fs-5" href="/mate/mateForm" aria-label="A sample content page">친구목록</a></div>
+            <div class="col custom-btn btn-5">
+                <a class="nav-link fs-5" href="/matching/condition" aria-label="A sample content page">매칭조건</a></div>
+        </div>
+    </div>
+    <div class="mypage">
+	<h3>1:1운동 매칭조건</h3>
 	<form action="/matching/condition" method="post">
-		<label>매칭 운동 설정</label><br>
+		<table style="width: 100%; padding-bottom: 50px; ">
+			<tr>
+				<th>MY 매칭운동 설정</th>
+				<td><c:forEach var="ex" items="${likeExercise}">
+					<c:if test="${ex eq mC.bestExercise}">
+					${ex}<input type="radio" name="bestExercise" value="${ex}" checked>
+					</c:if>
+					<c:if test="${ex ne mC.bestExercise}">
+					${ex}<input type="radio" name="bestExercise" value="${ex}">
+					</c:if>
+					</c:forEach>
+				</td>
+			</tr>
+			<tr>
+				<th>성별</th>
+				<td>모두<input type="radio" id="모두" name="pGender" value="모두">
+					남자<input type="radio" id="남" name="pGender" value="남">
+					여자<input type="radio" id="여" name="pGender" value="여">
+				</td>
+			</tr>
+		</table>
+		<%-- <label>MY 매칭운동 설정</label><br>
 		<c:forEach var="ex" items="${likeExercise}">
 		<c:if test="${ex eq mC.bestExercise}">
 		${ex}<input type="radio" name="bestExercise" value="${ex}" checked>
@@ -23,11 +63,11 @@
 		${ex}<input type="radio" name="bestExercise" value="${ex}">
 		</c:if>
 		</c:forEach>
-		<hr><label>매칭 성별 설정</label><br>
+		<hr><label>성별</label><br>
 		모두<input type="radio" id="모두" name="pGender" value="모두">
 		남자<input type="radio" id="남" name="pGender" value="남">
-		여자<input type="radio" id="여" name="pGender" value="여">
-		<hr><label>매칭 연령대 설정</label>
+		여자<input type="radio" id="여" name="pGender" value="여"> --%>
+		<hr><label>연령대</label>
 		<div>
 			<Strong id="ageMin"></Strong> - <Strong id="ageMax"></Strong>
 		</div>
@@ -47,7 +87,7 @@
 			</div>
 		</div>
 		<hr>
-		<label>매칭 거리 설정</label>
+		<label>검색반경 설정</label>
 		<div>
 			<Strong id="DXMin"></Strong> - <Strong id="DXMax"></Strong>
 		</div>
@@ -67,8 +107,9 @@
 			</div>
 		</div>
 		<hr>
-		<input type="submit" value="조건 설정">
+		<button class="btn-hover color-8 write-btn" type="submit" value="조건 설정">설정</button>
 	</form>
+	</div>
 	<script src="/js/matchingCondition.js"></script>
 	<script>
 	${mC.pGender}.checked = true;
