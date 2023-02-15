@@ -45,7 +45,7 @@ public class MapUtill {
 		
 		while((line = br.readLine()) != null)
 			sb.append(line);
-			br.close();
+		br.close();
 		
 		// JSON 데이터에서 원하는 값 추출하기
 		JSONParser parser = new JSONParser();
