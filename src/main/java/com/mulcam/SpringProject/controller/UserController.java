@@ -51,9 +51,6 @@ public class UserController {
 		String phoneNum = req.getParameter("phoneNum").strip();
 		String[] likeExercise_ = req.getParameterValues("likeExercise");
 		
-		System.out.println(uAddr);
-		System.out.println(uDetailAddr);
-		
 		User u = service.getUser(uid);
 		if (u != null) {
 			model.addAttribute("msg", "중복 아이디입니다.");
