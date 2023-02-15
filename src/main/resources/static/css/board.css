@@ -353,13 +353,13 @@ background: linear-gradient(to left, #4B79A1 , #283E51);
 	margin: 0 auto;
 }
 
-/*1:1 */
+/*1:1 친구관리 */
 .postion {
 	position: fixed;
 	top: 90px;
 	padding-top: 4px;
 }
-/*button */
+
 .frame {
   width: 90%;
   margin: 40px auto;
@@ -383,7 +383,7 @@ button {
   display: inline-block;
 }
 
-/* 5 */
+/* 친구관리 목록버튼 디자인 */
 .btn-5 {
   background: #000;
   color: #fff;

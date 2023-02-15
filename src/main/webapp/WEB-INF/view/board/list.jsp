@@ -16,39 +16,41 @@
 	<div class="container" style="margin: 120px; padding-bottom: 260px;">
 		<div class="row" style="justify-content: space-evenly; margin-left:70px;">
 			<!-- =================== main =================== -->
-			<div class="col" >
-				<table class="table table-sm table-borderless" >
+			<div class="col-sm-9" >
+				<table class="table table-sm table-borderless" style="margin-left: 150px;">
 					<tr class="d-flex">
-						<td class="col-6" style="text-align: left;">
+						<td class="col-6" >
 							<h3 style="color: white; margin-left: 90px;"><strong>그룹운동 게시판</strong></h3>
 							<div class="board-list">
 								<button type="button" class="btn-hover color-8 fix-position " onclick="location.href='/board/write'">+글쓰기</button>
 							</div>
 						</td>
-						<td class="col-2" style="margin-left:50px;">
+						<td class="col" style="margin-left:70px;">
 							<select class="board-input" name="f" id="field" style="background-color: white; width: 100px; height: 42px;">
 								<option value="bCategory" selected>종목</option>
 								<option value="bLocation">장소</option>
 								<option value="bUserCount">인원</option>
 							</select>
+						</td>
+						<td>
 							<select class="board-input" name="period" id="period" style="background-color: white; width: 100px; height: 42px;">
 								<option value="all" selected>모든 날짜</option>
 								<option value="week">일주일</option>
 								<option value="month">한달</option>
 							</select>
 						</td>
-						<td class="col-3" >
+						<td class="col" >
 							<input class="form-control me-2" type="search" placeholder="검색 내용" name="q" id="query" style="width: 200px;">
 						</td>
-						<td class="col-2" >
-							<button class="btn btn-outline-light" onclick="search()" style="width: 70px; margin-left:-220px;">검색</button>
+						<td class="col" >
+							<button class="" onclick="search()" style="width:70px;">검색</button>
 						</td>
 					</tr>
 				</table>
 				
 				<div class="container" style="margin-top: -60px">
 					<div class="row ">
-						<div class="content-list>
+						<div class="content-list">
 							<c:forEach var="b" items="${blist}">
 							<div class="content-list-col" data-aos="fade-right">
 								<div class="">

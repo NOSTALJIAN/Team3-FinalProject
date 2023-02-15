@@ -25,18 +25,17 @@
 <body>
 	<%@ include file="../common/top.jsp" %>
 	  <div class="container" style="margin-top: 150px;">
-        <div class="row frame">
+         <div class="row frame">
             <div class="col custom-btn btn-5">
-                <a class="nav-link fs-5" href="/mate/addMateForm" aria-label="A sample content page">친구추가</a></div>
+                <a class="nav-link fs-5" href="/mate/addMateForm" aria-label="A sample content page">보낸 친구신청</a></div>
             <div class="col custom-btn btn-5">
-                <a class="nav-link fs-5" href="/mate/receiveMateForm" aria-label="A sample content page">친구수락</a></div>
+                <a class="nav-link fs-5" href="/mate/receiveMateForm" aria-label="A sample content page">받은 친구신청</a></div>
             <div class="col custom-btn btn-5">
                 <a class="nav-link fs-5" href="/mate/mateForm" aria-label="A sample content page">친구목록</a></div>
             <div class="col custom-btn btn-5">
                 <a class="nav-link fs-5" href="/matching/condition" aria-label="A sample content page">매칭조건</a></div>
         </div>
     </div>
-    <hr>
     
     <div class="mypage">
 		<%-- <c:forEach var="add" items="${addMateList}">
@@ -59,7 +58,7 @@
 				<c:forEach var="add" items="${addMateList}">
 					<tr>
 						<td>${add.receiveUser}</td>
-						<td>[관심운동: 농구,테니스,수영]</td>
+						<td>[농구,테니스,수영]</td>
 						<td>[성별]</td>
 						<td>[남/여]</td>
 						<td><button onclick="addMate('${add.receiveUser}')"  id="${add.receiveUser}" class="btn-hover color-8 write-btn">친구신청중</button></td>

@@ -32,7 +32,7 @@
 			<!-- =================== main =================== -->
 			<div class="">
 				<h3 class=""><strong>${b.bTitle}</strong></h3>
-				<span style="font-size: 0.6em; margin-left: 200px;" >
+				<span style="font-size: 0.6em; margin-left: 250px;" >
 					<button onclick="location.href='/board/list'" class="btn-hover color-8 ms-5 col-2" style="width: 100px" type="button" value="글쓰기">목록</button>
 					
 					<!-- 본인만 수정 가능 -->

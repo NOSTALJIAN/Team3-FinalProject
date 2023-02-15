@@ -19,18 +19,17 @@
 <body style="padding-bottom: 200px;">
 	<%@ include file="../common/top.jsp" %>
 	 <div class="container" style="margin-top: 150px;">
-        <div class="row frame">
+         <div class="row frame">
             <div class="col custom-btn btn-5">
-                <a class="nav-link fs-5" href="/mate/addMateForm" aria-label="A sample content page">친구추가</a></div>
+                <a class="nav-link fs-5" href="/mate/addMateForm" aria-label="A sample content page">보낸 친구신청</a></div>
             <div class="col custom-btn btn-5">
-                <a class="nav-link fs-5" href="/mate/receiveMateForm" aria-label="A sample content page">친구수락</a></div>
+                <a class="nav-link fs-5" href="/mate/receiveMateForm" aria-label="A sample content page">받은 친구신청</a></div>
             <div class="col custom-btn btn-5">
                 <a class="nav-link fs-5" href="/mate/mateForm" aria-label="A sample content page">친구목록</a></div>
             <div class="col custom-btn btn-5">
                 <a class="nav-link fs-5" href="/matching/condition" aria-label="A sample content page">매칭조건</a></div>
         </div>
     </div>
-    <hr>
     <div class="mypage">
 	<h3>1:1운동 매칭조건</h3>
 	<form action="/matching/condition" method="post">
