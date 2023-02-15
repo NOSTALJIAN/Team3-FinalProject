@@ -6,6 +6,11 @@
 	<%@ include file="../common/heading.jsp" %>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/css/board.css">
+	<style>
+	p {
+		text-align: left;
+	}
+	</style>
 </head>
 
 <body class="bg-black text-white mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
@@ -14,7 +19,9 @@
         <div class="row" style="justify-content: space-evenly">
             <!-- =================== main =================== -->
             <div class="col-sm-9" style="margin-top: ;" >
-						<h3 style="color: white; margin-left: 90px;"><strong>1:1운동 매칭</strong></h3>
+				<h3 style="color: white; margin-left: 90px;"><strong>1:1운동 매칭</strong></h3>
+						<button type="button" class="btn-hover color-8 postion" onclick="location.href='/matching/condition'" style="margin-left: 200px;">
+						매칭조건</button>
 							
 			<div class="container" style="margin-top: -60px">
 		      <div class="row d-flex justify-content-center py-vh-5 pb-0">
