@@ -16,14 +16,14 @@
 				<h1>채팅</h1>
 				<textarea id="chatBoxArea" class="chatBoxArea"></textarea>
 				<!-- <div id="yourName">
-					<table class="inputTable">
-					<tr>
-						<th>사용자명</th>
-						<th><input type="text" name="userName" id="userName"></th>
-						<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
-					</tr>
-				</table>
-				</div> -->
+				<table class="inputTable">
+				<tr>
+					<th>사용자명</th>
+					<th><input type="text" name="userName" id="userName"></th>
+					<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+				</tr>
+			</table>
+			</div> -->
 
 				<c:forEach var="uid" items="${sessionUid}">
 					<input type="hidden" id="uid" value="${uid}">

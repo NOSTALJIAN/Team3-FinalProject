@@ -36,6 +36,7 @@ public class MapUtill {
 		
 		// 응답 결과 확인
 		int responseCode = conn.getResponseCode();
+		System.out.println(responseCode);
 		
 		// 데이터 수신
 		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
@@ -44,7 +45,7 @@ public class MapUtill {
 		
 		while((line = br.readLine()) != null)
 			sb.append(line);
-		br.close();
+			br.close();
 		
 		// JSON 데이터에서 원하는 값 추출하기
 		JSONParser parser = new JSONParser();
