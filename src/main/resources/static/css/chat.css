@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#container {
+  width: 500px;
+  margin: 0 auto;
+  padding: 25px;
+}
+
+#container h1 {
+  text-align: left;
+  padding: 5px 5px 5px 15px;
+  color: #ffbb00;
+  border-left: 3px solid #ffbb00;
+  margin-bottom: 20px;
+}
+
+.chatBoxArea {
+  width: 500px;
+  height: 500px;
+  overflow: auto;
+}
+
+/* .chatBoxArea p {
+  color: #fff;
+  text-align: left;
+} */
+
+input {
+  width: 330px;
+  height: 25px;
+}
+
+#yourName {
+  width: 500px;
+}
+
+#yourMsg {
+  width: 500px;
+  display: none;
+}
