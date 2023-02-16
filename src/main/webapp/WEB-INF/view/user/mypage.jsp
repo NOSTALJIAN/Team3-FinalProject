@@ -31,14 +31,14 @@
 			<div class="col-sm-9" >
 				<h3 style=" margin-left: 10px;"><strong>MyPage</strong></h3>
 				<hr>
-			<div class="" style=" margin-left: 110px;">
+			<div class="myPage" style=" margin-left: 110px;">
 				<div class="myPageBox box-size double" >
-					프로필 사진 등록/변경
-					<div class="mypage-btn" style="margin-top: 10px;"><button class="btn-hover color-8 write-btn" onclick="location.href='#'">프로필</button></div>
+					프로필 사진 수정
+					<div class="mypage-btn" style="margin-top: 10px;"><button class="btn-hover color-8 write-btn" onclick="location.href='/user/profile'">프로필</button></div>
 				</div>
 				<div class="content-list-mypage box-size double" >
-					회원정보 수정
-					<div class="mypage-btn" style="margin-top: 10px;"><button class="btn-hover color-8 write-btn" onclick="location.href='#'">정보수정</button></div>
+					비밀번호 수정
+					<div class="mypage-btn" style="margin-top: 10px;"><button class="btn-hover color-8 write-btn" onclick="location.href='/user/pwdUpdate'">정보수정</button></div>
 				</div>
 				<div class="content-list-mypage box-size double" >
 					1:1운동 매칭조건 설정

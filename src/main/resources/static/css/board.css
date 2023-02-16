@@ -439,4 +439,5 @@ button {
 .myPage{
   width: 50%;
   padding: 0.6rem;
+  display: flex;
 }
