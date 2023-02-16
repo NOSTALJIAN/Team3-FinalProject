@@ -20,7 +20,7 @@
 				<table class="table table-sm table-borderless" style="margin-left: 150px;">
 					<tr class="d-flex">
 						<td class="col-6" >
-							<h3 style="color: white; margin-left: 90px;"><strong>그룹운동 게시판</strong></h3>
+							<h3 style="color: white; margin-left:90px;"><strong>그룹운동 게시판</strong></h3>
 							<div class="board-list">
 								<button type="button" class="btn-hover color-8 fix-position " onclick="location.href='/board/write'">+글쓰기</button>
 							</div>
@@ -48,17 +48,17 @@
 					</tr>
 				</table>
 				
-				<div class="container" style="margin-top: -60px">
+				<div class="container" style="margin-top: -60px;">
 					<div class="row ">
 						<div class="content-list">
 							<c:forEach var="b" items="${blist}">
 							<div class="content-list-col" data-aos="fade-right">
 								<div class="">
-									<h4 class="h3 mt-5 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h4>
-									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 종목 : ${b.bCategory}</p>
-									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 장소 : ${b.bLocation}</p>
-									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
-									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 인원 : ${b.bUserCount}명</p>
+									<h5 class="mt-5 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
+									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">종목 : ${b.bCategory}</p>
+									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">장소 : ${b.bLocation}</p>
+									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
+									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">인원 : ${b.bUserCount}명</p>
 									<button class="btn-hover color-8 write-btn" type="submit" value="신청">신청</button>
 								</div>
 							</div>	

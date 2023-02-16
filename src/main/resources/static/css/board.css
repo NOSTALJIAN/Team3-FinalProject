@@ -131,13 +131,8 @@ select.board-input {
   	flex-wrap: wrap;
 }
 
-.content-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .content-list-col {
-	 width: 50%;
+	 width: 33.33333333333%;
  	 padding: 0.6rem;
 }
 .mtc-info {
@@ -355,7 +350,6 @@ background: linear-gradient(to left, #4B79A1 , #283E51);
 
 /*1:1 친구관리 */
 .postion {
-	position: fixed;
 	top: 90px;
 	padding-top: 4px;
 }
@@ -412,13 +406,37 @@ button {
   transition:400ms ease all;
 }
 .btn-5:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
+	  right:inherit;
+	  top:inherit;
+	  left:0;
+	  bottom:0;
 }
 .btn-5:hover:before,
 .btn-5:hover:after{
-  width:100%;
-  transition:800ms ease all;
+	  width:100%;
+	  transition:800ms ease all;
+}
+.mypage-container {
+	  display: flex;
+	  margin-top: 200px;
+}
+.mypage-btn {
+	margin-top: 5px;
+	border-top: 1px white;
+}
+.box-size {
+    	border: 1px ;
+    	border-color: white;
+    	width: 50%;
+    	height: 200px;
+    	margin: 10spx;
+    	padding: 3px;
+      
+    	}
+.double {
+      border-style: double;
+  	 }
+.myPage{
+  width: 50%;
+  padding: 0.6rem;
 }

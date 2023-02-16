@@ -15,15 +15,15 @@
 
 <body class="bg-black text-white mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
 <%@ include file="../common/top.jsp" %>
-	<div class="container" style="margin: 120px; padding-bottom: 260px;">
+	<div class="container" style="margin: 100px; margin-left:200px; padding-bottom: 260px;">
         <div class="row" style="justify-content: space-evenly">
             <!-- =================== main =================== -->
-            <div class="col-sm-9" style="margin-top: ;" >
-				<h3 style="color: white; margin-left: 90px;"><strong>1:1운동 매칭</strong></h3>
+            <div class="col-sm-9">
+				<h3 style="color: white; margin-left:200px;"><strong>1:1운동 매칭</strong></h3>
 						<button type="button" class="btn-hover color-8 postion" onclick="location.href='/matching/condition'" style="margin-left: 200px;">
 						매칭조건</button>
 							
-			<div class="container" style="margin-top: -60px">
+			<div class="container" style="margin-top: -90px">
 		      <div class="row d-flex justify-content-center py-vh-5 pb-0">
 		        <div class="col-12 col-lg-10 col-xl-8">
 		        <c:forEach var="m" items="${matchingList}">

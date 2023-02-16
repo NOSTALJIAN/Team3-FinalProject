@@ -38,6 +38,7 @@
     </div>
     
     <div class="mypage">
+    	<h3>보낸 신구신청</h3>
 		<%-- <c:forEach var="add" items="${addMateList}">
 			<div>
 				<p>상대방아이디 : ${add.receiveUser}</p>

@@ -269,4 +269,11 @@ public class BoardController {
 		return "redirect:/board/detail?bid=" + bid + "&uid=" + uid;
 	}
 
+	//=================================== 본인이 쓴 게시글 목록 ===========================================	
+	/** 게시물 목록 */
+	@GetMapping("/myWrite")
+	public String myWrite(HttpServletRequest req, Model model){
+	
+		return "";
+	}
 }
