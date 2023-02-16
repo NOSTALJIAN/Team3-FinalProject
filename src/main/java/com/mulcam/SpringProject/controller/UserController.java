@@ -249,6 +249,6 @@ public class UserController {
 		// DB에 파일 이름 저장
 		service.profileUpload(uid, fname);
 		
-		return "user/mypage";
+		return "redirect:/user/mypage";
 	}
 }
