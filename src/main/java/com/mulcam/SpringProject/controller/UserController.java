@@ -1,5 +1,7 @@
 package com.mulcam.SpringProject.controller;
 
+import java.io.File;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mulcam.SpringProject.entity.Mate;
 import com.mulcam.SpringProject.entity.User;
@@ -28,6 +31,7 @@ import com.mulcam.SpringProject.session.UserSession;
 public class UserController {
 	@Value("${naver.accessId}") private String accessId;	
 	@Value("${naver.secretKey}") private String secretKey;
+	@Value("${spring.servlet.multipart.location}") private String uploadDir;
 	
 	@Autowired private UserSession userSession;	
 	@Autowired private UserService service;
@@ -211,9 +215,9 @@ public class UserController {
 		}
 	}
 	
-	/** 유저 프로필 등록,수정*/
+	/** 유저 프로필 페이지*/
 	@GetMapping("/profile")
-	public String profile(Model model) {
+	public String profileForm(Model model) {
 		String uid = userSession.getUid();
 		// 프로필 사진 가져오기
 		String profileImg = service.getUimage(uid);
@@ -222,4 +226,29 @@ public class UserController {
 		return "user/profile";
 	}
 	
+	/** 유저 프로필 등록, 수정*/
+	@PostMapping("/profile")
+	public String profile(MultipartHttpServletRequest req) {
+		String uid = userSession.getUid();
+		MultipartFile file = req.getFile("regProfile");
+		
+		// 프로필 사진 경로 및 이미지 이름 새로정하기
+		String fname = file.getOriginalFilename();
+		String now = LocalDateTime.now().toString().substring(0,22).replaceAll("[-T:.]", "");
+        int idx = fname.lastIndexOf('.');
+        fname = now + fname.substring(idx);
+		
+		// 프로필 사진 저장
+		File fileName = new File(uploadDir + "/" + fname);
+		try {
+			file.transferTo(fileName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// DB에 파일 이름 저장
+		service.profileUpload(uid, fname);
+		
+		return "user/mypage";
+	}
 }

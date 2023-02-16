@@ -1,5 +1,6 @@
 package com.mulcam.SpringProject.service;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -55,5 +56,8 @@ public interface UserService {
 
 	/** 프로필 사진 가져오기 */
 	String getUimage(String uid);
+
+	/** 프로필 사진 저장*/
+	void profileUpload(String uid, String fname);
 
 }
