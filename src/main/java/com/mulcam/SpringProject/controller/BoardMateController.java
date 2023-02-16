@@ -67,7 +67,7 @@ public class BoardMateController {
 	}
 	
 	/** 운동 참가 보낸창 */
-	@GetMapping("/applyForm")
+	@GetMapping("/applyList")
 	public String applyForm(Model model) {
 		String uid = userSession.getUid();
 		List<Board> applyList = service.getApplyList(uid);
@@ -77,7 +77,7 @@ public class BoardMateController {
 	}
 	
 	/** 운동 참가 수락/거절창 */
-	@GetMapping("/receiveForm")
+	@GetMapping("/applyPerson")
 	public String receiveForm(Model model) {
 		String uid = userSession.getUid();
 		List<UserInfo> receiveList = service.getReceiveList(uid);
