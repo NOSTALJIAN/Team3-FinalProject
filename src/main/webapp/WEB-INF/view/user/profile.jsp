@@ -26,7 +26,7 @@
 	.profilebox label {
 	  display: inline-block;
 	  padding: .5em .75em;
-	  color: #999;
+	  color: black;
 	  font-size: inherit;
 	  line-height: normal;
 	  vertical-align: middle;
@@ -53,32 +53,24 @@
 	  -moz-appearance: none;
 	  appearance: none;
 	}
-	
 	</style>
 </head>
 <body style="margin-left: 400px; margin-top: 180px; margin-bottom: 100px; background-color: black;" class="register">
 	<%@ include file="../common/top.jsp" %>
 	<h3 style="color: white;">회원 프로필 사진 수정</h3>
 	<hr style="color: white;">
-	<!-- <form name="profile" action="/user/profile" method="post" class="mb-auto col-12 text">
-		<div class="profilebox">
-			<img src="/img/avatar_man.png" style="width: 300px; height: 300px;">
-			<label for="profileImg"></label>
-			이미지 변경<input id="profileImg" name="profileImg" type="file" accept="image/gif, image/jpeg, image/png, image/jpg">
-		</div>
-	</form> -->
-	<form name="profile" action="/user/profile" method="post" class="mb-auto col-12 text">
+	<form name="profile" action="/user/profile" method="post" class="mb-auto col-12 text" enctype="multipart/form-data">
 		<div>
 			<c:if test="${empty profileImg}">
-			<img id="profileImg" src="/img/avatar_man.png" style="width: 300px; height: 300px;">
+			<img id="profileImg" src="/img/basicProfile.png" style="width: 300px; height: 300px;">
 			</c:if>
 			<c:if test="${not empty profileImg}">
-			<img id="profileImg" src="" style="width: 300px; height: 300px;">
+			<img id="profileImg" src="/board/download?file=${profileImg}" style="width: 300px; height: 300px;">
 			</c:if>
 		</div><br>
 		<div class="profilebox bs3-primary">
-			<label for="regProfile">프로필 사진 등록</label> 
-			<input type="file" id="regProfile" class="upload-hidden">
+			<label for="regProfile">프로필 사진 업로드</label> 
+			<input type="file" id="regProfile" name="regProfile" class="upload-hidden">
 			<!-- <input class="upload-name" value="파일선택" disabled="disabled"> -->
 			<span>jpg, png, gif 파일만 가능</span>
 		</div><br>

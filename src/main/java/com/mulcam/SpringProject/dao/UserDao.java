@@ -69,5 +69,8 @@ public interface UserDao {
 	@Select("SELECT uImage FROM users WHERE uid=#{uid};")
 	String getUimage(String uid);
 
+	@Update("UPDATE users SET uImage=#{fname} WHERE uid=#{uid}")
+	void profileUpload(String uid, String fname);
+
 
 }

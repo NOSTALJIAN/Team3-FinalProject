@@ -1,5 +1,6 @@
 package com.mulcam.SpringProject.service;
 
+import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -132,6 +133,11 @@ public class UserServiceImpl implements UserService{
 	public String getUimage(String uid) {
 		String profileImg = userDao.getUimage(uid);
 		return profileImg;
+	}
+
+	@Override
+	public void profileUpload(String uid, String fname) {
+		userDao.profileUpload(uid, fname);
 	}
 
 
