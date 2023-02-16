@@ -96,6 +96,8 @@ public class MatchingUtill {
 				continue;
 			// 이름 가져오기
 			String uname = service.getUname(uid);
+			// 프로필사진 가져오기
+			String uImage = service.getUimage(uid);
 			
 			// 일치하는 운동 계산(공백 + 2진수)
 			String coincideNum = String.format("%12s", ui.getCoincideExer());
@@ -103,7 +105,7 @@ public class MatchingUtill {
 			// 알고리즘 점수 계산
 			float score = (float) (exerciseUtill.countOne(coincideNum)*30 + uRating*10 - dist);
 			
-			MatchingUsers matchingUser = new MatchingUsers(uid, uname, distance, age, likeExerList, gender, uRating, score);
+			MatchingUsers matchingUser = new MatchingUsers(uid, uname, uImage, distance, age, likeExerList, gender, uRating, score);
 			matchingList.add(matchingUser);
 		}
 		
