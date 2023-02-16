@@ -13,7 +13,7 @@
             window.onload = function () {
                 // host = "49.50.173.221:8090";  /* 배포시에 호스트 주소로 변경 */
                 host = "localhost:8080";
-                g_webSocket = new WebSocket("ws://" + host + "/websocket");
+                g_webSocket = new WebSocket("ws://" + host + "/ws/chat");
                 /** 웹소켓 접속 성공시 실행 */
                 g_webSocket.onopen = function (message) {
                     addLineToChatBox("Server is connected...");

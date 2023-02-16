@@ -7,8 +7,6 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "message")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Message {
@@ -33,70 +31,97 @@ public class Message {
 	private LocalDateTime mRegTime;
 	
 	@Column
-	private int cid;
+	private int mConfirm;
 	
 	@Column
-	private String uid;
-	
+	private String cid;
+
+	@Column
+	private MessageType mType;
+
 	/**
 	 * Getter, Setter
 	 */
 	public int getMid() {
 		return mid;
 	}
+
 	public void setMid(int mid) {
 		this.mid = mid;
 	}
+
 	public String getmSender() {
 		return mSender;
 	}
+
 	public void setmSender(String mSender) {
 		this.mSender = mSender;
 	}
+
 	public String getmReceiver() {
 		return mReceiver;
 	}
+
 	public void setmReceiver(String mReceiver) {
 		this.mReceiver = mReceiver;
 	}
+
 	public String getmContent() {
 		return mContent;
 	}
+
 	public void setmContent(String mContent) {
 		this.mContent = mContent;
 	}
+
 	public LocalDateTime getmSendTime() {
 		return mSendTime;
 	}
+
 	public void setmSendTime(LocalDateTime mSendTime) {
 		this.mSendTime = mSendTime;
 	}
+
 	public LocalDateTime getmRegTime() {
 		return mRegTime;
 	}
+
 	public void setmRegTime(LocalDateTime mRegTime) {
 		this.mRegTime = mRegTime;
 	}
-	public int getCid() {
+
+	public int getmConfirm() {
+		return mConfirm;
+	}
+
+	public void setmConfirm(int mConfirm) {
+		this.mConfirm = mConfirm;
+	}
+
+	public String getCid() {
 		return cid;
 	}
-	public void setCid(int cid) {
+
+	public void setCid(String cid) {
 		this.cid = cid;
 	}
-	public String getUid() {
-		return uid;
-	}
-	public void setUid(String uid) {
-		this.uid = uid;
+
+	public MessageType getmType() {
+		return mType;
 	}
 	
+	public void setmType(MessageType mType) {
+		this.mType = mType;
+	}
+
 	/**
 	 * toString
 	 */
 	@Override
 	public String toString() {
 		return "Message [mid=" + mid + ", mSender=" + mSender + ", mReceiver=" + mReceiver + ", mContent=" + mContent
-				+ ", mSendTime=" + mSendTime + ", mRegTime=" + mRegTime + ", cid=" + cid + ", uid=" + uid + "]";
+				+ ", mSendTime=" + mSendTime + ", mRegTime=" + mRegTime + ", mConfirm=" + mConfirm + ", cid=" + cid
+				+ ", mType=" + mType + "]";
 	}
-	
+
 }

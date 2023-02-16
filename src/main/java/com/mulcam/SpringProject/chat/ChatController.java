@@ -1,30 +1,33 @@
 package com.mulcam.SpringProject.chat;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/chat")
 public class ChatController {
 	
-	List<ChatRoom> chatList = new ArrayList<>();
-	static int mNumber = 0;
+	@GetMapping("/chatt")
+	public String chatGet() {
+		log.info("@ChatController, chat GET()");
+		return "chatting/chat";
+	}
+	
+	@GetMapping("/sock")
+	public String sock(Locale locale, Model model) {
+		return "chatting/sock";
+	}
 	
 	@GetMapping("/test")
 	public String test(Locale locale, Model model) {
-//		System.out.println("chat test");
 		return "chatting/test";
 	}
 	

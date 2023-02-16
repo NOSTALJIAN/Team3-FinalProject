@@ -17,7 +17,7 @@ function addLineToChatBox(_line) {
 
 function wsOpen() {
   host = 'localhost:8080';
-  ws = new WebSocket('ws://' + host + '/websocket');
+  ws = new WebSocket('ws://' + host + '/ws/chat');
   console.log(ws);
   /** 웹소켓 접속 성공시 실행 */
   ws.onopen = function (message) {
