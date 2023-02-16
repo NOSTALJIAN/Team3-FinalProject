@@ -6,6 +6,7 @@ public class User {
 	private String uid;
 	private String pwd;
 	private String uname;
+	private String uImage;
 	private String phoneNum;
 	private String email;
 	private int emailCheck;
@@ -14,7 +15,14 @@ public class User {
 	private LocalDate uRegDate;
 	
 	public User() {}
-	
+	/** 회원정보 수정용*/
+	public User(String uid, String phoneNum, String email, int emailCheck) {
+		super();
+		this.uid = uid;
+		this.phoneNum = phoneNum;
+		this.email = email;
+		this.emailCheck = emailCheck;
+	}
 	public User(String uid, String pwd, String uname, String phoneNum, String email, int emailCheck) {
 		super();
 		this.uid = uid;
@@ -24,14 +32,13 @@ public class User {
 		this.email = email;
 		this.emailCheck = emailCheck;
 	}
-	
-
-	public User(String uid, String pwd, String uname, String phoneNum, String email, int emailCheck, int role,
-			int isDeleted, LocalDate uRegDate) {
+	public User(String uid, String pwd, String uname, String uImage, String phoneNum, String email, int emailCheck,
+			int role, int isDeleted, LocalDate uRegDate) {
 		super();
 		this.uid = uid;
 		this.pwd = pwd;
 		this.uname = uname;
+		this.uImage = uImage;
 		this.phoneNum = phoneNum;
 		this.email = email;
 		this.emailCheck = emailCheck;
@@ -39,6 +46,7 @@ public class User {
 		this.isDeleted = isDeleted;
 		this.uRegDate = uRegDate;
 	}
+
 	public String getUid() {
 		return uid;
 	}
@@ -56,6 +64,12 @@ public class User {
 	}
 	public void setUname(String uname) {
 		this.uname = uname;
+	}
+	public String getuImage() {
+		return uImage;
+	}
+	public void setuImage(String uImage) {
+		this.uImage = uImage;
 	}
 	public String getPhoneNum() {
 		return phoneNum;
@@ -93,12 +107,12 @@ public class User {
 	public void setuRegDate(LocalDate uRegDate) {
 		this.uRegDate = uRegDate;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "User [uid=" + uid + ", pwd=" + pwd + ", uname=" + uname + ", phoneNum=" + phoneNum + ", email=" + email
-				+ ", emailCheck=" + emailCheck + ", role=" + role + ", isDeleted=" + isDeleted + ", uRegDate="
-				+ uRegDate + "]";
+		return "User [uid=" + uid + ", pwd=" + pwd + ", uname=" + uname + ", uImage=" + uImage + ", phoneNum="
+				+ phoneNum + ", email=" + email + ", emailCheck=" + emailCheck + ", role=" + role + ", isDeleted="
+				+ isDeleted + ", uRegDate=" + uRegDate + "]";
 	}
 	
 }

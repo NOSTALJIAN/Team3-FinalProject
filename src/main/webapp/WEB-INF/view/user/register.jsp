@@ -23,7 +23,7 @@
 </head>
 
 <body style="margin-left: 400px; margin-top: 180px; margin-bottom: 100px; background-color: black;" class="register">
-   <%@ include file="../common/top.jsp" %>
+   	<%@ include file="../common/top.jsp" %>
 	<h3 style="color: white;">회원가입</h3>
 	<hr style="color: white;">
 	<form name="reg_sub" action="/user/register" method="post" class="mb-auto col-12 text">
@@ -99,7 +99,7 @@
 			</tr>
 			<tr style="margin-left: 60px;">		
 				<td><input class="btn-hover color-8" onclick="checked_submit()" type="button" value="회원가입"></td>
-				<td><input class="btn-hover color-8" onclick="checked_submit()" type="reset" value="취소"></td>
+				<td><input class="btn-hover color-8" type="reset" value="취소"></td>
 			</tr>
 		</table>
 	</form>

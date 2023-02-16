@@ -1,5 +1,7 @@
 package com.mulcam.SpringProject.controller;
 
+import java.io.File;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.mulcam.SpringProject.entity.Mate;
 import com.mulcam.SpringProject.entity.User;
 import com.mulcam.SpringProject.entity.UserInfo;
+import com.mulcam.SpringProject.misc.ExerciseUtill;
 import com.mulcam.SpringProject.misc.MapUtill;
 import com.mulcam.SpringProject.service.UserService;
 import com.mulcam.SpringProject.session.UserSession;
@@ -24,10 +31,12 @@ import com.mulcam.SpringProject.session.UserSession;
 public class UserController {
 	@Value("${naver.accessId}") private String accessId;	
 	@Value("${naver.secretKey}") private String secretKey;
+	@Value("${spring.servlet.multipart.location}") private String uploadDir;
 	
 	@Autowired private UserSession userSession;	
 	@Autowired private UserService service;
 	@Autowired private MapUtill mapUtill;
+	@Autowired private ExerciseUtill eserciseUtill;
 	
 	/** 회원가입 페이지*/
 	@GetMapping("/register")
@@ -77,7 +86,6 @@ public class UserController {
 		}
 		
 		// 유저의 주소에서 위도와 경도찾기
-		System.out.println(uAddr);
 		List<Double> latlng = mapUtill.findLatLng(uAddr);
 		double lat = latlng.get(0);
 		double lng = latlng.get(1);
@@ -132,5 +140,115 @@ public class UserController {
 		
 		return "user/mypage";
 	}
+
+	/** 개인정보 수정 페이지*/
+	@GetMapping("/update")
+	public String updateForm(HttpSession session, Model model) {
+		String uid = userSession.getUid();
+		
+		User user = service.getUser(uid);
+		UserInfo userInfo = service.getUserInfo(uid);
+		String likeExercise = service.getLikeExercise(uid);
+		List<String> likeExerList = eserciseUtill.findExercise(likeExercise);
+		
+		model.addAttribute("user", user);
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("likeExerList", likeExerList);
+		return "user/update";
+	}
 	
+	/** 개인정보 수정*/
+	@PostMapping("/update")
+	public String update(HttpSession session, HttpServletRequest req) throws Exception{
+		String uid = userSession.getUid();
+		String email = req.getParameter("email").strip();
+		int emailCheck = Integer.parseInt(req.getParameter("emailCheck"));
+		int uPostcode = Integer.parseInt(req.getParameter("postcode"));
+		String uAddr = req.getParameter("addr").strip();
+		String uDetailAddr = req.getParameter("detailAddr").strip();
+		String phoneNum = req.getParameter("phoneNum").strip();
+		String[] likeExercise_ = req.getParameterValues("likeExercise");
+		
+		int likeExercise = 0;
+		for (String i : likeExercise_) {
+			likeExercise += Integer.parseInt(i);
+		}
+		
+		List<Double> latlng = mapUtill.findLatLng(uAddr);
+		double lat = latlng.get(0);
+		double lng = latlng.get(1);
+		
+		User u = new User(uid, phoneNum, email, emailCheck);
+		UserInfo ui = new UserInfo(uid, uPostcode, uAddr, uDetailAddr,likeExercise, lat, lng);
+		service.update(u, ui);
+		
+		return "board/index";
+	}
+	
+	/** 비밀번호 변경 페이지*/
+	@GetMapping("/pwdUpdate")
+	public String pwdUpdateForm() {
+		return "user/pwdUpdate";
+	}
+	
+	/** 비밀번호 변경*/
+	@PostMapping("/pwdUpdate")
+	public String pwdUpdate(HttpServletRequest req, HttpSession session, Model model) {
+		String uid = userSession.getUid();
+		String newpwd = req.getParameter("newpwd").strip();
+		// 비밀번호 변경 실행
+		service.updatePwd(uid, newpwd);
+		
+		return "redirect:/board/index";
+	}
+	
+	/** ajax방식으로 비밀번호 일치하는지 확인하기 */
+	@ResponseBody
+	@GetMapping("/pwdConfirm")
+	public int pwdConfirm(String pwd) {
+		String uid = userSession.getUid();
+		int result = service.login(uid, pwd);
+		if (result == UserService.CORRECT_LOGIN) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
+	/** 유저 프로필 페이지*/
+	@GetMapping("/profile")
+	public String profileForm(Model model) {
+		String uid = userSession.getUid();
+		// 프로필 사진 가져오기
+		String profileImg = service.getUimage(uid);
+		
+		model.addAttribute("profileImg", profileImg);
+		return "user/profile";
+	}
+	
+	/** 유저 프로필 등록, 수정*/
+	@PostMapping("/profile")
+	public String profile(MultipartHttpServletRequest req) {
+		String uid = userSession.getUid();
+		MultipartFile file = req.getFile("regProfile");
+		
+		// 프로필 사진 경로 및 이미지 이름 새로정하기
+		String fname = file.getOriginalFilename();
+		String now = LocalDateTime.now().toString().substring(0,22).replaceAll("[-T:.]", "");
+        int idx = fname.lastIndexOf('.');
+        fname = now + fname.substring(idx);
+		
+		// 프로필 사진 저장
+		File fileName = new File(uploadDir + "/" + fname);
+		try {
+			file.transferTo(fileName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// DB에 파일 이름 저장
+		service.profileUpload(uid, fname);
+		
+		return "user/mypage";
+	}
 }

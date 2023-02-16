@@ -40,7 +40,7 @@ public interface UserDao {
 			+ "	AND uid != #{uid};")
 	List<UserInfo> getCoincideInfo(String uid);
 
-	@Select("SELECT uid, uAddr, likeExercise, birthDate, gender, uRating, uLat, uLng from userInfo WHERE uid = #{sessionUid};")
+	@Select("SELECT * from userInfo WHERE uid = #{sessionUid};")
 	UserInfo getUserInfo(String sessionUid);
 
 	@Select("SELECT CONVERT(BIN (likeExercise), CHAR(12)) FROM userInfo WHERE uid = #{uid};")
@@ -55,6 +55,22 @@ public interface UserDao {
 	@Update("UPDATE matchingCondition SET bestExercise=#{bestExercise}, minAge=#{minAge}, maxAge=#{maxAge},minDistance=#{minDistance}, "
 			+ "maxDistance=${maxDistance}, pGender=#{pGender} WHERE uid=#{uid};")
 	void updateCondition(MatchingCondition mC);
+
+	@Update("UPDATE users SET phoneNum=#{phoneNum}, email=#{email}, emailCheck=#{emailCheck} WHERE uid=#{uid};")
+	void update(User u);
+
+	@Update("UPDATE userInfo SET uPostcode=#{uPostcode}, uAddr=#{uAddr}, uDetailAddr=#{uDetailAddr}, likeExercise=#{likeExercise}, "
+			+ "uLat=#{uLat}, uLng=#{uLng} WHERE uid=#{uid};")
+	void updateInfo(UserInfo ui);
+
+	@Update("Update users SET pwd=#{pwd} WHERE uid=#{uid};")
+	void updatePwd(String uid, String pwd);
+
+	@Select("SELECT uImage FROM users WHERE uid=#{uid};")
+	String getUimage(String uid);
+
+	@Update("UPDATE users SET uImage=#{fname} WHERE uid=#{uid}")
+	void profileUpload(String uid, String fname);
 
 
 }

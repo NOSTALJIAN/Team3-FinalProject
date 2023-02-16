@@ -1,5 +1,6 @@
 package com.mulcam.SpringProject.service;
 
+import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -114,6 +115,29 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void updateCondition(MatchingCondition mC) {
 		userDao.updateCondition(mC);
+	}
+
+	@Override
+	public void update(User u, UserInfo ui) {
+		userDao.update(u);
+		userDao.updateInfo(ui);
+	}
+
+	@Override
+	public void updatePwd(String uid, String newpwd) {
+		String pwd = BCrypt.hashpw(newpwd, BCrypt.gensalt());
+		userDao.updatePwd(uid, pwd);
+	}
+
+	@Override
+	public String getUimage(String uid) {
+		String profileImg = userDao.getUimage(uid);
+		return profileImg;
+	}
+
+	@Override
+	public void profileUpload(String uid, String fname) {
+		userDao.profileUpload(uid, fname);
 	}
 
 

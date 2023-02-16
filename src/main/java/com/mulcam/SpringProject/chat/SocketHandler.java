@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ServerEndpoint("/websocket")
-public class Websocket {
+public class SocketHandler {
+	
 	/** 웹소켓 세션 보관용 ArrayList */
 	private static ArrayList<Session> sessionList = new ArrayList<Session>();
 	
@@ -25,7 +26,7 @@ public class Websocket {
 			System.out.println("client is connected... sessionId == [" + sessionId + "]");
 			sessionList.add(session);
 			//	웹소켓에 접속한 모든 이용자에게 메세지 전송
-			sendMessageToAll("--> [USER=" + sessionId + "] is connected...");
+//			sendMessageToAll("--> [USER=" + sessionId + "] is connected...");
 		}
 	}
 	
@@ -36,7 +37,7 @@ public class Websocket {
 			String sessionId = session.getId();
 			System.out.println("message is arrived... sessionId == [" + sessionId + "] / message == [" + message + "]");
 			//	웹소켓에 접속한 모든 이용자에게 메세지 전송
-			sendMessageToAll("--> [USER=" + sessionId + "] " + message);
+			sendMessageToAll(message);
 		}
 		return null;
 	}
@@ -48,7 +49,7 @@ public class Websocket {
 			String sessionId = session.getId();
 			System.out.println("client is disconnected... sessionId == [" + sessionId + "]");
 			//	웹소켓에 접속한 모든 이용자에게 메세지 전송
-			sendMessageToAll("***** [USER=" + sessionId + "] is disconnected... *****");
+//			sendMessageToAll("***** [USER=" + sessionId + "] is disconnected... *****");
 		}
 	}
 	

@@ -2,7 +2,8 @@
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-      <nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-2 " tabindex="0" style="height: 65px; padding-top: 8px;">
+      <nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-2 " tabindex="0"
+        style="height: 65px; padding-top: 8px;">
         <div class="container">
           <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="/board/index">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stack"
@@ -33,20 +34,21 @@
             </li>
             <c:choose>
               <c:when test="${!empty sessionUid}">
-	            <a class="nav-link nav-size " href="/user/mypage" aria-label="A system message page">
-	                MyPage
-              	</a>    
-            <%-- <c:choose>
-             <c:when test="${!empty sessionUid}">
-	            <li class="nav-item dropdown">
-	              <a class="nav-link nav-size dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">
-	                MyPage
-	              </a>
-	              <ul class="dropdown-menu">
-	                <li><a class="dropdown-item " href="/user/mypage">1:1운동</a></li>
-	                <li><a class="dropdown-item " href="/user/board">그룹운동</a></li>
-	              </ul>
-	            </li>  --%>
+                <li class="nav-item">
+                  <a class="nav-link nav-size " href="/chat/test" aria-label="A system message page">
+                    1:1 채팅
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-size " href="/chat/room" aria-label="A system message page">
+                    그룹 채팅
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-size" href="/user/mypage" aria-label="A system message page">
+                    마이페이지
+                  </a>
+                </li>
               </c:when>
             </c:choose>
 
@@ -68,12 +70,12 @@
                 class="btn btn-outline-light ${menu eq 'login' ? 'active' : ''}">
                 <small>로그인</small>
               </a>
-             <%--  <a href="/user/register" aria-label="Download this template"
+              <%-- <a href="/user/register" aria-label="Download this template"
                 class="btn btn-outline-light ${menu eq 'reg' ? 'active' : ''}">
                 <small>회원가입</small>
-              </a> --%>
+                </a> --%>
             </c:when>
-            
+
             <c:otherwise>
               <a href="/user/logout" aria-label="Download this template" class="btn btn-outline-light ">
                 <small>로그아웃</small>
