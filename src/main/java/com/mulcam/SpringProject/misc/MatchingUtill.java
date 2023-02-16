@@ -90,8 +90,7 @@ public class MatchingUtill {
 			
 			// 관심운동 목록 가져오기
 			String likeExercise = service.getLikeExercise(uid);
-			String likeExerNum = String.format("%12s", likeExercise);
-			List<String> likeExerList = exerciseUtill.findExercise(likeExerNum);
+			List<String> likeExerList = exerciseUtill.findExercise(likeExercise);
 			
 			if(likeExerList.contains(bestExercise) == false)
 				continue;

@@ -24,10 +24,12 @@ public class ExerciseUtill {
 	}
 	
 	/** 2진수(스트링 타입)에서 어떤 운동 들어가 있는지 찾는 함수 */
-	public List<String> findExercise(String document) {
+	public List<String> findExercise(String likeExerNum) {
+		String document = String.format("%12s", likeExerNum);
 		String word = "1";
 		int index = document.indexOf(word);
 		String[] exerciseList = {"헬스", "수영", "조깅", "테니스", "싸이클", "볼링", "당구", "등산", "E-sports", "야구", "농구", "축구"};
+//		String[] exerciseList = {"축구", "농구", "야구", "E-sports", "등산", "당구", "볼링", "싸이클", "테니스", "조깅", "수영", "헬스"};
 		List<String> likeExerList = new ArrayList<String>();
 		while(index != -1) {
 			likeExerList.add(exerciseList[index]);	

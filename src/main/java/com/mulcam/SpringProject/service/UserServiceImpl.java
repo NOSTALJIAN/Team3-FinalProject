@@ -116,6 +116,24 @@ public class UserServiceImpl implements UserService{
 		userDao.updateCondition(mC);
 	}
 
+	@Override
+	public void update(User u, UserInfo ui) {
+		userDao.update(u);
+		userDao.updateInfo(ui);
+	}
+
+	@Override
+	public void updatePwd(String uid, String newpwd) {
+		String pwd = BCrypt.hashpw(newpwd, BCrypt.gensalt());
+		userDao.updatePwd(uid, pwd);
+	}
+
+	@Override
+	public String getUimage(String uid) {
+		String profileImg = userDao.getUimage(uid);
+		return profileImg;
+	}
+
 
 
 }
