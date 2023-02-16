@@ -36,6 +36,7 @@ public class MapUtill {
 		
 		// 응답 결과 확인
 		int responseCode = conn.getResponseCode();
+		System.out.println(responseCode);
 		
 		// 데이터 수신
 		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));

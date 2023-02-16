@@ -58,6 +58,18 @@ public class UserInfo {
 		this.uLng = uLng;
 	}
 	
+	/** 회원 정보 수정용*/
+	public UserInfo(String uid, int uPostcode, String uAddr, String uDetailAddr, int likeExercise, double uLat,
+			double uLng) {
+		super();
+		this.uid = uid;
+		this.uPostcode = uPostcode;
+		this.uAddr = uAddr;
+		this.uDetailAddr = uDetailAddr;
+		this.likeExercise = likeExercise;
+		this.uLat = uLat;
+		this.uLng = uLng;
+	}
 	public String getUid() {
 		return uid;
 	}

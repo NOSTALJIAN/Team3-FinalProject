@@ -46,10 +46,14 @@ public interface UserService {
 	
 	/** 매칭조건 수정*/
 	void updateCondition(MatchingCondition mC);
-	
 
-	
-	
-	
-	
+	/** 회원 정보 수정*/
+	void update(User u, UserInfo ui);
+
+	/** 비밀번호 변경*/
+	void updatePwd(String uid, String newpwd);
+
+	/** 프로필 사진 가져오기 */
+	String getUimage(String uid);
+
 }
