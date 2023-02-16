@@ -87,30 +87,64 @@ button {
     </div>
     <div class="mypage">
     	<h3>그룹운동 신청현황</h3>
-			<table>
-				<thead>
-					<tr>
-						<th>제목</th>
-						<th>운동종목</th>
-						<th>운동장소</th>
-						<th>운동시간</th>
-						<th>총인원</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-				<c:forEach var="" items="">
-					<tr>
-						<td>[게시글제목]</td>
-						<td>[운동종목]</td>
-						<td>[운동장소]</td>
-						<td>[운동시간]</td>
-						<td>[총인원]</td>
-						<td><button class="btn-hover color-8 write-btn">신청중</button></td>
-					</tr>
-				</c:forEach>
-				</tbody>
-			</table>
-		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>게시글 번호</th>
+					<th>제목</th>
+					<th>운동종목</th>
+					<th>운동장소</th>
+					<th>운동시간</th>
+					<th>총인원</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="apply" items="${applyList}">
+				<tr>
+					<td>${apply.bid}</td>
+					<td>${apply.bTitle}</td>
+					<td>${apply.bCategory}</td>
+					<td>${apply.bLocation}</td>
+					<td>${apply.bAppointment}</td>
+					<td>${apply.bUserCount}</td>
+					<td><button class="btn-hover color-8 write-btn">참가신청중</button></td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	<!-- 참가 신청 -->
+	<script>
+		function apply(bid, uid){
+			  const applybid = document.getElementById(bid);
+			  console.log(bid, uid);
+			  if (applybid.innerText == '참가신청'){
+				  $.ajax({
+					type:'GET',
+					url: '/group/apply',
+					data: {'bid': bid, 'receiveUser': uid},
+					success: function(result){
+						applybid.innerText = result;
+						console.log(result);
+						applybid.style.cssText = 'background-color:black; color:white;'
+					}
+				  });
+			  }
+			  else if (applybid.innerText == '참가신청중'){
+				  $.ajax({
+					type:'GET',
+					url: '/group/applyCancel',
+					data: {'bid': bid, 'receiveUser': uid},
+					success: function(result){
+						applybid.innerText = result;
+						console.log(result);
+						applybid.style.cssText = 'background-color:white; color:black;'
+					}
+				  });
+			  }
+		  }
+	</script>
+		
 </body>
 </html>

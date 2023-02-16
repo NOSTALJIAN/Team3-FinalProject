@@ -59,7 +59,7 @@
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 장소 : ${b.bLocation}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">운동 인원 : ${b.bUserCount}명</p>
-									<button class="btn-hover color-8 write-btn" type="submit" value="신청">신청</button>
+									<button class="btn-hover color-8 write-btn" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}">참가신청</button>
 								</div>
 							</div>	
 							</c:forEach>
@@ -123,6 +123,37 @@
     		console.log("search()", field, query, period);
     		location.href = "/board/list?p=${currentBoardPage}&f=" + field + "&q=" + query +"&period=" + period;
     	}
+	</script>
+	<!-- 참가 신청 -->
+	<script>
+		function apply(bid, uid){
+			  const applybid = document.getElementById(bid);
+			  console.log(bid, uid);
+			  if (applybid.innerText == '참가신청'){
+				  $.ajax({
+					type:'GET',
+					url: '/group/apply',
+					data: {'bid': bid, 'receiveUser': uid},
+					success: function(result){
+						applybid.innerText = result;
+						console.log(result);
+						applybid.style.cssText = 'background-color:black; color:white;'
+					}
+				  });
+			  }
+			  else if (applybid.innerText == '참가신청중'){
+				  $.ajax({
+					type:'GET',
+					url: '/group/applyCancel',
+					data: {'bid': bid, 'receiveUser': uid},
+					success: function(result){
+						applybid.innerText = result;
+						console.log(result);
+						applybid.style.cssText = 'background-color:white; color:black;'
+					}
+				  });
+			  }
+		  }
 	</script>
 </body>
 </html>

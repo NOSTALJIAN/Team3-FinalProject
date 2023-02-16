@@ -102,14 +102,14 @@ button {
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="" items="">
+				<c:forEach var="re" items="${receiveList}">
 					<tr>
 						<td>[프로필]</td>
-						<td>[아이디]</td>
-						<td>[농구,테니스,수영]</td>
-						<td>[성별]</td>
-						<td>[남/여]</td>
-						<td>[신청 보낸시간]</td>
+						<td>${re.uid}</td>
+						<td>${re.likeExercise}</td>
+						<td>${re.gender}</td>
+						<td>${re.birthDate}</td>
+						<td>[신청시간]</td>
 						<td><button onclick="mateAccept('${re.uid}')" class="btn-hover color-8 write-btn">수락</button></td>
 						<td><button onclick="mateReject('${re.uid}')" class="btn-hover color-8 write-btn">거절</button></td>
 					</tr>
@@ -117,5 +117,36 @@ button {
 				</tbody>
 			</table>
 		</div>
+		<!-- 참가 신청 -->
+		<script>
+			function apply(bid, uid){
+				  const applybid = document.getElementById(bid);
+				  console.log(bid, uid);
+				  if (applybid.innerText == '참가신청'){
+					  $.ajax({
+						type:'GET',
+						url: '/group/apply',
+						data: {'bid': bid, 'receiveUser': uid},
+						success: function(result){
+							applybid.innerText = result;
+							console.log(result);
+							applybid.style.cssText = 'background-color:black; color:white;'
+						}
+					  });
+				  }
+				  else if (applybid.innerText == '참가신청중'){
+					  $.ajax({
+						type:'GET',
+						url: '/group/applyCancel',
+						data: {'bid': bid, 'receiveUser': uid},
+						success: function(result){
+							applybid.innerText = result;
+							console.log(result);
+							applybid.style.cssText = 'background-color:white; color:black;'
+						}
+					  });
+				  }
+			  }
+		</script>
 </body>
 </html>
