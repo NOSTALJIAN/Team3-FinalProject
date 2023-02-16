@@ -32,7 +32,7 @@
 			<!-- =================== main =================== -->
 			<div class="">
 				<h3 class=""><strong>${b.bTitle}</strong></h3>
-				<span style="font-size: 0.6em; margin-left: 200px;" >
+				<span style="font-size: 0.6em; margin-left: 250px;" >
 					<button onclick="location.href='/board/list'" class="btn-hover color-8 ms-5 col-2" style="width: 100px" type="button" value="글쓰기">목록</button>
 					
 					<!-- 본인만 수정 가능 -->
@@ -254,15 +254,7 @@
     		}
     	}
     </script>
-    <!-- 게시판 검색 -->
-    <script>
-    	function search() {
-    		const field = document.getElementById("field").value;
-    		const query = document.getElementById("query").value;
-    		console.log("search()", field, query);
-    		location.href = "/board/list?p=${currentBoardPage}&f=" + field + "&q=" + query;
-    	}
-	</script>
+    
 <%@ include file="../common/top.jsp" %>
 </body>
 </html>

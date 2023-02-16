@@ -136,7 +136,7 @@ public class UserController {
 		
 		return "user/mypage";
 	}
-	
+
 	/** 개인정보 수정 페이지*/
 	@GetMapping("/update")
 	public String updateForm(HttpSession session, Model model) {

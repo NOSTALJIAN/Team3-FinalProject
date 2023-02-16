@@ -9,6 +9,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -49,11 +52,26 @@ public class BoardController {
 		String page_ = req.getParameter("p");
 		String field = req.getParameter("f");
 		String query = req.getParameter("q");
+		String period = req.getParameter("period");
+		
+		LocalDate startDate = LocalDate.now();
+		LocalDate endDate = null;
+		
+		// 일주일, 한달 내의 게시글만 보여주기
+		if (period == null) {
+			endDate = LocalDate.parse("2999-12-31");
+		} else if (period.equals("week")) {
+			endDate = startDate.plusWeeks(1);
+		} else if (period.equals("month")) {
+			endDate = startDate.plusMonths(1);
+		} else {
+			endDate = LocalDate.parse("2999-12-31");
+		}
 		
 		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
-		field = (field == null || field.equals("")) ? "bTitle" : field;
+		field = (field == null || field.equals("")) ? "bCategory" : field;
 		query = (query == null || query.equals("")) ? "" : query;
-		List<Board> list = bsv.getBoardList(page, field, query);
+		List<Board> list = bsv.getBoardListByPeriod(page, field, query, startDate.toString(), endDate.toString());
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("currentBoardPage", page);
