@@ -40,7 +40,7 @@ public interface BoardMateDao {
 	@Select("SELECT bm.bid, u.uid, u.likeExercise, u.gender, u.birthDate"
 			+ "	FROM userInfo AS u"
 			+ "	JOIN boardMate AS bm"
-			+ "	WHERE u.uid=bm.receiveUser AND bm.uid=#{uid};")
+			+ "	WHERE u.uid=bm.uid AND bm.receiveUser=#{uid};")
 	List<UserInfo> getReceiveList(String uid);
 	
 }
