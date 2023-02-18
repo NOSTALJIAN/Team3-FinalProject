@@ -7,13 +7,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>웹소켓 테스트 페이지</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
         <script type="text/javascript">
             var g_webSocket = null;
 
             window.onload = function () {
                 // host = "49.50.173.221:8090";  /* 배포시에 호스트 주소로 변경 */
                 host = "localhost:8080";
-                g_webSocket = new WebSocket("ws://" + host + "/ws/chat");
+                g_webSocket = new SockJs("http://" + host + "/ws/chat");
                 /** 웹소켓 접속 성공시 실행 */
                 g_webSocket.onopen = function (message) {
                     addLineToChatBox("Server is connected...");

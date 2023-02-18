@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+    
       <nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-2 " tabindex="0"
         style="height: 65px; padding-top: 8px;">
         <div class="container">

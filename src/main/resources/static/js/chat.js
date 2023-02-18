@@ -1,4 +1,4 @@
-var ws = null;
+// var ws = null;
 
 window.onload = function () {
   getName();
@@ -15,9 +15,21 @@ function addLineToChatBox(_line) {
   chatBoxArea.scrollTop = chatBoxArea.scrollHeight;
 }
 
+function send() {
+  var uN = $('#uid').val();
+  var msg = $('#inputMsgBox').val();
+  if (msg != '') {
+    if (msg != '' && uN != '') {
+      ws.send(uN + ' : ' + msg);
+    }
+  }
+}
+
+// host = 'localhost:8080';
+// ws = new WebSocket('ws://' + host + '/ws/chat');
+const ws = new SockJS('/ws/chat');
+
 function wsOpen() {
-  host = 'localhost:8080';
-  ws = new WebSocket('ws://' + host + '/ws/chat');
   console.log(ws);
   /** 웹소켓 접속 성공시 실행 */
   ws.onopen = function (message) {
@@ -39,16 +51,5 @@ function getName() {
   console.log(uid);
   if (uid != null || uid.trim() != '') {
     $('#yourMsg').show();
-  }
-}
-
-function send() {
-  var uN = $('#uid').val();
-  var msg = $('#inputMsgBox').val();
-  if (msg != '') {
-    if (msg != '' && uN != '') {
-      ws.send(uN + ' : ' + msg);
-      $('#inputMsgBox').val('');
-    }
   }
 }

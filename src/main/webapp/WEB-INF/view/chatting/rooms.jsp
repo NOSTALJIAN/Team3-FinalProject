@@ -18,20 +18,15 @@
           <div id="container" class="container" style="margin-top: 120px; padding-bottom: 300px;">
 
             <!-- START -->
-            <div class="col-6">
-              <h1>${room.uid}</h1>
-            </div>
             <div>
-              <div id="msgArea" class="col">
-                <div class="input-group mb-3">
-                  <input type="text" id="msg" class="form-control">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
-                  </div>
-                </div>
-              </div>
+              <ul c:each="room : ${list}">
+                <li><a href="@{/chat/room(cid=${room.cid})}">${room.uid}</a></li>
+              </ul>
             </div>
-            <div class="col-6"></div>
+            <form action="@{/chat/room}" method="post">
+              <input type="text" name="name" class="form-control">
+              <button class="btn btn-secondary">개설하기</button>
+            </form>
 
           </div>
       </body>

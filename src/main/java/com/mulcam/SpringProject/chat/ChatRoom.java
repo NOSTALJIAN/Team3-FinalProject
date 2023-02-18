@@ -2,33 +2,37 @@ package com.mulcam.SpringProject.chat;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
-/**
- * 클래스 위에 @Entity 어노테이션 작성 후
- * 클래스 필드 위에 @Id, @Column 어노테이션 작성
- */
-@Entity	//	이 클래스가 Entity라는 것을 알려줌
-@Table(name = "chatroom")
+import org.springframework.web.socket.WebSocketSession;
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChatRoom {
 	
-	@Id	//	Primary Key
-	@GeneratedValue	//	auto_increment 역할
-	private int cid;
-	
-	@Column	//	열
+	private String cid;
 	private String uid;
+	private Set<WebSocketSession> sessions = new HashSet<>();	//	Spring 에서 WebSocket Connection이 맺어진 세션
+	
+	public static ChatRoom create(@NonNull String uid) {
+		ChatRoom created = new ChatRoom();
+		
+		created.cid = UUID.randomUUID().toString();
+		created.uid = uid;
+		return created;
+	}
 	
 	/** 
 	 * Getter, Setter
 	 */
-	public int getCid() {
+	public String getCid() {
 		return cid;
 	}
-	public void setCid(int cid) {
+	public void setCid(String cid) {
 		this.cid = cid;
 	}
 	public String getUid() {
@@ -37,13 +41,19 @@ public class ChatRoom {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
+	public Set<WebSocketSession> getSessions() {
+		return sessions;
+	}
+	public void setSessions(Set<WebSocketSession> sessions) {
+		this.sessions = sessions;
+	}
 	
 	/**
 	 * toString
 	 */
 	@Override
 	public String toString() {
-		return "ChatRoom [cid=" + cid + ", uid=" + uid + "]";
+		return "ChatRoom [cid=" + cid + ", uid=" + uid + ", sessions=" + sessions + "]";
 	}
 
 }
