@@ -11,13 +11,16 @@
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 	<style type="text/css">
 		  table {
-		    width: 1000px;
+		    width: 1300px;
 		    border-top: 1px solid #444444;
 		    border-collapse: collapse;
 		  }
 		  th, td {
 		    border-bottom: 1px solid #444444;
-		    padding: 5px;
+		    padding: 3px;
+		  }
+		  img {
+		  	width: 70px; height: 70px;
 		  }
     </style>
 </head>
@@ -44,14 +47,14 @@
 					<tbody>
 					<c:forEach var="re" items="${receiveMateList}">
 						<tr id="${re.uid}">
-							<td>[프로필]</td>
+							<td><img id="profileImg" src="/img/basicProfile.png" ></td>
 							<td>${re.uid}</td>
 							<td>[관심운동]</td>
 							<td>[성별]</td>
 							<td>[나이]</td>
 							<td>${fn:replace(re.sendTime, 'T', ' ')}</td>
-							<td><button onclick="mateAccept('${re.uid}')" class="btn-hover color-9 write-btn">수락</button></td>
-							<td><button onclick="mateReject('${re.uid}')" class="btn-hover color-8 write-btn">거절</button></td>
+							<td><button onclick="mateAccept('${re.uid}')" class="btn-hover color-9" >수락</button></td>
+							<td><button onclick="mateReject('${re.uid}')" class="btn-hover color-8" >거절</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>

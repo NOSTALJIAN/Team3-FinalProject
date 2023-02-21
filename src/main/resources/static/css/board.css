@@ -105,7 +105,7 @@ select.board-input {
   color: #222;
   margin-bottom: 2rem;
   margin-top: 10px;
-  margin-left: 500px;
+  margin-left: 300px;
   
 }
 
@@ -159,7 +159,7 @@ select.board-input {
 }
 .search-btn {
 	display: block;
-    width: 70%;
+    width: 65%;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;
@@ -202,7 +202,7 @@ select.board-input {
  .board-view-infomation {
 	margin-left: 650px;
 	padding-right: 10px;
-	width: 400px;
+	width: 500px;
 	color: white;
   border-color: rgba(0, 0, 0, 0.418);
   border-radius: 15px;
@@ -251,17 +251,14 @@ select.board-input {
 .board-view-content {
   border: 2px solid black;
   border-radius: 15px;
-  width: 400px;
-  height: 400px;
+  width: 70%;
+  height: 300px;
   position: absolute;
-  left: 26%;
   text-align: left;
 }
 
 .board-view-map {
-	margin-left: 100px;
-	width:100%; height:400px;
-	margin-bottom: 30px;
+	width:60%; height:450px;
 }
 
 .detail-btn {
@@ -320,7 +317,7 @@ input[type='text'].register-input,
 }
 
 .nav-size {
-	font-size: 19px;
+	font-size: 18px;
 }
 
 /* 게시글 목록 디자인 */

@@ -35,7 +35,7 @@
 						</c:if>
 					</div><br>
 					<div class="profilebox bs3-primary">
-						<button for="regProfile" class="btn-hover color-8">업로드</button> 
+						<label for="regProfile" style="color: white;">업로드</label> 
 						<input type="file" id="regProfile" name="regProfile" class="upload-hidden">
 						<!-- <input class="upload-name" value="파일선택" disabled="disabled"> -->
 						<span>jpg, png, gif 파일만 가능</span>

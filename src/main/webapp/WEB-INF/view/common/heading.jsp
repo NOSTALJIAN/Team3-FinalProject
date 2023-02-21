@@ -21,10 +21,9 @@
 	<meta name="HandheldFriendly" content="true">
 	<title>같이운동하러Gogo</title>
 	<link rel="stylesheet" href="/css/theme.min.css">
-	<link rel="stylesheet" href="/css/board.css?q=1">
-
-<link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/sidebars/">
-
+	<link rel="stylesheet" href="/css/board.css?after">
+	<link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/sidebars/">
+ 	<script src="https://kit.fontawesome.com/77ad8525ff.js" crossorigin="anonymous"></script>
 
 <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

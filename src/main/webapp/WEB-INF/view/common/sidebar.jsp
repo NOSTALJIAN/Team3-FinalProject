@@ -7,7 +7,7 @@
     <div class="flex-shrink-0 p-3 border-radius-xl sidebar-border">
       <a href="/" class="text-color d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
         <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-        <span class="fs-5 fw-semibold">마이페이지</span>
+        <span class="fs-5 fw-semibold" onclick="'/user/mypage'">마이페이지</span>
       </a>
       <ul class="list-unstyled ps-0 " >
         <li class="mb-1">

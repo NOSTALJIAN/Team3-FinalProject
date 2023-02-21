@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/sidebars.css">
     <style type="text/css">
 		  table {
-		    width: 1000px;
+		    width: 1100px;
 		    border-top: 1px solid #444444;
 		    border-collapse: collapse;
 		  }

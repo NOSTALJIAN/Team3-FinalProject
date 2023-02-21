@@ -34,11 +34,11 @@
 			</tr>
 			<tr>
 				<th>패스워드</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd" id="pwd" placeholder="*패스워드" maxlength="60" required /></td>
+				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd" id="pwd" placeholder="*비밀번호" maxlength="60" required /></td>
 			</tr>
 			<tr>
 				<th>패스워드 확인</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd2"  id="pwd2" placeholder="*패스워드 확인" maxlength="60" required /></td>
+				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd2"  id="pwd2" placeholder="*비밀번호 확인" maxlength="60" required /></td>
 			</tr>
 			<tr>
 				<th>이름</th>
@@ -67,8 +67,8 @@
 			</tr>
 			<tr>
 				<th>성별</th>
-				<td>여자<input type="radio" name="gender" value="여"  checked/>
-				 남자<input type="radio" name="gender" value="남" />
+				<td>여<input type="radio" name="gender" value="여"  checked/>
+				 남<input type="radio" name="gender" value="남" />
 				</td>
 			</tr>
 			<tr>

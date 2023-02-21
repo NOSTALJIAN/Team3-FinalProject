@@ -16,11 +16,11 @@
 	<div class="container" style=" padding-bottom: 200px; margin-top: 50px;">
 		<div class="row" style="justify-content: space-evenly; margin-left:70px;">
 			<!-- =================== main =================== -->
-			<div class="" >
+			<div class="col-sm-9" >
 				<table class="table table-sm table-borderless" style="margin-left: 150px;">
-					<tr class="d-flex">
+					<tr >
 						<td class="col-7">
-							<h3 style="color: white; margin-left:150px;"><strong>그룹운동 게시판</strong></h3>
+							<h3 style="color: white; margin-left:70px;"><strong>그룹운동 게시판</strong></h3>
 							<div class="board-list">
 								<button type="button" class="btn-hover color-9 fix-position " onclick="location.href='/board/write'">+글쓰기</button>
 							</div>
@@ -40,20 +40,20 @@
 							</select>
 						</td>
 						<td class="col-2" >
-							<input class="form-control me-2" type="search" placeholder="검색 내용" name="q" id="query" width="150px;">
+							<input class="form-control me-2" type="search" placeholder="검색 내용" name="q" id="query">
 						</td>
 						<td class="col-1" >
-							<span class="search-btn" onclick="search()">검색</span>
+							<span class="btn btn-light" onclick="search()">검색</span> 
 						</td>
 					</tr>
 				</table>
 				
-				<div class="container" style="margin-top: -60px;">
+				<div class="container" style="margin-top: 20px;">
 					<div class="row ">
 						<div class="content-list">
 							<c:forEach var="b" items="${blist}">
 							<div class="content-list-col" data-aos="fade-right">
-									<h5 class="mt-5 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
+									<h5 class="mt-2 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">종목 : ${b.bCategory}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">장소 : ${b.bLocation}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
