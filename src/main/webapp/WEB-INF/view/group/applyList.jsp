@@ -43,12 +43,12 @@
 					<tbody>
 					<c:forEach var="apply" items="${applyList}">
 						<tr>
-							<td>${apply.bid}</td>
-							<td>${apply.bTitle}</td>
-							<td>${apply.bCategory}</td>
-							<td>${apply.bLocation}</td>
-							<td>${fn:replace(apply.bAppointment, 'T', ' ')}</td>
-							<td>${apply.bUserCount}</td>
+							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bid}</td>
+							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bTitle}</td>
+							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bCategory}</td>
+							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bLocation}</td>
+							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${fn:replace(apply.bAppointment, 'T', ' ')}</td>
+							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bUserCount}</td>
 							<td><button class="btn-hover color-8 ">참가신청중</button></td>
 						</tr>
 					</c:forEach>
