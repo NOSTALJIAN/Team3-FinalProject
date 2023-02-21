@@ -36,9 +36,11 @@ public interface UserDao {
 	@Select("SELECT uid, uPostcode, uAddr, likeExercise, birthDate, gender, uRating, uLat, uLng, "
 			+ " CONVERT(BIN(likeExercise & (SELECT likeExercise FROM userInfo WHERE uid = #{uid})), CHAR(12)) coincideExer"
 			+ "	FROM userInfo"
-			+ "	WHERE (likeExercise & (SELECT likeExercise FROM userInfo WHERE uid=#{uid})) != 0"
+			+ " WHERE (likeExercise & #{bestExer}) != 0"
+			+ " AND (gender = #{pGender} or '모두' = #{pGender})"
+			+ " AND ((YEAR(CURRENT_TIMESTAMP) - (birthDate/10000)) >= #{minAge} AND (YEAR(CURRENT_TIMESTAMP) - (birthDate/10000)) <= #{maxAge})"
 			+ "	AND uid != #{uid};")
-	List<UserInfo> getCoincideInfo(String uid);
+	List<UserInfo> getCoincideInfo(String uid, int minAge, int maxAge, String pGender, int bestExer);
 
 	@Select("SELECT * from userInfo WHERE uid = #{sessionUid};")
 	UserInfo getUserInfo(String sessionUid);
@@ -71,6 +73,9 @@ public interface UserDao {
 
 	@Update("UPDATE users SET uImage=#{fname} WHERE uid=#{uid}")
 	void profileUpload(String uid, String fname);
+
+	@Select("SELECT * from users")
+	List<User> getUserList();
 
 
 }

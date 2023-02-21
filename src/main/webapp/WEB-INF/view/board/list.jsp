@@ -26,7 +26,7 @@
 							</div>
 						</td>
 						<td class="col-1">
-							<select class="form-select me-2" name="f" id="field" ">
+							<select class="form-select me-2" name="f" id="field">
 								<option value="bCategory" selected>종목</option>
 								<option value="bLocation">장소</option>
 								<option value="bUserCount">인원</option>

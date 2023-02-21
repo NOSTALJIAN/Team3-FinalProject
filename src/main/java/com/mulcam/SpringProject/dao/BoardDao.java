@@ -18,7 +18,7 @@ public interface BoardDao {
 			+ "	ON b.uid=u.uid"
 			+ "	WHERE b.bIsDeleted=0 AND ${field} LIKE #{query}"
 			+ " ORDER BY bid DESC"
-			+ "	LIMIT 10 OFFSET #{offset};")
+			+ "	LIMIT 9 OFFSET #{offset};")
 	public List<Board> getBoardList(int offset, String field, String query);
 	
 	@Select("SELECT b.bid, b.uid, b.bTitle, b.bCategory, b.bLocation, b.bAddr, b.bAppointment, b.bUserCount,"
@@ -28,7 +28,7 @@ public interface BoardDao {
 			+ "	WHERE b.bIsDeleted=0 AND ${field} LIKE #{query}"
 			+ " AND b.bAppointment>=#{startDate} AND b.bAppointment<=#{endDate}"
 			+ " ORDER BY b.bAppointment ASC"
-			+ "	LIMIT 10 OFFSET #{offset};")
+			+ "	LIMIT 9 OFFSET #{offset};")
 	public List<Board> getBoardListByPeriod(int offset, String field, String query, String startDate, String endDate);
 	
 	@Select("SELECT COUNT(bid) FROM board AS b"
