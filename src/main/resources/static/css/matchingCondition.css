@@ -23,7 +23,7 @@ body {
   top: 0;
   bottom: 0;
   border-radius: 5px;
-  background-color: #c6aee7;
+  background-color: rgb(128, 128, 128);
 }
 
 .slider > .range {
@@ -34,7 +34,7 @@ body {
   top: 0;
   bottom: 0;
   border-radius: 5px;
-  background-color: rgb(92, 172, 237);
+  background-color: #04befe;
 }
 
 .slider > .thumb {
@@ -42,7 +42,7 @@ body {
   z-index: 3;
   width: 30px;
   height: 30px;
-  background-color: rgb(92, 172, 237);
+  background-color: #04befe;
   border-radius: 50%;
 }
 
@@ -102,7 +102,7 @@ body {
   top: 0;
   bottom: 0;
   border-radius: 5px;
-  background-color: #c6aee7;
+  background-color: rgb(128, 128, 128);
 }
 
 .slider2 > .range {
@@ -113,7 +113,7 @@ body {
   top: 0;
   bottom: 0;
   border-radius: 5px;
-  background-color: rgb(92, 172, 237) ;
+  background-color: #04befe;
 }
 
 .slider2 > .thumb {
@@ -121,7 +121,7 @@ body {
   z-index: 3;
   width: 30px;
   height: 30px;
-  background-color: rgb(92, 172, 237);
+  background-color: #04befe;
   border-radius: 50%;
 }
 

@@ -53,4 +53,5 @@ public interface BoardDao {
 	
 	@Update("UPDATE board SET bIsDeleted=1 WHERE bid=#{bid}")
 	public void deleteBoard(int bid);
+	
 }

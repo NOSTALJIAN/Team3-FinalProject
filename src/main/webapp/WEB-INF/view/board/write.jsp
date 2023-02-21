@@ -12,15 +12,16 @@
 			<link rel="stylesheet" href="/css/map.css" />
 	</head>
 
-	<body style="margin: 120px ">
+	<body style="margin-bottom: 500px; ">
 		<%@ include file="../common/top.jsp" %>
+		<div style="display: flex;">
 			<div class="container">
 				<div class="inputtb content">
 					<!-- 타이틀 -->
 					<div class="board-title">
 						<table>
 							<tr>
-								<td class="col-6" style="text-align: left;">
+								<td class="col-8">
 									<h3 class="board-title"><strong>게시글 쓰기</strong></h3>
 								</td>
 								<td class="col-2">
@@ -34,7 +35,7 @@
 						<form action="/board/write" class="content-center" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="uid" value="${sessionUid}" />
 							<input type="hidden" name="bAddr" id="bAddr" />
-							<table style="margin-left: 220px">
+							<table style="margin-left: 230px; ">
 								<tr>
 									<td><input style="border: 1px solid #808080;" class="board-input" type="text" placeholder="제목"
 											name="bTitle" maxlength="128" required /></td>
@@ -61,7 +62,7 @@
 								</tr>
 								<tr>
 									<td><input style="border: 1px solid #808080;" class="board-input" type="text"
-											placeholder="*아래지도에서 운동장소를 검색해주세요" name="bLocation" id="bLocation" maxlength="128" required />
+											placeholder="*우측지도에서 운동장소를 검색해주세요" name="bLocation" id="bLocation" maxlength="128" required />
 									</td>
 								</tr>
 								<tr>
@@ -77,7 +78,8 @@
 						</form>
 					</div>
 				</div>
-				<div class="map_wrap" style="margin-top: -150px;">
+			</div>
+				<div class="map_wrap" style="margin-top: 150px; margin-right: 40px;">
 					<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 					<div id="menu_wrap" class="bg_white">
 						<div class="option">
@@ -93,23 +95,23 @@
 						<div id="pagination"></div>
 					</div>
 				</div>
-				<script src="/js/map.js?q=1"></script>
-			</div>
+		</div>
+				
+				
+		<script src="/js/map.js?q=1"></script>
+		<script>
+			// const test = document.querySelector("input[type=datetime-local]");
+			// test.addEventListener("mouseover", () => {
+			// 	console.log(test.value);
+			// 	console.log(test.type);
+			// });
 
-			<script>
-				// const test = document.querySelector("input[type=datetime-local]");
-				// test.addEventListener("mouseover", () => {
-				// 	console.log(test.value);
-				// 	console.log(test.type);
-				// });
-
-				CKEDITOR.replace('bContent', {
-					filebrowserImageUploadUrl: '/board/upload',
-					filebrowserUploadMethod: 'form',
-					height: 400
-				})
-			</script>
-			<%@ include file="../common/top.jsp" %>
+			CKEDITOR.replace('bContent', {
+				filebrowserImageUploadUrl: '/board/upload',
+				filebrowserUploadMethod: 'form',
+				height: 400
+			})
+		</script>
 	</body>
 
 	</html>
