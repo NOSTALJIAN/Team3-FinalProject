@@ -13,37 +13,37 @@
 
 <body class="bg-black text-white mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
 	<%@ include file="../common/top.jsp" %>
-	<div class="container" style="margin: 120px; padding-bottom: 260px;">
+	<div class="container" style=" padding-bottom: 200px; margin-top: 50px;">
 		<div class="row" style="justify-content: space-evenly; margin-left:70px;">
 			<!-- =================== main =================== -->
-			<div class="col-sm-9" >
+			<div class="" >
 				<table class="table table-sm table-borderless" style="margin-left: 150px;">
 					<tr class="d-flex">
-						<td class="col-6" >
-							<h3 style="color: white; margin-left:90px;"><strong>그룹운동 게시판</strong></h3>
+						<td class="col-7">
+							<h3 style="color: white; margin-left:150px;"><strong>그룹운동 게시판</strong></h3>
 							<div class="board-list">
-								<button type="button" class="btn-hover color-8 fix-position " onclick="location.href='/board/write'">+글쓰기</button>
+								<button type="button" class="btn-hover color-9 fix-position " onclick="location.href='/board/write'">+글쓰기</button>
 							</div>
 						</td>
-						<td class="col" style="margin-left:70px;">
-							<select class="board-input" name="f" id="field" style="background-color: white; width: 100px; height: 42px;">
+						<td class="col-1">
+							<select class="form-select me-2" name="f" id="field" ">
 								<option value="bCategory" selected>종목</option>
 								<option value="bLocation">장소</option>
 								<option value="bUserCount">인원</option>
 							</select>
 						</td>
-						<td>
-							<select class="board-input" name="period" id="period" style="background-color: white; width: 100px; height: 42px;">
-								<option value="all" selected>모든 날짜</option>
+						<td class="col-1">
+							<select class="form-select me-2" name="period" id="period" >
+								<option value="all" selected>모든날짜</option>
 								<option value="week">일주일</option>
 								<option value="month">한달</option>
 							</select>
 						</td>
-						<td class="col" >
-							<input class="form-control me-2" type="search" placeholder="검색 내용" name="q" id="query" style="width: 200px;">
+						<td class="col-2" >
+							<input class="form-control me-2" type="search" placeholder="검색 내용" name="q" id="query" width="150px;">
 						</td>
-						<td class="col" >
-							<button class="" onclick="search()" style="width:70px;">검색</button>
+						<td class="col-1" >
+							<span class="search-btn" onclick="search()">검색</span>
 						</td>
 					</tr>
 				</table>
@@ -53,14 +53,12 @@
 						<div class="content-list">
 							<c:forEach var="b" items="${blist}">
 							<div class="content-list-col" data-aos="fade-right">
-								<div class="">
 									<h5 class="mt-5 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">종목 : ${b.bCategory}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">장소 : ${b.bLocation}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">인원 : ${b.bUserCount}명</p>
 									<button class="btn-hover color-8 write-btn" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}">참가신청</button>
-								</div>
 							</div>	
 							</c:forEach>
 						</div>

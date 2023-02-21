@@ -22,10 +22,10 @@
 	</style>
 </head>
 
-<body style="margin-left: 400px; margin-top: 180px; margin-bottom: 100px; background-color: black;" class="register">
+<body style="margin-bottom: 200px; background-color: black; color: white;" class="register">
    	<%@ include file="../common/top.jsp" %>
-	<h3 style="color: white;">회원가입</h3>
-	<hr style="color: white;">
+   	<div style="margin-left: 600px; margin-top: 30px;">
+	<h3 style="color: white;">회원가입</h3><hr>
 	<form name="reg_sub" action="/user/register" method="post" class="mb-auto col-12 text">
 		<table>
 			 <tr>
@@ -98,11 +98,13 @@
 				</td>
 			</tr>
 			<tr style="margin-left: 60px;">		
-				<td><input class="btn-hover color-8" onclick="checked_submit()" type="button" value="회원가입"></td>
+				<td><input class="btn-hover color-9" onclick="checked_submit()" type="button" value="회원가입"></td>
 				<td><input class="btn-hover color-8" type="reset" value="취소"></td>
 			</tr>
 		</table>
 	</form>
+	</div>
+	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	    // 우편번호 찾기 찾기 화면을 넣을 element
@@ -220,6 +222,6 @@
 			}
 		}
 	</script>
-	<%@ include file="../common/top.jsp" %>
+	<%@ include file="../common/bottom.jsp" %>
 </body>
 </html>

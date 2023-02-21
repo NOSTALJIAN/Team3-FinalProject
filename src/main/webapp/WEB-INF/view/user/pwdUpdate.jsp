@@ -5,6 +5,7 @@
 <head>
 	<%@ include file="../common/heading.jsp" %>
 	<link rel="stylesheet" href="/css/board.css">
+	<link rel="stylesheet" href="/css/sidebars.css">
 	<style >
 	body {
 		padding: 10px; margin: 0px;
@@ -21,30 +22,38 @@
 	   }
 	</style>
 </head>
-<body style="margin-left: 400px; margin-top: 180px; margin-bottom: 100px; background-color: black;" class="register">
+<body style=" margin-bottom: 100px; background-color: black;  color: white;" class="register">
 	<%@ include file="../common/top.jsp" %>
-	<h3 style="color: white;">비밀번호 변경</h3>
-	<hr style="color: white;">
-	<form id="pwd_sub" action="/user/pwdUpdate" method="post" class="mb-auto col-12 text">
-		<table>
-			<tr>
-				<th>현재 비밀번호</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd" id="pwd" placeholder="*패스워드" maxlength="60" required /></td>
-			</tr>
-			<tr>
-				<th>새 비밀번호</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="newpwd"  id="newpwd" placeholder="*패스워드 확인" maxlength="60" required /></td>
-			</tr>
-			<tr>
-				<th>새 비밀번호 확인</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="newpwd2"  id="newpwd2" placeholder="*패스워드 확인" maxlength="60" required /></td>
-			</tr>
-			<tr style="margin-left: 60px;">		
-				<td><input class="btn-hover color-8" onclick="checked_submit()" type="button" value="비밀번호 변경"></td>
-				<td><input class="btn-hover color-8" type="reset" value="취소"></td>
-			</tr>
-		</table>
-	</form>
+		<div style="display: flex;">
+			<%@ include file="../common/sidebar.jsp" %>
+			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
+				<h5>비밀번호 변경</h5><hr>
+				<div style="margin-top: 110px; margin-left: 280px;">
+					<form id="pwd_sub" action="/user/pwdUpdate" method="post" class="mb-auto col-12 text">
+						<table>
+							<tr>
+								<th>현재 비밀번호</th>
+								<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd" id="pwd" placeholder="" maxlength="60" required /></td>
+							</tr>
+							<tr>
+								<th>새 비밀번호</th>
+								<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="newpwd"  id="newpwd" placeholder="" maxlength="60" required /></td>
+							</tr>
+							<tr>
+								<th>새 비밀번호 확인</th>
+								<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="newpwd2"  id="newpwd2" placeholder="" maxlength="60" required /></td>
+							</tr>
+							<tr style="margin-left: 60px;">		
+								<td><input class="btn-hover color-9" onclick="checked_submit()" type="button" value="변경"></td>
+								<td><input class="btn-hover color-8" type="reset" value="취소"></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	
+	
 	<script>
 	function checked_submit(){
 		const pwd = document.getElementById('pwd').value; 

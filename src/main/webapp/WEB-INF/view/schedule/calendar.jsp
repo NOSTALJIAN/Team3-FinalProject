@@ -7,6 +7,7 @@
 <html lang="ko">
 <head>
     <%@ include file="../common/heading.jsp" %>
+	<link rel="stylesheet" href="/css/sidebars.css">
     <style>
         th { text-align: center; width: 14.28%;}
     </style>
@@ -68,15 +69,15 @@
     	}
     </script>
 </head>
-<body>
-	<%@ include file="../common/top.jsp" %>
-
-    <div class="container" style="margin-top: 80px;">
+<body style="margin-bottom: 100px; background-color: black; color: white;">
+<%@ include file="../common/top.jsp" %>
+<div style="display: flex;">
+<%@ include file="../common/sidebar.jsp" %>
+    <div class="container" style="margin-top: 40px; margin-left: 30px;">
         <div class="row">
-            
             <!-- =================== main =================== -->
             <div class="col-sm-9">
-            	<h3><strong>일정표</strong></h3>
+            	<h5><strong>일정표</strong></h5>
             	<hr>
                 <div class="d-flex justify-content-between">
                     <div>${today}</div>
@@ -332,5 +333,6 @@
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

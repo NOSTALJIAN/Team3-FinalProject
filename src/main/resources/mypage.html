@@ -23,11 +23,24 @@
 	<title>같이운동하러Gogo</title>
 	<link rel="stylesheet" href="../resources/static/css/theme.min.css">
   <link rel="stylesheet" href="../resources/static/css/board.css">
+  <link rel="stylesheet" href="../resources/static/css/sidebars.css">
 
 <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet"> -->
  
+
+
+<link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/sidebars/">
+<link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
 <style>
 /* * {
 
@@ -78,12 +91,66 @@ font-family: 'Jua', sans-serif;
        url('/fonts/inter-v12-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    
+
+
 </style>
 
 
 </head>
 
-<body class="bg-black text-white mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
+<body class="bg-white text-black mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
     <!--NavBar-->
 	<nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-2" tabindex="0" style="height: 90px">
         <div class="container">
@@ -160,56 +227,113 @@ font-family: 'Jua', sans-serif;
     <!--NavBar-->
 
     <!--Main-->
+  <div style="display: flex;">
+    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px; margin-top: 150px;">
+      <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+        <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+        <span class="fs-5 fw-semibold">Mypage</span>
+      </a>
+      <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+            개인정보
+          </button>
+          <div class="collapse show" id="home-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="/user/profile" class="link-dark d-inline-flex text-decoration-none rounded">프로필 수정</a></li>
+              <li><a href="/user/pwdUpdate" class="link-dark d-inline-flex text-decoration-none rounded">비밀번호 변경</a></li>
+              <li><a href="/user/update" class="link-dark d-inline-flex text-decoration-none rounded">개인정보 변경</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="mb-1">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#match-collapse" aria-expanded="false">
+            운동친구
+          </button>
+          <div class="collapse" id="match-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="/matching/condition" class="link-dark d-inline-flex text-decoration-none rounded">매칭조건 설정</a></li>
+              <li><a href="/user/update" class="link-dark d-inline-flex text-decoration-none rounded">선택운동 변경</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="mb-1">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+            친구관리
+          </button>
+          <div class="collapse" id="dashboard-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="/mate/addMateForm" class="link-dark d-inline-flex text-decoration-none rounded">보낸 친구</a></li>
+              <li><a href="/mate/receiveMateForm" class="link-dark d-inline-flex text-decoration-none rounded">받은 친구</a></li>
+              <li><a href="/matching/list" class="link-dark d-inline-flex text-decoration-none rounded">친구 목록</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="mb-1">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+            그룹운동
+          </button>
+          <div class="collapse" id="orders-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="/boardMypage/myWrite" class="link-dark d-inline-flex text-decoration-none rounded">내가쓴 게시글</a></li>
+              <li><a href="/boardMypage/applyList" class="link-dark d-inline-flex text-decoration-none rounded">신청현황</a></li>
+              <li><a href="/boardMypage/applyDone" class="link-dark d-inline-flex text-decoration-none rounded">신청완료</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="mb-1">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#schedule-collapse" aria-expanded="false">
+            운동일정
+          </button>
+          <div class="collapse" id="schedule-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">일정표</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="border-top my-3"></li>
+        <li class="mb-1">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+            Account
+          </button>
+          <div class="collapse" id="account-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">로그아웃</a></li>
+              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
+              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Settings</a></li>
+              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Sign out</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
     
-    <!-- <div class="mypage-container">
-      <div class="mypage-list">프로필 설정</div>
-      <div class="mypage-list">회원정보 수정</div>
-      <div class="mypage-list">1:1운동 친구관리</div>
-      <div class="mypage-list">1:1운동 매칭설정</div>
-      <div class="mypage-list">그룹운동 관리</div>
-      <div class="mypage-list">메세지</div>
-      <div class="mypage-list"></div>
-    </div> -->
 
     <div class="container" style="margin: 120px; padding-bottom: 260px;">
       <div class="row" style="justify-content: space-evenly; margin-left:70px;">
         <!-- =================== main =================== -->
-        <div class="" >
-          <h3 style=" margin-left: 10px;"><strong>MyPage</strong></h3>
-          <hr>
-          <div class="myPage" style=" margin-left: 110px;">
-            <div class="myPageBox box-size double" >
-              프로필사진 수정
-              <div class="mypage-btn" style="margin-top: 10px;"><button class="btn-hover color-8 write-btn" onclick="location.href='#'">프로필</button></div>
-            </div>
-            <div class="content-list-mypage box-size double" >
-              회원정보 수정
-              <div class="mypage-btn" style="margin-top: 10px;"><button class="btn-hover color-8 write-btn" onclick="location.href='#'">정보수정</button></div>
-            </div>
-            <div class="content-list-mypage box-size double" >
-              1:1운동 매칭조건 설정
-              <div class="mypage-btn" style="margin-top: 10px;"><button class="btn-hover color-8 write-btn" onclick="location.href='/matching/condition'">매칭조건</button></div>
-            </div>
-            <div class="content-list-mypage box-size double" >
-              1:1운동 친구관리
-              <div class="mypage-btn" style="margin-top: 10px;"><button class="btn-hover color-8 write-btn" onclick="location.href='/mate/addMateForm'">친구관리</button></div>
-            </div>
-            <div class="content-list-mypage box-size double" >
-              그룹운동 관리
-              <div class="mypage-btn" style="margin-top: 10px;"><button class="btn-hover color-8 write-btn" onclick="location.href='/group/myWrite'">그룹운동</button></div>
-            </div>
-            <div class="content-list-mypage box-size double" >
-              운동일정 관리
-              <div class="mypage-btn" style="margin-top: 10px;"><button class="btn-hover color-8 write-btn" onclick="location.href='/schedule/calendar'">운동일정</button></div>
-            </div>
-          </div>
-          
+        <div class="col-sm-9" >
+
+
+
         </div>
       </div>
     </div>
+  </div>
 
+    <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="sidebars.js"></script>
+    <script>
+/* global bootstrap: false */
+(() => {
+  'use strict'
+  const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  tooltipTriggerList.forEach(tooltipTriggerEl => {
+    new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+})()
 
-	
+    </script>
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/aos.js"></script>
 </body>
