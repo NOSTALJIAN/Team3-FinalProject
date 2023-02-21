@@ -28,6 +28,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     	
     	registry.setPathMatcher(new AntPathMatcher("."));	//	url을 chat/room/3 -> chat.room.3으로 참조하기 위해
     	registry.enableStompBrokerRelay("/sub", "/queue", "/topic", "/exchange", "/amq/queue")
+    			.setRelayPort(61613)
     			.setSystemLogin("guest")
     			.setSystemPasscode("guess")
     			.setClientLogin("guest")

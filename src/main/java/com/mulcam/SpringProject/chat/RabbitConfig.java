@@ -58,7 +58,7 @@ public class RabbitConfig {
     	SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
     	container.setConnectionFactory(connectionFactory());
     	container.setQueueNames(CHAT_QUEUE_NAME);
-    	container.setMessageListener(null);
+//    	container.setMessageListener(null);
     	return container;
     }
     

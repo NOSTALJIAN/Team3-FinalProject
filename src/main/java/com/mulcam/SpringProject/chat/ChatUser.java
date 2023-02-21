@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
@@ -24,7 +24,7 @@ public class ChatUser {
 	
     @EqualsAndHashCode.Include
     @Id
-    @Column(name = "id")
+    @Column(name = "uid")
     private String id;
 
     @Column(name = "pwd")
