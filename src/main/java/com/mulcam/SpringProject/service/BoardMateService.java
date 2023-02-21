@@ -14,6 +14,8 @@ public interface BoardMateService {
 	void apply(BoardMate bMate);
 
 	void applyCancel(BoardMate bMate);
+	
+	void applyCancel2(BoardMate bMate);
 
 	void applyAccept(BoardMate bMate);
 
@@ -23,6 +25,11 @@ public interface BoardMateService {
 
 	List<Board> getApplyList(String uid);
 
-	List<UserInfo> getReceiveList(String uid);
+	List<BoardMate> getReceiveList(String uid, int bid);
+
+	List<Board> getMyList(String uid);
+
+	List<Board> getDoneList(String uid);
+
 
 }

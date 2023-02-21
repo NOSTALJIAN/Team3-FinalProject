@@ -45,13 +45,13 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="" items="">
+				<c:forEach var="done" items="${applyDoneList}">
 					<tr>
-						<td>[게시글제목]</td>
-						<td>[운동종목]</td>
-						<td>[운동장소]</td>
-						<td>[운동시간]</td>
-						<td>[총인원]</td>
+						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bTitle}</td>
+						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bCategory}</td>
+						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bLocation}</td>
+						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${fn:replace(done.bAppointment, 'T', ' ')}</td>
+						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bUserCount}</td>
 						<td><button class="btn-hover color-8 write-btn">[그룹채팅 버튼]</button></td>
 					</tr>
 				</c:forEach>

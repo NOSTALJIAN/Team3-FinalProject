@@ -32,7 +32,7 @@
 		<%@ include file="../common/sidebar.jsp" %>
 			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
 			<h4>신청자 목록</h4><hr>
-    		<h5>[게시글 제목]</h5>
+    		<h5>[게시글 번호]</h5>
     		<div style="margin-top: 30px;">
 				<table>
 					<thead>
@@ -49,15 +49,15 @@
 					</thead>
 					<tbody>
 					<c:forEach var="re" items="${receiveList}">
-						<tr>
+						<tr id="${re.uid}">
 							<td>[프로필]</td>
 							<td>${re.uid}</td>
 							<td>${re.likeExercise}</td>
 							<td>${re.gender}</td>
 							<td>${re.birthDate}</td>
-							<td>[신청시간]</td>
-							<td><button onclick="mateAccept('${re.uid}')" class="btn-hover color-8 write-btn">수락</button></td>
-							<td><button onclick="mateReject('${re.uid}')" class="btn-hover color-8 write-btn">거절</button></td>
+							<td>${fn:replace(re.sendTime, 'T', ' ')}</td>
+							<td><button onclick="applyAccept('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn">수락</button></td>
+							<td><button onclick="applyReject('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn">거절</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -65,36 +65,31 @@
 			</div>
 		</div>
 	</div>
-		<!-- 참가 신청 -->
-		<script>
-			function apply(bid, uid){
-				  const applybid = document.getElementById(bid);
-				  console.log(bid, uid);
-				  if (applybid.innerText == '참가신청'){
-					  $.ajax({
-						type:'GET',
-						url: '/group/apply',
-						data: {'bid': bid, 'receiveUser': uid},
-						success: function(result){
-							applybid.innerText = result;
-							console.log(result);
-							applybid.style.cssText = 'background-color:black; color:white;'
-						}
-					  });
-				  }
-				  else if (applybid.innerText == '참가신청중'){
-					  $.ajax({
-						type:'GET',
-						url: '/group/applyCancel',
-						data: {'bid': bid, 'receiveUser': uid},
-						success: function(result){
-							applybid.innerText = result;
-							console.log(result);
-							applybid.style.cssText = 'background-color:white; color:black;'
-						}
-					  });
-				  }
-			  }
-		</script>
+	<script>
+		function applyAccept(uid, bid){
+			const mateuid1 = document.getElementById(uid);
+			const applybid = document.getElementById(bid);
+			console.log(bid);
+			$.ajax({
+					type:'GET',
+					url: '/group/applyAccept',
+					data: {'receiveUser': uid, 'bid': bid },
+					success: function(result){
+						mateuid1.style.display='none';
+					}
+				});
+			}
+		function applyReject(uid, bid){
+			const mateuid2 = document.getElementById(uid);
+			$.ajax({
+					type:'GET',
+					url: '/group/applyReject',
+					data: {'receiveUser': uid, 'bid': bid},
+					success: function(result){
+						mateuid2.style.display='none';
+					}
+				});
+			}
+	</script>
 </body>
 </html>
