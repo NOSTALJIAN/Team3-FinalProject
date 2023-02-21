@@ -41,7 +41,6 @@ public class MatchingUtill {
 		String[] exerciseList = {"축구", "농구", "야구", "E-sports", "등산", "당구", "볼링", "싸이클", "테니스", "조깅", "수영", "헬스"};
 		for (String i : exerciseList) {
 			if (bestExercise.equals(i)) {
-				System.out.println("출력나옴");
 				break;
 			}
 			bestExer = bestExer*2;
