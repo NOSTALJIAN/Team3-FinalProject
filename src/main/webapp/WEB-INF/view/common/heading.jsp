@@ -23,6 +23,9 @@
 	<link rel="stylesheet" href="/css/theme.min.css">
 	<link rel="stylesheet" href="/css/board.css?q=1">
 
+<link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/sidebars/">
+
+
 <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet"> -->
@@ -76,6 +79,17 @@ font-family: 'Jua', sans-serif;
        url('/fonts/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
        url('/fonts/inter-v12-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-
+.bg-primary {
+  background-color: #5e72e4 !important;
+}
+.border-radius-xl {
+    border-radius: 1rem;
+}
+.navbar-main {
+    transition: box-shadow 0.25s ease-in, background-color 0.25s ease-in;
+}
+.dark-version {
+background-color : #051139 !important;
+}
 </style>
 

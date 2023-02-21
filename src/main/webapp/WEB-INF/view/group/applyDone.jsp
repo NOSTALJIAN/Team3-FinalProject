@@ -8,86 +8,31 @@
 	<title>그룹운동 마이페이지</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/sidebars.css">
 <style>
 .frame {
   width: 90%;
   margin: 40px auto;
   text-align: center;
 }
-button {
-  margin: 20px;
-  outline: none;
-}
-.custom-btn {
-  width: 130px;
-  height: 40px;
-  padding: 10px 25px;
-  border: 2px solid #000;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-}
-
-/* 5 */
-.btn-5 {
-  background: #000;
-  color: #fff;
-  line-height: 42px;
-  padding: 0;
-  border: none;
-}
-.btn-5:hover {
-  background: transparent;
-  color: #000;
-   box-shadow:
-   -7px -7px 20px 0px #fff9,
-   -4px -4px 5px 0px #fff9,
-   7px 7px 20px 0px #0002,
-   4px 4px 5px 0px #0001;
-}
-.btn-5:before,
-.btn-5:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #000;
-  transition:400ms ease all;
-}
-.btn-5:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-.btn-5:hover:before,
-.btn-5:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
+ table {
+    width: 1000px;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
 </style>
 </head>
-<body>
+<body style="margin-bottom: 100px; background-color: black; color: white;">
 	<%@ include file="../common/top.jsp" %>
-	 <div class="container" style="margin-top: 150px;">
-         <div class="row frame">
-            <div class="col custom-btn btn-5">
-                <a class="nav-link fs-5" href="/boardMypage/myWrite" aria-label="A sample content page">작성글</a></div>
-            <div class="col custom-btn btn-5">
-                <a class="nav-link fs-5" href="/boardMypage/applyList" aria-label="A sample content page">신청글</a></div>
-            <div class="col custom-btn btn-5">
-                <a class="nav-link fs-5" href="/boardMypage/applyDone" aria-label="A sample content page">신청완료</a></div>
-        </div>
-    </div>
-    <div class="mypage">
-    	<h3>그룹운동 신청완료 목록</h3>
-    	<h4>[게시글 제목]</h4>
+	<div style="display: flex;">
+		<%@ include file="../common/sidebar.jsp" %>
+		<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
+			<h5>그룹운동 신청완료</h5>
+			<div style="margin-top: 30px;">
 			<table>
 				<thead>
 					<tr>
@@ -113,5 +58,7 @@ button {
 				</tbody>
 			</table>
 		</div>
+	</div>
+</div>
 </body>
 </html>
