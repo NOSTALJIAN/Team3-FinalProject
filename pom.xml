@@ -70,13 +70,16 @@
 		
 		
 		<!-- jian add -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-		<!--
+		<!-- https://mvnrepository.com/artifact/org.springframework.session/spring-session-data-redis -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-core</artifactId>
+		    <groupId>org.springframework.session</groupId>
+		    <artifactId>spring-session-data-redis</artifactId>
 		</dependency>
-		-->
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit -->
 		<dependency>
 		    <groupId>org.springframework.amqp</groupId>
@@ -93,23 +96,11 @@
 		  <artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<!-- lombok -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-websocket</artifactId>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
 		    <artifactId>lombok</artifactId>
 		    <scope>provided</scope>
-		</dependency>
-		<!-- h2 -->
-		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
-		<dependency>
-		    <groupId>com.h2database</groupId>
-		    <artifactId>h2</artifactId>
-		    <scope>test</scope>
 		</dependency>
 		<!-- Web Socket -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
@@ -130,45 +121,6 @@
 		    <groupId>org.webjars</groupId>
 		    <artifactId>stomp-websocket</artifactId>
 		    <version>2.3.4</version>
-		</dependency>
-		<!-- freemarker -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker -->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-freemarker</artifactId>
-		</dependency>
-		<!-- bootstrap -->
-		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
-		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>bootstrap</artifactId>
-		    <version>5.2.3</version>
-		</dependency>
-		<!-- vue -->
-		<!-- https://mvnrepository.com/artifact/org.webjars.npm/vue -->
-		<dependency>
-		    <groupId>org.webjars.npm</groupId>
-		    <artifactId>vue</artifactId>
-		    <version>3.3.0-alpha.4</version>
-		</dependency>
-		<!-- axios -->
-		<!-- https://mvnrepository.com/artifact/org.webjars.npm/axios -->
-		<dependency>
-		    <groupId>org.webjars.npm</groupId>
-		    <artifactId>axios</artifactId>
-		    <version>1.3.2</version>
-		</dependency>
-		<!-- gson -->
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-		    <groupId>com.google.code.gson</groupId>
-		    <artifactId>gson</artifactId>
-		</dependency>
-		<!-- persistence -->
-		<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
-		<dependency>
-		    <groupId>javax.persistence</groupId>
-		    <artifactId>javax.persistence-api</artifactId>
 		</dependency>
 
 		<dependency>
