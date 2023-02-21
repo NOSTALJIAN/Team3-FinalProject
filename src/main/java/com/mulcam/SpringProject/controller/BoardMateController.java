@@ -53,7 +53,7 @@ public class BoardMateController {
 		String user = userSession.getUid();
 		
 		BoardMate bMate = new BoardMate(bid, user, receiveUser);
-		service.applyCancel(bMate);
+		service.applyCancel2(bMate);
 	}
 	
 	/** 운동 참가 수락*/
@@ -72,18 +72,39 @@ public class BoardMateController {
 		String uid = userSession.getUid();
 		List<Board> applyList = service.getApplyList(uid);
 		
+		System.out.println(applyList);
 		model.addAttribute("applyList", applyList);
 		return "group/applyList";
 	}
 	
 	/** 운동 참가 수락/거절창 */
 	@GetMapping("/applyPerson")
-	public String receiveForm(Model model) {
+	public String receiveForm(HttpServletRequest req, Model model) {
 		String uid = userSession.getUid();
-		List<UserInfo> receiveList = service.getReceiveList(uid);
-		System.out.println(uid);
-		System.out.println(receiveList);
+		int bid = Integer.parseInt(req.getParameter("bid"));
+
+		List<BoardMate> receiveList = service.getReceiveList(uid, bid);
 		model.addAttribute("receiveList", receiveList);
 		return "group/applyPerson";
+	}
+	
+	/** 내가 쓴 게시글 보기 */
+	@GetMapping("/myWrite")
+	public String myWriteForm(Model model) {
+		String uid = userSession.getUid();
+		List<Board> myList = service.getMyList(uid);
+		model.addAttribute("myList", myList);
+		return "group/myWrite";
+	}
+	
+	/** 신청 완료 게시글 목록 */
+	@GetMapping("/applyDone")
+	public String applyDoneForm(Model model) {
+		String uid = userSession.getUid();
+		List<Board> applyDoneList = service.getDoneList(uid);
+		System.out.println(uid);
+		System.out.println("***applyDoneList: " + applyDoneList);
+		model.addAttribute("applyDoneList", applyDoneList);
+		return "group/applyDone";
 	}
 }

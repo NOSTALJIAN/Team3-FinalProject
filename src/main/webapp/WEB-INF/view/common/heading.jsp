@@ -21,7 +21,7 @@
 	<meta name="HandheldFriendly" content="true">
 	<title>같이운동하러Gogo</title>
 	<link rel="stylesheet" href="/css/theme.min.css">
-	<link rel="stylesheet" href="/css/board.css?q=1">
+	<link rel="stylesheet" href="/css/board.css?after">
 
 <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/sidebars/">
 

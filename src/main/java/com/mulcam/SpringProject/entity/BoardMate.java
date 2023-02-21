@@ -7,6 +7,10 @@ public class BoardMate {
 	private String uid;
 	private String receiveUser;
 	private LocalDateTime sendTime;
+	private int likeExercise;
+	private int birthDate;
+	private String gender;
+	private String bTitle;
 	
 	public BoardMate() {}
 	
@@ -25,6 +29,20 @@ public class BoardMate {
 		this.receiveUser = receiveUser;
 		this.sendTime = sendTime;
 	}
+	
+	public BoardMate(int bid, String uid, String receiveUser, LocalDateTime sendTime, int likeExercise, int birthDate,
+			String gender, String bTitle) {
+		super();
+		this.bid = bid;
+		this.uid = uid;
+		this.receiveUser = receiveUser;
+		this.sendTime = sendTime;
+		this.likeExercise = likeExercise;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.bTitle = bTitle;
+	}
+
 	public int getBid() {
 		return bid;
 	}
@@ -49,10 +67,44 @@ public class BoardMate {
 	public void setSendTime(LocalDateTime sendTime) {
 		this.sendTime = sendTime;
 	}
+	
+	public int getLikeExercise() {
+		return likeExercise;
+	}
+
+	public void setLikeExercise(int likeExercise) {
+		this.likeExercise = likeExercise;
+	}
+
+	public int getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(int birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	public String getbTitle() {
+		return bTitle;
+	}
+
+	public void setbTitle(String bTitle) {
+		this.bTitle = bTitle;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardMate [bid=" + bid + ", uid=" + uid + ", receiveUser=" + receiveUser + ", sendTime=" + sendTime
-				+ "]";
+				+ ", likeExercise=" + likeExercise + ", birthDate=" + birthDate + ", gender=" + gender + ", bTitle="
+				+ bTitle + "]";
 	}
 	
 }

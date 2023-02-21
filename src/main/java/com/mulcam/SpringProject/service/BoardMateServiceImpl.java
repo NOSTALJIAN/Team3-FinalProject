@@ -31,6 +31,11 @@ public class BoardMateServiceImpl implements BoardMateService {
 	public void applyCancel(BoardMate bMate) {
 		bMateDao.applyCancel(bMate);
 	}
+	
+	@Override
+	public void applyCancel2(BoardMate bMate) {
+		bMateDao.applyCancel2(bMate);
+	}
 
 	@Override
 	public void applyAccept(BoardMate bMate) {
@@ -57,8 +62,20 @@ public class BoardMateServiceImpl implements BoardMateService {
 	}
 
 	@Override
-	public List<UserInfo> getReceiveList(String uid) {
-		List<UserInfo> list = bMateDao.getReceiveList(uid);
+	public List<BoardMate> getReceiveList(String uid, int bid) {
+		List<BoardMate> list = bMateDao.getReceiveList(uid, bid);
+		return list;
+	}
+
+	@Override
+	public List<Board> getMyList(String uid) {
+		List<Board> list = bMateDao.getMyList(uid);
+		return list;
+	}
+
+	@Override
+	public List<Board> getDoneList(String uid) {
+		List<Board> list = bMateDao.getDoneList(uid);
 		return list;
 	}
 	

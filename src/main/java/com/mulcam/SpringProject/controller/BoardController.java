@@ -81,10 +81,10 @@ public class BoardController {
 		model.addAttribute("sportsArray", sportsArray);
 		
 		int totalBoardNo = bsv.getBoardCount("bid", "");
-		int totalPages = (int) Math.ceil(totalBoardNo / 10.);
+		int totalPages = (int) Math.ceil(totalBoardNo / 9.);
 		
-		int startPage = (int)(Math.ceil((page-0.5)/10) - 1) * 10 + 1;
-		int endPage = Math.min(totalPages, startPage + 9);
+		int startPage = (int)(Math.ceil((page-0.5)/9) - 1) * 9 + 1;
+		int endPage = Math.min(totalPages, startPage + 8);
 		List<String> pageList = new ArrayList<>();
 		for (int i = startPage; i <= endPage; i++) 
 			pageList.add(String.valueOf(i));
