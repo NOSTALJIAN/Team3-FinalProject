@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
 </head>
 
 <body>
@@ -14,7 +13,7 @@
     <div class="container">
       <div>
         <ul th:each="room : ${list}">
-          <li><a th:href="@{/chat/room(cid=${room.cid})}">[[${room.uid}]]</a></li>
+          <li><a th:href="@{/chat/room(roomId=${room.cid})}">[[${room.uid}]]</a></li>
         </ul>
       </div>
     </div>
@@ -27,10 +26,10 @@
   <script th:inline="javascript">
     $(document).ready(function () {
 
-      var uid = [[${ uid }]];
+      var roomName = [[${ roomName }]];
 
-      if (uid != null)
-        alert(uid + "방이 개설되었습니다.");
+      if (roomName != null)
+        alert(roomName + "방이 개설되었습니다.");
 
       $(".btn-create").on("click", function (e) {
         e.preventDefault();
@@ -45,7 +44,6 @@
 
     });
   </script>
-
 </body>
 
 </html>

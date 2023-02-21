@@ -36,9 +36,6 @@ public class Message {
 	@Column
 	private String cid;
 
-	@Column
-	private MessageType mType;
-
 	/**
 	 * Getter, Setter
 	 */
@@ -106,13 +103,6 @@ public class Message {
 		this.cid = cid;
 	}
 
-	public MessageType getmType() {
-		return mType;
-	}
-	
-	public void setmType(MessageType mType) {
-		this.mType = mType;
-	}
 
 	/**
 	 * toString
@@ -121,7 +111,7 @@ public class Message {
 	public String toString() {
 		return "Message [mid=" + mid + ", mSender=" + mSender + ", mReceiver=" + mReceiver + ", mContent=" + mContent
 				+ ", mSendTime=" + mSendTime + ", mRegTime=" + mRegTime + ", mConfirm=" + mConfirm + ", cid=" + cid
-				+ ", mType=" + mType + "]";
+				+ "]";
 	}
 
 }
