@@ -32,7 +32,6 @@ public class MatchingController {
 	/** 매칭 페이지*/
 	@GetMapping("/list")
 	public String register(HttpSession session, Model model) {
-		long startTime = System.currentTimeMillis();
 		// login안했으면 로그인페이지로(임시)
 		String uid = userSession.getUid();
 		if (uid == null)
@@ -43,10 +42,6 @@ public class MatchingController {
 		
 		// 매칭리스트 호출
 		List<MatchingUsers> matchingList = matchingUtill.matchingList(uid);
-		
-		long stopTime = System.currentTimeMillis();
-		long elapsedTime = stopTime - startTime;
-		System.out.println("걸린시간: "+elapsedTime); 
 		
 		model.addAttribute("matchingList", matchingList);
 		return "matching/list";
