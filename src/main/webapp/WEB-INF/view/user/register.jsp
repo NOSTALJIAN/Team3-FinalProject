@@ -30,7 +30,7 @@
 		<table>
 			 <tr>
 				<th>아이디</th>
-				<td><input style="width: 250px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" placeholder="*아이디" maxlength="12" required /></td>
+				<td><input style="width: 250px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" id="uid" placeholder="*아이디" maxlength="12" required /></td>
 			</tr>
 			<tr>
 				<th>패스워드</th>
@@ -42,11 +42,11 @@
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="uname" placeholder="*이름" maxlength="10" required /></td>
+				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="uname" id="uname" placeholder="*이름" maxlength="10" required /></td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" placeholder="*이메일" maxlength="40"  />
+				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" id="email" placeholder="*이메일" maxlength="40"  />
 				</td>
 			</tr>
 			<tr>
@@ -57,7 +57,7 @@
 			</tr> 
 			<tr>
 				<th>휴대폰번호</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="tel" name="phoneNum" placeholder="('-'없이 번호만 입력)" maxlength="40" />
+				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="tel" name="phoneNum" id="phoneNum" placeholder="('-'없이 번호만 입력)" maxlength="40" />
 				</td>
 			</tr>
 			<tr>
@@ -201,20 +201,44 @@
 			}
 		}
 		function checked_submit(){
-			
+			const uid = $('#uid').val();
+			console.log(uid);
 			const pwd = $('#pwd').val();
-			var checked_num = $("input[name=likeExercise]:checked").length;
-			//const pwd = $('#pwd').val();
 			const pwd2 = $('#pwd2').val();
+			var checked_num = $("input[name=likeExercise]:checked").length;
+			const uname = $('#uname').val();
+			console.log(uname);
+			const email = $('#email').val();
+			const phoneNum = $('#phoneNum').val();
 			const birthDate = $('#birthDate').val();
-			if (pwd != pwd2) {
-				alert("비밀번호가 일치하지 않습니다.");
+			const addr = $('#addr').val();
+			const detailAddr = $('#detailAddr').val();
+			if (uid == '') {
+				alert('아이디를 입력해 주세요');
+				return false;
+			} else if (pwd != pwd2) {
+				alert('비밀번호가 일치하지 않습니다.');
+				return false;
+			} else if (uname == '') {
+				alert('이름을 입력해주세요');
+				return false;
+			} else if (email == '') {
+				alert('이메일을 입력해주세요');
+				return false;
+			} else if (phoneNum.length != 11) {
+				alert('핸드폰 번호 11자리를 입력해주세요');
 				return false;
 			} else if (birthDate.length != 8) {
-				alert("생년월일 8자리를 입력해주세요");
+				alert('생년월일 8자리를 입력해주세요');
 				return false;		
+			}  else if (addr == '') {
+				alert('주소를 입력해주세요');
+				return false;
+			} else if (detailAddr == '') {
+				alert('상세주소 입력해주세요');
+				return false;
 			} else if(checked_num < 3){
-				alert("체크박스를 3개이상 선택해 주세요");
+				alert('체크박스를 3개이상 선택해 주세요');
 				return false;
 			} else {
 				const reg_sub = document.reg_sub;

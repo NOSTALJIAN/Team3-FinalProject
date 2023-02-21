@@ -37,15 +37,25 @@ public class MatchingUtill {
 		// 좋아하는 운동과 필터링용
 		MatchingCondition mC = service.getCondition(sessionUid);
 		String bestExercise = mC.getBestExercise();
+		int bestExer = 1;
+		String[] exerciseList = {"축구", "농구", "야구", "E-sports", "등산", "당구", "볼링", "싸이클", "테니스", "조깅", "수영", "헬스"};
+		for (String i : exerciseList) {
+			if (bestExercise.equals(i)) {
+				break;
+			}
+			bestExer = bestExer*2;
+		}
+		
 		int minAge = mC.getMinAge();
 		int maxAge = mC.getMaxAge();
 		int minDistance = mC.getMinDistance();
 		int maxDistance = mC.getMaxDistance();
 		String pGender = mC.getpGender();
 		
-		
 		// 좋아하는 운동이 하나라도 일치하는 사람들의 리스트
-		List<UserInfo> coincideList = service.getCoincideInfo(sessionUid);
+		//TODO: MySQL에서 필터링 기능추가 
+		// 필요 데이터 : uid, 성별, birthDate, bestExer, 
+		List<UserInfo> coincideList = service.getCoincideInfo(sessionUid, minAge, maxAge, pGender, bestExer);
 		List<MatchingUsers> matchingList = new ArrayList<>();
 		for (UserInfo ui : coincideList) {
 			String uid = ui.getUid();
@@ -58,13 +68,9 @@ public class MatchingUtill {
 			if (confirmNum2 >=1)
 				continue;
 			
+			// 성별
 			String gender = ui.getGender();
-			//성별 필터링
-			if (!pGender.equals(gender)) {
-				if (!pGender.equals("모두"))
-					continue;
-			}
-			
+			// 점수
 			float uRating = ui.getuRating();
 			// 거리계산
 			double lat2 = ui.getuLat();
@@ -83,17 +89,11 @@ public class MatchingUtill {
 			
 			// 나이계산
 			int age = year - (ui.getBirthDate()/10000);
-			// 나이 필터링
-			if (age <= minAge || maxAge <= age) {
-				continue;
-			}
-			
+
 			// 관심운동 목록 가져오기
 			String likeExercise = service.getLikeExercise(uid);
 			List<String> likeExerList = exerciseUtill.findExercise(likeExercise);
 			
-			if(likeExerList.contains(bestExercise) == false)
-				continue;
 			// 이름 가져오기
 			String uname = service.getUname(uid);
 			// 프로필사진 가져오기
