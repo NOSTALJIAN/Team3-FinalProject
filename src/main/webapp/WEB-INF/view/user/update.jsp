@@ -5,6 +5,7 @@
 <head>
 	<%@ include file="../common/heading.jsp" %>
 	<link rel="stylesheet" href="/css/board.css">
+	<link rel="stylesheet" href="/css/sidebars.css">
 	<style >
 	body {
 		padding: 10px; margin: 0px;
@@ -21,69 +22,76 @@
 	   }
 	</style>
 </head>
-<body style="margin-left: 400px; margin-top: 180px; margin-bottom: 100px; background-color: black;" class="register">
+<body style="margin-bottom: 100px; background-color: black; color: white;" class="register">
 	<%@ include file="../common/top.jsp" %>
-	<h3 style="color: white;">회원 정보 수정</h3>
-	<hr style="color: white;">
-	<form name="reg_sub" action="/user/update" method="post" class="mb-auto col-12 text">
-		<input type="hidden" id="likeExerList" value="${likeExerList}"/>
-		<table>
-			<tr>
-				<th>이메일</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" value="${user.email}" maxlength="40"  />
-				</td>
-			</tr>
-			<tr>
-				<th>이메일 수신</th>
-				<c:if test="${user.emailCheck eq 1}">
-				<td>수신<input type="radio" name="emailCheck" value="1" checked/>
-				 수신거부<input type="radio" name="emailCheck" value="0"/>
-				</td>
-				</c:if>
-				<c:if test="${user.emailCheck eq 0}">
-				<td>수신<input type="radio" name="emailCheck" value="1"/>
-				 수신거부<input type="radio" name="emailCheck" value="0" checked/>
-				</td>
-				</c:if>
-			</tr> 
-			<tr>
-				<th>휴대폰번호</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="tel" name="phoneNum" value="${user.phoneNum}" maxlength="40" />
-				</td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td><input class="btn-hover color-8" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" />
-				<input class="form-control  bg-gray-800 border-dark" type="text" id="postcode" name="postcode" value="${userInfo.uPostcode}" />
-				<br><input class="form-control  bg-gray-800 border-dark" type="text" id="addr" name="addr" value="${userInfo.uAddr}"/>
-				<br><input class="form-control  bg-gray-800 border-dark" type="text" id="detailAddr" name="detailAddr" value="${userInfo.uDetailAddr}"/>
-				<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
-				<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
-				</div>
-				</td>
-			</tr>
-			<tr>
-				<th>관심운동</th>
-				<td>축구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="축구" value="1"><label class="form-check-label"></label>
-				농구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="농구" value="2"><label class="form-check-label"></label>
-				야구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="야구" value="4"><label class="form-check-label"></label>
-				E-sports<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="E-sports" value="8"><label class="form-check-label"></label>
-				<br>등산<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="등산" value="16"><label class="form-check-label"></label>
-				당구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="당구" value="32"><label class="form-check-label"></label>
-				볼링<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="볼링" value="64"><label class="form-check-label"></label>
-				싸이클<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="싸이클" value="128"><label class="form-check-label"></label>
-				<br>테니스<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="테니스" value="256"><label class="form-check-label"></label>
-				조깅<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="조깅" value="512"><label class="form-check-label"></label>
-				수영<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="수영" value="1024"><label class="form-check-label"></label>
-				헬스<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="헬스" value="2048"><label class="form-check-label"></label>
-				</td>
-			</tr>
-			<tr style="margin-left: 60px;">		
-				<td><input class="btn-hover color-8" onclick="checked_submit()" type="button" value="정보수정"></td>
-				<td><input class="btn-hover color-8" type="reset" value="취소"></td>
-			</tr>
-		</table>
-	</form>
+	<div style="display: flex;">
+		<%@ include file="../common/sidebar.jsp" %>
+			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
+			<h5>회원정보 수정</h5><hr>
+			<div style="margin-top: 30px; margin-left: 250px;">
+				<form name="reg_sub" action="/user/update" method="post" class="mb-auto col-12 text">
+					<input type="hidden" id="likeExerList" value="${likeExerList}"/>
+					<table>
+						<tr>
+							<th>이메일</th>
+							<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" value="${user.email}" maxlength="40"  />
+							</td>
+						</tr>
+						<tr>
+							<th>이메일 수신</th>
+							<c:if test="${user.emailCheck eq 1}">
+							<td>수신<input type="radio" name="emailCheck" value="1" checked/>
+							 수신거부<input type="radio" name="emailCheck" value="0"/>
+							</td>
+							</c:if>
+							<c:if test="${user.emailCheck eq 0}">
+							<td>수신<input type="radio" name="emailCheck" value="1"/>
+							 수신거부<input type="radio" name="emailCheck" value="0" checked/>
+							</td>
+							</c:if>
+						</tr> 
+						<tr>
+							<th>휴대폰번호</th>
+							<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="tel" name="phoneNum" value="${user.phoneNum}" maxlength="40" />
+							</td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td><input class="btn-hover color-8" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" />
+							<input class="form-control  bg-gray-800 border-dark" type="text" id="postcode" name="postcode" value="${userInfo.uPostcode}" />
+							<br><input class="form-control  bg-gray-800 border-dark" type="text" id="addr" name="addr" value="${userInfo.uAddr}"/>
+							<br><input class="form-control  bg-gray-800 border-dark" type="text" id="detailAddr" name="detailAddr" value="${userInfo.uDetailAddr}"/>
+							<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+							<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<th>관심운동</th>
+							<td>축구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="축구" value="1"><label class="form-check-label"></label>
+							농구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="농구" value="2"><label class="form-check-label"></label>
+							야구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="야구" value="4"><label class="form-check-label"></label>
+							E-sports<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="E-sports" value="8"><label class="form-check-label"></label>
+							<br>등산<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="등산" value="16"><label class="form-check-label"></label>
+							당구<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="당구" value="32"><label class="form-check-label"></label>
+							볼링<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="볼링" value="64"><label class="form-check-label"></label>
+							싸이클<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="싸이클" value="128"><label class="form-check-label"></label>
+							<br>테니스<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="테니스" value="256"><label class="form-check-label"></label>
+							조깅<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="조깅" value="512"><label class="form-check-label"></label>
+							수영<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="수영" value="1024"><label class="form-check-label"></label>
+							헬스<input class="form-check-input" onclick="limit(this)" type="checkbox" name="likeExercise" id="헬스" value="2048"><label class="form-check-label"></label>
+							</td>
+						</tr>
+						<tr style="margin-left: 60px;">		
+							<td><input class="btn-hover color-9" onclick="checked_submit()" type="button" value="정보수정"></td>
+							<td><input class="btn-hover color-8" type="reset" value="취소"></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+			
 	<script>
 		// hidden으로 입력한 문자열 배열로 바꾸기
 		var likeExerList = document.getElementById('likeExerList').value.replace(/\s/g,'').replace(/\[/g,'').replace(/\]/g,''); 

@@ -5,26 +5,29 @@
 <head>
 	<%@ include file="../common/heading.jsp" %>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/css/board.css">
 	<style>
 	p {
-		text-align: left;
+		text-align: center;
+	}
+	.btn-hover.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 	}
 	</style>
 </head>
 
 <body class="bg-black text-white mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
 <%@ include file="../common/top.jsp" %>
-	<div class="container" style="margin: 120px; padding-bottom: 260px;">
+	<div class="container" style=" padding-bottom: 300px; margin-top: 50px;">
         <div class="row" style="justify-content: space-evenly">
             <!-- =================== main =================== -->
             <div class="col-sm-9" style="margin-top: ;" >
-				<h3 style="color: white; margin-left: 90px;"><strong>1:1운동 매칭</strong></h3>
-					<button type="button" class="btn-hover color-8 postion" onclick="location.href='/matching/condition'" style="margin-left: 200px;">
+				<h3 style="color: white; margin-left: 90px;"><strong>운동친구 매칭</strong></h3>
+					<button type="button" class="btn-hover color-9 postion" onclick="location.href='/matching/condition'" style="margin-left: 200px;">
 					매칭조건
 					</button>
 							
-				<div class="container" style="margin-top: -60px">
+				<div class="container" style="margin-top: -80px">
 			    	<div class="row d-flex justify-content-center py-vh-5 pb-0">
 			        	<div class="col-12 col-lg-10 col-xl-8">
 			        		<c:forEach var="m" items="${matchingList}">
@@ -39,15 +42,15 @@
 							         	<button onclick="addMate('${m.uid}')" class="btn-hover color-8 write-btn"  id="${m.uid}">친구신청</button>
 					        		</div>
 					        		<c:if test="${empty m.uImage}">
-							        	<div class="col-12 col-lg-4 offset-lg-1 bg-gray-900 p-5 mt-5" >
-											<p class="text-secondary"><img src="/img/basicProfile.png" height="400px;" width="300px;" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" 
-							          		loading="lazy"></p>
+							        	<div class="col-12 col-lg-4 offset-lg-1 bg-black p-5 mt-5" >
+											<p class="text-dark">
+											<img src="/img/basicProfile.png" alt="abstract image" class="img-fluid"></p>
 							        	</div>
 						        	</c:if>
 						        	<c:if test="${not empty m.uImage}">
-							        	<div class="col-12 col-lg-4 offset-lg-1 bg-gray-900 p-5 mt-5" >
-											<p class="text-secondary"><img src="/board/download?file=${m.uImage}" height="400px;" width="300px;" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" 
-							          		loading="lazy"></p>
+							        	<div class="col-12 col-lg-4 offset-lg-1 bg-black p-5 mt-5" >
+											<p class="text-dark">
+											<img src="/board/download?file=${m.uImage}" alt="abstract image" class="img-fluid"></p>
 							        	</div>
 						        	</c:if>
 					      		</div>
@@ -55,25 +58,7 @@
 						</div>
 					</div>
 				</div>			
-				<ul class="pagination justify-content-center mt-4">
-					<c:if test="${currentBoardPage gt 10}">
-					    <li class="page-item"><a class="page-link" href="/board/list?p=${startPage - 1}&f=${field}&q=${query}">&laquo;</a></li>
-					</c:if>
-					<c:if test="${currentBoardPage le 10}">
-					    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-					</c:if>
-					<c:forEach var="page" items="${pageList}" varStatus="loop">    
-					    <li class="page-item ${(currentBoardPage eq page) ? 'active' : ''}">
-					    	<a class="page-link" href="/board/list?p=${page}&f=${field}&q=${query}">${page}</a>
-					    </li>
-					</c:forEach>  
-					<c:if test="${totalPages gt endPage}">                    
-					    <li class="page-item"><a class="page-link" href="/board/list?p=${endPage + 1}&f=${field}&q=${query}">&raquo;</a></li>
-					</c:if>
-					<c:if test="${totalPages le endPage}">                    
-					    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-					</c:if>
-				</ul>
+				
 			</div>
 		</div>
 	</div>

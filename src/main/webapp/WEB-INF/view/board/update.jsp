@@ -12,15 +12,16 @@
 	<link rel="stylesheet" href="/css/map.css" />
 </head>
 
-<body style="margin: 100px ">
+<body style="margin-bottom: 500px; ">
 	<%@ include file="../common/top.jsp" %>
-	<div class="container" >
-		<div class="inputtb content">
+	<div style="display: flex;">
+		<div class="container" >
+			<div class="inputtb content">
 				<!-- 타이틀 -->
 				<div class="board-title" >
 				<table>
 					<tr>
-						<td class="col-6" style="text-align: left;"><h3 class="board-title"><strong>게시글 수정</strong></h3></td>
+						<td class="col-8"><h3 class="board-title"><strong>게시글 수정</strong></h3></td>
 						<td class="col-2">
 							<button onclick="location.href='/board/list'" class="btn-hover color-8 ">목록</button>
 						</td>
@@ -77,8 +78,8 @@
 				</form>
 			</div>
 		</div>
-		
-		<div class="map_wrap"  style="margin-top: -100px;">	
+    </div>
+		<div class="map_wrap"  style="margin-top: 150px; margin-right: 40px;">	
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		    <div id="menu_wrap" class="bg_white">
 		        <div class="option">
@@ -94,10 +95,10 @@
 		        <div id="pagination"></div>
 		    </div>
 	    </div>
-	    <script src="/js/map.js?q=1"></script>
-    </div>
+  </div>
     
 	
+    <script src="/js/map.js?q=1"></script>
 	<script>
 		CKEDITOR.replace('bContent', {
 			filebrowserImageUploadUrl : '/board/upload',

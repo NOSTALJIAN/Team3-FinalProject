@@ -8,7 +8,7 @@
 <head>
     <%@ include file="../common/heading.jsp" %>
     <style>
-        .disabled-link { pointer-events: none; }
+      /*   .disabled-link { pointer-events: none; }
 		    table {
 		    width: 300px;
 		    height: 300px;
@@ -20,20 +20,22 @@
 		    padding: 3px;
 		    padding-top: 0.1px;
 		    padding-bottom: 1px;
-		  }
+		  } */
     </style>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppKey}&libraries=services"></script>
 </head>
 
 <body>
 	<%@ include file="../common/top.jsp" %>
-	<div class="container" style="margin: 120px; padding-bottom: 400px;">
+	<div class="container" style="margin: 40px; padding-bottom: 300px;">
 		<div class="row" style="justify-content: space-evenly">
 			<!-- =================== main =================== -->
 			<div class="">
-				<h3 class=""><strong>${b.bTitle}</strong></h3>
-				<span style="font-size: 0.6em; margin-left: 250px;" >
-					<button onclick="location.href='/board/list'" class="btn-hover color-8 ms-5 col-2" style="width: 100px" type="button" value="글쓰기">목록</button>
+				<span style="display: flex; margin-left: 400px;">
+					<h3 class="detail-title">${b.bTitle}</h3>
+					<div class="detail-btn">
+					<button onclick="location.href='/board/list'" class="btn-hover color-8 ms-3 col-2" style="width: 100px" type="button">목록</button>
+					<button onclick="location.href='/board/list'" class="btn-hover color-9 ms-3 col-2" style="width: 100px" type="button">신청</button>
 					
 					<!-- 본인만 수정 가능 -->
 					<c:if test="${b.uid eq sessionUid}">
@@ -50,29 +52,37 @@
 					<c:if test="${b.uid ne sessionUid}">
 						<!--  <a href="#" class="ms-3 disabled-link"><i class="fas fa-trash-alt"></i> 삭제</a> -->
 					</c:if>
+					</div>
 				</span>
-				<hr>
 			</div>
-			<div class="detail-title">
-				<!-- 이미지 -->
+			<div>
 				<div class="detailbox">
-					<img src="/board/download?file=${b.bFiles}" class="img-size rounded-3" style="margin-top: 50px;" />
+					<div class="board-view-content" style="text-align: left;">
+					${fn:replace(b.bContent, newline, '<br>')}
+				</div>
 				</div>
 				<div class="space"></div>
-				<!-- Info -->	
-				<div class="">
-					<table class="" style="margin-left: 650px; margin-top:-14px; width: 400px;height: 400px;">
+				<!-- 게시글 정보 -->	
+				<div class="detail-content">
+					<div>
+						<div>
+                          <p class="board-view-cnt" style="margin-right: 660px;">
+                            <span>조회${b.bViewCount}</span> <span>댓글${b.bReplyCount}</span> <span>작성자 ${b.uid}</span> 
+                          </p>
+                        </div>
+					</div>
+					<table class="board-view-infomation" style="margin-left: 300px; margin-top:-14px; color: black;">
 						<tr>
 							<th>운동 종목</th>
 							<td>${b.bCategory}</td>
 						</tr>
 						<tr>
-							<th>운동 일자</th>
-							<td> ${fn:replace(b.bAppointment, 'T', ' ')}</td>
-						</tr>
-						<tr>
 							<th>운동 장소</th>
 							<td>${b.bLocation}</td>
+						</tr>
+						<tr>
+							<th>운동 일자</th>
+							<td> ${fn:replace(b.bAppointment, 'T', ' ')}</td>
 						</tr>
 						<tr>
 							<th>운동 인원</th>
@@ -82,27 +92,19 @@
 							<th>작성 일자</th>
 							<td>${fn:replace(b.bRegTime, 'T', ' ')}</td>
 						</tr>
-						<tr>
-							<th>작성자</th>
-							<td>${b.uid}</td>
-						</tr>
 					</table>
 				</div>
-				<div class="col-12"><hr></div>
-            
-				<div class="board-view-content rounded-3" style="text-align: left;">
-					${fn:replace(b.bContent, newline, '<br>')}
-				</div>
+				<div class="col-12" style="margin-top: 50px;"></div>
 				<div class="board-view-map" id="map"></div>
         	
         	
 				<!-- 댓글 -->
 				<div class="col-12"></div>
-				<div class="col-12" style="margin-top: 450px">
+				<div class="col-12" style="margin-top: 120px; margin-left: 240px;">
 					<c:forEach var="reply" items="${replyList}" varStatus="loop">
 						<c:if test="${reply.rIsMine eq 0}">
 							<div class="d-flex flex-row mt-1">
-								<div class="card bg-light text-dark w-75">
+								<div class="card bg-light text-dark w-70 rounded">
 									<div class="card-body" id="reply${loop.count}">		
 										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
 										<c:if test="${reply.uid eq sessionUid}">
@@ -136,7 +138,7 @@
 						</c:if>
 						<c:if test="${reply.rIsMine eq 1}">
 							<div class="d-flex flex-row-reverse mt-1">
-								<div class="card w-75">
+								<div class="card w-70 rounded">
 									<div class="card-body text-end" id="reply${loop.count}">		
 										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
 										<c:if test="${reply.uid eq sessionUid}">
@@ -178,7 +180,7 @@
 									<td class="col-1 text-end">
 										<label for="rContent">댓글</label>
 									</td>
-									<td class="col-9">
+									<td class="col-6">
 										<textarea class="form-control" id="rContent" name="rContent" rows="3"></textarea>
 									</td>
 									<td class="col-2">
@@ -255,6 +257,5 @@
     	}
     </script>
     
-<%@ include file="../common/top.jsp" %>
 </body>
 </html>
