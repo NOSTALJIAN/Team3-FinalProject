@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ChatUserInfoDto {
 
-	private String uid;
-	private String uname;
-	private String uImage;
+	private String userId;
+	private String nickname;
+	private String profileImage;
 }

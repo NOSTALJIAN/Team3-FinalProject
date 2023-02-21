@@ -38,8 +38,8 @@ public class ChatRoom {
 	
 	@EqualsAndHashCode.Include
 	@Id
-	@Column(name = "cid")
-	private String cid;
+	@Column(name = "id")
+	private String id;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "lastChatMesgId")
@@ -48,19 +48,19 @@ public class ChatRoom {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "ChatRoom_Members", 
 			joinColumns = @JoinColumn(name = "chatRoomId"), 
-			inverseJoinColumns = @JoinColumn(name = "uid"))
-	private Set<User> chatRoomMembers = new HashSet<>();
+			inverseJoinColumns = @JoinColumn(name = "memberId"))
+	private final Set<ChatUser> chatRoomMembers = new HashSet<>();
 	
 	@Column(name = "createdAt")
 	private LocalDateTime createdAt;
 	
 	public static ChatRoom create() {
 		ChatRoom room = new ChatRoom();
-		room.setCid(UUID.randomUUID().toString());
+		room.setId(UUID.randomUUID().toString());
 		return room;
 	}
 	
-	public void addMembers(User roomMaker, User guest) {
+	public void addMembers(ChatUser roomMaker, ChatUser guest) {
 		this.chatRoomMembers.add(roomMaker);
 		this.chatRoomMembers.add(guest);
 	}

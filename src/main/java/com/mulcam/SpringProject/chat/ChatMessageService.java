@@ -28,9 +28,9 @@ public class ChatMessageService {
 		chatMessage.setCreatedAt(LocalDateTime.now());
 		
 		log.info("ChatMessageService::chatMessage : " + chatMessage);
-		log.info("ChatMessageService::chatMessage cid : " + chatMessage.getCid());
+		log.info("ChatMessageService::chatMessage cid : " + chatMessage.getRoomId());
 		
-		chatRoomService.updateLastChatMesg(chatMessage.getCid(), chatMessage);
+		chatRoomService.updateLastChatMesg(chatMessage.getRoomId(), chatMessage);
 		
 		return chatMessage;
 	}

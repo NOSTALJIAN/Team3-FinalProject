@@ -7,15 +7,13 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mulcam.SpringProject.entity.User;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class ChatController {
+public class ChatMessageController {
 	
 	private final static String CHAT_EXCHANGE_NAME = "chat.exchange";
 	private final static String CHAT_QUEUE_NAME = "chat.queue";
@@ -31,11 +29,12 @@ public class ChatController {
 		
 		log.info("received message : " + message);
 		
-		ChatRoom room = chatRoomService.findById(message.getCid());
-		User friend = room.getChatRoomMembers().stream().filter(m -> m.getUid() != message.getUid()).collect(Collectors.toList()).get(0);
-		
-		template.convertAndSend(CHAT_EXCHANGE_NAME, "icon." + friend.getUid(), true);
-		template.convertAndSend(CHAT_EXCHANGE_NAME, "room." + room.getCid(), newChat);
+        ChatRoom room = chatRoomService.findById(message.getRoomId());
+        ChatUser friend = room.getChatRoomMembers().stream().filter(m -> m.getId() != message.getAuthorId()).collect(Collectors.toList()).get(0);
+
+        // to chatRoom in subscribers
+        template.convertAndSend(CHAT_EXCHANGE_NAME, "icon." + friend.getId(), true);
+        template.convertAndSend(CHAT_EXCHANGE_NAME, "room." + room.getId(), newChat);
 	}
 	
 	@RabbitListener(queues = CHAT_QUEUE_NAME)

@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/chat/room")
 @RequiredArgsConstructor
-public class RoomController {
+public class ChatRoomController {
 	
 	private final ModelMapper modelMapper;
 	private final ChatUserService userService;
@@ -32,14 +32,14 @@ public class RoomController {
 	 */
 	@PostMapping("/personal")
 	public GogoResponse createPersonalChatRoom(@RequestParam("roomMakerId") String roomMakerId, @RequestParam("guestId") String guestId) {
-		User roomMaker = userService.findById(roomMakerId);
-		User guest = userService.findById(guestId);
+		ChatUser roomMaker = userService.findById(roomMakerId);
+		ChatUser guest = userService.findById(guestId);
 		
 		ChatRoom newRoom = ChatRoom.create();
 		
 		newRoom = chatRoomService.createChatRoomForPersonal(newRoom, roomMaker, guest);
 		
-		return GogoResponse.of(submit.chatRoom(newRoom.getCid(), roomMakerId, guestId));
+		return GogoResponse.of(submit.chatRoom(newRoom.getId(), roomMakerId, guestId));
 	}
 	
 	//	채팅 내역 출력
