@@ -32,16 +32,21 @@ public class MatchingController {
 	/** 매칭 페이지*/
 	@GetMapping("/list")
 	public String register(HttpSession session, Model model) {
+		long startTime = System.currentTimeMillis();
 		// login안했으면 로그인페이지로(임시)
 		String uid = userSession.getUid();
 		if (uid == null)
-			return "user/login";
+			return "redirect:/user/login";
 		MatchingCondition mC = service.getCondition(uid);
 		if (mC==null)
 			return "redirect:/matching/condition";
 		
 		// 매칭리스트 호출
 		List<MatchingUsers> matchingList = matchingUtill.matchingList(uid);
+		
+		long stopTime = System.currentTimeMillis();
+		long elapsedTime = stopTime - startTime;
+		System.out.println("걸린시간: "+elapsedTime); 
 		
 		model.addAttribute("matchingList", matchingList);
 		return "matching/list";
@@ -52,7 +57,7 @@ public class MatchingController {
 	@GetMapping("/condition")
 	public String matchingConditionform(HttpSession session, Model model) {
 		if (userSession.getUid() == null)
-			return "user/login";
+			return "redirect:/user/login";
 		// 1. 사용자의 userinfo에서 운동 목록 가져오기
 		String uid = userSession.getUid();
 		String likeExercise_  = service.getLikeExercise(uid);
@@ -63,13 +68,13 @@ public class MatchingController {
 		if (mC == null) {
 			mC = new MatchingCondition(uid ,likeExercise.get(0) , 10, 100, 0, 300, "모두");
 		}
-		
 		model.addAttribute("likeExercise", likeExercise);
 		model.addAttribute("mC", mC);
 		// 		없다면 기본적인 조건 페이지 보여주기
 		return "matching/condition";
 	}
 	
+	/** 매칭조건처리*/
 	@PostMapping("condition")
 	public String matchingCondition(HttpServletRequest req, HttpSession session) {
 		String uid = userSession.getUid();

@@ -78,8 +78,8 @@ public class UserServiceImpl implements UserService{
 	
 	
 	@Override
-	public List<UserInfo> getCoincideInfo(String uid) {
-		List<UserInfo> list = userDao.getCoincideInfo(uid);
+	public List<UserInfo> getCoincideInfo(String uid, int minAge, int maxAge, String pGender, int bestExer) {
+		List<UserInfo> list = userDao.getCoincideInfo(uid, minAge, maxAge, pGender, bestExer);
 		return list;
 	}
 
@@ -138,6 +138,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void profileUpload(String uid, String fname) {
 		userDao.profileUpload(uid, fname);
+	}
+
+	@Override
+	public List<User> getUserList() {
+		List<User> userList = userDao.getUserList();
+		return userList;
 	}
 
 

@@ -137,15 +137,18 @@ public class UserController {
 	/** 사용자 페이지*/
 	@GetMapping("/mypage")
 	public String mypage() {
-		
+		if (userSession.getUid() == null)
+			return "redirect:/user/login";
 		return "user/mypage";
 	}
 
 	/** 개인정보 수정 페이지*/
 	@GetMapping("/update")
 	public String updateForm(HttpSession session, Model model) {
-		String uid = userSession.getUid();
+		if (userSession.getUid() == null)
+			return "redirect:/user/login";
 		
+		String uid = userSession.getUid();
 		User user = service.getUser(uid);
 		UserInfo userInfo = service.getUserInfo(uid);
 		String likeExercise = service.getLikeExercise(uid);
@@ -188,6 +191,8 @@ public class UserController {
 	/** 비밀번호 변경 페이지*/
 	@GetMapping("/pwdUpdate")
 	public String pwdUpdateForm() {
+		if (userSession.getUid() == null)
+			return "redirect:/user/login";
 		return "user/pwdUpdate";
 	}
 	
@@ -218,7 +223,10 @@ public class UserController {
 	/** 유저 프로필 페이지*/
 	@GetMapping("/profile")
 	public String profileForm(Model model) {
+		if (userSession.getUid() == null)
+			return "redirect:/user/login";
 		String uid = userSession.getUid();
+		
 		// 프로필 사진 가져오기
 		String profileImg = service.getUimage(uid);
 		
@@ -250,5 +258,22 @@ public class UserController {
 		service.profileUpload(uid, fname);
 		
 		return "redirect:/user/mypage";
+	}
+	
+	/** 관리자 페이지*/
+	@GetMapping("/admin")
+	public String adminForm(Model model) {
+		String uid = userSession.getUid();
+		// 관리자가 아닐때 경고문구와 함께 홈화면으로 이동
+		if (uid != null && !uid.equals("admin")) {
+			model.addAttribute("msg", "관리자 페이지입니다.");
+			model.addAttribute("url", "/board/index");
+			return "common/alertMsg";
+		}
+		// 유저 정보 쭉가져오기(users만 가져오면될듯)
+		List<User> userList = service.getUserList();
+		
+		model.addAttribute("userList", userList);
+		return "user/admin";
 	}
 }
