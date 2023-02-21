@@ -29,10 +29,7 @@ public interface UserService {
 	int login(String uid, String pwd);
 	
 	/** 사용자와 일치하는 유저 정보들 
-	 * @param bestExer 
-	 * @param pGender 
-	 * @param maxAge 
-	 * @param minAge */
+	 */
 	List<UserInfo> getCoincideInfo(String uid, int minAge, int maxAge, String pGender, int bestExer);
 	
 	/** 사용자 정보*/

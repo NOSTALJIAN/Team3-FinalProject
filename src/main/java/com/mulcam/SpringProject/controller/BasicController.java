@@ -37,7 +37,7 @@ public class BasicController {
 		ExerciseUtill Utill = new ExerciseUtill();
 		
 		// userinfo에서 uid값과 운동 취향이 하나라도 같은 데이터들 가져오기
-		List<UserInfo> matchingList = service.getCoincideInfo(uid);
+		List<UserInfo> matchingList = service.getCoincideInfo(uid, 10, 100, "모두", 1);
 		for (UserInfo ui : matchingList) {
 			// 2진수 길이 12개로 맞춰주기
 			String concideExer = String.format("%12s", ui.getCoincideExer());	
