@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface ChatRoomRepository extends JpaRepository<ChatRoom, String> {
+public interface ChatMessageRepository extends JpaRepository<ChatMessage, String> {
 	@Transactional(readOnly = true)
-	Page<ChatRoom> findListsByChatRoomMembersId(String uid, Pageable pageable);
+	Page<ChatMessage> findListByRoomId(String cid, Pageable pageable);
 }

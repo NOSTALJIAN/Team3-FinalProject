@@ -1,59 +1,78 @@
 package com.mulcam.SpringProject.chat;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-import org.springframework.web.socket.WebSocketSession;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
+import com.mulcam.SpringProject.entity.User;
+
+@Data
+@Entity
+@Table(name = "ChatRoom")
+@DynamicUpdate
+@Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChatRoom {
 	
+	@EqualsAndHashCode.Include
+	@Id
+	@Column(name = "cid")
 	private String cid;
-	private String uid;
-	private Set<WebSocketSession> sessions = new HashSet<>();	//	Spring 에서 WebSocket Connection이 맺어진 세션
 	
-	public static ChatRoom create(@NonNull String uid) {
-		ChatRoom created = new ChatRoom();
-		
-		created.cid = UUID.randomUUID().toString();
-		created.uid = uid;
-		return created;
-	}
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "lastChatMesgId")
+	private ChatMessage lastChatMesg;
 	
-	/** 
-	 * Getter, Setter
-	 */
-	public String getCid() {
-		return cid;
-	}
-	public void setCid(String cid) {
-		this.cid = cid;
-	}
-	public String getUid() {
-		return uid;
-	}
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
-	public Set<WebSocketSession> getSessions() {
-		return sessions;
-	}
-	public void setSessions(Set<WebSocketSession> sessions) {
-		this.sessions = sessions;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "ChatRoom_Members", 
+			joinColumns = @JoinColumn(name = "chatRoomId"), 
+			inverseJoinColumns = @JoinColumn(name = "uid"))
+	private Set<User> chatRoomMembers = new HashSet<>();
+	
+	@Column(name = "createdAt")
+	private LocalDateTime createdAt;
+	
+	public static ChatRoom create() {
+		ChatRoom room = new ChatRoom();
+		room.setCid(UUID.randomUUID().toString());
+		return room;
 	}
 	
-	/**
-	 * toString
-	 */
-	@Override
-	public String toString() {
-		return "ChatRoom [cid=" + cid + ", uid=" + uid + ", sessions=" + sessions + "]";
+	public void addMembers(User roomMaker, User guest) {
+		this.chatRoomMembers.add(roomMaker);
+		this.chatRoomMembers.add(guest);
 	}
+	
+//	private Set<WebSocketSession> sessions = new HashSet<>();	//	Spring 에서 WebSocket Connection이 맺어진 세션
+	
+//	public static ChatRoom create(@NonNull String uid) {
+//		ChatRoom created = new ChatRoom();
+//		
+//		created.cid = UUID.randomUUID().toString();
+//		created.uid = uid;
+//		return created;
+//	}
 
 }

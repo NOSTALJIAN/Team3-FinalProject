@@ -1,18 +1,57 @@
 package com.mulcam.SpringProject.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@Entity
+@Table(name = "users")
+@Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+public class User implements Serializable {
+	
+	@EqualsAndHashCode.Include
+	@Id
+	@Column(name = "uid")
 	private String uid;
+	
+	@Column(name = "pwd")
 	private String pwd;
+	
+	@Column(name = "uname")
 	private String uname;
+	
+	@Column(name = "uImage")
 	private String uImage;
+	
+	@Column(name = "phoneNum")
 	private String phoneNum;
+	
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "emailCheck")
 	private int emailCheck;
+	
+	@Column(name = "role")
 	private int role;
-	private int isDeleted;
+	
+	@Column(name = "uRegDate")
 	private LocalDate uRegDate;
+	
+	@Column(name = "uisDeleted")
+	private int isDeleted;
 	
 	public User() {}
 	/** 회원정보 수정용*/

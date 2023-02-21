@@ -1,29 +1,37 @@
 package com.mulcam.SpringProject.chat;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-@Profile("stomp")
 @Configuration
-@EnableWebSocketMessageBroker	//	Stomp를 사용하기 위해 선언하는 어노테이션
-public class StompWebSocketConfig implements WebSocketMessageBrokerConfigurer {
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-    	registry.addEndpoint("/stomp/chat")
-    	.setAllowedOriginPatterns("*://*:8080", "*://*:8090",  "*://*.*.*.*:8080", "*://*.*.*.*:8090")
-    	.withSockJS();
-//		.setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js");
+    	registry.addEndpoint("/chat/inbox")
+    	.setAllowedOriginPatterns("*")
+    	.addInterceptors(new StompHandshakeInterceptor())
+    	.withSockJS()
+    	.setDisconnectDelay(30 * 1000)
+		.setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js");
     }
     
     @Override
-    public void configureMessageBroker(MessageBrokerRegistry config) {
-    	config.setApplicationDestinationPrefixes("/pub");	//	->	Client에서 SEND 요청을 처리
-    	config.enableSimpleBroker("/sub");	//	->	해당 경로로 SimpleBroker를 등록, SimpleBroker는 해당하는 경로를 SUBSCRIBE하는 Client에게 메세지를 전달
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+    	registry.setApplicationDestinationPrefixes("/pub");	//	->	Client에서 SEND 요청을 처리
+//    	registry.enableSimpleBroker("/sub");
+    	
+    	registry.setPathMatcher(new AntPathMatcher("."));	//	url을 chat/room/3 -> chat.room.3으로 참조하기 위해
+    	registry.enableStompBrokerRelay("/sub", "/queue", "/topic", "/exchange", "/amq/queue")
+    			.setSystemLogin("guest")
+    			.setSystemPasscode("guess")
+    			.setClientLogin("guest")
+    			.setClientPasscode("guest");
     	
     	/**
     	 * "/pub" 경로로 시작하는 STOMP 메세지의 "destination" 헤더는
