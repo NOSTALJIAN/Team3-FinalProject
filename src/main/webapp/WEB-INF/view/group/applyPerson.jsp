@@ -24,6 +24,9 @@
     border-bottom: 1px solid #444444;
     padding: 5px;
   }
+   img {
+		  	width: 70px; height: 70px;   border-radius: 70%;
+		  }
 </style>
 </head>
 <body  style="margin-bottom: 100px; background-color: black; color: white;">
@@ -32,7 +35,7 @@
 		<%@ include file="../common/sidebar.jsp" %>
 			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
 			<h4>신청자 목록</h4><hr>
-    		<h5>[게시글 번호]</h5>
+    		<h5> ${re.bTitle}</h5>
     		<div style="margin-top: 30px;">
 				<table>
 					<thead>
@@ -50,13 +53,13 @@
 					<tbody>
 					<c:forEach var="re" items="${receiveList}">
 						<tr id="${re.uid}">
-							<td>[프로필]</td>
+							<td><img id="profileImg" src="/img/basicProfile.png" ></td>
 							<td>${re.uid}</td>
 							<td>${re.likeExercise}</td>
 							<td>${re.gender}</td>
 							<td>${re.birthDate}</td>
 							<td>${fn:replace(re.sendTime, 'T', ' ')}</td>
-							<td><button onclick="applyAccept('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn">수락</button></td>
+							<td><button onclick="applyAccept('${re.uid}', '${re.bid}')" class="btn-hover color-9 write-btn">수락</button></td>
 							<td><button onclick="applyReject('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn">거절</button></td>
 						</tr>
 					</c:forEach>

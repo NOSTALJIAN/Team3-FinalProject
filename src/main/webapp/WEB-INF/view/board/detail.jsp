@@ -68,7 +68,7 @@
 							<td> ${fn:replace(b.bAppointment, 'T', ' ')}</td>
 						</tr>
 						<tr>
-							<th>운동 인원</th>
+							<th>모집 인원</th>
 							<td>${b.bUserCount}명</td>
 						</tr>
 						<tr>

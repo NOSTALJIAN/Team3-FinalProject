@@ -13,6 +13,13 @@
     background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
     box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 	}
+	.img-size{
+	    max-width: 300px;
+    height: 300px;
+    border-radius: 70%;
+    margin-left: 800px;
+    margin-top: -50px;
+	}
 	</style>
 </head>
 
@@ -33,24 +40,23 @@
 			        		<c:forEach var="m" items="${matchingList}">
 					      		<div class="row d-flex align-items-start" data-aos="fade-right">
 					        		<div class="col-12 col-lg-7">
-							        	<h4 class="h3 mt-5 border-top pt-5" ><strong>${m.uname}</strong></h4>
+							        	<h4 class="h3 mt-1 border-top pt-5" ><strong>${m.uname}</strong></h4>
 							        	<p>거리: ${m.distance}</p>
 							        	<p>나이: ${m.age}</p>
 							          	<p>성별: ${m.gender}</p>
-							          	<p>평점: ${m.uRating}</p>
 							          	<p>선택운동 : ${m.coincideExer}</p>
 							         	<button onclick="addMate('${m.uid}')" class="btn-hover color-8 write-btn"  id="${m.uid}">친구신청</button>
 					        		</div>
 					        		<c:if test="${empty m.uImage}">
 							        	<div class="col-12 col-lg-4 offset-lg-1 bg-black p-5 mt-5" >
 											<p class="text-dark">
-											<img src="/img/basicProfile.png" alt="abstract image" class="img-fluid"></p>
+											<img src="/img/basicProfile.png" alt="abstract image" class="img-size"></p>
 							        	</div>
 						        	</c:if>
 						        	<c:if test="${not empty m.uImage}">
 							        	<div class="col-12 col-lg-4 offset-lg-1 bg-black p-5 mt-5" >
 											<p class="text-dark">
-											<img src="/board/download?file=${m.uImage}" alt="abstract image" class="img-fluid"></p>
+											<img src="/board/download?file=${m.uImage}" alt="abstract image" class="img-size"></p>
 							        	</div>
 						        	</c:if>
 					      		</div>
