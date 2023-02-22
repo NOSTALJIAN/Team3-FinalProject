@@ -3,7 +3,6 @@ package com.mulcam.SpringProject.chat;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -27,65 +26,68 @@ public class RabbitConfig {
 	private final static String CHAT_EXCHANGE_NAME = "chat.exchange";
 	private static final String ROUTING_KEY = "room.*";
 
-    //	Queue
+    //	Queue 등록
     @Bean
-    public Queue queue() {
-        return new Queue(CHAT_EXCHANGE_NAME, true);
+    Queue queue() {
+        return new Queue(CHAT_QUEUE_NAME, true);
     }
-    
-    //	Exchange
+
+    //	Exchange 등록
     @Bean
-    public TopicExchange exchange() {
-    	return new TopicExchange(CHAT_EXCHANGE_NAME);
+    TopicExchange exchange() {
+        return new TopicExchange(CHAT_EXCHANGE_NAME);
     }
-    
-    //	Exchange Queue 바인딩
+
+    //	Exchange와 Queue 바인딩
     @Bean
-    public Binding binding(Queue queue, TopicExchange exchange) {
-    	return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
+    Binding binding(Queue queue, TopicExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
     }
-    
-    //	messageConverter를 커스터마이징하기 위함
+
+    //	messageConverter를 커스터마이징 하기 위해 Bean 새로 등록
     @Bean
-    public RabbitTemplate rabbitTemplate() {
-    	RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
-    	rabbitTemplate.setMessageConverter(jsonMessageConverter());
-    	rabbitTemplate.setRoutingKey(CHAT_QUEUE_NAME);
-    	return rabbitTemplate;
+    RabbitTemplate rabbitTemplate() {
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
+        rabbitTemplate.setMessageConverter(jsonMessageConverter());
+        rabbitTemplate.setRoutingKey(CHAT_QUEUE_NAME);
+        return rabbitTemplate;
     }
-    
+
     @Bean
-    public SimpleMessageListenerContainer container() {
-    	SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-    	container.setConnectionFactory(connectionFactory());
-    	container.setQueueNames(CHAT_QUEUE_NAME);
-    	container.setMessageListener(null);
-    	return container;
+    SimpleMessageListenerContainer container() {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory());
+        container.setQueueNames(CHAT_QUEUE_NAME);
+        container.setMessageListener(null);
+        return container;
     }
-    
+
+    //	Spring 자동 생성 ConnectionFactory는 SimpleConnectionFactory -> 이거 안씀
+    //	CachingConnectionFactory 사용을 위해 등록
     @Bean
-    public ConnectionFactory connectionFactory() {
-    	CachingConnectionFactory factory = new CachingConnectionFactory();
-    	factory.setHost("localhost");
-    	factory.setUsername("guest");
-    	factory.setPassword("guest");
-    	return factory;
+    ConnectionFactory connectionFactory() {
+        CachingConnectionFactory factory = new CachingConnectionFactory();
+        factory.setHost("localhost");
+        factory.setUsername("guest");
+        factory.setPassword("guest");
+        return factory;
     }
-    
+
     @Bean
-    public Jackson2JsonMessageConverter jsonMessageConverter() {
-    	ObjectMapper objectMapper = new ObjectMapper();
-    	objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true);
-    	objectMapper.registerModule(dateTimeModule());
-    	
-    	Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter(objectMapper);
-    	
-    	return converter;
+    Jackson2JsonMessageConverter jsonMessageConverter() {
+        //	LocalDateTime serializable을 위함
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true);
+        objectMapper.registerModule(dateTimeModule());
+
+        Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter(objectMapper);
+
+        return converter;
     }
-    
+
     @Bean
-    public Module dateTimeModule() {
-    	return new JavaTimeModule();
+    Module dateTimeModule() {
+        return new JavaTimeModule();
     }
 
 }
