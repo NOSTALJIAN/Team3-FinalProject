@@ -50,6 +50,7 @@ public class UserController {
 		String uid = req.getParameter("uid").strip();
 		String pwd = req.getParameter("pwd").strip();
 		String uname = req.getParameter("uname").strip();
+		String nickname = req.getParameter("nickname").strip();
 		String email = req.getParameter("email").strip();
 		int emailCheck = Integer.parseInt(req.getParameter("emailCheck"));
 		int birthDate = Integer.parseInt(req.getParameter("birthDate"));
@@ -90,7 +91,7 @@ public class UserController {
 		double lat = latlng.get(0);
 		double lng = latlng.get(1);
 		
-		u = new User(uid, pwd, uname, phoneNum, email, emailCheck);
+		u = new User(uid, pwd, uname, nickname, phoneNum, email, emailCheck);
 		service.register(u);
 		UserInfo ui = new UserInfo(uid, uPostcode, uAddr, uDetailAddr,likeExercise, birthDate, gender, lat, lng);
 		service.registerInfo(ui);
@@ -164,6 +165,7 @@ public class UserController {
 	@PostMapping("/update")
 	public String update(HttpSession session, HttpServletRequest req) throws Exception{
 		String uid = userSession.getUid();
+		String nickname = req.getParameter("nickname").strip();
 		String email = req.getParameter("email").strip();
 		int emailCheck = Integer.parseInt(req.getParameter("emailCheck"));
 		int uPostcode = Integer.parseInt(req.getParameter("postcode"));
@@ -181,7 +183,7 @@ public class UserController {
 		double lat = latlng.get(0);
 		double lng = latlng.get(1);
 		
-		User u = new User(uid, phoneNum, email, emailCheck);
+		User u = new User(uid, nickname, phoneNum, email, emailCheck);
 		UserInfo ui = new UserInfo(uid, uPostcode, uAddr, uDetailAddr,likeExercise, lat, lng);
 		service.update(u, ui);
 		
@@ -262,18 +264,32 @@ public class UserController {
 	
 	/** 관리자 페이지*/
 	@GetMapping("/admin")
-	public String adminForm(Model model) {
-		String uid = userSession.getUid();
+	public String adminForm(Model model, HttpServletRequest req) {
 		// 관리자가 아닐때 경고문구와 함께 홈화면으로 이동
-		if (uid != null && !uid.equals("admin")) {
+		if (userSession.getUid() == null || !userSession.getUid().equals("admin")) {
 			model.addAttribute("msg", "관리자 페이지입니다.");
 			model.addAttribute("url", "/board/index");
 			return "common/alertMsg";
 		}
+		List<User> userList = null;
 		// 유저 정보 쭉가져오기(users만 가져오면될듯)
-		List<User> userList = service.getUserList();
-		
-		model.addAttribute("userList", userList);
-		return "user/admin";
+		String isDeleted_ = req.getParameter("isDeleted");
+		System.out.println("asd" + isDeleted_);
+		if (isDeleted_ == null) {
+			userList = service.getUserAllList();
+			model.addAttribute("userList", userList);
+			return "user/admin";
+		}
+		else {
+			int isDeleted = Integer.parseInt(isDeleted_);
+			System.out.println("isDeleted" + isDeleted);
+			userList = service.getUserList(isDeleted);
+			System.out.println("userList" + userList);
+			model.addAttribute("userList", userList);
+			return "user/admin";
+		}
 	}
+	
+	/** 관리자페이지 처리*/
+	
 }
