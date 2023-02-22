@@ -3,6 +3,7 @@ package com.mulcam.SpringProject.chat;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -58,7 +59,7 @@ public class RabbitConfig {
     	SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
     	container.setConnectionFactory(connectionFactory());
     	container.setQueueNames(CHAT_QUEUE_NAME);
-//    	container.setMessageListener(null);
+    	container.setMessageListener(null);
     	return container;
     }
     
@@ -86,4 +87,5 @@ public class RabbitConfig {
     public Module dateTimeModule() {
     	return new JavaTimeModule();
     }
+
 }
