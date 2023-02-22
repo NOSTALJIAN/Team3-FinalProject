@@ -34,7 +34,11 @@ public interface UserService {
 	/** 사용자 정보*/
 	UserInfo getUserInfo(String sessionUid);
 	
+	/** 이름 가져오기*/ 
 	String getUname(String uid);
+	
+	/** 닉네임 가져오기*/
+	String getNickname(String uid);
 
 	/** 최대 관심운동 가져오기*/
 	String getLikeExercise(String uid);
@@ -61,6 +65,11 @@ public interface UserService {
 	void profileUpload(String uid, String fname);
 
 	/** 관리자용 유저리스트 가져오기 */
-	List<User> getUserList();
+	List<User> getUserAllList();
 
+	/** 관리자용 특정 유저리스트 가져오기*/
+	List<User> getUserList(int isDeleted);
+	
+	
+	
 }

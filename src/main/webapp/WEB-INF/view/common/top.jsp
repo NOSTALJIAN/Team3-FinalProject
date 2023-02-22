@@ -55,7 +55,7 @@
             <c:choose>
               <c:when test="${sessionUid eq 'admin'}">
                 <li class="nav-item">
-                  <a class=" text-white nav-link nav-size ${menu eq 'user' ? 'active' : ''}" href="/user/list"
+                  <a class=" text-white nav-link nav-size ${menu eq 'user' ? 'active' : ''}" href="/user/admin"
                     aria-label="A system message page">
                     사용자관리
                   </a>

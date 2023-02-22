@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MatchingUsers {
 	private String uid;
-	private String uname;
+	private String nickname;
 	private String uImage;
 	private String distance;
 	private int age;
@@ -14,11 +14,11 @@ public class MatchingUsers {
 	private float score;
 	
 	public MatchingUsers() {}
-	public MatchingUsers(String uid, String uname, String uImage, String distance, int age, List<String> coincideExer,
+	public MatchingUsers(String uid, String nickname, String uImage, String distance, int age, List<String> coincideExer,
 			String gender, float uRating, float score) {
 		super();
 		this.uid = uid;
-		this.uname = uname;
+		this.nickname = nickname;
 		this.uImage = uImage;
 		this.distance = distance;
 		this.age = age;
@@ -33,11 +33,11 @@ public class MatchingUsers {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public String getUname() {
-		return uname;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setUname(String uname) {
-		this.uname = uname;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getuImage() {
 		return uImage;
@@ -84,7 +84,7 @@ public class MatchingUsers {
 	
 	@Override
 	public String toString() {
-		return "MatchingUsers [uid=" + uid + ", uname=" + uname + ", uImage=" + uImage + ", distance=" + distance
+		return "MatchingUsers [uid=" + uid + ", nickname=" + nickname + ", uImage=" + uImage + ", distance=" + distance
 				+ ", age=" + age + ", coincideExer=" + coincideExer + ", gender=" + gender + ", uRating=" + uRating
 				+ ", score=" + score + "]";
 	}

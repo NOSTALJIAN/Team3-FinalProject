@@ -45,6 +45,10 @@
 				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="uname" id="uname" placeholder="*이름" maxlength="10" required /></td>
 			</tr>
 			<tr>
+				<th>닉네임</th>
+				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="10" required /></td>
+			</tr>
+			<tr>
 				<th>이메일</th>
 				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" id="email" placeholder="*이메일" maxlength="40"  />
 				</td>
@@ -207,7 +211,7 @@
 			const pwd2 = $('#pwd2').val();
 			var checked_num = $("input[name=likeExercise]:checked").length;
 			const uname = $('#uname').val();
-			console.log(uname);
+			const nickname = $('#nickname').val();
 			const email = $('#email').val();
 			const phoneNum = $('#phoneNum').val();
 			const birthDate = $('#birthDate').val();
@@ -221,6 +225,9 @@
 				return false;
 			} else if (uname == '') {
 				alert('이름을 입력해주세요');
+				return false;
+			} else if (nickname == '') {
+				alert('닉네임을 입력해주세요');
 				return false;
 			} else if (email == '') {
 				alert('이메일을 입력해주세요');
