@@ -113,6 +113,7 @@ public class UserController {
 		int result = service.login(uid, pwd);
 		switch (result) {
 		case UserService.CORRECT_LOGIN :
+			System.out.println(userSession.getUname());
 			session.setAttribute("sessionUid", uid);
 			session.setAttribute("sessionUname", userSession.getUname());
 			return "redirect:/board/index";

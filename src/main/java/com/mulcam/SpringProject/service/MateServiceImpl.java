@@ -60,9 +60,24 @@ public class MateServiceImpl implements MateService{
 	}
 
 	@Override
-	public List<String> getMateList(String uid) {
-		List<String> list = mateDao.getMateList(uid);
+	public List<Mate> getMateList(String uid) {
+		List<Mate> list = mateDao.getMateList(uid);
 		return list;
+	}
+	@Override
+	public List<Mate> getAddMateList(String uid) {
+		List<Mate> list = mateDao.getAddMateList(uid);
+		return list;
+	}
+	@Override
+	public List<Mate> getReceiveMateList(String uid) {
+		List<Mate> list = mateDao.getReceiveMateList(uid);
+		return list;
+	}
+	@Override
+	public void mateDelete(String user, String mateId) {
+		mateDao.mateDelete(user, mateId);
+		mateDao.mateDelete(mateId, user);
 	}
 	
 

@@ -1,5 +1,7 @@
 package com.mulcam.SpringProject.controller;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mulcam.SpringProject.entity.Mate;
+import com.mulcam.SpringProject.misc.ExerciseUtill;
 import com.mulcam.SpringProject.service.MateService;
 import com.mulcam.SpringProject.service.UserService;
 import com.mulcam.SpringProject.session.UserSession;
@@ -19,6 +22,8 @@ import com.mulcam.SpringProject.session.UserSession;
 public class MateController {
 	@Autowired private UserSession userSession;	
 	@Autowired private MateService service;
+	@Autowired private UserService userService;
+	@Autowired private ExerciseUtill exerciseUtill;
 	
 	/** 친구추가신청*/
 	@ResponseBody
@@ -67,8 +72,24 @@ public class MateController {
 	@GetMapping("/addMateForm")
 	public String addMateForm(Model model) {
 		String uid = userSession.getUid();
-		List<Mate>  mateList = service.getAddMate(uid);
-		model.addAttribute("addMateList", mateList);
+		// 관심운동 목록 제외한 필요데이터들 가져오기 (나이는 생년월일을 가져온다)
+		List<Mate>  mateList1 = service.getAddMateList(uid);
+		// 나이 계산을위해 필요
+		int year =  LocalDate.now().getYear();
+		
+		List<Mate> addMateList = new ArrayList<>();
+		for (Mate mate : mateList1) {
+			// 생년월일을 나이로 변환
+			int age = year - (mate.getAge()/10000);
+			// 관심운동 목록 가져오기
+			String likeExercise = userService.getLikeExercise(mate.getReceiveUser());
+			List<String> likeExerList = exerciseUtill.findExercise(likeExercise);
+			
+			Mate mateInfo = new Mate(mate.getUid(), mate.getReceiveUser(), mate.getSendTime(), mate.getNickname(), mate.getuImage(),
+					likeExerList, mate.getGender(), age);
+			addMateList.add(mateInfo);
+		}
+		model.addAttribute("addMateList", addMateList);
 		return "mate/addMateForm";
 	}
 	
@@ -77,8 +98,24 @@ public class MateController {
 	@GetMapping("/receiveMateForm")
 	public String receiveMateForm(Model model) {
 		String uid = userSession.getUid();
-		List<Mate>  mateList = service.getReceiveMate(uid);
-		model.addAttribute("receiveMateList", mateList);
+		// 관심운동 목록 제외한 필요데이터들 가져오기 (나이는 생년월일을 가져온다)
+		List<Mate>  mateList1 = service.getReceiveMateList(uid);
+		// 나이 계산을위해 필요
+		int year =  LocalDate.now().getYear();
+		
+		List<Mate> receiveMateList = new ArrayList<>();
+		for (Mate mate : mateList1) {
+			// 생년월일을 나이로 변환
+			int age = year - (mate.getAge()/10000);
+			// 관심운동 목록 가져오기
+			String likeExercise = userService.getLikeExercise(mate.getReceiveUser());
+			List<String> likeExerList = exerciseUtill.findExercise(likeExercise);
+			
+			Mate mateInfo = new Mate(mate.getUid(), mate.getReceiveUser(), mate.getSendTime(), mate.getNickname(), mate.getuImage(),
+					likeExerList, mate.getGender(), age);
+			receiveMateList.add(mateInfo);
+		}
+		model.addAttribute("receiveMateList", receiveMateList);
 		return "mate/receiveMateForm";
 	}
 	
@@ -89,9 +126,32 @@ public class MateController {
 		// 가져와야할 데이터 userRelationship테이블에서
 		// 1로 relationship에서 1인것들 가져오기
 		String uid = userSession.getUid();
-		List<String> mateList = service.getMateList(uid);
+		List<Mate> mateList1 = service.getMateList(uid);
+		// 나이 계산을위해 필요
+		int year =  LocalDate.now().getYear();
+		List<Mate> mateList = new ArrayList<>();
+		for (Mate mate : mateList1) {
+			// 생년월일을 나이로 변환
+			int age = year - (mate.getAge()/10000);
+			// 관심운동 목록 가져오기
+			String likeExercise = userService.getLikeExercise(mate.getReceiveUser());
+			List<String> likeExerList = exerciseUtill.findExercise(likeExercise);
+			
+			Mate mateInfo = new Mate(mate.getUid(), mate.getReceiveUser(), mate.getNickname(), mate.getuImage(),
+					likeExerList, mate.getGender(), age);
+			mateList.add(mateInfo);
+		}
+		
 		model.addAttribute("mateList", mateList);
 		return "mate/mateForm";
+	}
+	
+	/** 친구삭제*/
+	@ResponseBody
+	@GetMapping("/mateDelete")
+	public void mateDelete(String mateId) {
+		String user = userSession.getUid();
+		service.mateDelete(user, mateId);
 	}
 	
 }
