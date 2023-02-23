@@ -51,14 +51,10 @@
 			<tr>
 				<th>이메일</th>
 				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" id="email" placeholder="*이메일" maxlength="40"  />
-				</td>
-			</tr>
-			<tr>
-				<th>이메일 수신</th>
-				<td>수신<input type="radio" name="emailCheck" value="1" checked />
+					수신<input type="radio" name="emailCheck" value="1" checked />
 				 수신거부<input type="radio" name="emailCheck" value="0" />
 				</td>
-			</tr> 
+			</tr>
 			<tr>
 				<th>휴대폰번호</th>
 				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="tel" name="phoneNum" id="phoneNum" placeholder="('-'없이 번호만 입력)" maxlength="40" />
@@ -102,8 +98,8 @@
 				</td>
 			</tr>
 			<tr style="margin-left: 60px;">		
-				<td><input class="btn-hover color-9" onclick="checked_submit()" type="button" value="회원가입"></td>
-				<td><input class="btn-hover color-8" type="reset" value="취소"></td>
+				<td><input class="btn-hover color-9" onclick="checked_submit()" type="button" value="회원가입" style="margin-left: 70px;"></td>
+				<td><input class="btn-hover color-8" type="reset" value="취소" style="margin-left: 50px;"></td>
 			</tr>
 		</table>
 	</form>

@@ -64,7 +64,7 @@
           <div class="collapse" id="orders-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li><a href="/group/myWrite" class="text-color d-inline-flex text-decoration-none rounded">내가 쓴글</a></li>
-              <li><a href="/group/myWrite" class="text-color d-inline-flex text-decoration-none rounded">수락 목록</a></li><hr>
+              <li><a href="/group/groupMade" class="text-color d-inline-flex text-decoration-none rounded">수락 목록</a></li><hr>
               <li><a href="/group/applyList" class="text-color d-inline-flex text-decoration-none rounded">신청현황</a></li>
               <li><a href="/group/applyDone" class=" text-color d-inline-flex text-decoration-none rounded">신청완료</a></li>
             </ul>

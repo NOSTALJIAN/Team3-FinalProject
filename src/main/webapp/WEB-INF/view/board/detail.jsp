@@ -10,7 +10,7 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppKey}&libraries=services"></script>
 </head>
 
-<body>
+<body  style="background-color: black; color: white;">
 	<%@ include file="../common/top.jsp" %>
 	<div class="container" style="margin: 40px; padding-bottom: 300px;">
 		<div class="row" style="justify-content: space-evenly">
@@ -50,11 +50,11 @@
 					<div>
 						<div>
                           <p class="board-view-cnt" style="margin-left: 36px;">
-                            <span>조회${b.bViewCount}</span> <span>댓글${b.bReplyCount}</span> <span>작성자 ${b.uid}</span> 
+                            <span>조회${b.bViewCount}</span> <span>댓글${b.bReplyCount}</span> <span>작성자 ${n}</span> 
                           </p>
                         </div>
 					</div>
-					<table class="board-view-infomation" style="margin-left: 370px; margin-top:-14px; color: black;">
+					<table class="board-view-infomation" style="margin-left: 370px; margin-top:-14px; color: white;">
 						<tr>
 							<th>운동 종목</th>
 							<td>${b.bCategory}</td>
@@ -127,7 +127,7 @@
 						<c:if test="${reply.rIsMine eq 1}">
 							<div class="d-flex flex-row-reverse mt-1">
 								<div class="card w-96 rounded" style="margin-right: 100px;">
-									<div class="card-body text-end" id="reply${loop.count}">		
+									<div class="card-body text-end" id="reply${loop.count}" style="color: black;">		
 										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
 										<c:if test="${reply.uid eq sessionUid}">
 											<button onclick="replyUpdate('block', ${loop.count})" style="float: right" class="btn btn-dark">수정</button>

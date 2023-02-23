@@ -34,7 +34,7 @@
             </li>
             <c:choose>
               <c:when test="${!empty sessionUid}">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link nav-size text-white" href="/chat/test" aria-label="A system message page">
                     1:1 채팅
                   </a>
@@ -43,7 +43,7 @@
                   <a class="nav-link nav-size text-white" href="/chat/room" aria-label="A system message page">
                     그룹 채팅
                   </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <a class="nav-link nav-size text-white" href="/user/mypage" aria-label="A system message page">
                     마이페이지

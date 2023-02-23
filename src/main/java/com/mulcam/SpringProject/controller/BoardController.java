@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.mulcam.SpringProject.entity.Board;
 import com.mulcam.SpringProject.entity.Reply;
 import com.mulcam.SpringProject.service.BoardService;
+import com.mulcam.SpringProject.service.UserService;
 import com.mulcam.SpringProject.session.UserSession;
 
 @Controller
@@ -33,6 +34,7 @@ public class BoardController {
 	
 	@Autowired private UserSession userSession;
 	@Autowired private BoardService bsv;
+	@Autowired private UserService service;
 	
 	@Value("${spring.servlet.multipart.location}") private String uploadDir;
 	@Value("${kakao.AppKey}") private String kakaoAppKey;
@@ -106,7 +108,9 @@ public class BoardController {
 		Board board = bsv.getBoard(bid);
 		String uid = req.getParameter("uid");
 		String option = req.getParameter("option");
+		String nickname = service.getNickname(uid);
 		model.addAttribute("b", board);
+		model.addAttribute("n", nickname);
 		model.addAttribute("kakaoAppKey", kakaoAppKey);
 		String sessionUid = userSession.getUid();
 		
