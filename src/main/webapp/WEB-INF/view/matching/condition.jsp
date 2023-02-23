@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="/css/sidebars.css">
 	<title>매칭 조건</title>
 	<style>
-	tr {padding-bottom: 30px;}
+	tr {padding-bottom: 30px; margin: 20px;
+	}
 	td {
 		text-align: right;
 		padding-left: 50px;
@@ -23,7 +24,7 @@
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 		<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-			<h4>운동친구 매칭조건</h4><hr style="color: white;">
+			<h5>운동친구 매칭조건</h5><hr style="color: white;">
 			<div style="margin-top: 30px; margin-left: 250px;">
 				<form action="/matching/condition" method="post">
 					<table style="width: 100%; padding-bottom: 50px; ">

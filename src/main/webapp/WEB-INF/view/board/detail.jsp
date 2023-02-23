@@ -8,6 +8,16 @@
 <head>
     <%@ include file="../common/heading.jsp" %>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppKey}&libraries=services"></script>
+<style>
+  table {
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 2px;
+  }
+  	</style>
 </head>
 
 <body  style="background-color: black; color: white;">
@@ -21,7 +31,7 @@
 					<div class="detail-btn">
 					<button onclick="location.href='/board/list'" class="btn-hover color-8 ms-3 col-2" style="width: 100px" type="button">목록</button>
 					<c:if test="${b.uid ne sessionUid}">
-					<button class="btn-hover color-9 ms-3 col-2" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}" style="width: 100px" type="button">신청</button>
+					<button class="btn-hover color-9 ms-3 col-2" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}" style="width: 100px" type="button">참가신청</button>
 					</c:if>
 					<!-- 본인만 수정 가능 -->
 					<c:if test="${b.uid eq sessionUid}">
@@ -49,7 +59,7 @@
 				<div class="detail-content">
 					<div>
 						<div>
-                          <p class="board-view-cnt" style="margin-left: 36px;">
+                          <p class="board-view-cnt" style="margin-left: 45px;">
                             <span>조회${b.bViewCount}</span> <span>댓글${b.bReplyCount}</span> <span>작성자 ${n}</span> 
                           </p>
                         </div>
@@ -78,10 +88,10 @@
 					</table>
 				</div>
 				<!-- 지도 -->
-				<div class="board-view-map" id="map"></div>
+				<div class="board-view-map" id="map" style="color: black;"></div>
         	</div>
         	<div class="">
-					<div class="board-view-content" style="text-align: left;">
+					<div class="board-view-content" style="text-align: left; color: white;">
 					${fn:replace(b.bContent, newline, '<br>')}
 				</div>
 				</div>
@@ -96,8 +106,8 @@
 									<div class="card-body" id="reply${loop.count}">		
 										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
 										<c:if test="${reply.uid eq sessionUid}">
-											<button onclick="replyUpdate('block', ${loop.count})" style="float: right" class="btn btn-dark">수정</button>
-											<button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right" class="btn btn-secondary">삭제</button>
+											<button onclick="replyUpdate('block', ${loop.count})" style="float: right" class="btn btn-primary">수정</button>
+											<button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right" class="btn btn-danger">삭제</button>
 										</c:if><br>    <!-- uname, regTime-->
 										${fn:replace(reply.rContent, newline, '<br>')}  <!-- content -->
 									</div>
@@ -130,8 +140,8 @@
 									<div class="card-body text-end" id="reply${loop.count}" style="color: black;">		
 										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
 										<c:if test="${reply.uid eq sessionUid}">
-											<button onclick="replyUpdate('block', ${loop.count})" style="float: right" class="btn btn-dark">수정</button>
-											<button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right" class="btn btn-secondary">삭제</button>
+											<button onclick="replyUpdate('block', ${loop.count})" style="float: right" class="btn btn-primary">수정</button>
+											<button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right" class="btn btn-danger">삭제</button>
 										</c:if><br>    <!-- uname, regTime-->
 										${fn:replace(reply.rContent, newline, '<br>')}  <!-- content -->
 									</div>
@@ -166,7 +176,7 @@
 							<table class="table table-borderless mt-2">
 								<tr class="d-flex">
 									<td class="col-1 text-end">
-										<label for="rContent">댓글</label>
+										<label for="rContent" style="color: white;">댓글</label>
 									</td>
 									<td class="col-6">
 										<textarea class="form-control" id="rContent" name="rContent" rows="3"></textarea>

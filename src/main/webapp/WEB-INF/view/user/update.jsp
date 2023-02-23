@@ -27,7 +27,7 @@
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-			<h5>회원정보 수정</h5><hr>
+			<h5>개인정보 수정</h5><hr>
 			<div style="margin-top: 30px; margin-left: 250px;">
 				<form name="reg_sub" action="/user/update" method="post" class="mb-auto col-12 text">
 					<input type="hidden" id="likeExerList" value="${likeExerList}"/>
@@ -36,7 +36,8 @@
 							<th>닉네임</th>
 							<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" value="${user.nickname}" maxlength="40"  />
 							</td>
-						</tr><tr>
+						</tr>
+						<tr>
 							<th>이메일</th>
 							<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" value="${user.email}" maxlength="40"  />
 							</td>

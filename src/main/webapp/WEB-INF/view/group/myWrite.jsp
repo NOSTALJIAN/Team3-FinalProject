@@ -42,7 +42,7 @@
 				<tbody>
 					<c:forEach var="my" items="${myList}">
 						<tr>
-							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bid}</td>
+							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bTitle}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bCategory}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bUserCount}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${fn:replace(my.bRegTime, 'T', ' ')}</td>

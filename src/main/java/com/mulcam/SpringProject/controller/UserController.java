@@ -110,13 +110,17 @@ public class UserController {
 	public String login(HttpServletRequest req, Model model, HttpSession session) {
 		String uid = req.getParameter("uid").strip();
 		String pwd = req.getParameter("pwd").strip();
+		User user = service.getUser(uid);
 		int result = service.login(uid, pwd);
 		switch (result) {
 		case UserService.CORRECT_LOGIN :
 			System.out.println(userSession.getUname());
 			session.setAttribute("sessionUid", uid);
 			session.setAttribute("sessionUname", userSession.getUname());
-			return "redirect:/board/index";
+			session.setAttribute("sessionNickname", userSession.getNickname());
+			model.addAttribute("msg", userSession.getNickname() + "님 환영합니다.");
+			model.addAttribute("url", "/board/index");
+			return "common/alertMsg";
 		case UserService.UID_NOT_EXIST :
 			model.addAttribute("msg", "아이디를 잘못입력하셧습니다. 다시 확인해주세요.");
 			model.addAttribute("url", "/user/login");
@@ -140,18 +144,21 @@ public class UserController {
 	/** 사용자 페이지*/
 	@GetMapping("/mypage")
 	public String mypage(HttpSession session, Model model) {
-		/*if (userSession.getUid() == null)
-			return "redirect:/user/login";
-		return "user/mypage";*/
-		
 			if (userSession.getUid() == null)
 				return "redirect:/user/login";
 			String uid = userSession.getUid();
 			
+			User user = service.getUser(uid);
+			UserInfo userInfo = service.getUserInfo(uid);
+			String likeExercise = service.getLikeExercise(uid);
+			List<String> likeExerList = eserciseUtill.findExercise(likeExercise);
+			
 			// 프로필 사진 가져오기
 			String profileImg = service.getUimage(uid);
-			
+			model.addAttribute("user", user);
+			model.addAttribute("userInfo", userInfo);
 			model.addAttribute("profileImg", profileImg);
+			model.addAttribute("likeExerList", likeExerList);
 			return "user/mypage";
 		}
 
@@ -170,12 +177,13 @@ public class UserController {
 		model.addAttribute("user", user);
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("likeExerList", likeExerList);
+		
 		return "user/update";
 	}
 	
 	/** 개인정보 수정*/
 	@PostMapping("/update")
-	public String update(HttpSession session, HttpServletRequest req) throws Exception{
+	public String update(HttpSession session, HttpServletRequest req, Model model) throws Exception{
 		String uid = userSession.getUid();
 		String nickname = req.getParameter("nickname").strip();
 		String email = req.getParameter("email").strip();
@@ -199,7 +207,9 @@ public class UserController {
 		UserInfo ui = new UserInfo(uid, uPostcode, uAddr, uDetailAddr,likeExercise, lat, lng);
 		service.update(u, ui);
 		
-		return "board/index";
+		model.addAttribute("msg", "개인정보 수정이 완료되었습니다.");
+		model.addAttribute("url", "/user/mypage");
+		return "common/alertMsg";
 	}
 	
 	/** 비밀번호 변경 페이지*/
@@ -218,7 +228,9 @@ public class UserController {
 		// 비밀번호 변경 실행
 		service.updatePwd(uid, newpwd);
 		
-		return "redirect:/board/index";
+		model.addAttribute("msg", "비밀번호 변경이 완료되었습니다.");
+		model.addAttribute("url", "/board/index");
+		return "common/alertMsg";
 	}
 	
 	/** ajax방식으로 비밀번호 일치하는지 확인하기 */
@@ -250,7 +262,7 @@ public class UserController {
 	
 	/** 유저 프로필 등록, 수정*/
 	@PostMapping("/profile")
-	public String profile(MultipartHttpServletRequest req) {
+	public String profile(MultipartHttpServletRequest req, Model model) {
 		String uid = userSession.getUid();
 		MultipartFile file = req.getFile("regProfile");
 		
@@ -271,7 +283,9 @@ public class UserController {
 		// DB에 파일 이름 저장
 		service.profileUpload(uid, fname);
 		
-		return "redirect:/user/mypage";
+		model.addAttribute("msg", "프로필 변경이 완료되었습니다.");
+		model.addAttribute("url", "/user/mypage");
+		return "common/alertMsg";
 	}
 	
 	/** 관리자 페이지*/
