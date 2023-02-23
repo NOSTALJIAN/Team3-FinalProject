@@ -157,4 +157,9 @@ public class UserServiceImpl implements UserService{
 		return userList;
 	}
 
+	@Override
+	public void userIsDeleted(String uid, int isDeleted) {
+		userDao.userIsDeleted(uid, isDeleted);
+	}
+
 }
