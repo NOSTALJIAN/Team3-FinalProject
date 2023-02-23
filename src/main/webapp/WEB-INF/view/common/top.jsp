@@ -84,7 +84,7 @@
           
            <c:choose>
               <c:when test="${!empty sessionUid}">
-			<span class="nav-link nav-size text-gray me-3">${sessionNickname}님 환영합니다.</span>
+			<span class="nav-link nav-size text-gray me-3" style="margin-left: 20px;">${sessionNickname}님 환영합니다.</span>
 			</c:when>
 		</c:choose>
         </div>
