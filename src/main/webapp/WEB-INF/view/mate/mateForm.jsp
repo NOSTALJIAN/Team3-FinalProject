@@ -42,14 +42,20 @@
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="mate" items="${mateList}">
-						<tr>
-							<td><img id="profileImg" src="/img/basicProfile.png" ></td>
-							<td>${mate}</td>
-							<td>[관심운동]</td>
-							<td>[남/여]</td>
-							<td>[24]</td>
-							<td><button onclick="mateAccept('${re.uid}')" class="btn-hover color-8 " type="button">메세지</button></td>
+					<c:forEach var="m" items="${mateList}">
+						<tr id="${m.receiveUser}">
+							<c:if test="${empty m.uImage}">
+							<td><img src="/img/basicProfile.png" ></td>
+							</c:if>
+							<c:if test="${not empty m.uImage}">
+							<td><img src="/board/download?file=${m.uImage}"></td>
+							</c:if>
+							<td>${m.nickname}</td>
+							<td>${m.likeExerList}</td>
+							<td>${m.gender}</td>
+							<td>${m.age}</td>
+							<td><button class="btn-hover color-9">채팅</button></td>
+							<td><button onclick="mateDelete('${m.receiveUser}')"  class="btn-hover color-8">친구끊기</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -57,13 +63,23 @@
 			</div>
 		</div>
 	</div>
-	<%-- <div class="mypage">
-		<h4>친구 목록</h4>
-		<c:forEach var="mate" items="${mateList}">
-			<div>
-				<p>친구아이디 : ${mate}</p>
-			</div>
-		</c:forEach>
-	</div> --%>
+	<script>
+	function mateDelete(mateId){
+		if(confirm("친구관계를 끊으시겠습니까?")) {
+			const mateForm = document.getElementById(mateId);
+			$.ajax({
+					type:'GET',
+					url: '/mate/mateDelete',
+					data: {'mateId': mateId},
+					success: function(result){
+						mateForm.style.display='none';
+					}
+			});
+			return true;
+		} else {
+			return false;
+		}
+	}	
+	</script>
 </body>
 </html>

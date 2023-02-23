@@ -47,12 +47,17 @@
 					<tbody>
 					<c:forEach var="add" items="${addMateList}">
 						<tr>
-							<td><img id="profileImg" src="/img/basicProfile.png" ></td>
-							<td>${add.receiveUser}</td>
-							<td>[관심운동]</td>
-							<td>[성별]</td>
-							<td>[나이]</td>
-							<td>${fn:replace(add.sendTime, 'T', ' ')}</td>
+							<c:if test="${empty add.uImage}">
+							<td><img src="/img/basicProfile.png" ></td>
+							</c:if>
+							<c:if test="${not empty add.uImage}">
+							<td><img src="/board/download?file=${add.uImage}"></td>
+							</c:if>
+							<td>${add.nickname}</td>
+							<td>${add.likeExerList}</td>
+							<td>${add.gender}</td>
+							<td>${add.age}</td>
+							<td>${add.sendTime}</td>
 							<td><button onclick="addMate('${add.receiveUser}')"  id="${add.receiveUser}" class="btn-hover color-8 write-btn">신청중</button></td>
 						</tr>
 					</c:forEach>

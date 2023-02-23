@@ -21,8 +21,14 @@ public interface MateService {
 
 	void mateAccept(Mate mate);
 
-	List<String> getMateList(String uid);
+	List<Mate> getMateList(String uid);
 
 	int confirm2(Mate mate);
+
+	List<Mate> getAddMateList(String uid);
+
+	List<Mate> getReceiveMateList(String uid);
+
+	void mateDelete(String user, String mateId);
 
 }
