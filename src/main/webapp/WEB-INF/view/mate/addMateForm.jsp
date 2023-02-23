@@ -21,7 +21,7 @@
 		    padding: 5px;
 		  }
   			img {
-		  	width: 70px; height: 70px;
+		  	width: 70px; height: 70px; border-radius: 70%;
 		  }
   </style>
 </head>
@@ -53,7 +53,7 @@
 							<td>[성별]</td>
 							<td>[나이]</td>
 							<td>${fn:replace(add.sendTime, 'T', ' ')}</td>
-							<td><button onclick="addMate('${add.receiveUser}')"  id="${add.receiveUser}" class="btn-hover color-8 write-btn">신청중</button></td>
+							<td><button onclick="addMate('${add.receiveUser}')"  id="${add.receiveUser}" class="btn-hover color-8 write-btn">친구신청중</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>

@@ -70,18 +70,22 @@
                 class="btn btn-outline-light ${menu eq 'login' ? 'active' : ''}">
                 <small>로그인</small>
               </a>
-              <%-- <a href="/user/register" aria-label="Download this template"
-                class="btn btn-outline-light ${menu eq 'reg' ? 'active' : ''}">
-                <small>회원가입</small>
-                </a> --%>
+              <a href="/user/register" aria-label="Download this template"
+               class="btn btn-outline-light ${menu eq 'reg' ? 'active' : ''}">
+               <small>회원가입</small>
+               </a> 
             </c:when>
-
             <c:otherwise>
               <a href="/user/logout" aria-label="Download this template" class="btn btn-outline-light ">
                 <small>로그아웃</small>
               </a>
             </c:otherwise>
           </c:choose>
-
+          
+           <c:choose>
+              <c:when test="${!empty sessionUid}">
+			<span class="nav-link nav-size text-gray me-3">${sessionNickname}님 환영합니다.</span>
+			</c:when>
+		</c:choose>
         </div>
       </nav>

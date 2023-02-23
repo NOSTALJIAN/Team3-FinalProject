@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService{
 					// 로그인을 했을때 session에 정보 저장
 					userSession.setUid(u.getUid());
 					userSession.setUname(u.getUname());
+					userSession.setNickname(u.getNickname());
 					return UserService.CORRECT_LOGIN;
 				}
 				else {		

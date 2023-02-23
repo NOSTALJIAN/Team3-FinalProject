@@ -26,14 +26,14 @@
 							</div>
 						</td>
 						<td class="col-1">
-							<select class="form-select me-2" name="f" id="field">
+							<select class="form-select me-2" name="f" id="field" style="width: 103%;">
 								<option value="bCategory" selected>종목</option>
 								<option value="bLocation">장소</option>
 								<option value="bUserCount">인원</option>
 							</select>
 						</td>
 						<td class="col-1">
-							<select class="form-select me-2" name="period" id="period" >
+							<select class="form-select me-2" name="period" id="period" style="width: 103%;">
 								<option value="all" selected>모든날짜</option>
 								<option value="week">일주일</option>
 								<option value="month">한달</option>
@@ -53,7 +53,7 @@
 						<div class="content-list">
 							<c:forEach var="b" items="${blist}">
 							<div class="content-list-col" data-aos="fade-right">
-									<h5 class="mt-2 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
+									<h5 class="mt-1 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">종목 : ${b.bCategory}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">장소 : ${b.bLocation}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>

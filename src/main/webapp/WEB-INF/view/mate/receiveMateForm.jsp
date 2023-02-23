@@ -20,7 +20,7 @@
 		    padding: 3px;
 		  }
 		  img {
-		  	width: 70px; height: 70px;
+		  	width: 70px; height: 70px; border-radius: 70%;
 		  }
     </style>
 </head>
