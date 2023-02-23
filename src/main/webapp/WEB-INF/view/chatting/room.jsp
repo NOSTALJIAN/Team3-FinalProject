@@ -10,6 +10,33 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <%@ include file="../common/heading.jsp" %>
           <link rel="stylesheet" href="/css/room.css">
+          <style>
+            .chats {
+              display: flex;
+              flex-direction: column;
+
+              gap: 10px;
+            }
+
+            .mine {
+              background: #e9e9e9;
+              border-radius: 5px;
+            }
+
+            .yours {
+              background: #efef87;
+              border-radius: 5px;
+            }
+
+            .nickname {
+              font-size: 16px;
+              font-weight: bold;
+            }
+
+            .message {
+              font-size: 14px;
+            }
+          </style>
       </head>
 
       <body>
@@ -18,20 +45,20 @@
           <div id="container" class="container" style="margin-top: 120px; padding-bottom: 300px;">
 
             <!-- START -->
-            <div class="col-6">
-              <h1>${room.uid}</h1>
-            </div>
-            <div>
-              <div id="msgArea" class="col">
-                <div class="input-group mb-3">
-                  <input type="text" id="msg" class="form-control">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
-                  </div>
-                </div>
+            <h1>CHAT ROOM</h1>
+            <h2 th:text="'Room No. ' + ${chatRoomId}"></h2>
+            <h2 th:text="'Nickname = ' + ${nickname}"></h2>
+
+            <form>
+              <input type="text" id="message">
+              <input type="submit" value="전송" class="btn-send">
+            </form>
+
+            <div class="chats">
+              <div class="mine">
+
               </div>
             </div>
-            <div class="col-6"></div>
 
           </div>
       </body>

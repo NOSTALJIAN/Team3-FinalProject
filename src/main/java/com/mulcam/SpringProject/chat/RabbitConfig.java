@@ -28,15 +28,11 @@ public class RabbitConfig {
 
     //	Queue 등록
     @Bean
-    Queue queue() {
-        return new Queue(CHAT_QUEUE_NAME, true);
-    }
+    Queue queue() {	return new Queue(CHAT_QUEUE_NAME, true);	}
 
     //	Exchange 등록
     @Bean
-    TopicExchange exchange() {
-        return new TopicExchange(CHAT_EXCHANGE_NAME);
-    }
+    TopicExchange exchange() {	return new TopicExchange(CHAT_EXCHANGE_NAME);	}
 
     //	Exchange와 Queue 바인딩
     @Bean
@@ -54,11 +50,19 @@ public class RabbitConfig {
     }
 
     @Bean
-    SimpleMessageListenerContainer container() {
+    SimpleMessageListenerContainer container() throws Exception {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory());
         container.setQueueNames(CHAT_QUEUE_NAME);
-        container.setMessageListener(null);
+//        container.setMessageListener(null);
+        container.setMessageListener(m -> {
+            try {
+              Thread.sleep(50);
+            }
+            catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+            }
+          });
         return container;
     }
 
