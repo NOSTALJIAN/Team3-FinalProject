@@ -9,15 +9,16 @@
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
-	<button onclick="all()">전체회원</button>
-	<button onclick="normal()">정상회원</button>
-	<button onclick="delete()">탈퇴예정회원</button>
-	<button onclick="exile()">추방회원</button>
+	<button onclick="location.href ='/user/admin'">전체회원</button>
+	<button onclick="location.href ='/user/admin?isDeleted=0'">정상회원</button>
+	<button onclick="location.href ='/user/admin?isDeleted=1'">탈퇴예정회원</button>
+	<button onclick="location.href ='/user/admin?isDeleted=2'">추방회원</button>
 	<table border="1" style="margin: 50px; width: 80%">
 		<tr>
-			<th>UID</th><th>이름</th>
-			<th>email</th><th>전화번호</th>
-			<th>등록일</th><th>탈퇴여부</th>
+			<th width="10%">UID</th><th width="7%">이름</th>
+			<th width="13%">email</th><th width="10%">전화번호</th>
+			<th width="13%">등록일</th><th width="7%">탈퇴여부</th>
+			<th width="30%">회원 상태 변경</th>
 		</tr>
 		<c:forEach var="user" items="${userList}">
 		<tr>
@@ -27,22 +28,66 @@
 			<td>${user.phoneNum}</td>
 			<td>${user.uRegDate}</td>
 			<c:if test="${user.uIsDeleted eq 0}">
-			<td>정상회원</td>	
-			<td><button onclick="">추방하기</button></td>
+			<td id="${user.uid}">정상회원</td>	
 			</c:if>
 			<c:if test="${user.uIsDeleted eq 1}">
-			<td>탈퇴예정</td>	
-			<td><button onclick="">탈퇴취소</button></td>
+			<td id="${user.uid}">탈퇴회원</td>	
 			</c:if>
 			<c:if test="${user.uIsDeleted eq 2}">
-			<td>추방예정</td>	
-			<td><button onclick="">추방취소</button></td>
+			<td id="${user.uid}">추방회원</td>	
 			</c:if>
+			<td><button onclick="cancle('${user.uid}')">추방/탈퇴취소</button>
+			<button onclick="delete1('${user.uid}')">탈퇴시키기</button>
+			<button onclick="exile('${user.uid}')">추방하기</button></td>
 		</tr>
 		</c:forEach>
 	</table>
 	<script>
-	
+	function cancle(uid){
+		const fcuid = document.getElementById(uid);
+		if (fcuid.innerText != '정상회원'){
+			$.ajax({
+				type:'GET',
+				url: '/user/isDeleted',
+				data: { 'uid': uid,
+						'isNum' : '0'		
+				},
+				success: function(result){
+					fcuid.innerText = '정상회원';
+				}
+			});
+		}
+	}
+	function delete1(uid){
+		const fcuid = document.getElementById(uid);
+		if (fcuid.innerText != '탈퇴회원'){
+			$.ajax({
+				type:'GET',
+				url: '/user/isDeleted',
+				data: { 'uid': uid,
+						'isNum' : '1'		
+				},
+				success: function(result){
+					fcuid.innerText = '탈퇴회원';
+				}
+			});
+		}
+	}
+	function exile(uid){
+		const fcuid = document.getElementById(uid);
+		if (fcuid.innerText != '추방회원'){
+			$.ajax({
+				type:'GET',
+				url: '/user/isDeleted',
+				data: { 'uid': uid,
+						'isNum' : '2'		
+				},
+				success: function(result){
+					fcuid.innerText = '추방회원';
+				}
+			});
+		}
+	}
 	</script>
 </body>
 </html>

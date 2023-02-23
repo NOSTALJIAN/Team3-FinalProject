@@ -36,7 +36,7 @@
 					<thead>
 						<tr>
 							<th>프로필</th>
-							<th>아이디</th>
+							<th>닉네임</th>
 							<th>관심운동</th>
 							<th>성별</th>
 							<th>나이</th>
@@ -73,7 +73,6 @@
 				data: {'receiveUser': uid},
 				success: function(result){
 					mateuid.innerText = result;
-					console.log(result);
 					mateuid.style.cssText = 'background-color:black; color:white;'
 				}
 			  });
@@ -85,7 +84,6 @@
 				data: {'receiveUser': uid},
 				success: function(result){
 					mateuid.innerText = result;
-					console.log(result);
 					mateuid.style.cssText = 'background-color:white; color:black;'
 				}
 			  });
