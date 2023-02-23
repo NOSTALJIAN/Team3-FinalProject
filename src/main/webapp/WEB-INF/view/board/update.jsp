@@ -21,7 +21,9 @@
 				<div class="board-title" >
 				<table>
 					<tr>
-						<td class="col-8"><h3 class="board-title"><strong>게시글 수정</strong></h3></td>
+						<td class="col-8">
+							<h3 class="board-title"><strong>게시글 수정</strong></h3>
+						</td>
 						<td class="col-2">
 							<button onclick="location.href='/board/list'" class="btn-hover color-8 ">목록</button>
 						</td>
@@ -71,7 +73,7 @@
 							<td><textarea class="board-input" name="bContent" placeholder="내용" maxlength="5000" rows="10">${b.bContent}</textarea></td>
 						</tr>
 					</table>
-					<div class="buttons" style="margin-left: 15px; margin-top: 10px;">
+					<div class="buttons" style="margin-left:  -20px;">
 						<button class="btn-hover color-8 write-btn" type="submit" value="글쓰기">수정</button>
 						<button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
 					</div>
@@ -79,7 +81,7 @@
 			</div>
 		</div>
     </div>
-		<div class="map_wrap"  style="margin-top: 150px; margin-right: 40px;">	
+		<div class="map_wrap"  style="margin-top: 150px; margin-right: 120px;">	
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		    <div id="menu_wrap" class="bg_white">
 		        <div class="option">

@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/sidebars.css">
-    <style type="text/css">
+    <style>
 		  table {
-		    width: 1000px;
+		    width: 1100px;
 		    border-top: 1px solid #444444;
 		    border-collapse: collapse;
 		  }
@@ -31,7 +31,6 @@
 				<table>
 					<thead>
 						<tr>
-							<th>번호</th>
 							<th>제목</th>
 							<th>종목</th>
 							<th>장소</th>
@@ -43,13 +42,12 @@
 					<tbody>
 					<c:forEach var="apply" items="${applyList}">
 						<tr>
-							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bid}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bTitle}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bCategory}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bLocation}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${fn:replace(apply.bAppointment, 'T', ' ')}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bUserCount}</td>
-							<td><button class="btn-hover color-8 ">참가신청중</button></td>
+							<td><button class="btn-hover color-8">신청중</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>

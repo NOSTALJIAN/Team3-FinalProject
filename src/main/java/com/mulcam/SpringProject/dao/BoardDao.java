@@ -14,12 +14,13 @@ public interface BoardDao {
 
 	@Select("SELECT b.bid, b.uid, b.bTitle, b.bCategory, b.bLocation, b.bAddr, b.bAppointment, b.bUserCount,"
 			+ " b.bRegTime, b.bViewCount, b.bReplyCount, u.uname FROM board AS b"
-			+ "	JOIN users AS u"
+			+ "	JOIN users AS u JOIN boardMate as bm"
 			+ "	ON b.uid=u.uid"
 			+ "	WHERE b.bIsDeleted=0 AND ${field} LIKE #{query}"
+			+ " AND b.bid NOT IN (SELECT bid FROM boardMate where uid=#{uid})"
 			+ " ORDER BY bid DESC"
 			+ "	LIMIT 9 OFFSET #{offset};")
-	public List<Board> getBoardList(int offset, String field, String query);
+	public List<Board> getBoardList(int offset, String field, String query, String uid);
 	
 	@Select("SELECT b.bid, b.uid, b.bTitle, b.bCategory, b.bLocation, b.bAddr, b.bAppointment, b.bUserCount,"
 			+ " b.bRegTime, b.bViewCount, b.bReplyCount, u.uname FROM board AS b"
@@ -27,9 +28,10 @@ public interface BoardDao {
 			+ "	ON b.uid=u.uid"
 			+ "	WHERE b.bIsDeleted=0 AND ${field} LIKE #{query}"
 			+ " AND b.bAppointment>=#{startDate} AND b.bAppointment<=#{endDate}"
+			+ " AND b.bid NOT IN (SELECT bid FROM boardMate where uid=#{uid})"
 			+ " ORDER BY b.bAppointment ASC"
 			+ "	LIMIT 9 OFFSET #{offset};")
-	public List<Board> getBoardListByPeriod(int offset, String field, String query, String startDate, String endDate);
+	public List<Board> getBoardListByPeriod(int offset, String field, String query, String startDate, String endDate, String uid);
 	
 	@Select("SELECT COUNT(bid) FROM board AS b"
 			+ "	JOIN users AS u"

@@ -16,6 +16,9 @@
 	.box {
 		border-radius: 70%;
 	}
+	img {
+	  border-radius: 70%;
+}
 	</style>
 </head>
 <body style="margin-bottom: 100px; background-color: black; color: white; " class="register">
@@ -35,7 +38,7 @@
 						</c:if>
 					</div><br>
 					<div class="profilebox bs3-primary">
-						<button for="regProfile" class="btn-hover color-8">업로드</button> 
+						<label for="regProfile" style="color: white;width: 89px;height: 45px;">업로드</label> 
 						<input type="file" id="regProfile" name="regProfile" class="upload-hidden">
 						<!-- <input class="upload-name" value="파일선택" disabled="disabled"> -->
 						<span>jpg, png, gif 파일만 가능</span>

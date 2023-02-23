@@ -1,5 +1,7 @@
 package com.mulcam.SpringProject.controller;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mulcam.SpringProject.entity.Board;
 import com.mulcam.SpringProject.entity.BoardMate;
+import com.mulcam.SpringProject.entity.MatchingUsers;
 import com.mulcam.SpringProject.entity.User;
 import com.mulcam.SpringProject.entity.UserInfo;
+import com.mulcam.SpringProject.misc.ExerciseUtill;
 import com.mulcam.SpringProject.service.BoardMateService;
+import com.mulcam.SpringProject.service.UserService;
 import com.mulcam.SpringProject.session.UserSession;
 
 @Controller
@@ -23,6 +28,8 @@ import com.mulcam.SpringProject.session.UserSession;
 public class BoardMateController {
 	@Autowired private UserSession userSession;	
 	@Autowired private BoardMateService service;
+	@Autowired private UserService userService;
+	@Autowired private ExerciseUtill exerciseUtill;
 	
 	/** 운동 참가 신청*/
 	@ResponseBody
@@ -82,8 +89,36 @@ public class BoardMateController {
 	public String receiveForm(HttpServletRequest req, Model model) {
 		String uid = userSession.getUid();
 		int bid = Integer.parseInt(req.getParameter("bid"));
-
+		
 		List<BoardMate> receiveList = service.getReceiveList(uid, bid);
+		System.out.println(receiveList);
+		
+		List<MatchingUsers> applyUserInfoList = new ArrayList<>();
+		// 오늘자 연도(나이계산을 위해서)
+		int year =  LocalDate.now().getYear();
+		
+		for (BoardMate bm : receiveList) {
+			// 운동 참가 신청한 uid
+			String applyUid = bm.getUid();
+			
+			// 나이계산
+			int age = year - (bm.getBirthDate()/10000);
+			
+			// 관심운동 목록 가져오기
+			String likeExercise = userService.getLikeExercise(applyUid);
+			List<String> likeExerList = exerciseUtill.findExercise(likeExercise);
+			
+			// 닉네임 가져오기
+			String nickname = userService.getNickname(applyUid);
+			// 프로필사진 가져오기
+			String uImage = userService.getUimage(applyUid);
+			
+			MatchingUsers applyUserInfo = new MatchingUsers(applyUid, nickname, uImage, age, likeExerList);
+			applyUserInfoList.add(applyUserInfo);
+		}
+		
+		model.addAttribute("infoList", applyUserInfoList);
+		System.out.println(applyUserInfoList);
 		model.addAttribute("receiveList", receiveList);
 		return "group/applyPerson";
 	}
