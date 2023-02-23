@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -274,7 +275,6 @@ public class UserController {
 		List<User> userList = null;
 		// 유저 정보 쭉가져오기(users만 가져오면될듯)
 		String isDeleted_ = req.getParameter("isDeleted");
-		System.out.println("asd" + isDeleted_);
 		if (isDeleted_ == null) {
 			userList = service.getUserAllList();
 			model.addAttribute("userList", userList);
@@ -282,14 +282,22 @@ public class UserController {
 		}
 		else {
 			int isDeleted = Integer.parseInt(isDeleted_);
-			System.out.println("isDeleted" + isDeleted);
 			userList = service.getUserList(isDeleted);
-			System.out.println("userList" + userList);
 			model.addAttribute("userList", userList);
 			return "user/admin";
 		}
 	}
 	
 	/** 관리자페이지 처리*/
+	@ResponseBody
+	@GetMapping("/isDeleted")
+	void IsDeleted(@RequestParam String uid,@RequestParam String isNum ) {
+//		int isDeleted = Integer.parseInt(req.getParameter("isDeleted"));
+		System.out.println("uid"+uid);
+		System.out.println(isNum);
+		int isDeleted = Integer.parseInt(isNum);
+		System.out.println(isDeleted);
+		service.userIsDeleted(uid, isDeleted);
+	}
 	
 }

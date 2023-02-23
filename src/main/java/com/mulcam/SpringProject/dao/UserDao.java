@@ -83,5 +83,8 @@ public interface UserDao {
 	@Select("SELECT * from users WHERE uIsDeleted = #{isDeleted}")
 	List<User> getUserList(int isDeleted);
 
+	@Update("Update users SET uIsDeleted=#{isDeleted} WHERE uid=#{uid};")
+	void userIsDeleted(String uid, int isDeleted);
+
 
 }

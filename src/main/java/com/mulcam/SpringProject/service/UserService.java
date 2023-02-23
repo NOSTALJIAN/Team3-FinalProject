@@ -69,6 +69,9 @@ public interface UserService {
 
 	/** 관리자용 특정 유저리스트 가져오기*/
 	List<User> getUserList(int isDeleted);
+
+	/** 관리자용 유저관리*/
+	void userIsDeleted(String uid, int isDeleted);
 	
 	
 	

@@ -33,7 +33,7 @@
 					<thead>
 						<tr>
 							<th>프로필</th>
-							<th>아이디</th>
+							<th>닉네임</th>
 							<th>관심운동</th>
 							<th>성별</th>
 							<th>나이</th>
