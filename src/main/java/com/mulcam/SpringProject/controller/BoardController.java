@@ -53,6 +53,7 @@ public class BoardController {
 		String field = req.getParameter("f");
 		String query = req.getParameter("q");
 		String period = req.getParameter("period");
+		String sessionUid = userSession.getUid();
 		
 		LocalDate startDate = LocalDate.now();
 		LocalDate endDate = null;
@@ -71,7 +72,7 @@ public class BoardController {
 		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
 		field = (field == null || field.equals("")) ? "bCategory" : field;
 		query = (query == null || query.equals("")) ? "" : query;
-		List<Board> list = bsv.getBoardListByPeriod(page, field, query, startDate.toString(), endDate.toString());
+		List<Board> list = bsv.getBoardListByPeriod(page, field, query, startDate.toString(), endDate.toString(), sessionUid);
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("currentBoardPage", page);
@@ -79,6 +80,7 @@ public class BoardController {
 		model.addAttribute("query", query);
 		model.addAttribute("blist", list);
 		model.addAttribute("sportsArray", sportsArray);
+		model.addAttribute("uid", sessionUid);
 		
 		int totalBoardNo = bsv.getBoardCount("bid", "");
 		int totalPages = (int) Math.ceil(totalBoardNo / 9.);
