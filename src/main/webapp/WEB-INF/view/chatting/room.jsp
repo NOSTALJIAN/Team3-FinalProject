@@ -46,8 +46,14 @@
 
             <!-- START -->
             <h1>CHAT ROOM</h1>
-            <h2 th:text="'Room No. ' + ${chatRoomId}"></h2>
-            <h2 th:text="'Nickname = ' + ${nickname}"></h2>
+            <!-- <h2 th:text="'Room No. ' + ${chatRoomId}"></h2> -->
+            <!-- <h2 th:text="'Nickname = ' + ${nickname}"></h2> -->
+            <h2>
+              <c:out value="'Room No. ' + ${chatRoomId}" />
+            </h2>
+            <h2>
+              <c:out value="'Nickname = ' + ${nickname}" />
+            </h2>
 
             <form>
               <input type="text" id="message">
@@ -61,6 +67,9 @@
             </div>
 
           </div>
+          <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
       </body>
 
       </html>

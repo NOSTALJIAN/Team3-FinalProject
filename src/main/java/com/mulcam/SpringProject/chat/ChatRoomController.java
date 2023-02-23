@@ -5,17 +5,47 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/chat/room")
+//@RequestMapping("/chat/room")
+@RequestMapping("/chat")
 @RequiredArgsConstructor
 public class ChatRoomController {
+	
+	/**
+	 * 테스트용
+	 */
+	@GetMapping("/rooms")
+	public String getRooms() {
+		return "chatting/rooms";
+	}
+	
+	@GetMapping("/room")
+	public String getRoom(String chatRoomId, String nickname, Model model) {
+		model.addAttribute("chatRoomId", chatRoomId);
+		model.addAttribute("nickname", nickname);
+		
+		return "chatting/room";
+	}
+	
+//	@GetMapping("/room")
+	public ModelAndView mv(String chatRoomId, String nickname) {
+		ArrayList<chatDTO> list = new ArrayList<>();
+		chatDTO chat = new chatDTO(chatRoomId, nickname);
+		list.add(chat);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("chat", chat);
+		
+		return mv;
+	}
 	
 	private final ModelMapper modelMapper;
 	private final ChatUserService userService;

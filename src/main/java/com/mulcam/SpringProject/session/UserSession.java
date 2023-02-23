@@ -1,5 +1,7 @@
 package com.mulcam.SpringProject.session;
 
+import java.io.Serializable;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -7,7 +9,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @Component
 @Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS)
-public class UserSession {
+public class UserSession implements Serializable {
 	private String uid;
 	private String uname;
 	private int currentBoardPage;

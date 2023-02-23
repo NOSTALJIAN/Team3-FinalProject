@@ -18,10 +18,12 @@ import lombok.ToString;
 @ToString
 public class chatDTO {
 	
+	public chatDTO(String chatRoomId, String nickname) {
+	}
+
 	private String id;
 	private String chatRoomId;
 	private String memberId;
-	
 	private String message;
 	private String region;
 	

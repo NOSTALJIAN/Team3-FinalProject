@@ -1,9 +1,11 @@
 package com.mulcam.SpringProject.chat;
 
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +16,24 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class ChatMessageController {
+	
+	/*
+	 * 테스트용
+	 */
+	@MessageMapping("chat.enter.{chatRoomId}")
+	public void enter(chatDTO chat, @DestinationVariable String chatRoonId) {
+		chat.setMessage("입장하셨습니다.");
+		chat.setRegDate(LocalDateTime.now());
+		
+		template.convertAndSend(CHAT_EXCHANGE_NAME, "room." + chatRoonId, chat);
+	}
+	
+	@MessageMapping("chat.message.{chatRoomId}")
+	public void send(chatDTO chat, @DestinationVariable String chatRoomId) {
+		chat.setRegDate(LocalDateTime.now());
+		
+		template.convertAndSend(CHAT_EXCHANGE_NAME, "room." + chatRoomId, chat);
+	}
 	
 	private final static String CHAT_EXCHANGE_NAME = "chat.exchange";
 	private final static String CHAT_QUEUE_NAME = "chat.queue";
