@@ -26,35 +26,35 @@
 		<%@ include file="../common/sidebar.jsp" %>
 		<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
 			<h5>작성글 목록</h5>
-			<div style="margin-top: 30px;">
-				<table>
-					<thead>
+			<table>
+				<thead>
+					<tr>
+						<th>제목</th>
+						<th>운동종목</th>
+						<th>모집인원</th>
+						<th>작성일</th>
+						<th>조회수</th>
+						<th>댓글</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="my" items="${myList}">
 						<tr>
-							<th>제목</th>
-							<th>운동종목</th>
-							<th>작성일</th>
-							<th>조회수</th>
-							<th>댓글</th>
-							<th></th>
-							<th></th>
+							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bid}</td>
+							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bCategory}</td>
+							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bUserCount}</td>
+							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${fn:replace(my.bRegTime, 'T', ' ')}</td>
+							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bViewCount}</td>
+							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bReplyCount}</td>
+							<td><button onclick="location.href='/group/applyPerson?bid=${my.bid}&uid=${my.uid}'" class="btn-hover color-8 write-btn">신청자 목록</button></td>
+							<td><button class="btn-hover color-8 write-btn">모집중</button></td>
 						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="my" items="${myList}">
-							<tr>
-								<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bTitle}</td>
-								<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bCategory}</td>
-								<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${fn:replace(my.bRegTime, 'T', ' ')}</td>
-								<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bViewCount}</td>
-								<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bReplyCount}</td>
-								<td><button onclick="location.href='/group/applyPerson?bid=${my.bid}&uid=${my.uid}'" class="btn-hover color-8 write-btn">신청자 목록</button></td>
-								<td><button class="btn-hover color-8 write-btn">모집중</button></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-	</div>
-	</div>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

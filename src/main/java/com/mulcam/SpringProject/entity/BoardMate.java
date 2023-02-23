@@ -11,6 +11,8 @@ public class BoardMate {
 	private int birthDate;
 	private String gender;
 	private String bTitle;
+	private String nickname;
+	private String uImage;
 	
 	public BoardMate() {}
 	
@@ -99,12 +101,29 @@ public class BoardMate {
 	public void setbTitle(String bTitle) {
 		this.bTitle = bTitle;
 	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getuImage() {
+		return uImage;
+	}
+
+	public void setuImage(String uImage) {
+		this.uImage = uImage;
+	}
 
 	@Override
 	public String toString() {
 		return "BoardMate [bid=" + bid + ", uid=" + uid + ", receiveUser=" + receiveUser + ", sendTime=" + sendTime
 				+ ", likeExercise=" + likeExercise + ", birthDate=" + birthDate + ", gender=" + gender + ", bTitle="
-				+ bTitle + "]";
+				+ bTitle + ", nickname=" + nickname + ", uImage=" + uImage + "]";
 	}
+
 	
 }
