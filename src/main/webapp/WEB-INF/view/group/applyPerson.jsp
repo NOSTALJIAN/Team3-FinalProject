@@ -24,6 +24,9 @@
     border-bottom: 1px solid #444444;
     padding: 5px;
   }
+   img {
+		  	width: 70px; height: 70px;   border-radius: 70%;
+		  }
 </style>
 </head>
 <body  style="margin-bottom: 100px; background-color: black; color: white;">
@@ -58,7 +61,7 @@
 							<td>${re.gender}</td>
 							<td>${infoList[status.index].age}</td>
 							<td>${fn:replace(re.sendTime, 'T', ' ')}</td>
-							<td><button onclick="applyAccept('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn">수락</button></td>
+							<td><button onclick="applyAccept('${re.uid}', '${re.bid}')" class="btn-hover color-9 write-btn">수락</button></td>
 							<td><button onclick="applyReject('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn">거절</button></td>
 						</tr>
 					</c:forEach>

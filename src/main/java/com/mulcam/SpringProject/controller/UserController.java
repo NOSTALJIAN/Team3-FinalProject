@@ -137,11 +137,21 @@ public class UserController {
 	
 	/** 사용자 페이지*/
 	@GetMapping("/mypage")
-	public String mypage() {
-		if (userSession.getUid() == null)
+	public String mypage(HttpSession session, Model model) {
+		/*if (userSession.getUid() == null)
 			return "redirect:/user/login";
-		return "user/mypage";
-	}
+		return "user/mypage";*/
+		
+			if (userSession.getUid() == null)
+				return "redirect:/user/login";
+			String uid = userSession.getUid();
+			
+			// 프로필 사진 가져오기
+			String profileImg = service.getUimage(uid);
+			
+			model.addAttribute("profileImg", profileImg);
+			return "user/mypage";
+		}
 
 	/** 개인정보 수정 페이지*/
 	@GetMapping("/update")
@@ -289,7 +299,5 @@ public class UserController {
 			return "user/admin";
 		}
 	}
-	
-	/** 관리자페이지 처리*/
 	
 }

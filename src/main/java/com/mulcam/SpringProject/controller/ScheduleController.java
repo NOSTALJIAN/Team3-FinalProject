@@ -24,6 +24,7 @@ import com.mulcam.SpringProject.entity.Schedule;
 import com.mulcam.SpringProject.service.AnniversaryService;
 import com.mulcam.SpringProject.service.SchedUtil;
 import com.mulcam.SpringProject.service.ScheduleService;
+import com.mulcam.SpringProject.session.UserSession;
 
 @Controller
 @RequestMapping("/schedule")
@@ -75,7 +76,7 @@ public class ScheduleController {
 		session.setAttribute("scheduleMonthYear", sessionMonthYear);
 		if (schedUtil.isLeapYear(year))
 			monthLength[1] = 29;
-		String sessionUid = (String) session.getAttribute("uid");
+		String sessionUid = (String) session.getAttribute("sessionUid");
 		
 		List<SchDay> week = new ArrayList<>();
 		List<List<SchDay>> calendar = new ArrayList<>();
@@ -147,7 +148,7 @@ public class ScheduleController {
 		String place = req.getParameter("place");
 		String memo = req.getParameter("memo");
 		String sdate = startDate.replace("-", "");
-		String uid = (String) session.getAttribute("uid");
+		String uid = (String) session.getAttribute("sessionUid");
 		Schedule schedule = new Schedule(uid, sdate, title, place, startDateTime, endDateTime, isImportant, memo);
 		schedService.insert(schedule);
 		return "redirect:/schedule/calendar";
@@ -184,7 +185,7 @@ public class ScheduleController {
 		String place = req.getParameter("place");
 		String memo = req.getParameter("memo");
 		String sdate = startDate.replace("-", "");
-		String uid = (String) session.getAttribute("uid");
+		String uid = (String) session.getAttribute("sessionUid");
 		Schedule schedule = new Schedule(sid, uid, sdate, title, place, startDateTime, endDateTime, isImportant, memo);
 		schedService.update(schedule);
 		return "redirect:/schedule/calendar";
@@ -212,7 +213,7 @@ public class ScheduleController {
 		int year = today.getYear();
 		int month = today.getMonthValue();
 		String date = "일 월 화 수 목 금 토".split(" ")[today.getDayOfWeek().getValue() % 7];
-		String sessionUid = (String) session.getAttribute("uid");
+		String sessionUid = (String) session.getAttribute("sessionUid");
 		session.setAttribute("currentSchedulePage", page);
 		List<Schedule> list = schedService.getSchedListByPage(sessionUid, today.toString().replace("-", ""), page);
 		

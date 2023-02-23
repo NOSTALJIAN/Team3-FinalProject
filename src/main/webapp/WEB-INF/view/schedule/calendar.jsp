@@ -93,7 +93,7 @@
                     	<a href="/schedule/list/1"><i class="fa-solid fa-table-list"></i></a>
                     </div>
                 </div>
-                <table class="table table-bordered mt-2">
+                <table class="table table-bordered mt-2" style="color: white;">
                     <tr>
                         <th class="text-danger">일</th>
                         <th>월</th><th>화</th><th>수</th><th>목</th><th>금</th>
@@ -116,7 +116,7 @@
                            	<c:if test="${day.isOtherMonth eq 0}">
                                	<div class="${(day.date eq 0 or day.isHoliday eq 1) ? 'text-danger' : day.date eq 6 ? 'text-primary' : ''}">
                                		<strong>${day.day}</strong></div>
-                               	<div>
+                               	<div style="color: gray">
 		                        <c:forEach var="name" items="${day.annivList}" varStatus="loop">
 		                        	${loop.first ? '' : '&middot;'} ${name}
 	                        	</c:forEach>
@@ -124,7 +124,7 @@
                            	</c:if>
                             </div>
                         <c:forEach var="sched" items="${day.schedList}" varStatus="loop">
-                        	<div class="${loop.first ? 'mt-1' : ''}" style="font-size: 12px;" onclick="schedClick(${sched.sid})">
+                        	<div class="${loop.first ? 'mt-1' : ''}" style="font-size:16px; color:white;" onclick="schedClick(${sched.sid})">
 	                        	${fn:substring(sched.startTime, 11, 16)}
 	                        <c:if test="${sched.isImportant eq 1}">
 	                        	<strong>${sched.title}</strong>

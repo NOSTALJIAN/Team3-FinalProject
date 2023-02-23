@@ -4,7 +4,6 @@
 <html>
 <head>
 	<%@ include file="../common/heading.jsp" %>
-	
 	<meta charset="UTF-8">
   	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
@@ -41,7 +40,7 @@
 							<th>관심운동</th>
 							<th>성별</th>
 							<th>나이</th>
-							<th>보낸시간</th>
+							<th>신청시간</th>
 							<th></th>
 						</tr>
 					</thead>

@@ -7,7 +7,7 @@
     <div class="flex-shrink-0 p-3 border-radius-xl sidebar-border">
       <a href="/" class="text-color d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
         <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-        <span class="fs-5 fw-semibold">마이페이지</span>
+        <span class="fs-5 fw-semibold" onclick="'/user/mypage'">마이페이지</span>
       </a>
       <ul class="list-unstyled ps-0 " >
         <li class="mb-1">
@@ -16,6 +16,7 @@
           </button>
           <div class="collapse" id="home-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="/user/mypage" class="text-color d-inline-flex text-decoration-none rounded">회원정보</a></li>
               <li><a href="/user/profile" class="text-color d-inline-flex text-decoration-none rounded">프로필 수정</a></li>
               <li><a href="/user/pwdUpdate" class="text-color d-inline-flex text-decoration-none rounded">비밀번호 변경</a></li>
               <li><a href="/user/update" class="text-color d-inline-flex text-decoration-none rounded">개인정보 변경</a></li>
@@ -45,13 +46,25 @@
             </ul>
           </div>
         </li>
+         <li class="mb-1">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#message-collapse" aria-expanded="false">
+            메세지
+          </button>
+          <div class="collapse" id="message-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="/chat/test" class="text-color d-inline-flex text-decoration-none rounded">1:1 채팅</a></li>
+              <li><a href="/chat/room" class=" text-color d-inline-flex text-decoration-none rounded">그룹채팅</a></li>
+            </ul>
+          </div>
+        </li>
         <li class="mb-1">
           <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
             그룹운동
           </button>
           <div class="collapse" id="orders-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="/group/myWrite" class="text-color d-inline-flex text-decoration-none rounded">내가쓴 게시글</a></li>
+              <li><a href="/group/myWrite" class="text-color d-inline-flex text-decoration-none rounded">내가 쓴글</a></li>
+              <li><a href="/group/groupMade" class="text-color d-inline-flex text-decoration-none rounded">수락 목록</a></li><hr>
               <li><a href="/group/applyList" class="text-color d-inline-flex text-decoration-none rounded">신청현황</a></li>
               <li><a href="/group/applyDone" class=" text-color d-inline-flex text-decoration-none rounded">신청완료</a></li>
             </ul>
