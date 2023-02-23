@@ -15,7 +15,7 @@ import com.mulcam.SpringProject.entity.UserInfo;
 @Mapper
 public interface UserDao {
 	
-	@Insert("INSERT into users values(#{uid}, #{pwd}, #{uname}, NULL,#{phoneNum}, #{email}, #{emailCheck}, default, default, default)")
+	@Insert("INSERT into users values(#{uid}, #{pwd}, #{uname}, #{nickname}, NULL,#{phoneNum}, #{email}, #{emailCheck}, default, default, default)")
 	void insert(User u);
 
 	@Insert("INSERT into userInfo values(#{uid}, #{uPostcode}, #{uAddr}, #{uDetailAddr}, #{likeExercise}, #{birthDate}, #{gender}, default, #{uLat}, #{uLng})")
@@ -29,6 +29,9 @@ public interface UserDao {
 	
 	@Select("SELECT uname from users where uid=#{uid}")
 	String getUname(String uid);
+	
+	@Select("SELECT nickname from users where uid=#{uid}")
+	String getNickname(String uid);
 
 	@Select("SELECT * from users where phoneNum=#{phoneNum}")
 	User getPhoneNum(String phoneNum);
@@ -58,7 +61,7 @@ public interface UserDao {
 			+ "maxDistance=${maxDistance}, pGender=#{pGender} WHERE uid=#{uid};")
 	void updateCondition(MatchingCondition mC);
 
-	@Update("UPDATE users SET phoneNum=#{phoneNum}, email=#{email}, emailCheck=#{emailCheck} WHERE uid=#{uid};")
+	@Update("UPDATE users SET nickname=#{nickname}, phoneNum=#{phoneNum}, email=#{email}, emailCheck=#{emailCheck} WHERE uid=#{uid};")
 	void update(User u);
 
 	@Update("UPDATE userInfo SET uPostcode=#{uPostcode}, uAddr=#{uAddr}, uDetailAddr=#{uDetailAddr}, likeExercise=#{likeExercise}, "
@@ -75,7 +78,13 @@ public interface UserDao {
 	void profileUpload(String uid, String fname);
 
 	@Select("SELECT * from users")
-	List<User> getUserList();
+	List<User> getUserAllList();
+
+	@Select("SELECT * from users WHERE uIsDeleted = #{isDeleted}")
+	List<User> getUserList(int isDeleted);
+
+	@Update("Update users SET uIsDeleted=#{isDeleted} WHERE uid=#{uid};")
+	void userIsDeleted(String uid, int isDeleted);
 
 
 }

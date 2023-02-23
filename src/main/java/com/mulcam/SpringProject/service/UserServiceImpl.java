@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService{
 		User user = userDao.getUser(uid);
 		return user;
 	}
-
+	
 	@Override
 	public User getEmail(String email) {
 		User user = userDao.getEmail(email);
@@ -94,7 +94,11 @@ public class UserServiceImpl implements UserService{
 		String uname = userDao.getUname(uid);
 		return uname;
 	}
-
+	@Override
+	public String getNickname(String uid) {
+		String nickname = userDao.getNickname(uid);
+		return nickname;
+	}
 	@Override
 	public String getLikeExercise(String uid) {
 		String exerciseList = userDao.getLikeExercise(uid);
@@ -141,11 +145,20 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<User> getUserList() {
-		List<User> userList = userDao.getUserList();
+	public List<User> getUserAllList() {
+		List<User> userList = userDao.getUserAllList();
 		return userList;
 	}
 
+	@Override
+	public List<User> getUserList(int isDeleted) {
+		List<User> userList = userDao.getUserList(isDeleted);
+		return userList;
+	}
 
+	@Override
+	public void userIsDeleted(String uid, int isDeleted) {
+		userDao.userIsDeleted(uid, isDeleted);
+	}
 
 }

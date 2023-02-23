@@ -19,6 +19,11 @@
 
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0 list-group list-group-horizontal">
             <li class="nav-item">
+              <a class="nav-link nav-size text-white" href="/board/index" aria-label="A sample content page">
+                Home
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link nav-size text-white" href="/matching/list" aria-label="A sample content page">
                 운동친구
               </a>
@@ -30,7 +35,7 @@
             </li>
             <c:choose>
               <c:when test="${!empty sessionUid}">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link nav-size text-white" href="/chat/test" aria-label="A system message page">
                     1:1 채팅
                   </a>
@@ -39,7 +44,7 @@
                   <a class="nav-link nav-size text-white" href="/chat/room" aria-label="A system message page">
                     그룹 채팅
                   </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <a class="nav-link nav-size text-white" href="/user/mypage" aria-label="A system message page">
                     마이페이지
@@ -51,7 +56,7 @@
             <c:choose>
               <c:when test="${sessionUid eq 'admin'}">
                 <li class="nav-item">
-                  <a class=" text-white nav-link nav-size ${menu eq 'user' ? 'active' : ''}" href="/user/list"
+                  <a class=" text-white nav-link nav-size ${menu eq 'user' ? 'active' : ''}" href="/user/admin"
                     aria-label="A system message page">
                     사용자관리
                   </a>

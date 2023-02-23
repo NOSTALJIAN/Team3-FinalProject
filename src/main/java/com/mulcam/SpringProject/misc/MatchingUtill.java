@@ -53,7 +53,6 @@ public class MatchingUtill {
 		String pGender = mC.getpGender();
 		
 		// 좋아하는 운동이 하나라도 일치하는 사람들의 리스트
-		//TODO: MySQL에서 필터링 기능추가 
 		// 필요 데이터 : uid, 성별, birthDate, bestExer, 
 		List<UserInfo> coincideList = service.getCoincideInfo(sessionUid, minAge, maxAge, pGender, bestExer);
 		List<MatchingUsers> matchingList = new ArrayList<>();
@@ -94,8 +93,8 @@ public class MatchingUtill {
 			String likeExercise = service.getLikeExercise(uid);
 			List<String> likeExerList = exerciseUtill.findExercise(likeExercise);
 			
-			// 이름 가져오기
-			String uname = service.getUname(uid);
+			// 닉네임 가져오기
+			String nickname = service.getNickname(uid);
 			// 프로필사진 가져오기
 			String uImage = service.getUimage(uid);
 			
@@ -105,7 +104,7 @@ public class MatchingUtill {
 			// 알고리즘 점수 계산
 			float score = (float) (exerciseUtill.countOne(coincideNum)*30 + uRating*10 - dist);
 			
-			MatchingUsers matchingUser = new MatchingUsers(uid, uname, uImage, distance, age, likeExerList, gender, uRating, score);
+			MatchingUsers matchingUser = new MatchingUsers(uid, nickname, uImage, distance, age, likeExerList, gender, uRating, score);
 			matchingList.add(matchingUser);
 		}
 		

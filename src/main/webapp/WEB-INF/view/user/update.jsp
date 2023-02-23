@@ -33,6 +33,10 @@
 					<input type="hidden" id="likeExerList" value="${likeExerList}"/>
 					<table>
 						<tr>
+							<th>닉네임</th>
+							<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" value="${user.nickname}" maxlength="40"  />
+							</td>
+						</tr><tr>
 							<th>이메일</th>
 							<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" value="${user.email}" maxlength="40"  />
 							</td>

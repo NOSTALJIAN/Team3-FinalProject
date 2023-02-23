@@ -4,7 +4,6 @@
 <html>
 <head>
 	<%@ include file="../common/heading.jsp" %>
-	
 	<meta charset="UTF-8">
   	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
@@ -37,11 +36,11 @@
 					<thead>
 						<tr>
 							<th>프로필</th>
-							<th>아이디</th>
+							<th>닉네임</th>
 							<th>관심운동</th>
 							<th>성별</th>
 							<th>나이</th>
-							<th>보낸시간</th>
+							<th>신청시간</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -74,7 +73,6 @@
 				data: {'receiveUser': uid},
 				success: function(result){
 					mateuid.innerText = result;
-					console.log(result);
 					mateuid.style.cssText = 'background-color:black; color:white;'
 				}
 			  });
@@ -86,7 +84,6 @@
 				data: {'receiveUser': uid},
 				success: function(result){
 					mateuid.innerText = result;
-					console.log(result);
 					mateuid.style.cssText = 'background-color:white; color:black;'
 				}
 			  });

@@ -11,9 +11,9 @@ import com.mulcam.SpringProject.entity.Reply;
 public interface BoardService {
 
 	/** 게시글목록 페이지 출력 */
-	public List<Board> getBoardList(int page, String field, String query);
+	public List<Board> getBoardList(int page, String field, String query, String uid);
 	
-	public List<Board> getBoardListByPeriod(int page, String field, String query, String startDate, String endDate);
+	public List<Board> getBoardListByPeriod(int page, String field, String query, String startDate, String endDate, String uid);
 	
 	/** 디테일 페이지 출력 */
 	public Board getBoard(int bid) ;

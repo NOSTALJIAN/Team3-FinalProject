@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.mulcam.SpringProject.entity.Board;
 import com.mulcam.SpringProject.entity.Reply;
 import com.mulcam.SpringProject.service.BoardService;
+import com.mulcam.SpringProject.service.UserService;
 import com.mulcam.SpringProject.session.UserSession;
 
 @Controller
@@ -33,6 +34,7 @@ public class BoardController {
 	
 	@Autowired private UserSession userSession;
 	@Autowired private BoardService bsv;
+	@Autowired private UserService service;
 	
 	@Value("${spring.servlet.multipart.location}") private String uploadDir;
 	@Value("${kakao.AppKey}") private String kakaoAppKey;
@@ -53,6 +55,7 @@ public class BoardController {
 		String field = req.getParameter("f");
 		String query = req.getParameter("q");
 		String period = req.getParameter("period");
+		String sessionUid = userSession.getUid();
 		
 		LocalDate startDate = LocalDate.now();
 		LocalDate endDate = null;
@@ -71,7 +74,7 @@ public class BoardController {
 		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
 		field = (field == null || field.equals("")) ? "bCategory" : field;
 		query = (query == null || query.equals("")) ? "" : query;
-		List<Board> list = bsv.getBoardListByPeriod(page, field, query, startDate.toString(), endDate.toString());
+		List<Board> list = bsv.getBoardListByPeriod(page, field, query, startDate.toString(), endDate.toString(), sessionUid);
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("currentBoardPage", page);
@@ -79,6 +82,7 @@ public class BoardController {
 		model.addAttribute("query", query);
 		model.addAttribute("blist", list);
 		model.addAttribute("sportsArray", sportsArray);
+		model.addAttribute("uid", sessionUid);
 		
 		int totalBoardNo = bsv.getBoardCount("bid", "");
 		int totalPages = (int) Math.ceil(totalBoardNo / 9.);
@@ -106,7 +110,9 @@ public class BoardController {
 		Board board = bsv.getBoard(bid);
 		String uid = req.getParameter("uid");
 		String option = req.getParameter("option");
+		String nickname = service.getNickname(uid);
 		model.addAttribute("b", board);
+		model.addAttribute("n", nickname);
 		model.addAttribute("kakaoAppKey", kakaoAppKey);
 		String sessionUid = userSession.getUid();
 		
