@@ -32,13 +32,15 @@
 		<%@ include file="../common/sidebar.jsp" %>
 			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
 			<h4>신청자 목록</h4><hr>
-    		<h5>[게시글 번호]</h5>
+			<c:forEach var="re" items="${receiveList}">
+    			<h5>${re.bid} [${re.bTitle}]</h5>
+    		</c:forEach>
     		<div style="margin-top: 30px;">
 				<table>
 					<thead>
 						<tr>
 							<th>프로필</th>
-							<th>아이디</th>
+							<th>닉네임</th>
 							<th>관심운동</th>
 							<th>성별</th>
 							<th>나이</th>
@@ -48,13 +50,13 @@
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="re" items="${receiveList}">
+					<c:forEach var="re" items="${receiveList}" varStatus="status">
 						<tr id="${re.uid}">
-							<td>[프로필]</td>
-							<td>${re.uid}</td>
-							<td>${re.likeExercise}</td>
+							<td>${infoList[status.index].uImage}</td>
+							<td>${infoList[status.index].nickname}</td>
+							<td>${infoList[status.index].coincideExer}</td>
 							<td>${re.gender}</td>
-							<td>${re.birthDate}</td>
+							<td>${infoList[status.index].age}</td>
 							<td>${fn:replace(re.sendTime, 'T', ' ')}</td>
 							<td><button onclick="applyAccept('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn">수락</button></td>
 							<td><button onclick="applyReject('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn">거절</button></td>

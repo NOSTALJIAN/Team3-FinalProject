@@ -27,6 +27,17 @@ public class MatchingUsers {
 		this.uRating = uRating;
 		this.score = score;
 	}
+	
+	/** 그룹게시판 applyPerson에 필요한 생성자 */
+	public MatchingUsers(String uid, String nickname, String uImage, int age, List<String> coincideExer) {
+		super();
+		this.uid = uid;
+		this.nickname = nickname;
+		this.uImage = uImage;
+		this.age = age;
+		this.coincideExer = coincideExer;
+	}
+	
 	public String getUid() {
 		return uid;
 	}
