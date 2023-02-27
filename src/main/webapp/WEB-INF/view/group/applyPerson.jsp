@@ -36,7 +36,7 @@
 			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
 			<h4>신청자 목록</h4><hr>
 			<c:forEach var="re" items="${receiveList}">
-    			<h5>${re.bid} [${re.bTitle}]</h5>
+    			<h5>${re.bid} ${re.bTitle}</h5>
     		</c:forEach>
     		<div style="margin-top: 30px;">
 				<table>

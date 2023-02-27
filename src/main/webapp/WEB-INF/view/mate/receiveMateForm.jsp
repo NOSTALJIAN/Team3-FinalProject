@@ -20,7 +20,7 @@
 		    padding: 3px;
 		  }
 		  img {
-		  	width: 70px; height: 70px;
+		  	width: 70px; height: 70px; border-radius: 70%;
 		  }
     </style>
 </head>
@@ -47,12 +47,17 @@
 					<tbody>
 					<c:forEach var="re" items="${receiveMateList}">
 						<tr id="${re.uid}">
-							<td><img id="profileImg" src="/img/basicProfile.png" ></td>
-							<td>${re.uid}</td>
-							<td>[관심운동]</td>
-							<td>[성별]</td>
-							<td>[나이]</td>
-							<td>${fn:replace(re.sendTime, 'T', ' ')}</td>
+							<c:if test="${empty re.uImage}">
+							<td><img src="/img/basicProfile.png" ></td>
+							</c:if>
+							<c:if test="${not empty re.uImage}">
+							<td><img src="/board/download?file=${re.uImage}"></td>
+							</c:if>
+							<td>${re.nickname}</td>
+							<td>${re.likeExerList}</td>
+							<td>${re.gender}</td>
+							<td>${re.age}</td>
+							<td>${re.sendTime}</td>
 							<td><button onclick="mateAccept('${re.uid}')" class="btn-hover color-9" >수락</button></td>
 							<td><button onclick="mateReject('${re.uid}')" class="btn-hover color-8" >거절</button></td>
 						</tr>

@@ -12,6 +12,7 @@ import org.springframework.web.context.WebApplicationContext;
 public class UserSession implements Serializable {
 	private String uid;
 	private String uname;
+	private String nickname;
 	private int currentBoardPage;
 	
 	
@@ -27,17 +28,24 @@ public class UserSession implements Serializable {
 	public void setUname(String uname) {
 		this.uname = uname;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public int getCurrentBoardPage() {
 		return currentBoardPage;
 	}
 	public void setCurrentBoardPage(int currentBoardPage) {
 		this.currentBoardPage = currentBoardPage;
 	}
-	
 	@Override
 	public String toString() {
-		return "UserSession [uid=" + uid + ", uname=" + uname + ", currentBoardPage=" + currentBoardPage + "]";
+		return "UserSession [uid=" + uid + ", uname=" + uname + ", nickname=" + nickname + ", currentBoardPage="
+				+ currentBoardPage + "]";
 	}
+	
 	
 
 }

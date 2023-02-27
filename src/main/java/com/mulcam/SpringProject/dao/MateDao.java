@@ -35,8 +35,35 @@ public interface MateDao {
 	@Select("SELECT * FROM addMate WHERE receiveUser = #{uid};")
 	List<Mate> getReceiveMate(String uid);
 
-	@Select("SELECT uid2 FROM userRelationship WHERE uid=#{uid} AND relationship = 1;")
-	List<String> getMateList(String uid);
+	@Select("SELECT  A.uid, A.uid2 AS receiveUser, nickname, uImage, gender, birthDate AS age"
+			+ " FROM userRelationship AS A"
+			+ " LEFT JOIN users AS B"
+			+ "	ON A.uid2 = B.uid"
+			+ " LEFT JOIN userInfo AS C"
+			+ "	ON A.uid2 =  C.uid"
+			+ "	WHERE A.uid = #{uid} AND A.relationship=1;")
+	List<Mate> getMateList(String uid);
+
+	@Select("SELECT  A.uid, receiveUser, sendTime , nickname, uImage, gender, birthDate AS age"
+			+ " FROM addMate AS A"
+			+ " LEFT JOIN users AS B"
+			+ "	ON A.receiveUser = B.uid"
+			+ " LEFT JOIN userInfo AS C"
+			+ "	ON A.receiveUser =  C.uid"
+			+ "	WHERE A.uid = #{uid};")
+	List<Mate> getAddMateList(String uid);
+
+	@Select("SELECT  A.uid, receiveUser, sendTime , nickname, uImage, gender, birthDate AS age"
+			+ " FROM addMate AS A"
+			+ " LEFT JOIN users AS B"
+			+ "	ON A.uid = B.uid"
+			+ " LEFT JOIN userInfo AS C"
+			+ "	ON A.uid =  C.uid"
+			+ "	WHERE A.receiveUser = #{uid};")
+	List<Mate> getReceiveMateList(String uid);
+
+	@Delete("DELETE FROM userRelationship WHERE uid = #{uid1} AND uid2 = #{uid2};")
+	void mateDelete(String uid1, String uid2);
 
 	
 

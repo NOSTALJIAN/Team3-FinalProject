@@ -19,7 +19,7 @@
               <li><a href="/user/mypage" class="text-color d-inline-flex text-decoration-none rounded">회원정보</a></li>
               <li><a href="/user/profile" class="text-color d-inline-flex text-decoration-none rounded">프로필 수정</a></li>
               <li><a href="/user/pwdUpdate" class="text-color d-inline-flex text-decoration-none rounded">비밀번호 변경</a></li>
-              <li><a href="/user/update" class="text-color d-inline-flex text-decoration-none rounded">개인정보 변경</a></li>
+              <li><a href="/user/update" class="text-color d-inline-flex text-decoration-none rounded">개인정보 수정</a></li>
             </ul>
           </div>
         </li>

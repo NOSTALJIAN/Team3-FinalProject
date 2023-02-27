@@ -102,11 +102,15 @@ select.board-input {
   line-height: 1.7;
   letter-spacing: 0.2px;
   /* padding-inline: 1.5rem; */
-  color: #222;
+  color: rgb(255, 255, 255);
   margin-bottom: 2rem;
   margin-top: 10px;
   margin-left: 300px;
-  
+	padding-right: 10px;
+	width: 65%;
+	color: white;
+  border-radius: 10px;
+  box-shadow: #808080;
 }
 
 .inputtb.content {
@@ -200,13 +204,7 @@ select.board-input {
   display: inline-block;
 }
  .board-view-infomation {
-	margin-left: 650px;
-	padding-right: 10px;
-	width: 500px;
-	color: white;
-  border-color: rgba(0, 0, 0, 0.418);
-  border-radius: 15px;
-  box-shadow: #4a5c68;
+	
 }
 .detail-table tbody{
 	margin-left: 700px;
@@ -249,9 +247,9 @@ select.board-input {
 	}
 
 .board-view-content {
-  border: 2px solid black;
+  border: 2px solid rgb(255, 255, 255);
   border-radius: 15px;
-  width: 70%;
+  width: 65%;
   height: 300px;
   position: absolute;
   text-align: left;
@@ -572,3 +570,12 @@ button {
 		width: 250px;
 		height: 250px;
 	}
+	.profile-info {
+	    margin-left: 100px;
+ 		margin-top: 10px;
+	}
+	.profile-btn {
+  	  	margin-left: 55px;
+	    width: 120px;
+	    height: 53px;
+    }

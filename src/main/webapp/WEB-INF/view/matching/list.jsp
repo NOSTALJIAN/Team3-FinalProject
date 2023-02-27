@@ -40,7 +40,7 @@
 			        		<c:forEach var="m" items="${matchingList}">
 					      		<div class="row d-flex align-items-start" data-aos="fade-right">
 					        		<div class="col-12 col-lg-7">
-							        	<h4 class="h3 mt-5 border-top pt-5" ><strong>${m.nickname}</strong></h4>
+							        	<h4 class="h3 mt-2 border-top pt-5" ><strong>${m.nickname}</strong></h4>
 							        	<p>거리: ${m.distance}</p>
 							        	<p>나이: ${m.age}</p>
 							          	<p>성별: ${m.gender}</p>
