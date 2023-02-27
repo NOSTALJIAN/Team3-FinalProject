@@ -162,4 +162,10 @@ public class UserServiceImpl implements UserService{
 		userDao.userIsDeleted(uid, isDeleted);
 	}
 
+	@Override
+	public User CheckNickname(String data) {
+		User user = userDao.CheckNickname(data);
+		return user;
+	}
+
 }

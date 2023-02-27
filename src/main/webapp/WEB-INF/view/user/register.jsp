@@ -30,7 +30,11 @@
 		<table>
 			 <tr>
 				<th>아이디</th>
-				<td><input style="width: 250px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" id="uid" placeholder="*아이디" maxlength="12" required /></td>
+				<td>
+					<input style="width: 250px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" id="uid" placeholder="*아이디" maxlength="12" required />
+					<a id="idDuplication">아이디 중복을 확인해주세요</a>
+				</td>
+				<td><input class="btn-hover color-9" onclick="id_check()" type="button" value="아이디 중복 체크"></td>
 			</tr>
 			<tr>
 				<th>패스워드</th>
@@ -46,7 +50,11 @@
 			</tr>
 			<tr>
 				<th>닉네임</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="10" required /></td>
+				<td>
+					<input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="10" required />
+					<a id="nicknameDuplication">닉네임 중복을 확인해주세요</a>
+					<td><input class="btn-hover color-9" onclick="nickname_check()" type="button" value="닉네임 중복 체크"></td>
+				</td>
 			</tr>
 			<tr>
 				<th>이메일</th>
@@ -106,6 +114,55 @@
 	</div>
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		// id 중복체크
+		function id_check(){
+			const uid = document.getElementById('uid').value; 
+			if (uid.length < 4 || uid.length > 21) {
+				alert('아이디는 3글자이상 20글자 이하로 입력해주세요');
+				return false;
+			}
+			const idDuplication = document.getElementById('idDuplication');
+			$.ajax({
+				type:'GET',
+				url: '/user/Duplication',
+				data: {'data': uid,
+						'type': 'id'},
+				success: function(result){
+					if (result == 1){
+						idDuplication.innerText = '중복된 아이디입니다.';
+						idDuplication.style.cssText = 'background-color:black; color:red;'
+					} else if (result == 2){
+						idDuplication.innerText = '사용가능한 아이디 입니다.';
+						idDuplication.style.cssText = 'background-color:black; color:green;'
+					}
+				}
+			});
+		}
+		function nickname_check(){
+			const nickname = document.getElementById('nickname').value; 
+			if (nickname.length < 4 || nickname.length > 13) {
+				alert('닉네임은 3글자이상 12글자 이하로 입력해주세요');
+				return false;
+			}
+			const nicknameDuplication = document.getElementById('nicknameDuplication');
+			$.ajax({
+				type:'GET',
+				url: '/user/Duplication',
+				data: {'data': nickname,
+						'type': 'nickname'},
+				success: function(result){
+					if (result == 1){
+						nicknameDuplication.innerText = '중복된 닉네임입니다.';
+						nicknameDuplication.style.cssText = 'background-color:black; color:red;'
+					} else if (result == 2){
+						nicknameDuplication.innerText = '사용가능한 닉네임 입니다.';
+						nicknameDuplication.style.cssText = 'background-color:black; color:green;'
+					}
+				}
+			});
+		}
+	</script>
 	<script>
 	    // 우편번호 찾기 찾기 화면을 넣을 element
 	    var element_wrap = document.getElementById('wrap');
@@ -186,8 +243,8 @@
 		let mc = 5;	// 체크박수 갯수 제한
 		let tc = 0; //카운트 증가
 		var checked_num = $("input[name=likeExercise]:checked").length;
-		console.log(checked_num);
-		console.log("확인용");
+		
+		// 체크박스 3개~5개이상 넣기
 		function limit(ff){
 			if (ff.checked)
 				checked_num +=1;
@@ -200,9 +257,9 @@
 				checked_num -= 1;
 			}
 		}
+		// 내용 들어왔는지 확인용
 		function checked_submit(){
 			const uid = $('#uid').val();
-			console.log(uid);
 			const pwd = $('#pwd').val();
 			const pwd2 = $('#pwd2').val();
 			var checked_num = $("input[name=likeExercise]:checked").length;
@@ -213,8 +270,10 @@
 			const birthDate = $('#birthDate').val();
 			const addr = $('#addr').val();
 			const detailAddr = $('#detailAddr').val();
-			if (uid == '') {
-				alert('아이디를 입력해 주세요');
+			const idDuplication = $('#idDuplication').text();
+			const nicknameDuplication = $('#nicknameDuplication').text();
+			if (idDuplication != '사용가능한 아이디 입니다.') {
+				alert('아이디 중복체크를 확인해주세요');
 				return false;
 			} else if (pwd != pwd2) {
 				alert('비밀번호가 일치하지 않습니다.');
@@ -222,8 +281,8 @@
 			} else if (uname == '') {
 				alert('이름을 입력해주세요');
 				return false;
-			} else if (nickname == '') {
-				alert('닉네임을 입력해주세요');
+			} else if (nicknameDuplication != '사용가능한 닉네임 입니다.') {
+				alert('닉네임 중복체크를 확인해주세요');
 				return false;
 			} else if (email == '') {
 				alert('이메일을 입력해주세요');

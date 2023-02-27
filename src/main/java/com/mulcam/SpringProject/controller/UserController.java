@@ -100,6 +100,23 @@ public class UserController {
 		return "user/login";
 	}
 	
+	/** 아이디,닉네임 중복체크*/
+	@ResponseBody
+	@GetMapping("/Duplication")
+	public int idCheck(String data, String type) {
+		User u = new User();
+		if (type.equals("id")) {
+			u = service.getUser(data);
+		} else if (type.equals("nickname")) {
+			u = service.CheckNickname(data);
+		}
+		// 중복일때는 1을 리턴 중복이 아닐때는 2를 리턴
+		if (u != null) {
+			return 1;
+		} else 
+			return 2;
+	}
+	
 	/** 로그인 페이지 */
 	@GetMapping("/login")
 	public String loginform() {
@@ -283,9 +300,7 @@ public class UserController {
 		// DB에 파일 이름 저장
 		service.profileUpload(uid, fname);
 		
-		model.addAttribute("msg", "프로필 변경이 완료되었습니다.");
-		model.addAttribute("url", "/user/mypage");
-		return "common/alertMsg";
+		return "redirect:/user/mypage";
 	}
 	
 	/** 관리자 페이지*/
@@ -317,10 +332,7 @@ public class UserController {
 	@GetMapping("/isDeleted")
 	void IsDeleted(@RequestParam String uid,@RequestParam String isNum ) {
 //		int isDeleted = Integer.parseInt(req.getParameter("isDeleted"));
-		System.out.println("uid"+uid);
-		System.out.println(isNum);
 		int isDeleted = Integer.parseInt(isNum);
-		System.out.println(isDeleted);
 		service.userIsDeleted(uid, isDeleted);
 	}
 	
