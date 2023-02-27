@@ -71,7 +71,7 @@
 	function readProfileImage(input){
 		const profileImg = document.getElementById('profileImg');
 
-		//인풋 태그에 파일이 이쓴경우
+		//인풋 태그에 파일이 있는 경우
 		if(input.files){
 			console.log("인풋파일: "+input.files);
 			// 유사배열을 배열로 전환(forEach문으로 처리하기 위해)
