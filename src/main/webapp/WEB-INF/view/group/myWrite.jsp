@@ -44,17 +44,33 @@
 						<tr>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bTitle}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bCategory}</td>
-							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bUserCount}</td>
+							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bUserCount}명</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${fn:replace(my.bRegTime, 'T', ' ')}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bViewCount}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bReplyCount}</td>
 							<td><button onclick="location.href='/group/applyPerson?bid=${my.bid}&uid=${my.uid}'" class="btn-hover color-8 write-btn">신청자 목록</button></td>
-							<td><button class="btn-hover color-8 write-btn">모집중</button></td>
+							<td><span>${my.bUserCount eq my.applyCount ? '모집 마감': '모집중' ? '모집 마감': '모집중'}</span></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</div>
+	<!-- 모집 마감 -->
+	<script>
+		function updateIsFull(bid){
+			  $.ajax({
+				type:'GET',
+				url: '/group/updateIsFull',
+				data: {'bid': bid},
+				success: function(result){
+					if(result == '0') {
+						$('#msg').html('모집중');
+					} else
+						$('#msg').html('모집 마감');
+				}
+			  });
+		  }
+	</script>
 </body>
 </html>

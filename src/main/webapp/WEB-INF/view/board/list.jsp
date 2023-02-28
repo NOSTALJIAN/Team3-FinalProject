@@ -52,14 +52,15 @@
 					<div class="row ">
 						<div class="content-list">
 							<c:forEach var="b" items="${blist}">
-							<div class="content-list-col" data-aos="fade-right">
+								<div class="content-list-col" data-aos="fade-right">
 									<h5 class="mt-1 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
+									<br>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">종목 : ${b.bCategory}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">장소 : ${b.bLocation}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
-									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">모집인원 : ${b.bUserCount}명</p>
-									<button class="btn-hover color-8 write-btn" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}">참가신청</button>
-							</div>	
+									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">모집인원 : ${b.applyCount}/${b.bUserCount}명</p>
+									<span>${b.bIsFull eq 1 ? '모집 마감': '모집중'}</span>
+								</div>	
 							</c:forEach>
 						</div>
 					</div>

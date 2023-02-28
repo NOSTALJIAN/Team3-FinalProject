@@ -34,10 +34,10 @@
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-			<h4>신청자 목록</h4><hr>
-			<c:forEach var="re" items="${receiveList}" varStatus="loop">
+			<h4>그룹 메이트</h4><hr>
+			<c:forEach var="gm" items="${groupMateList}" varStatus="loop">
 				<c:if test="${loop.first}">
-    				<h5>${re.bid} [${re.bTitle}]</h5>
+    				<h5>${gm.bid} [${gm.bTitle}]</h5>
     			</c:if>
     		</c:forEach>
     		<div style="margin-top: 30px;">
@@ -49,22 +49,18 @@
 							<th>관심운동</th>
 							<th>성별</th>
 							<th>나이</th>
-							<th>신청시간</th>
-							<th></th>
-							<th></th>
+							<!-- <th>신청시간</th> -->
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="re" items="${receiveList}" varStatus="status">
-						<tr id="${re.uid}">
+					<c:forEach var="gm" items="${groupMateList}" varStatus="status">
+						<tr id="${gm.uid}">
 							<td><img src="/board/download?file=${infoList[status.index].uImage}" ></td>
 							<td>${infoList[status.index].nickname}</td>
 							<td>${infoList[status.index].coincideExer}</td>
-							<td>${re.gender}</td>
+							<td>${gm.gender}</td>
 							<td>${infoList[status.index].age}</td>
-							<td>${fn:replace(re.sendTime, 'T', ' ')}</td>
-							<td><button onclick="applyAccept('${re.uid}', '${re.bid}')" class="btn-hover color-9 write-btn">수락</button></td>
-							<td><button onclick="applyReject('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn">거절</button></td>
+							<%-- <td>${fn:replace(gm.sendTime, 'T', ' ')}</td> --%>
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -72,30 +68,5 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		function applyAccept(uid, bid){
-			const mateuid1 = document.getElementById(uid);
-			const applybid = document.getElementById(bid);
-			$.ajax({
-					type:'GET',
-					url: '/group/applyAccept',
-					data: {'receiveUser': uid, 'bid': bid},
-					success: function(result){
-						mateuid1.style.display='none';
-					}
-				});
-			}
-		function applyReject(uid, bid){
-			const mateuid2 = document.getElementById(uid);
-			$.ajax({
-					type:'GET',
-					url: '/group/applyReject',
-					data: {'receiveUser': uid, 'bid': bid},
-					success: function(result){
-						mateuid2.style.display='none';
-					}
-				});
-			}
-	</script>
 </body>
 </html>

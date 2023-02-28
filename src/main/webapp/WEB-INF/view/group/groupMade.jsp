@@ -42,16 +42,22 @@
 						<th>운동시간</th>
 						<th>총인원</th>
 						<th></th>
+						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="done" items="${applyDoneList}">
+				<c:forEach var="done" items="${myDoneList}">
 					<tr>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bTitle}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bCategory}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bLocation}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${fn:replace(done.bAppointment, 'T', ' ')}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bUserCount}</td>
+						<td><button onclick="location.href='/group/groupMateList?bid=${done.bid}&uid=${done.uid}'" class="btn-hover color-8 write-btn">메이트 목록</button></td>
+						<td><button class="btn-hover color-8 write-btn" onload="updateIsFull('${my.bid}')">
+							<span id="msg">${done.bIsFull eq 1 ? '모집 마감': '모집중'}</span>
+						</button></td>
 						<td><button class="btn-hover color-8 write-btn">[그룹채팅 버튼]</button></td>
 					</tr>
 				</c:forEach>
@@ -60,5 +66,21 @@
 		</div>
 	</div>
 </div>
+<!-- 모집 마감 -->
+	<script>
+		function updateIsFull(bid){
+			  $.ajax({
+				type:'GET',
+				url: '/group/updateIsFull',
+				data: {'bid': bid},
+				success: function(result){
+					if(result == '0') {
+						$('#msg').html('모집중');
+					} else
+						$('#msg').html('모집 마감');
+				}
+			  });
+		  }
+	</script>
 </body>
 </html>
