@@ -76,7 +76,7 @@
 						</tr>
 						<tr>
 							<th>모집 인원</th>
-							<td>${b.bUserCount}명</td>
+							<td>${b.applyCount}/${b.bUserCount}명</td>
 						</tr>
 						<tr>
 							<th>작성 일자</th>

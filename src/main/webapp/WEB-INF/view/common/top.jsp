@@ -5,25 +5,25 @@
       <nav id="navScroll" class="bg-black text-white navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl mt-3 mx-3 " tabindex="0"
         style="height: 65px; padding-top: 8px; color: white;">
         <div class="container">
-          <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="/board/index">
-          <i class="fa-solid fa-dumbbell"  onclick="location.href='/board/index'" style="color: white;"></i>
-            <span class="ms-md-1 mt-1 fw-bolder me-md-5 text-white" >GOgo</span>
-          </a>
+         <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="/board/index">
+             <i class="fa-solid fa-person-running" onclick="location.href='/board/index'" style="color: white;"></i>
+              <span class="ms-md-1 mt-1 fw-bolder me-md-5" style="color: white;">GOgo</span>
+            </a>
 
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0 list-group list-group-horizontal">
             <li class="nav-item">
               <a class="nav-link nav-size text-white" href="/board/index" aria-label="A sample content page">
-                Home
+               <strong>Home</strong> 
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-size text-white" href="/matching/list" aria-label="A sample content page">
-                운동친구
+                <strong>운동친구</strong> 
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-size text-white" href="/board/list" aria-label="A system message page">
-                그룹운동
+                <strong>그룹운동</strong> 
               </a>
             </li>
             <c:choose>
@@ -40,7 +40,7 @@
                 </li> -->
                 <li class="nav-item">
                   <a class="nav-link nav-size text-white" href="/user/mypage" aria-label="A system message page">
-                    마이페이지
+                    <strong>마이페이지</strong> 
                   </a>
                 </li>
               </c:when>
@@ -51,7 +51,7 @@
                 <li class="nav-item">
                   <a class=" text-white nav-link nav-size ${menu eq 'user' ? 'active' : ''}" href="/user/admin"
                     aria-label="A system message page">
-                    사용자관리
+                   <strong>사용자관리</strong>  
                   </a>
                 </li>
               </c:when>

@@ -23,7 +23,7 @@
 						<td class="col-7">
 							<h3 style="color: white; margin-left:70px;"><strong>그룹운동 게시판</strong></h3>
 							<div class="board-list">
-								<button type="button" class="btn-hover color-9 fix-position " onclick="location.href='/board/write'">+글쓰기</button>
+								<button type="button" class="btn-hover color-9 fix-position" style="padding-bottom: 3px;" onclick="location.href='/board/write'">+글쓰기</button>
 							</div>
 						</td>
 						<td class="col-1">

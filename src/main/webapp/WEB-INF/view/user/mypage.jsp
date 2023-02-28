@@ -71,7 +71,7 @@
 						</tr>
 						<tr>
 							<th></th>
-							<td><button onclick="location.href='/user/update'" class="btn-hover color-8 profile-btn" style="margin-left: 10px;">개인정보 수정</button></td>
+							<td><button onclick="location.href='/user/update'" class="btn-hover color-8 profile-btn" style="margin-left: 10px; width: 130px;">개인정보 수정</button></td>
 						</tr>
 					</table>
 				</div>

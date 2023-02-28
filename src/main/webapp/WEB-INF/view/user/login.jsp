@@ -32,7 +32,7 @@
 
           <header class="mb-auto py-vh-2 col-12">
             <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="/board/index">
-            <i class="fa-solid fa-dumbbell"  onclick="location.href='/board/index'" style="color: white;"></i>
+             <i class="fa-solid fa-person-running" onclick="location.href='/board/index'" style="color: white;"></i>
               <span class="ms-md-1 mt-1 fw-bolder me-md-5">GOgo</span>
             </a>
 

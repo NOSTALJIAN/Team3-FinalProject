@@ -30,13 +30,12 @@
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 		<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-			<h5>작성글 목록</h5>
+			<h5><strong>작성글 목록</strong></h5>
 			<table>
 				<thead>
 					<tr>
 						<th>제목</th>
 						<th>운동종목</th>
-						<th>모집인원</th>
 						<th>작성일</th>
 						<th>조회</th>
 						<th>댓글</th>
@@ -49,12 +48,11 @@
 						<tr>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bTitle}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bCategory}</td>
-							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bUserCount}명</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${fn:replace(my.bRegTime, 'T', ' ')}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bViewCount}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bReplyCount}</td>
 							<td><button onclick="location.href='/group/applyPerson?bid=${my.bid}&uid=${my.uid}'" class="btn-hover color-8 write-btn">신청자 목록</button></td>
-							<td><span><button class="btn-hover color-3 write-btn" style="width: 120px;">${my.bUserCount eq my.applyCount ? '모집 마감': '모집중'}</button></span></td>
+							<td><span><button class="btn-hover color-3 write-btn" style="width: 120px;">${my.applyCount}/${my.bUserCount} ${my.bUserCount eq my.applyCount ? '모집 마감': '모집중'}</button></span></td>
 						</tr>
 					</c:forEach>
 				</tbody>

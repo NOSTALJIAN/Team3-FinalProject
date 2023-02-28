@@ -33,7 +33,6 @@
   text-align: center;
   font-size: 1.5em;
   color: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
-  
 }
 h6:before {
   content: "\25C0";
@@ -60,7 +59,7 @@ h6:after {
 			<h5>신청자 목록</h5>
 			<c:forEach var="re" items="${receiveList}" varStatus="loop">
 				<c:if test="${loop.first}">
-    				<h6 style="margin-left: 340px;margin-top:-10px; font-size: 23px;"><strong>${re.bid}. ${re.bTitle}</strong></h6>
+    				<h6 style="margin-left: 340px;margin-top:-3px; font-size: 23px;"><strong>${re.bid}. ${re.bTitle}</strong></h6>
     			</c:if>
     		</c:forEach>
     		</div>
