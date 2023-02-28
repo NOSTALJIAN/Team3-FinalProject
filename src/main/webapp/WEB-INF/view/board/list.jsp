@@ -60,8 +60,7 @@
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">장소 : ${b.bLocation}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">모집인원 : ${b.bUserCount}명</p>
-									<button class="btn-hover color-8 write-btn" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}">참가신청</button>
-									<span><button class="btn-hover color-3 write-btn" >모집중</button></span>
+									<button class="btn-hover color-8 write-btn" >모집중</button>
 							</div>	
 							</c:forEach>
 						</div>
