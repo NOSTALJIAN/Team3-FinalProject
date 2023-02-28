@@ -47,7 +47,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="done" items="${myDoneList}" varStatus="loop">
+				<c:forEach var="done" items="${myDoneList}">
 					<tr>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bTitle}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bCategory}</td>
