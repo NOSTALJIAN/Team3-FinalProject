@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import com.mulcam.SpringProject.entity.User;
 import com.mulcam.SpringProject.entity.UserInfo;
 import com.mulcam.SpringProject.misc.ExerciseUtill;
 import com.mulcam.SpringProject.service.BoardMateService;
+import com.mulcam.SpringProject.service.BoardService;
 import com.mulcam.SpringProject.service.UserService;
 import com.mulcam.SpringProject.session.UserSession;
 
@@ -30,6 +32,7 @@ public class BoardMateController {
 	@Autowired private BoardMateService service;
 	@Autowired private UserService userService;
 	@Autowired private ExerciseUtill exerciseUtill;
+	@Autowired private BoardService bsv;
 	
 	/** 운동 참가 신청*/
 	@ResponseBody
@@ -125,10 +128,31 @@ public class BoardMateController {
 	
 	/** 내가 쓴 게시글 보기 */
 	@GetMapping("/myWrite")
-	public String myWriteForm(Model model) {
+	public String myWriteForm(HttpServletRequest req, Model model) {
 		String uid = userSession.getUid();
+		String page_ = req.getParameter("p");
 		List<Board> myList = service.getMyList(uid);
 		model.addAttribute("myList", myList);
+		
+		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
+		HttpSession session = req.getSession();
+		session.setAttribute("currentBoardPage", page);
+		
+		int totalBoardNo = bsv.getBoardCount("bid", "");
+		int totalPages = (int) Math.ceil(totalBoardNo / 10.);
+		
+		int startPage = (int)(Math.ceil((page-0.5)/10) - 1) * 10 + 1;
+		int endPage = Math.min(totalPages, startPage + 9);
+		List<String> pageList = new ArrayList<>();
+		for (int i = startPage; i <= endPage; i++) 
+			pageList.add(String.valueOf(i));
+		model.addAttribute("pageList", pageList);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPages", totalPages);
+		
+		String today = LocalDate.now().toString(); 
+		model.addAttribute("today", today);
 		return "group/myWrite";
 	}
 	

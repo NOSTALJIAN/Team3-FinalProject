@@ -26,7 +26,7 @@
   }
 </style>
 </head>
-<body style="margin-bottom: 100px; background-color: black; color: white;">
+<body style="margin-bottom: 400px; background-color: black; color: white;">
 	<%@ include file="../common/top.jsp" %>
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>

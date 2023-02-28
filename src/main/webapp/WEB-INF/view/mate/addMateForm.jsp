@@ -57,7 +57,7 @@
 							<td>${add.likeExerList}</td>
 							<td>${add.gender}</td>
 							<td>${add.age}</td>
-							<td>${add.sendTime}</td>
+							<td>${fn:replace(add.sendTime, 'T', ' ')}</td>
 							<td><button onclick="addMate('${add.receiveUser}')"  id="${add.receiveUser}" class="btn-hover color-8 write-btn">신청중</button></td>
 						</tr>
 					</c:forEach>

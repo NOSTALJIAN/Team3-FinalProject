@@ -16,28 +16,34 @@
   text-align: center;
 }
  table {
-    width: 1000px;
+    width: 1300px;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
   th, td {
     border-bottom: 1px solid #444444;
-    padding: 5px;
+    padding: 10px;
   }
    img {
-		  	width: 70px; height: 70px;   border-radius: 70%;
+		  	width: 70px; height: 70px; border-radius: 70%;
 		  }
 </style>
 </head>
-<body  style="margin-bottom: 100px; background-color: black; color: white;">
+<body  style="margin-bottom: 400px; background-color: black; color: white;">
 	<%@ include file="../common/top.jsp" %>
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-			<h4>신청자 목록</h4><hr>
-			<c:forEach var="re" items="${receiveList}">
-    			<h5>${re.bid} ${re.bTitle}</h5>
-    		</c:forEach>
+			<div  style="display: flex;">
+			     <h5>신청자 목록</h5>
+			      <c:forEach var="re" items="${receiveList}">
+	    			<h6 style="margin-left: 270px;">게시글 제목 : ${re.bTitle}</h6>
+	    		</c:forEach>
+			  </div>
+				<!--  <h5>신청자 목록</h5>
+				<c:forEach var="re" items="${receiveList}">
+	    			<h6>${re.bTitle}</h6>
+	    		</c:forEach>-->
     		<div style="margin-top: 30px;">
 				<table>
 					<thead>
@@ -55,7 +61,13 @@
 					<tbody>
 					<c:forEach var="re" items="${receiveList}" varStatus="status">
 						<tr id="${re.uid}">
-							<td>${infoList[status.index].uImage}</td>
+							<c:if test="${empty re.uImage}">
+							<td><img src="/img/basicProfile.png" ></td>
+							</c:if>
+							<c:if test="${not empty re.uImage}">
+							<td><img src="/board/download?file=${infoList[status.index].uImage}" ></td>
+							</c:if>
+							<!-- <td>${infoList[status.index].uImage}</td> -->
 							<td>${infoList[status.index].nickname}</td>
 							<td>${infoList[status.index].coincideExer}</td>
 							<td>${re.gender}</td>
@@ -72,6 +84,7 @@
 	</div>
 	<script>
 		function applyAccept(uid, bid){
+			if(confirm("참가신청을 수락하겠습니까?")) {
 			const mateuid1 = document.getElementById(uid);
 			const applybid = document.getElementById(bid);
 			console.log(bid);
@@ -83,8 +96,13 @@
 						mateuid1.style.display='none';
 					}
 				});
+				return true;
+			} else {
+				return false;
+				}
 			}
 		function applyReject(uid, bid){
+			if(confirm("참가신청을 거절하겠습니까?")) {
 			const mateuid2 = document.getElementById(uid);
 			$.ajax({
 					type:'GET',
@@ -94,6 +112,10 @@
 						mateuid2.style.display='none';
 					}
 				});
+				return true;
+			} else {
+				return false;
+				}
 			}
 	</script>
 </body>

@@ -44,7 +44,7 @@ public class Board {
 
 	// 게시물 작성시 생성자
 	public Board(String uid, String bTitle, String bCategory, int bUserCount, String bContent,
-			LocalDateTime bAppointment, String bLocation, String bAddr, String bFiles) {
+			LocalDateTime bAppointment, String bLocation, String bAddr) {
 		this.uid = uid;
 		this.bTitle = bTitle;
 		this.bCategory = bCategory;
@@ -53,12 +53,11 @@ public class Board {
 		this.bAppointment = bAppointment;
 		this.bLocation = bLocation;
 		this.bAddr = bAddr;
-		this.bFiles = bFiles;
 	}
 	
 	// 게시물 수정시 생성자
 	public Board(int bid, String bTitle, String bCategory, int bUserCount, String bContent,
-			LocalDateTime bAppointment, String bLocation, String bAddr, String bFiles) {
+			LocalDateTime bAppointment, String bLocation, String bAddr) {
 		this.bid = bid;
 		this.bTitle = bTitle;
 		this.bCategory = bCategory;
@@ -67,7 +66,6 @@ public class Board {
 		this.bAppointment = bAppointment;
 		this.bLocation = bLocation;
 		this.bAddr = bAddr;
-		this.bFiles = bFiles;
 	}
 		
 	public int getBid() {

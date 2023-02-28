@@ -11,13 +11,13 @@
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 	<style type="text/css">
 		  table {
-		    width: 1300px;
+		    width: 1100px;
 		    border-top: 1px solid #444444;
 		    border-collapse: collapse;
 		  }
 		  th, td {
 		    border-bottom: 1px solid #444444;
-		    padding: 3px;
+		    padding: 5px;
 		  }
 		  img {
 		  	width: 70px; height: 70px; border-radius: 70%;
@@ -41,7 +41,6 @@
 							<th>나이</th>
 							<th>신청시간</th>
 							<th></th>
-							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,9 +56,9 @@
 							<td>${re.likeExerList}</td>
 							<td>${re.gender}</td>
 							<td>${re.age}</td>
-							<td>${re.sendTime}</td>
-							<td><button onclick="mateAccept('${re.uid}')" class="btn-hover color-9" >수락</button></td>
-							<td><button onclick="mateReject('${re.uid}')" class="btn-hover color-8" >거절</button></td>
+							<td>${fn:replace(re.sendTime, 'T', ' ')}</td>
+							<td><button onclick="mateAccept('${re.uid}')" class="btn-hover color-9" style="width: 105px;">수락</button>
+							<button onclick="mateReject('${re.uid}')" class="btn-hover color-8" style="width: 105px;">거절</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -70,6 +69,7 @@
 	
 	<script>
 	function mateAccept(uid){
+		if(confirm("친구신청을 수락하겠습니까?")) {
 		const mateuid1 = document.getElementById(uid);
 		$.ajax({
 				type:'GET',
@@ -79,8 +79,13 @@
 					mateuid1.style.display='none';
 				}
 			});
+			return true;
+		} else {
+			return false;
+			}
 		}
 	function mateReject(uid){
+		if(confirm("친구신청을 거절하겠습니까?")) {
 		const mateuid2 = document.getElementById(uid);
 		$.ajax({
 				type:'GET',
@@ -90,6 +95,10 @@
 					mateuid2.style.display='none';
 				}
 			});
+			return true;
+		} else {
+			return false;
+			}
 		}
 	</script>
 </body>

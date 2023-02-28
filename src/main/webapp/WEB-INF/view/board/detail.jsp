@@ -22,10 +22,10 @@
 
 <body  style="background-color: black; color: white;">
 	<%@ include file="../common/top.jsp" %>
-	<div class="container" style="margin: 40px; padding-bottom: 300px;">
+	<div class="container" style="margin-right: 350px; padding-bottom: 500px;">
 		<div class="row" style="justify-content: space-evenly">
 			<!-- =================== main =================== -->
-			<div>
+			<div style="margin-top: 19px;">
 				<span style="display: flex; margin-left: 400px;">
 					<h3 class="detail-title" style=" margin-top: 25px;">${b.bTitle}</h3>
 					<div class="detail-btn">
@@ -35,7 +35,7 @@
 					</c:if>
 					<!-- 본인만 수정 가능 -->
 					<c:if test="${b.uid eq sessionUid}">
-						<button onclick="location.href='/board/update?bid=${b.bid}'" class="btn-hover color-8 ms-3 col-2" style="width: 100px" type="button" value="수정">수정</button>
+						<button onclick="location.href='/board/update?bid=${b.bid}'" class="btn-hover color-9 ms-3 col-2" style="width: 100px" type="button" value="수정">수정</button>
 					</c:if>
 					<c:if test="${b.uid ne sessionUid}">
 						<!--   <a href="#" class="ms-3 disabled-link"><i class="far fa-edit"></i> 수정</a>   -->
@@ -59,12 +59,12 @@
 				<div class="detail-content">
 					<div>
 						<div>
-                          <p class="board-view-cnt" style="margin-left: 45px;">
+                          <p class="board-view-cnt" style="margin-left: 200px;">
                             <span>조회${b.bViewCount}</span> <span>댓글${b.bReplyCount}</span> <span>작성자 ${n}</span> 
                           </p>
                         </div>
 					</div>
-					<table class="board-view-infomation" style="margin-left: 370px; margin-top:-14px; color: white;">
+					<table class="board-view-infomation" style="margin-left: 450px; margin-top:-14px; color: white;">
 						<tr>
 							<th>운동 종목</th>
 							<td>${b.bCategory}</td>
@@ -98,12 +98,13 @@
 				
 				<!-- 댓글 -->
 				<div class="col-12"></div>
-				<div class="col-12" style="margin-top: 350px; margin-left: 240px;">
+				<div class="col-12" style="margin-top: 400px; margin-left: 240px;">
+				<h3 class="detail-title" style=" margin-right:1100px;">댓글</h3>
 					<c:forEach var="reply" items="${replyList}" varStatus="loop">
 						<c:if test="${reply.rIsMine eq 0}">
 							<div class="d-flex flex-row mt-1">
-								<div class="card bg-light text-dark w-96 rounded" style="margin-right: ;">
-									<div class="card-body" id="reply${loop.count}">		
+								<div class="card bg-light text-dark w-96 rounded" >
+									<div class="card-body" id="reply${loop.count}" style="width:500px; ">		
 										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
 										<c:if test="${reply.uid eq sessionUid}">
 											<button onclick="replyUpdate('block', ${loop.count})" style="float: right" class="btn btn-primary">수정</button>
@@ -112,19 +113,16 @@
 										${fn:replace(reply.rContent, newline, '<br>')}  <!-- content -->
 									</div>
 									<!-- 댓글 수정기능 추가  -->
-									<form class="form-inline d-none" action="/board/replyUpdate" id="replyUpdate${loop.count}" method="post">
+									<form class="form-inline d-none" action="/board/replyUpdate" id="replyUpdate${loop.count}" method="post" >
 										<input type="hidden" name="bid" value="${b.bid}">     <!-- bid -->
 										<input type="hidden" name="uid" value="${b.uid}">     <!-- uid -->
 										<input type="hidden" name="rid" value="${reply.rid}">     <!-- rid -->
-										<table class="table table-borderless mt-2">
+										<table class="table table-borderless mt-2" style="width: 680px;">
 											<tr class="d-flex">
-												<td class="col-2 text-end">
-													<label for="rContent">댓글수정</label>
-												</td>
-												<td class="col-6">
+												<td class="col-8">
 													<textarea class="form-control" id="rContent" name="rContent" rows="3">${fn:replace(reply.rContent, newline, '<br>')}</textarea>
 												</td>
-												<td class="col-4">
+												<td class="col-4 d-flex">
 													<button type="submit" class="btn btn-primary">수정</button>
 													<button onclick="replyUpdate('none', ${loop.count})" class="btn btn-secondary">취소</button>
 												</td>
@@ -136,7 +134,7 @@
 						</c:if>
 						<c:if test="${reply.rIsMine eq 1}">
 							<div class="d-flex flex-row-reverse mt-1">
-								<div class="card w-96 rounded" style="margin-right: 100px;">
+								<div class="card w-96 rounded" style="margin-right: 100px; border: black;">
 									<div class="card-body text-end" id="reply${loop.count}" style="color: black;">		
 										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
 										<c:if test="${reply.uid eq sessionUid}">
@@ -146,21 +144,18 @@
 										${fn:replace(reply.rContent, newline, '<br>')}  <!-- content -->
 									</div>
 									<!-- 댓글 수정기능 추가  -->
-									<form class="form-inline d-none" action="/board/replyUpdate" id="replyUpdate${loop.count}" method="post">
+									<form class="form-inline d-none" style="width:680px;" action="/board/replyUpdate" id="replyUpdate${loop.count}" method="post">
 										<input type="hidden" name="bid" value="${b.bid}">     <!-- bid -->
 										<input type="hidden" name="uid" value="${b.uid}">     <!-- uid -->
 										<input type="hidden" name="rid" value="${reply.rid}">     <!-- rid -->
-										<table class="table table-borderless mt-2">
+										<table class="table table-borderless mt-2" style="width: 680px;border: black;">
 											<tr class="d-flex">
-												<td class="col-1 text-end">
-													<label for="rContent">댓글수정</label>
-												</td>
 												<td class="col-9">
 													<textarea class="form-control" id="rContent" name="rContent" rows="3">${fn:replace(reply.rContent, newline, '<br>')}</textarea>
 												</td>
-												<td class="col-2">
-													<button type="submit" class="btn btn-primary">수정</button>
-													<button onclick="replyUpdate('none', ${loop.count})" class="btn btn-secondary">취소</button>
+												<td class="col-3 d-flex" >
+													<button type="submit" class="btn btn-primary" style="border: white;">수정</button>
+													<button onclick="replyUpdate('none', ${loop.count})" class="btn btn-secondary" style="border: white;">취소</button>
 												</td>
 											</tr>
 										</table>
@@ -173,7 +168,7 @@
 						<form class="form-inline" action="/board/reply" method="post">
 							<input type="hidden" name="bid" value="${b.bid}">     <!-- bid -->
 							<input type="hidden" name="uid" value="${b.uid}">     <!-- uid -->
-							<table class="table table-borderless mt-2">
+							<table class="table table-borderless mt-2" style="margin-left: 200px;">
 								<tr class="d-flex">
 									<td class="col-1 text-end">
 										<label for="rContent" style="color: white;">댓글</label>

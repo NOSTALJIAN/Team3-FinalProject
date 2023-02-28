@@ -16,13 +16,13 @@
   text-align: center;
 }
  table {
-    width: 1000px;
+    width: 1200px;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
   th, td {
     border-bottom: 1px solid #444444;
-    padding: 10px;
+    padding-right: 5px;
   }
 </style>
 </head>
@@ -52,7 +52,7 @@
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bLocation}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${fn:replace(done.bAppointment, 'T', ' ')}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bUserCount}</td>
-						<td><button class="btn-hover color-8 write-btn">[그룹채팅 버튼]</button></td>
+						<td><button class="btn-hover color-9 write-btn">그룹채팅</button></td>
 					</tr>
 				</c:forEach>
 				</tbody>

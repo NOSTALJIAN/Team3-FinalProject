@@ -22,7 +22,8 @@
       <h1 class="display-huge mt-3 mb-3 lh-1 text-white">Find your Health mate near by you</h1>
     </div>
     <div class="col-12 col-xl-8">
-      <p class="lead text-white">근처에 있는 동네 운동친구를 만들어보세요! 그룹운동 게시판을 통해서 다같이 운동을 해보세요!</p>
+      <p class="lead text-white">근처에 있는 동네 운동친구를 만들어보세요</p>
+      <p class="lead text-white">그룹운동 게시판을 통해서 다같이 운동을 해보세요</p>
     </div>
     <div class="col-12 text-center">
       <a href="/user/register" class="btn btn-xl btn-light">Join us
@@ -57,18 +58,18 @@
     <div class="row d-flex align-items-center">
       <div class="col-12 col-lg-7 text-lg-end" data-aos="fade-right">
         <span class="h5 text-secondary fw-lighter">What we do</span>
-        <h2 class="display-4">근처에서 같이 운동하고 싶은 친구를 찾아보세요. 운동종목, 시간, 장소를 정하여 개인 또는 그룹운동을 할 수 있습니다.</h2>
+        <h2 class="display-4">근처에서 같이 운동하고 싶은 친구를 찾아보세요.<br> 운동종목, 시간, 장소를 정하여 개인 또는 그룹운동을 할 수 있습니다.</h2>
       </div>
       <div class="col-12 col-lg-5" data-aos="fade-left">
         <h3 class="pt-5">운동 친구 찾기</h3>
-        <p class="text-secondary">운동 친구를 찾아 장소, 종목, 시간에 관계없이 언제 어디서든 같이 운동할 친구를 찾아보세요. 운동친구는 항상 가까이에 있습니다.<br>
+        <p class="text-secondary">운동 친구를 찾아 장소, 종목, 시간에 관계없이 언제 어디서든 같이 운동할 친구를 찾아보세요.<br> 운동친구는 항상 가까이에 있습니다.<br>
           <a href="/matching/list" class="link-fancy link-fancy-light me-2">운동친구 GOgo</a>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
 </svg>
 </p>
-        <h3 class="border-top border-secondary pt-5 mt-5">다같이 운동하기</h3>
-        <p class="text-secondary">여러명이서 운동하는 모임을 찾아보세요. 축구, 농구, 런닝, 등산 등 어떤 운동이든 할 수 있습니다. 운동 모임을 만들거나 찾아서 같이 운동 시너지를 만들어 보세요.<br>
+        <h3 class="border-top border-secondary pt-5 mt-5">그룹 운동</h3>
+        <p class="text-secondary">여러명이서 다같이 운동하는 그룹운동을 찾아보세요.<br> 축구, 농구, 런닝, 등산 등 어떤 운동이든 같이 할 수 있습니다.<br> 운동모임을 만들고, 찾아서 같이 운동 시너지를 만들어보세요.<br>
           <a href="/board/list" class="link-fancy link-fancy-light me-2">그룹운동 GOgo</a>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>

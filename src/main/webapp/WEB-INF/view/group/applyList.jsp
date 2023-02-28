@@ -21,7 +21,7 @@
 		  }
   	</style>
 </head>
-<body  style="margin-bottom: 100px; background-color: black; color: white;">
+<body  style="margin-bottom: 400px; background-color: black; color: white;">
 	<%@ include file="../common/top.jsp" %>
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
@@ -47,7 +47,7 @@
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bLocation}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${fn:replace(apply.bAppointment, 'T', ' ')}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bUserCount}</td>
-							<td><button class="btn-hover color-8">참가신청중</button></td>
+							<td><button class="btn-hover color-8" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}">신청중</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>

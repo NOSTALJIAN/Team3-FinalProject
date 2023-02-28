@@ -8,6 +8,7 @@
 	p {
 		text-align: left;
 	}
+	.pagination{--bs-pagination-color: #363a3e;}
 	</style>
 </head>
 
@@ -43,7 +44,8 @@
 							<input class="form-control me-2" type="search" placeholder="검색 내용" name="q" id="query">
 						</td>
 						<td class="col-1" >
-							<span class="btn btn-light" onclick="search()">검색</span> 
+							<span><button type="button" class="btn btn-light" onclick="search()" style=" margin-top: 0px; margin-left: -40px; border-radius: 8px; height: 38px;
+   							 font-size: 15px;">검색</button></span>
 						</td>
 					</tr>
 				</table>
@@ -59,6 +61,7 @@
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">모집인원 : ${b.bUserCount}명</p>
 									<button class="btn-hover color-8 write-btn" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}">참가신청</button>
+									<span><button class="btn-hover color-3 write-btn" >모집중</button></span>
 							</div>	
 							</c:forEach>
 						</div>
