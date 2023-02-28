@@ -50,12 +50,14 @@ public interface BoardMateDao {
 			+ "	WHERE b.bid=brs.bid AND brs.uid2=#{uid} AND brs.relationship=1 AND b.bIsDeleted=0;")
 	List<Board> getDoneList(String uid);
 	
-	@Select("SELECT * FROM board WHERE uid=#{uid} AND bIsFull=1 AND bIsDeleted=0;")
+	@Select("SELECT b.uid, b.bid, b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount, b.bIsFull, b.applyCount"
+			+ " FROM board AS b JOIN boardRelationship as brs"
+			+ " WHERE b.uid=#{uid} AND brs.bid=b.bid AND b.bIsDeleted=0;")
 	List<Board> getMyDoneList(String uid);
 	
 	@Select("SELECT br.bid, u.uid, u.likeExercise, u.gender, u.birthDate, b.bTitle"
 			+ "	FROM userInfo AS u JOIN board AS b JOIN boardRelationship AS br"
-			+ "	WHERE u.uid=br.uid2 AND b.bIsFull=1 AND br.bid=b.bid AND br.uid=#{uid} AND br.bid=#{bid};")
+			+ "	WHERE u.uid=br.uid2 AND br.bid=b.bid AND br.uid=#{uid} AND br.bid=#{bid};")
 	List<BoardMate> getGMList(String uid, int bid);
 
 }
