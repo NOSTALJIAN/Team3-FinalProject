@@ -46,7 +46,7 @@
 							<span class="btn btn-light" onclick="search()">검색</span> 
 						</td>
 					</tr>
-				</table>
+				</table> 
 				
 				<div class="container" style="margin-top: 20px;">
 					<div class="row ">
