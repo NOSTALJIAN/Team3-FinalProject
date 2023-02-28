@@ -46,11 +46,7 @@ public interface BoardDao {
 	public void increaseCount(int bid, String field);
 	
 	@Insert("INSERT INTO board VALUES(DEFAULT, #{uid}, #{bTitle}, #{bCategory}, #{bUserCount}, #{bContent}, DEFAULT, #{bAppointment}, "
-<<<<<<< HEAD
 			+ " DEFAULT, DEFAULT, #{bLocation}, #{bAddr},DEFAULT, DEFAULT, DEFAULT, DEFAULT)")
-=======
-			+ " DEFAULT, DEFAULT, #{bLocation}, #{bAddr}, #{bFiles}, DEFAULT, DEFAULT, DEFAULT)")
->>>>>>> e024aea572e9b903fd89da931cb31f2d4af86684
 	public void insertBoard(Board board);
 	
 	@Update("UPDATE board SET bTitle=#{bTitle}, bCategory=#{bCategory}, bUserCount=#{bUserCount}, bContent=#{bContent},"
