@@ -18,13 +18,14 @@ public class Board {
 	private String bFiles;
 	private int bIsDeleted;
 	private String bAddr;
+	private int bIsFull;
+	private int applyCount;
 	
 	public Board() {}
 	
-
 	public Board(int bid, String uid, String bTitle, String bCategory, int bUserCount, String bContent,
 			LocalDateTime bRegTime, LocalDateTime bAppointment, int bViewCount, int bReplyCount, String bLocation,
-			String bFiles, int bIsDeleted, String bAddr) {
+			String bFiles, int bIsDeleted, String bAddr, int bIsFull, int applyCount) {
 		super();
 		this.bid = bid;
 		this.uid = uid;
@@ -40,6 +41,8 @@ public class Board {
 		this.bFiles = bFiles;
 		this.bIsDeleted = bIsDeleted;
 		this.bAddr = bAddr;
+		this.bIsFull = bIsFull;
+		this.applyCount = applyCount;
 	}
 
 	// 게시물 작성시 생성자
@@ -179,20 +182,31 @@ public class Board {
 	public void setbIsDeleted(int bIsDeleted) {
 		this.bIsDeleted = bIsDeleted;
 	}
+	
 
+	public int getbIsFull() {
+		return bIsFull;
+	}
+
+	public void setbIsFull(int bIsFull) {
+		this.bIsFull = bIsFull;
+	}
+
+	public int getApplyCount() {
+		return applyCount;
+	}
+
+	public void setApplyCount(int applyCount) {
+		this.applyCount = applyCount;
+	}
 
 	@Override
 	public String toString() {
 		return "Board [bid=" + bid + ", uid=" + uid + ", bTitle=" + bTitle + ", bCategory=" + bCategory
 				+ ", bUserCount=" + bUserCount + ", bContent=" + bContent + ", bRegTime=" + bRegTime + ", bAppointment="
 				+ bAppointment + ", bViewCount=" + bViewCount + ", bReplyCount=" + bReplyCount + ", bLocation="
-				+ bLocation + ", bFiles=" + bFiles + ", bIsDeleted=" + bIsDeleted + ", bAddr=" + bAddr + "]";
-
+				+ bLocation + ", bFiles=" + bFiles + ", bIsDeleted=" + bIsDeleted + ", bAddr=" + bAddr + ", bIsFull="
+				+ bIsFull + ", applyCount=" + applyCount + "]";
 	}
-
-
-	
-
-	
 	
 }

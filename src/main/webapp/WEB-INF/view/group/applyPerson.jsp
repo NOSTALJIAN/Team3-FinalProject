@@ -34,16 +34,13 @@
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-			<div  style="display: flex;">
-			     <h5>신청자 목록</h5>
-			      <c:forEach var="re" items="${receiveList}">
-	    			<h6 style="margin-left: 270px;">게시글 제목 : ${re.bTitle}</h6>
-	    		</c:forEach>
-			  </div>
-				<!--  <h5>신청자 목록</h5>
-				<c:forEach var="re" items="${receiveList}">
-	    			<h6>${re.bTitle}</h6>
-	    		</c:forEach>-->
+			<h4>신청자 목록</h4><hr>
+			<c:forEach var="re" items="${receiveList}" varStatus="loop">
+				<c:if test="${loop.first}">
+    				<h5>${re.bid} [${re.bTitle}]</h5>
+    				<h6 style="margin-left: 270px;">게시글 제목 :${re.bid} ${re.bTitle}</h6>
+    			</c:if>
+    		</c:forEach>
     		<div style="margin-top: 30px;">
 				<table>
 					<thead>
@@ -61,13 +58,12 @@
 					<tbody>
 					<c:forEach var="re" items="${receiveList}" varStatus="status">
 						<tr id="${re.uid}">
-							<c:if test="${empty re.uImage}">
+							<c:if test="${empty infoList[status.index].uImage}">
 							<td><img src="/img/basicProfile.png" ></td>
 							</c:if>
-							<c:if test="${not empty re.uImage}">
+							<c:if test="${not empty infoList[status.index].uImage}">
 							<td><img src="/board/download?file=${infoList[status.index].uImage}" ></td>
 							</c:if>
-							<!-- <td>${infoList[status.index].uImage}</td> -->
 							<td>${infoList[status.index].nickname}</td>
 							<td>${infoList[status.index].coincideExer}</td>
 							<td>${re.gender}</td>
@@ -87,11 +83,10 @@
 			if(confirm("참가신청을 수락하겠습니까?")) {
 			const mateuid1 = document.getElementById(uid);
 			const applybid = document.getElementById(bid);
-			console.log(bid);
 			$.ajax({
 					type:'GET',
 					url: '/group/applyAccept',
-					data: {'receiveUser': uid, 'bid': bid },
+					data: {'receiveUser': uid, 'bid': bid},
 					success: function(result){
 						mateuid1.style.display='none';
 					}
