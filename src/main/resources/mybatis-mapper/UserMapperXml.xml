@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mulcam.SpringProject.chat.UserMapper">
+<mapper namespace="com.mulcam.SpringProject.chatting.UserMapper">
     <select id="findById" parameterType="String" resultType="User">
         select *
         from User

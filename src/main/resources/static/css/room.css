@@ -1,70 +1,127 @@
-#container {
-  width: 500px;
-  margin: 0 auto;
-  padding: 25px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.topchatbar {
+  display: flex;
+  max-width: 50%;
+  margin: 0;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  justify-content: space-between;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.topchatbar .chatadd {
+  color: white;
 }
 
-#container h1 {
-  text-align: left;
-  padding: 5px 5px 5px 15px;
-  color: #ffbb00;
-  border-left: 3px solid #ffbb00;
-  margin-bottom: 20px;
+.card-body {
+  width: auto;
+  margin: 0 10px;
+  padding-top: 0px;
+  display: flex;
+  /*justify-content: space-between;*/
+}
+.chatpreview {
+  width: auto;
+  margin: 0 10px;
+  padding: 0 20px 0 20px;
+  display: flex;
+  /*justify-content: space-between;*/
 }
 
-.roomContainer {
-  background-color: #f6f6f6;
-  width: 500px;
-  height: 500px;
-  overflow: auto;
+#chat-more-button {
+  position: absolute;
+  display: none;
+  width: 70px;
+  background-color: white;
+  border: 1px solid black;
+}
+.col-lg-6 {
+  flex: 0 0 90%;
+  max-width: 90%;
+}
+.topchatbar {
+  max-width: 90%;
 }
 
-.roomList {
-  border: none;
+.inbox_people {
+  width: 100%;
 }
 
-.roomList th {
-  border: 1px solid #ffbb00;
-  background-color: #fff;
-  color: #ffbb00;
+.recent_heading {
+  margin-top: 10px;
 }
 
-.roomList td {
-  border: 1px solid #ffbb00;
-  background-color: #fff;
-  text-align: left;
-  color: #ffbb00;
+.chatadd {
+  margin-top: -5px;
+  margin-right: -5px;
 }
 
-.roomList .num {
-  width: 75px;
+.timemargin {
+  margin-right: 23px;
+}
+.unreadMessage {
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  width: 20px;
+  background-color: red;
+  display: inline-block;
+}
+
+.unread {
+  display: inline-block;
+  margin-top: 7px;
+  margin-left: 25px;
+}
+.chatTitle {
+  display: inline-block;
+}
+.joinMem {
+  display: inline-block;
   text-align: center;
 }
 
-.roomList .room {
-  width: 350px;
+#navbarDropdown {
+  padding-top: 5px;
+  padding-left: 20px;
 }
 
-.roomList .go {
-  width: 71px;
-  text-align: center;
+.rounded-circle {
+  height: 55.63px;
+  width: 55.63px;
 }
 
-button {
-  background-color: #ffbb00;
-  font-size: 14px;
-  color: #000;
-  border: 1px solid #000;
-  border-radius: 5px;
-  padding: 3px;
-  margin: 3px;
+.chat_img {
+  width: 55.63px;
+  height: 55.63px;
 }
 
-.inputTable th {
-  padding: 5px;
+.twoprofile {
+  border-radius: 19px;
+  -moz-border-radius: 19px;
+  -khtml-border-radius: 19px;
+  -webkit-border-radius: 19px;
 }
 
-.inputTable input {
-  width: 330px;
-  height: 25px;
+.recent_heading {
+  color: #152fb0;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#exampleModalLabel {
+  color: #152fb0;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#clbutton.close {
+  margin-top: -43px;
+}
+
+.chat_list {
+  width: 556px;
 }

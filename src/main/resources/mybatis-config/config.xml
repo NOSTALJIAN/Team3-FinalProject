@@ -5,6 +5,6 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="User" type="com.mulcam.SpringProject.entity.User"/>
-        <typeAlias alias="UserForJPA" type="com.mulcam.SpringProject.chat.UserForJPA"/>
+        <typeAlias alias="UserForJPA" type="com.mulcam.SpringProject.chatting.UserForJPA"/>
     </typeAliases>
 </configuration>

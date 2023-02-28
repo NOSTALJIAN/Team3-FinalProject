@@ -70,20 +70,22 @@
 		
 		
 		<!-- jian add -->
-		<!-- reactor netty / 외부 브로커 사용을 위해 추가 -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-reactor-netty -->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-reactor-netty</artifactId>
-		    <version>3.0.2</version>
-		</dependency>
-		<!-- jackson datatype -->
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
-		<dependency>
-		    <groupId>com.fasterxml.jackson.datatype</groupId>
-		    <artifactId>jackson-datatype-jsr310</artifactId>
-		    <version>2.14.2</version>
-		</dependency>
+    <!--Kafka 의존성 추가-->
+    <dependency>
+        <groupId>org.springframework.kafka</groupId>
+        <artifactId>spring-kafka</artifactId>
+    </dependency>
+    <!--ImmutableMap 의존성 추가-->
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>20.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>20.0</version>
+    </dependency>
 		<!-- Web Socket -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
 		<dependency>
@@ -93,14 +95,6 @@
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-amqp</artifactId>
-		</dependency>
-		<!-- spring rabbit test support -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit-test -->
-		<dependency>
-		    <groupId>org.springframework.amqp</groupId>
-		    <artifactId>spring-rabbit-test</artifactId>
-		    <version>3.0.1</version>
-		    <scope>test</scope>
 		</dependency>
 		<!-- sockjs-client -->
 		<!-- https://mvnrepository.com/artifact/org.webjars/sockjs-client -->
@@ -116,34 +110,6 @@
 		    <artifactId>stomp-websocket</artifactId>
 		    <version>2.3.4</version>
 		</dependency>
-		<!-- Redis -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.session/spring-session-data-redis -->
-		<dependency>
-		    <groupId>org.springframework.session</groupId>
-		    <artifactId>spring-session-data-redis</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis-reactive -->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-		</dependency>
-		<!-- rabbitmq -->
-		<dependency>
-			  <groupId>org.springframework.amqp</groupId>
-			  <artifactId>spring-rabbit</artifactId>
-		</dependency>
-		<!-- modelMapper -->
-		<!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
-		<dependency>
-		    <groupId>org.modelmapper</groupId>
-		    <artifactId>modelmapper</artifactId>
-		    <version>3.1.1</version>
-		</dependency>
 		<!-- dataJpa -->
 		<dependency>
 		  <groupId>org.springframework.boot</groupId>
@@ -157,6 +123,10 @@
 		    <scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
