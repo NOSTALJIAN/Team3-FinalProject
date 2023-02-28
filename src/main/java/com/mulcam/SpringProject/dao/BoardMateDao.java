@@ -32,24 +32,30 @@ public interface BoardMateDao {
 	@Select("SELECT COUNT(*) FROM boardRelationship WHERE uid=#{uid} AND uid2 = #{receiveUser}s AND bid=#{bid};")
 	int confirm2(BoardMate bMate);
 	
-	@Select("SELECT b.uid, b.bid, b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount, bm.receiveUser"
+	@Select("SELECT b.uid, b.bid, b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount, bm.receiveUser, b.bIsFull"
 			+ "	FROM boardMate AS bm JOIN board AS b"
-			+ "	WHERE bm.bid=b.bid AND bm.uid=#{uid};")
+			+ "	WHERE bm.bid=b.bid AND bm.uid=#{uid} AND b.bIsDeleted=0;")
 	List<Board> getApplyList(String uid);
 	
 	@Select("SELECT bm.bid, u.uid, u.likeExercise, u.gender, u.birthDate, bm.sendTime, b.bTitle"
-			+ "	FROM userInfo AS u"
-			+ "	JOIN boardMate AS bm"
-			+ " JOIN board AS b"
+			+ "	FROM userInfo AS u JOIN boardMate AS bm JOIN board AS b"
 			+ "	WHERE u.uid=bm.uid AND bm.bid=b.bid AND bm.receiveUser=#{uid} AND bm.bid=#{bid};")
 	List<BoardMate> getReceiveList(String uid, int bid);
 	
-	@Select("SELECT * FROM board WHERE uid=#{uid}")
+	@Select("SELECT * FROM board WHERE uid=#{uid} AND bIsFull=0 AND bIsDeleted=0;")
 	List<Board> getMyList(String uid);
 	
-	@Select("SELECT b.uid, b.bid, b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount"
+	@Select("SELECT b.uid, b.bid, b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount, b.bIsFull"
 			+ "	FROM board AS b JOIN boardRelationship as brs"
-			+ "	WHERE b.bid=brs.bid AND brs.uid2=#{uid} AND brs.relationship=1;")
+			+ "	WHERE b.bid=brs.bid AND brs.uid2=#{uid} AND brs.relationship=1 AND b.bIsDeleted=0;")
 	List<Board> getDoneList(String uid);
 	
+	@Select("SELECT * FROM board WHERE uid=#{uid} AND bIsFull=1 AND bIsDeleted=0;")
+	List<Board> getMyDoneList(String uid);
+	
+	@Select("SELECT br.bid, u.uid, u.likeExercise, u.gender, u.birthDate, b.bTitle"
+			+ "	FROM userInfo AS u JOIN board AS b JOIN boardRelationship AS br"
+			+ "	WHERE u.uid=br.uid2 AND b.bIsFull=1 AND br.bid=b.bid AND br.uid=#{uid} AND br.bid=#{bid};")
+	List<BoardMate> getGMList(String uid, int bid);
+
 }

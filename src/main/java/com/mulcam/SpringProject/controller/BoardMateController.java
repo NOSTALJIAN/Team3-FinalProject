@@ -37,9 +37,14 @@ public class BoardMateController {
 	public String apply(int bid, String receiveUser) {
 		String user = userSession.getUid();
 		
-		BoardMate bMate = new BoardMate(bid, user, receiveUser);
-		service.apply(bMate);
-		return "참가신청중";
+		int bIsFull = service.getbIsFull(bid);
+		if (bIsFull == 0 && user != receiveUser) {
+			BoardMate bMate = new BoardMate(bid, user, receiveUser);
+			service.apply(bMate);
+			return "참가신청중";
+		} else {
+			return "참가신청";
+		}
 	}
 	
 	/** 운동 참가 취소*/
@@ -71,9 +76,20 @@ public class BoardMateController {
 		
 		BoardMate bMate = new BoardMate(bid, user, receiveUser);
 		service.applyAccept(bMate);
+		
+		int count = service.getUserCount(bid);
+		int applyCount = service.getApplyCount(bid);
+		System.out.println(count + "*******" + applyCount);
+		System.out.println(bid);
+		if (applyCount < count) {
+			service.increaseApplyCount(bid);
+			if (applyCount + 1 == count) {
+				service.updateIsFull(bid);
+			}
+		}
 	}
 	
-	/** 운동 참가 보낸창 */
+	/** 운동 참가 보낸창 (guest) */
 	@GetMapping("/applyList")
 	public String applyForm(Model model) {
 		String uid = userSession.getUid();
@@ -84,14 +100,13 @@ public class BoardMateController {
 		return "group/applyList";
 	}
 	
-	/** 운동 참가 수락/거절창 */
+	/** 운동 참가 수락/거절창 (host)*/
 	@GetMapping("/applyPerson")
 	public String receiveForm(HttpServletRequest req, Model model) {
 		String uid = userSession.getUid();
 		int bid = Integer.parseInt(req.getParameter("bid"));
 		
 		List<BoardMate> receiveList = service.getReceiveList(uid, bid);
-		System.out.println(receiveList);
 		
 		List<MatchingUsers> applyUserInfoList = new ArrayList<>();
 		// 오늘자 연도(나이계산을 위해서)
@@ -123,7 +138,7 @@ public class BoardMateController {
 		return "group/applyPerson";
 	}
 	
-	/** 내가 쓴 게시글 보기 */
+	/** 내가 쓴 게시글 보기 (host) */
 	@GetMapping("/myWrite")
 	public String myWriteForm(Model model) {
 		String uid = userSession.getUid();
@@ -132,7 +147,7 @@ public class BoardMateController {
 		return "group/myWrite";
 	}
 	
-	/** 신청 완료 게시글 목록 */
+	/** 신청 완료 게시글 목록(guest) */
 	@GetMapping("/applyDone")
 	public String applyDoneForm(Model model) {
 		String uid = userSession.getUid();
@@ -141,5 +156,53 @@ public class BoardMateController {
 		System.out.println("***applyDoneList: " + applyDoneList);
 		model.addAttribute("applyDoneList", applyDoneList);
 		return "group/applyDone";
+	}
+	
+	/** 정원 마감 게시글 목록(host) */
+	@GetMapping("/groupMade")
+	public String groupMadeForm(Model model) {
+		String uid = userSession.getUid();
+		List<Board> myDoneList = service.getMyDoneList(uid);
+		model.addAttribute("myDoneList", myDoneList);
+		System.out.println(myDoneList);
+		return "group/groupMade";
+	}
+	
+	/** 운동 참가 수락된 사람 list (host)*/
+	@GetMapping("/groupMateList")
+	public String Form(HttpServletRequest req, Model model) {
+		String uid = userSession.getUid();
+		int bid = Integer.parseInt(req.getParameter("bid"));
+		
+		List<BoardMate> groupMateList = service.getGMList(uid, bid);
+		
+		List<MatchingUsers> applyUserInfoList = new ArrayList<>();
+		// 오늘자 연도(나이계산을 위해서)
+		int year =  LocalDate.now().getYear();
+		
+		for (BoardMate bm : groupMateList) {
+			// 운동 참가 신청한 uid
+			String applyUid = bm.getUid();
+			
+			// 나이계산
+			int age = year - (bm.getBirthDate()/10000);
+			
+			// 관심운동 목록 가져오기
+			String likeExercise = userService.getLikeExercise(applyUid);
+			List<String> likeExerList = exerciseUtill.findExercise(likeExercise);
+			
+			// 닉네임 가져오기
+			String nickname = userService.getNickname(applyUid);
+			// 프로필사진 가져오기
+			String uImage = userService.getUimage(applyUid);
+			
+			MatchingUsers applyUserInfo = new MatchingUsers(applyUid, nickname, uImage, age, likeExerList);
+			applyUserInfoList.add(applyUserInfo);
+		}
+		
+		model.addAttribute("infoList", applyUserInfoList);
+		System.out.println(applyUserInfoList);
+		model.addAttribute("groupMateList", groupMateList);
+		return "group/groupMateList";
 	}
 }

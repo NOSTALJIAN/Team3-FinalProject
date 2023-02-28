@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mulcam.SpringProject.dao.BoardDao;
 import com.mulcam.SpringProject.dao.BoardMateDao;
 import com.mulcam.SpringProject.entity.Board;
 import com.mulcam.SpringProject.entity.BoardMate;
@@ -19,8 +20,9 @@ public class BoardMateServiceImpl implements BoardMateService {
 	@Resource
 	private UserSession userSession;
 	
-	@Autowired
-	private BoardMateDao bMateDao;
+	@Autowired private BoardMateDao bMateDao;
+	
+	@Autowired private BoardDao boardDao;
 	
 	@Override
 	public void apply(BoardMate bMate) {
@@ -78,5 +80,46 @@ public class BoardMateServiceImpl implements BoardMateService {
 		List<Board> list = bMateDao.getDoneList(uid);
 		return list;
 	}
+
+	@Override
+	public List<Board> getMyDoneList(String uid) {
+		List<Board> list = bMateDao.getMyDoneList(uid);
+		return list;
+	}
+
+	@Override
+	public void increaseApplyCount(int bid) {
+		boardDao.increaseApplyCount(bid);
+	}
+
+	@Override
+	public List<BoardMate> getGMList(String uid, int bid) {
+		List<BoardMate> list = bMateDao.getGMList(uid, bid);
+		return list;
+	}
+
+	@Override
+	public int getUserCount(int bid) {
+		int count = boardDao.getUserCount(bid);
+		return count;
+	}
+
+	@Override
+	public int getApplyCount(int bid) {
+		int applyCount = boardDao.getApplyCount(bid);
+		return applyCount;
+	}
+
+	@Override
+	public void updateIsFull(int bid) {
+		boardDao.updateIsFull(bid);
+	}
+
+	@Override
+	public int getbIsFull(int bid) {
+		int bIsFull = boardDao.getbIsFull(bid);
+		return bIsFull;
+	}
+
 	
 }
