@@ -47,7 +47,7 @@
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bLocation}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${fn:replace(apply.bAppointment, 'T', ' ')}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bUserCount}</td>
-							<td><button class="btn-hover color-8" onclick="apply(${apply.bid}, '${apply.uid}')">참가신청중</button></td>
+							<td><button class="btn-hover color-8" onclick="apply(${apply.bid}, '${apply.uid}')" id="${apply.bid}">참가신청중</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>
