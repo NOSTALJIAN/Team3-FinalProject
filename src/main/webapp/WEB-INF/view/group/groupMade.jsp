@@ -16,7 +16,7 @@
   text-align: center;
 }
  table {
-    width: 1000px;
+    width: 1200px;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
@@ -26,7 +26,7 @@
   }
 </style>
 </head>
-<body style="margin-bottom: 100px; background-color: black; color: white;">
+<body style="margin-bottom: 400px; background-color: black; color: white;">
 	<%@ include file="../common/top.jsp" %>
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
@@ -40,8 +40,6 @@
 						<th>운동종목</th>
 						<th>운동장소</th>
 						<th>운동시간</th>
-						<th>총인원</th>
-						<th></th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -53,10 +51,9 @@
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bCategory}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bLocation}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${fn:replace(done.bAppointment, 'T', ' ')}</td>
-						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bUserCount}</td>
 						<td><button onclick="location.href='/group/groupMateList?bid=${done.bid}&uid=${done.uid}'" class="btn-hover color-8 write-btn">참가자 목록</button></td>
-						<td>${done.bIsFull eq 1 ? '모집 마감': '모집중'}</td>
-						<td><button class="btn-hover color-8 write-btn">[그룹채팅 버튼]</button></td>
+						<td><button class="btn-hover color-3 write-btn">${done.applyCount}/${done.bUserCount} ${done.bIsFull eq 1 ? '모집 마감': '모집중'}</button></td>
+					<!-- <td><button class="btn-hover color-9 write-btn">그룹채팅</button></td> -->	
 					</tr>
 				</c:forEach>
 				</tbody>

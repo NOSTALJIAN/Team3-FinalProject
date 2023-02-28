@@ -21,7 +21,7 @@
 		  }
   	</style>
 </head>
-<body  style="margin-bottom: 100px; background-color: black; color: white;">
+<body  style="margin-bottom: 600px; background-color: black; color: white;">
 	<%@ include file="../common/top.jsp" %>
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
@@ -60,19 +60,7 @@
 		function apply(bid, uid){
 			  const applybid = document.getElementById(bid);
 			  console.log(bid, uid);
-			  if (applybid.innerText == '참가신청'){
-				  $.ajax({
-					type:'GET',
-					url: '/group/apply',
-					data: {'bid': bid, 'receiveUser': uid},
-					success: function(result){
-						applybid.innerText = result;
-						console.log(result);
-						applybid.style.cssText = 'background-color:black; color:white;'
-					}
-				  });
-			  }
-			  else if (applybid.innerText == '참가신청중'){
+			  if (applybid.innerText == '참가신청중'){
 				  $.ajax({
 					type:'GET',
 					url: '/group/applyCancel',
@@ -81,6 +69,18 @@
 						applybid.innerText = result;
 						console.log(result);
 						applybid.style.cssText = 'background-color:white; color:black;'
+					}
+				  });
+			  }
+			  else if (applybid.innerText == '참가신청'){
+				  $.ajax({
+					type:'GET',
+					url: '/group/apply',
+					data: {'bid': bid, 'receiveUser': uid},
+					success: function(result){
+						applybid.innerText = result;
+						console.log(result);
+						applybid.style.cssText = 'background-color:black; color:white;'
 					}
 				  });
 			  }

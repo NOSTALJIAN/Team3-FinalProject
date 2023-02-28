@@ -27,6 +27,28 @@
    img {
 		  	width: 70px; height: 70px;   border-radius: 70%;
 		  }
+  h6 {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-size: 1.5em;
+  color: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  
+}
+h6:before {
+  content: "\25C0";
+  position: absolute;
+  left: -50px;
+  -webkit-animation: leftRight 2s linear infinite;
+  animation: leftRight 2s linear infinite;
+}
+h6:after {
+  content: "\25b6";
+  position: absolute;
+  right: -50px;
+  -webkit-animation: leftRight 2s linear infinite reverse;
+  animation: leftRight 2s linear infinite reverse;
+}
 </style>
 </head>
 <body  style="margin-bottom: 100px; background-color: black; color: white;">
@@ -34,12 +56,16 @@
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-			<h4>그룹 메이트</h4><hr>
+			<div style="display: flex;">
+			<h5>그룹운동 참가자 목록</h5>
 			<c:forEach var="gm" items="${groupMateList}" varStatus="loop">
 				<c:if test="${loop.first}">
-    				<h5>${gm.bid} [${gm.bTitle}]</h5>
+    				<h6 style="margin-left: 250px;margin-top:-3px; font-size: 23px;">${gm.bid}. ${gm.bTitle}</h6>
     			</c:if>
     		</c:forEach>
+    		<button class="btn-hover color-9 write-btn" style="margin-left: 300px;margin-top: -15px;margin-bottom: -45px;">
+    		그룹채팅</button>
+    		</div>
     		<div style="margin-top: 30px;">
 				<table>
 					<thead>

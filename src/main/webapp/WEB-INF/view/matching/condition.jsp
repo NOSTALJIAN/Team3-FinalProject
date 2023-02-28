@@ -88,8 +88,8 @@
 						</div>
 					</div>
 					<hr>
-					<button class="btn-hover color-9 write-btn" type="submit" value="조건 설정">설정</button>
-					<button class="btn-hover color-8 write-btn" type="reset">취소</button>
+					<button class="btn-hover color-9 write-btn" type="submit" value="조건 설정" style="margin-left: 95px;">설정</button>
+					<button class="btn-hover color-8 write-btn" type="reset" style="margin-left: 50px;">취소</button>
 				</form>
 			</div>
 		</div>

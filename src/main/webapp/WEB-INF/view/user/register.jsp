@@ -25,23 +25,24 @@
 <body style="margin-bottom: 200px; background-color: black; color: white;" class="register">
    	<%@ include file="../common/top.jsp" %>
    	<div style="margin-left: 600px; margin-top: 30px;">
-	<h3 style="color: white;">회원가입</h3><hr>
+	<h3 style="color: white;">회원가입</h3>
 	<form name="reg_sub" action="/user/register" method="post" class="mb-auto col-12 text">
 		<table>
 			 <tr>
 				<th>아이디</th>
 				<td>
 					<input style="width: 250px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" id="uid" placeholder="*아이디" maxlength="12" required />
-					<a id="idDuplication">아이디 중복을 확인해주세요</a>
+					<a id="idDuplication" style="font-size: 15px;">아이디 중복을 확인해주세요</a>
+				<td><input class="btn-hover color-9" onclick="id_check()" type="button" value="중복 확인"
+					style="height: 38px;width: 100px;border-radius: 8px; margin-left:-132px;margin-top: -29px;margin-bottom: 24px;"></td>
 				</td>
-				<td><input class="btn-hover color-9" onclick="id_check()" type="button" value="아이디 중복 체크"></td>
 			</tr>
 			<tr>
-				<th>패스워드</th>
+				<th>비밀번호</th>
 				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd" id="pwd" placeholder="*비밀번호" maxlength="60" required /></td>
 			</tr>
 			<tr>
-				<th>패스워드 확인</th>
+				<th>비밀번호 확인</th>
 				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd2"  id="pwd2" placeholder="*비밀번호 확인" maxlength="60" required /></td>
 			</tr>
 			<tr>
@@ -52,8 +53,9 @@
 				<th>닉네임</th>
 				<td>
 					<input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="10" required />
-					<a id="nicknameDuplication">닉네임 중복을 확인해주세요</a>
-					<td><input class="btn-hover color-9" onclick="nickname_check()" type="button" value="닉네임 중복 체크"></td>
+					<a id="nicknameDuplication" style="font-size: 15px;">닉네임 중복을 확인해주세요</a>
+					<td><input class="btn-hover color-9" onclick="nickname_check()" type="button" value="중복 확인" 
+						style="height: 38px;width: 100px;border-radius: 8px; margin-left:-132px;margin-top: -29px;margin-bottom: 24px;"></td>
 				</td>
 			</tr>
 			<tr>
@@ -75,14 +77,19 @@
 			</tr>
 			<tr>
 				<th>성별</th>
-				<td>여<input type="radio" name="gender" value="여"  checked/>
-				 남<input type="radio" name="gender" value="남" />
+				<td>여자<input type="radio" name="gender" value="여"  checked/>
+				 남자<input type="radio" name="gender" value="남" />
 				</td>
 			</tr>
 			<tr>
 				<th>주소</th>
-				<td><input class="btn-hover color-8" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" /><input class="form-control  bg-gray-800 border-dark" type="text" id="postcode" name="postcode" placeholder="우편번호" />
-				<br><input class="form-control  bg-gray-800 border-dark" type="text" id="addr" name="addr" placeholder="주소" />
+				<td><input class="form-control  bg-gray-800 border-dark" style="height: 38px;" type="text" id="postcode" name="postcode" placeholder="우편번호" /></td>
+					<td  style="padding-bottom: 25px;"><span style="margin-left: -50px;margin-top: -29px;">
+					<input class="btn-hover color-8" style="height: 40px;border-radius: 8px;margin-bottom: 0px;margin-top: 0px;" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" /></span></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td><input class="form-control  bg-gray-800 border-dark" type="text" id="addr" name="addr" placeholder="주소" />
 				<br><input class="form-control  bg-gray-800 border-dark" type="text" id="detailAddr" name="detailAddr" placeholder="상세주소" />
 				<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 				<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
@@ -131,10 +138,10 @@
 				success: function(result){
 					if (result == 1){
 						idDuplication.innerText = '중복된 아이디입니다.';
-						idDuplication.style.cssText = 'background-color:black; color:red;'
+						idDuplication.style.cssText = 'background-color:black; color:red;font-size: 15px;'
 					} else if (result == 2){
 						idDuplication.innerText = '사용가능한 아이디 입니다.';
-						idDuplication.style.cssText = 'background-color:black; color:green;'
+						idDuplication.style.cssText = 'background-color:black; color:green;font-size: 15px;'
 					}
 				}
 			});
@@ -154,10 +161,10 @@
 				success: function(result){
 					if (result == 1){
 						nicknameDuplication.innerText = '중복된 닉네임입니다.';
-						nicknameDuplication.style.cssText = 'background-color:black; color:red;'
+						nicknameDuplication.style.cssText = 'background-color:black; color:red;font-size: 15px;'
 					} else if (result == 2){
 						nicknameDuplication.innerText = '사용가능한 닉네임 입니다.';
-						nicknameDuplication.style.cssText = 'background-color:black; color:green;'
+						nicknameDuplication.style.cssText = 'background-color:black; color:green;font-size: 15px;'
 					}
 				}
 			});
