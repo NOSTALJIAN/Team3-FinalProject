@@ -41,6 +41,7 @@
 						<th>조회</th>
 						<th>댓글</th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>

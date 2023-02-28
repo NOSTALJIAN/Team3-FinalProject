@@ -32,9 +32,9 @@
 				<th>아이디</th>
 				<td>
 					<input style="width: 250px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" id="uid" placeholder="*아이디" maxlength="12" required />
-					<a id="idDuplication">아이디 중복을 확인해주세요</a>
+					<a id="idDuplication" style="font-size: 15px;">아이디 중복을 확인해주세요</a>
+				<td><input class="btn-hover color-9" onclick="id_check()" type="button" value="중복 확인"style="height: 38px;width: 100px;border-radius: 8px; margin-left: -119px;margin-top: -29px;"></td>
 				</td>
-				<td><input class="btn-hover color-9" onclick="id_check()" type="button" value="아이디 중복 체크"></td>
 			</tr>
 			<tr>
 				<th>패스워드</th>
@@ -52,8 +52,8 @@
 				<th>닉네임</th>
 				<td>
 					<input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="10" required />
-					<a id="nicknameDuplication">닉네임 중복을 확인해주세요</a>
-					<td><input class="btn-hover color-9" onclick="nickname_check()" type="button" value="닉네임 중복 체크"></td>
+					<a id="nicknameDuplication" style="font-size: 15px;">닉네임 중복을 확인해주세요</a>
+					<td><input class="btn-hover color-9" onclick="nickname_check()" type="button" value="중복 확인" style="height: 38px;width: 100px;border-radius: 8px; margin-left: -119px;margin-top: -29px;"></td>
 				</td>
 			</tr>
 			<tr>
@@ -75,8 +75,8 @@
 			</tr>
 			<tr>
 				<th>성별</th>
-				<td>여<input type="radio" name="gender" value="여"  checked/>
-				 남<input type="radio" name="gender" value="남" />
+				<td>여자<input type="radio" name="gender" value="여"  checked/>
+				 남자<input type="radio" name="gender" value="남" />
 				</td>
 			</tr>
 			<tr>
@@ -131,10 +131,10 @@
 				success: function(result){
 					if (result == 1){
 						idDuplication.innerText = '중복된 아이디입니다.';
-						idDuplication.style.cssText = 'background-color:black; color:red;'
+						idDuplication.style.cssText = 'background-color:black; color:red;font-size: 15px;'
 					} else if (result == 2){
 						idDuplication.innerText = '사용가능한 아이디 입니다.';
-						idDuplication.style.cssText = 'background-color:black; color:green;'
+						idDuplication.style.cssText = 'background-color:black; color:green;font-size: 15px;'
 					}
 				}
 			});
@@ -154,10 +154,10 @@
 				success: function(result){
 					if (result == 1){
 						nicknameDuplication.innerText = '중복된 닉네임입니다.';
-						nicknameDuplication.style.cssText = 'background-color:black; color:red;'
+						nicknameDuplication.style.cssText = 'background-color:black; color:red;font-size: 15px;'
 					} else if (result == 2){
 						nicknameDuplication.innerText = '사용가능한 닉네임 입니다.';
-						nicknameDuplication.style.cssText = 'background-color:black; color:green;'
+						nicknameDuplication.style.cssText = 'background-color:black; color:green;font-size: 15px;'
 					}
 				}
 			});

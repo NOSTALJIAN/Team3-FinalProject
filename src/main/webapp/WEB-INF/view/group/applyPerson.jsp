@@ -27,6 +27,28 @@
    img {
 		  	width: 70px; height: 70px; border-radius: 70%;
 		  }
+  h6 {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-size: 1.5em;
+  color: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  
+}
+h6:before {
+  content: "\25C0";
+  position: absolute;
+  left: -50px;
+  -webkit-animation: leftRight 2s linear infinite;
+  animation: leftRight 2s linear infinite;
+}
+h6:after {
+  content: "\25b6";
+  position: absolute;
+  right: -50px;
+  -webkit-animation: leftRight 2s linear infinite reverse;
+  animation: leftRight 2s linear infinite reverse;
+}
 </style>
 </head>
 <body  style="margin-bottom: 400px; background-color: black; color: white;">
@@ -34,13 +56,14 @@
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 			<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-			<h4>신청자 목록</h4><hr>
+			<div style="display: flex;">
+			<h5>신청자 목록</h5>
 			<c:forEach var="re" items="${receiveList}" varStatus="loop">
 				<c:if test="${loop.first}">
-    				<h5>${re.bid} [${re.bTitle}]</h5>
-    				<h6 style="margin-left: 270px;">게시글 제목 :${re.bid} ${re.bTitle}</h6>
+    				<h6 style="margin-left: 340px;margin-top:-10px; font-size: 23px;"><strong>${re.bid}. ${re.bTitle}</strong></h6>
     			</c:if>
     		</c:forEach>
+    		</div>
     		<div style="margin-top: 30px;">
 				<table>
 					<thead>
@@ -51,7 +74,6 @@
 							<th>성별</th>
 							<th>나이</th>
 							<th>신청시간</th>
-							<th></th>
 							<th></th>
 						</tr>
 					</thead>
@@ -69,8 +91,8 @@
 							<td>${re.gender}</td>
 							<td>${infoList[status.index].age}</td>
 							<td>${fn:replace(re.sendTime, 'T', ' ')}</td>
-							<td><button onclick="applyAccept('${re.uid}', '${re.bid}')" class="btn-hover color-9 write-btn">수락</button></td>
-							<td><button onclick="applyReject('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn">거절</button></td>
+							<td><button onclick="applyAccept('${re.uid}', '${re.bid}')" class="btn-hover color-9 write-btn"style="width: 105px;">수락</button>
+							<button onclick="applyReject('${re.uid}', '${re.bid}')" class="btn-hover color-8 write-btn"style="width: 105px;">거절</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>

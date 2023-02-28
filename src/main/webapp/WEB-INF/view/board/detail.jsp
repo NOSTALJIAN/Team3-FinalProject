@@ -26,13 +26,10 @@
 		<div class="row" style="justify-content: space-evenly">
 			<!-- =================== main =================== -->
 			<div style="margin-top: 19px;">
-				<span style="display: flex; margin-left: 400px;">
+				<div style="display: flex; margin-left: 400px;">
 					<h3 class="detail-title" style=" margin-top: 25px;">${b.bTitle}</h3>
 					<div class="detail-btn">
 					<button onclick="location.href='/board/list'" class="btn-hover color-8 ms-3 col-2" style="width: 100px" type="button">목록</button>
-					<c:if test="${b.uid ne sessionUid}">
-					<button class="btn-hover color-9 ms-3 col-2" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}" style="width: 100px" type="button">참가신청</button>
-					</c:if>
 					<!-- 본인만 수정 가능 -->
 					<c:if test="${b.uid eq sessionUid}">
 						<button onclick="location.href='/board/update?bid=${b.bid}'" class="btn-hover color-9 ms-3 col-2" style="width: 100px" type="button" value="수정">수정</button>
@@ -49,7 +46,7 @@
 						<!--  <a href="#" class="ms-3 disabled-link"><i class="fas fa-trash-alt"></i> 삭제</a> -->
 					</c:if>
 					</div>
-				</span>
+				</div>
 			</div>
 			<div>
 				
@@ -86,6 +83,10 @@
 							<td>${fn:replace(b.bRegTime, 'T', ' ')}</td>
 						</tr>
 					</table>
+					<c:if test="${b.uid ne sessionUid}">
+						<button class="btn-hover color-9 ms-3 col-2" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}" type="button" 
+							style="width:120px;margin-right: -400px;">참가신청</button>
+					</c:if>
 				</div>
 				<!-- 지도 -->
 				<div class="board-view-map" id="map" style="color: black;"></div>
@@ -168,7 +169,7 @@
 						<form class="form-inline" action="/board/reply" method="post">
 							<input type="hidden" name="bid" value="${b.bid}">     <!-- bid -->
 							<input type="hidden" name="uid" value="${b.uid}">     <!-- uid -->
-							<table class="table table-borderless mt-2" style="margin-left: 200px;">
+							<table class="table table-borderless mt-2" style="margin-left: 200px;border-color: black;">
 								<tr class="d-flex">
 									<td class="col-1 text-end">
 										<label for="rContent" style="color: white;">댓글</label>
@@ -262,7 +263,7 @@
 					success: function(result){
 						applybid.innerText = result;
 						console.log(result);
-						applybid.style.cssText = 'background-color:black; color:white;'
+						applybid.style.cssText = 'background-color:black; color:white;width:120px;margin-right: -400px;'
 					}
 				  });
 			  }
@@ -274,7 +275,7 @@
 					success: function(result){
 						applybid.innerText = result;
 						console.log(result);
-						applybid.style.cssText = 'background-color:white; color:black;'
+						applybid.style.cssText = 'background-color:white; color:black;width:120px;margin-right: -400px;'
 					}
 				  });
 			  }

@@ -52,7 +52,7 @@
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bLocation}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${fn:replace(done.bAppointment, 'T', ' ')}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bUserCount}</td>
-						<td><button class="btn-hover color-9 write-btn">그룹채팅</button></td>
+						<td><button class="btn-hover color-9 write-btn" style="width: 115px;">그룹채팅</button></td>
 					</tr>
 				</c:forEach>
 				</tbody>

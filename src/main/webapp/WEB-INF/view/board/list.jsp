@@ -55,14 +55,13 @@
 						<div class="content-list">
 							<c:forEach var="b" items="${blist}">
 								<div class="content-list-col" data-aos="fade-right">
-									<h5 class="mt-1 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
-									<br>
+									<h5 class="mt-1 border-top pt-5" style="margin-bottom: 25px;" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">종목 : ${b.bCategory}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">장소 : ${b.bLocation}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
-
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">모집인원 : ${b.applyCount}/${b.bUserCount}명</p>
-									<span>${b.bIsFull eq 1 ? '모집 마감': '모집중'}</span>
+									<button class="btn-hover color-8" style="width: 115px; height: 50px;" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">상세보기</button>
+									<span><button class="btn-hover color-3" style="width: 115px; height: 50px;" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">${b.bIsFull eq 1 ? '모집마감': '모집중'}</button></span>
 								</div>	
 							</c:forEach>
 						</div>
