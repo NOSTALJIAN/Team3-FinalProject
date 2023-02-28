@@ -2,7 +2,9 @@ package com.mulcam.SpringProject.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -95,7 +97,6 @@ public class BoardMateController {
 		String uid = userSession.getUid();
 		List<Board> applyList = service.getApplyList(uid);
 		
-		System.out.println(applyList);
 		model.addAttribute("applyList", applyList);
 		return "group/applyList";
 	}
@@ -133,7 +134,6 @@ public class BoardMateController {
 		}
 		
 		model.addAttribute("infoList", applyUserInfoList);
-		System.out.println(applyUserInfoList);
 		model.addAttribute("receiveList", receiveList);
 		return "group/applyPerson";
 	}
@@ -152,8 +152,6 @@ public class BoardMateController {
 	public String applyDoneForm(Model model) {
 		String uid = userSession.getUid();
 		List<Board> applyDoneList = service.getDoneList(uid);
-		System.out.println(uid);
-		System.out.println("***applyDoneList: " + applyDoneList);
 		model.addAttribute("applyDoneList", applyDoneList);
 		return "group/applyDone";
 	}
@@ -163,8 +161,12 @@ public class BoardMateController {
 	public String groupMadeForm(Model model) {
 		String uid = userSession.getUid();
 		List<Board> myDoneList = service.getMyDoneList(uid);
-		model.addAttribute("myDoneList", myDoneList);
-		System.out.println(myDoneList);
+		
+		Map<Integer, Board> map = new HashMap<>();
+		for (Board b: myDoneList) {
+			map.put(b.getBid(), b);
+		}
+		model.addAttribute("myDoneList", map.values());
 		return "group/groupMade";
 	}
 	
@@ -201,7 +203,6 @@ public class BoardMateController {
 		}
 		
 		model.addAttribute("infoList", applyUserInfoList);
-		System.out.println(applyUserInfoList);
 		model.addAttribute("groupMateList", groupMateList);
 		return "group/groupMateList";
 	}
