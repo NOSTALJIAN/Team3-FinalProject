@@ -1,4 +1,7 @@
 ###
+/node_modules
+/.pnp
+.pnp.js
 *.docx
 *.pdf
 *.DS_Store
