@@ -25,19 +25,24 @@
 <body style="margin-bottom: 200px; background-color: black; color: white;" class="register">
    	<%@ include file="../common/top.jsp" %>
    	<div style="margin-left: 600px; margin-top: 30px;">
-	<h3 style="color: white;">회원가입</h3><hr>
+	<h3 style="color: white;">회원가입</h3>
 	<form name="reg_sub" action="/user/register" method="post" class="mb-auto col-12 text">
 		<table>
 			 <tr>
 				<th>아이디</th>
-				<td><input style="width: 250px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" id="uid" placeholder="*아이디" maxlength="12" required /></td>
+				<td>
+					<input style="width: 250px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" id="uid" placeholder="*아이디" maxlength="12" required />
+					<a id="idDuplication" style="font-size: 15px;">아이디 중복을 확인해주세요</a>
+				<td><input class="btn-hover color-9" onclick="id_check()" type="button" value="중복 확인"
+					style="height: 38px;width: 100px;border-radius: 8px; margin-left:-132px;margin-top: -29px;margin-bottom: 24px;"></td>
+				</td>
 			</tr>
 			<tr>
-				<th>패스워드</th>
+				<th>비밀번호</th>
 				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd" id="pwd" placeholder="*비밀번호" maxlength="60" required /></td>
 			</tr>
 			<tr>
-				<th>패스워드 확인</th>
+				<th>비밀번호 확인</th>
 				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd2"  id="pwd2" placeholder="*비밀번호 확인" maxlength="60" required /></td>
 			</tr>
 			<tr>
@@ -46,7 +51,12 @@
 			</tr>
 			<tr>
 				<th>닉네임</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="10" required /></td>
+				<td>
+					<input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="10" required />
+					<a id="nicknameDuplication" style="font-size: 15px;">닉네임 중복을 확인해주세요</a>
+					<td><input class="btn-hover color-9" onclick="nickname_check()" type="button" value="중복 확인" 
+						style="height: 38px;width: 100px;border-radius: 8px; margin-left:-132px;margin-top: -29px;margin-bottom: 24px;"></td>
+				</td>
 			</tr>
 			<tr>
 				<th>이메일</th>
@@ -67,14 +77,19 @@
 			</tr>
 			<tr>
 				<th>성별</th>
-				<td>여<input type="radio" name="gender" value="여"  checked/>
-				 남<input type="radio" name="gender" value="남" />
+				<td>여자<input type="radio" name="gender" value="여"  checked/>
+				 남자<input type="radio" name="gender" value="남" />
 				</td>
 			</tr>
 			<tr>
 				<th>주소</th>
-				<td><input class="btn-hover color-8" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" /><input class="form-control  bg-gray-800 border-dark" type="text" id="postcode" name="postcode" placeholder="우편번호" />
-				<br><input class="form-control  bg-gray-800 border-dark" type="text" id="addr" name="addr" placeholder="주소" />
+				<td><input class="form-control  bg-gray-800 border-dark" style="height: 38px;" type="text" id="postcode" name="postcode" placeholder="우편번호" /></td>
+					<td  style="padding-bottom: 25px;"><span style="margin-left: -50px;margin-top: -29px;">
+					<input class="btn-hover color-8" style="height: 40px;border-radius: 8px;margin-bottom: 0px;margin-top: 0px;" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" /></span></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td><input class="form-control  bg-gray-800 border-dark" type="text" id="addr" name="addr" placeholder="주소" />
 				<br><input class="form-control  bg-gray-800 border-dark" type="text" id="detailAddr" name="detailAddr" placeholder="상세주소" />
 				<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 				<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
@@ -106,6 +121,55 @@
 	</div>
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		// id 중복체크
+		function id_check(){
+			const uid = document.getElementById('uid').value; 
+			if (uid.length < 4 || uid.length > 21) {
+				alert('아이디는 3글자이상 20글자 이하로 입력해주세요');
+				return false;
+			}
+			const idDuplication = document.getElementById('idDuplication');
+			$.ajax({
+				type:'GET',
+				url: '/user/Duplication',
+				data: {'data': uid,
+						'type': 'id'},
+				success: function(result){
+					if (result == 1){
+						idDuplication.innerText = '중복된 아이디입니다.';
+						idDuplication.style.cssText = 'background-color:black; color:red;font-size: 15px;'
+					} else if (result == 2){
+						idDuplication.innerText = '사용가능한 아이디 입니다.';
+						idDuplication.style.cssText = 'background-color:black; color:green;font-size: 15px;'
+					}
+				}
+			});
+		}
+		function nickname_check(){
+			const nickname = document.getElementById('nickname').value; 
+			if (nickname.length < 4 || nickname.length > 13) {
+				alert('닉네임은 3글자이상 12글자 이하로 입력해주세요');
+				return false;
+			}
+			const nicknameDuplication = document.getElementById('nicknameDuplication');
+			$.ajax({
+				type:'GET',
+				url: '/user/Duplication',
+				data: {'data': nickname,
+						'type': 'nickname'},
+				success: function(result){
+					if (result == 1){
+						nicknameDuplication.innerText = '중복된 닉네임입니다.';
+						nicknameDuplication.style.cssText = 'background-color:black; color:red;font-size: 15px;'
+					} else if (result == 2){
+						nicknameDuplication.innerText = '사용가능한 닉네임 입니다.';
+						nicknameDuplication.style.cssText = 'background-color:black; color:green;font-size: 15px;'
+					}
+				}
+			});
+		}
+	</script>
 	<script>
 	    // 우편번호 찾기 찾기 화면을 넣을 element
 	    var element_wrap = document.getElementById('wrap');
@@ -186,8 +250,8 @@
 		let mc = 5;	// 체크박수 갯수 제한
 		let tc = 0; //카운트 증가
 		var checked_num = $("input[name=likeExercise]:checked").length;
-		console.log(checked_num);
-		console.log("확인용");
+		
+		// 체크박스 3개~5개이상 넣기
 		function limit(ff){
 			if (ff.checked)
 				checked_num +=1;
@@ -200,9 +264,9 @@
 				checked_num -= 1;
 			}
 		}
+		// 내용 들어왔는지 확인용
 		function checked_submit(){
 			const uid = $('#uid').val();
-			console.log(uid);
 			const pwd = $('#pwd').val();
 			const pwd2 = $('#pwd2').val();
 			var checked_num = $("input[name=likeExercise]:checked").length;
@@ -213,8 +277,10 @@
 			const birthDate = $('#birthDate').val();
 			const addr = $('#addr').val();
 			const detailAddr = $('#detailAddr').val();
-			if (uid == '') {
-				alert('아이디를 입력해 주세요');
+			const idDuplication = $('#idDuplication').text();
+			const nicknameDuplication = $('#nicknameDuplication').text();
+			if (idDuplication != '사용가능한 아이디 입니다.') {
+				alert('아이디 중복체크를 확인해주세요');
 				return false;
 			} else if (pwd != pwd2) {
 				alert('비밀번호가 일치하지 않습니다.');
@@ -222,8 +288,8 @@
 			} else if (uname == '') {
 				alert('이름을 입력해주세요');
 				return false;
-			} else if (nickname == '') {
-				alert('닉네임을 입력해주세요');
+			} else if (nicknameDuplication != '사용가능한 닉네임 입니다.') {
+				alert('닉네임 중복체크를 확인해주세요');
 				return false;
 			} else if (email == '') {
 				alert('이메일을 입력해주세요');

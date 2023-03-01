@@ -126,8 +126,8 @@ public class BoardController {
 			 JSONUtil(); List<String> fileList = json.parse(jsonFiles);
 			 model.addAttribute("fileList", fileList); } */
 		 
-		System.out.println(jsonFiles);
-		model.addAttribute("fileList", jsonFiles);
+//		System.out.println(jsonFiles);
+//		model.addAttribute("fileList", jsonFiles);
 		model.addAttribute("b", board);
 		
 		List<Reply> replyList = bsv.getReplyList(bid);
@@ -140,6 +140,11 @@ public class BoardController {
 	/** 게시물 작성 */
 	@GetMapping("/write")
 	public String writeForm(Model model) {
+		// login안했으면 로그인페이지로(임시)
+		String uid = userSession.getUid();
+		if (uid == null)
+			return "redirect:/user/login";
+		
 		model.addAttribute("sportsArray", sportsArray);
 		model.addAttribute("kakaoAppKey", kakaoAppKey);
 		model.addAttribute("uploadDir", uploadDir);
@@ -158,12 +163,12 @@ public class BoardController {
 		String bAddr = (String) req.getParameter("bAddr");
 
 		// 썸네일 File upload 한개만
-		MultipartFile file = req.getFile("bFiles");
-		String fileName = file.getOriginalFilename();
-		String uploadFile = uploadDir + "/" + fileName;
-		file.transferTo(new File(uploadFile));
+//		MultipartFile file = req.getFile("bFiles");
+//		String fileName = file.getOriginalFilename();
+//		String uploadFile = uploadDir + "/" + fileName;
+//		file.transferTo(new File(uploadFile));
 		
-		Board board = new Board(uid, bTitle, bCategory, bUserCount, bContent, bAppointment, bLocation, bAddr, fileName); 
+		Board board = new Board(uid, bTitle, bCategory, bUserCount, bContent, bAppointment, bLocation, bAddr); 
 		bsv.insertBoard(board);
 		return "redirect:/board/list";
 	}
@@ -194,17 +199,17 @@ public class BoardController {
 		String uid = (String) req.getParameter("uid");
 		
 		// 썸네일 File upload 한개만
-		MultipartFile file = req.getFile("bFiles");
-		String originName = req.getParameter("bFileName");
-		String fileName = file.getOriginalFilename();
-		if(fileName == null || fileName.equals("")) {
-			fileName = originName;
-		} else {
-			String uploadFile = uploadDir + "/" + fileName;
-			file.transferTo(new File(uploadFile));
-		}
+//		MultipartFile file = req.getFile("bFiles");
+//		String originName = req.getParameter("bFileName");
+	//	String fileName = file.getOriginalFilename();
+	//	if(fileName == null || fileName.equals("")) {
+	//		fileName = originName;
+	//	} else {
+	//		String uploadFile = uploadDir + "/" + fileName;
+	//		file.transferTo(new File(uploadFile));
+	//	}
 				
-		Board board = new Board(bid, bTitle, bCategory, bUserCount, bContent, bAppointment, bLocation, bAddr, fileName); 
+		Board board = new Board(bid, bTitle, bCategory, bUserCount, bContent, bAppointment, bLocation, bAddr); 
 		bsv.updateBoard(board);
 		
 		return "redirect:/board/detail?bid=" + bid + "&uid=" + uid ;

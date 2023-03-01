@@ -61,7 +61,7 @@ public class MateController {
 	/** 친구추가 수락*/
 	@ResponseBody
 	@GetMapping("/mateAccept")
-	public void mateAccept(String receiveUser) {
+	public void mateAccept(String receiveUser,Model model) {
 		String user = userSession.getUid();
 		Mate mate = new Mate(receiveUser, user);
 		service.mateAccept(mate);

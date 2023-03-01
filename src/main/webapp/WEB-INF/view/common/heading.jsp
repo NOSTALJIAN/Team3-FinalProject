@@ -24,7 +24,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
   <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/sidebars/">
   <script src="https://kit.fontawesome.com/77ad8525ff.js" crossorigin="anonymous"></script>
-
+  <script src="https://kit.fontawesome.com/954572746d.js" crossorigin="anonymous"></script>
   <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet"> -->

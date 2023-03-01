@@ -13,7 +13,7 @@ import com.mulcam.SpringProject.entity.Board;
 public interface BoardDao {
 
 	@Select("SELECT b.bid, b.uid, b.bTitle, b.bCategory, b.bLocation, b.bAddr, b.bAppointment, b.bUserCount,"
-			+ " b.bRegTime, b.bViewCount, b.bReplyCount, u.uname FROM board AS b"
+			+ " b.bRegTime, b.bViewCount, b.bReplyCount, u.uname, b.applyCount, b.bIsFull FROM board AS b"
 			+ "	JOIN users AS u JOIN boardMate as bm"
 			+ "	ON b.uid=u.uid"
 			+ "	WHERE b.bIsDeleted=0 AND ${field} LIKE #{query}"
@@ -23,7 +23,7 @@ public interface BoardDao {
 	public List<Board> getBoardList(int offset, String field, String query, String uid);
 	
 	@Select("SELECT b.bid, b.uid, b.bTitle, b.bCategory, b.bLocation, b.bAddr, b.bAppointment, b.bUserCount,"
-			+ " b.bRegTime, b.bViewCount, b.bReplyCount, u.uname FROM board AS b"
+			+ " b.bRegTime, b.bViewCount, b.bReplyCount, u.uname, b.applyCount, b.bIsFull FROM board AS b"
 			+ "	JOIN users AS u"
 			+ "	ON b.uid=u.uid"
 			+ "	WHERE b.bIsDeleted=0 AND ${field} LIKE #{query}"
@@ -46,14 +46,29 @@ public interface BoardDao {
 	public void increaseCount(int bid, String field);
 	
 	@Insert("INSERT INTO board VALUES(DEFAULT, #{uid}, #{bTitle}, #{bCategory}, #{bUserCount}, #{bContent}, DEFAULT, #{bAppointment}, "
-			+ " DEFAULT, DEFAULT, #{bLocation}, #{bAddr}, #{bFiles}, DEFAULT, DEFAULT)")
+			+ " DEFAULT, DEFAULT, #{bLocation}, #{bAddr},DEFAULT, DEFAULT, DEFAULT, DEFAULT)")
 	public void insertBoard(Board board);
 	
 	@Update("UPDATE board SET bTitle=#{bTitle}, bCategory=#{bCategory}, bUserCount=#{bUserCount}, bContent=#{bContent},"
-			+ " bAppointment=#{bAppointment}, bRegTime=NOW(), bLocation=#{bLocation}, bAddr=#{bAddr}, bFiles=#{bFiles} WHERE bid=#{bid}")
+			+ " bAppointment=#{bAppointment}, bRegTime=NOW(), bLocation=#{bLocation}, bAddr=#{bAddr} WHERE bid=#{bid}")
 	public void updateBoard(Board board);
 	
 	@Update("UPDATE board SET bIsDeleted=1 WHERE bid=#{bid}")
 	public void deleteBoard(int bid);
+	
+	@Update("UPDATE board SET applyCount=applyCount+1 WHERE bid=#{bid}")
+	public void increaseApplyCount(int bid);
+	
+	@Select("SELECT bUserCount from board where bid=#{bid}")
+	public int getUserCount(int bid);
+	
+	@Select("SELECT applyCount from board where bid=#{bid}")
+	public int getApplyCount(int bid);
+	
+	@Update("UPDATE board SET bIsFull=1 where bid=#{bid}")
+	public void updateIsFull(int bid);
+	
+	@Select("SELECT bIsFull from board where bid=#{bid}")
+	public int getbIsFull(int bid);
 	
 }
