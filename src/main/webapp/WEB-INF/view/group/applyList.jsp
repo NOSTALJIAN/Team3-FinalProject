@@ -21,7 +21,7 @@
 		  }
   	</style>
 </head>
-<body  style="margin-bottom: 100px; background-color: black; color: white;">
+<body  style="margin-bottom: 600px; background-color: black; color: white;">
 	<%@ include file="../common/top.jsp" %>
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
@@ -47,7 +47,7 @@
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bLocation}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${fn:replace(apply.bAppointment, 'T', ' ')}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bUserCount}</td>
-							<td><button class="btn-hover color-8">참가신청중</button></td>
+							<td><button class="btn-hover color-8" onclick="apply(${apply.bid}, '${apply.uid}')" id="${apply.bid}">참가신청중</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -60,19 +60,7 @@
 		function apply(bid, uid){
 			  const applybid = document.getElementById(bid);
 			  console.log(bid, uid);
-			  if (applybid.innerText == '참가신청'){
-				  $.ajax({
-					type:'GET',
-					url: '/group/apply',
-					data: {'bid': bid, 'receiveUser': uid},
-					success: function(result){
-						applybid.innerText = result;
-						console.log(result);
-						applybid.style.cssText = 'background-color:black; color:white;'
-					}
-				  });
-			  }
-			  else if (applybid.innerText == '참가신청중'){
+			  if (applybid.innerText == '참가신청중'){
 				  $.ajax({
 					type:'GET',
 					url: '/group/applyCancel',
@@ -81,6 +69,18 @@
 						applybid.innerText = result;
 						console.log(result);
 						applybid.style.cssText = 'background-color:white; color:black;'
+					}
+				  });
+			  }
+			  else if (applybid.innerText == '참가신청'){
+				  $.ajax({
+					type:'GET',
+					url: '/group/apply',
+					data: {'bid': bid, 'receiveUser': uid},
+					success: function(result){
+						applybid.innerText = result;
+						console.log(result);
+						applybid.style.cssText = 'background-color:black; color:white;'
 					}
 				  });
 			  }

@@ -8,6 +8,7 @@
 	p {
 		text-align: left;
 	}
+	.pagination{--bs-pagination-color: #363a3e;}
 	</style>
 </head>
 
@@ -22,7 +23,7 @@
 						<td class="col-7">
 							<h3 style="color: white; margin-left:70px;"><strong>그룹운동 게시판</strong></h3>
 							<div class="board-list">
-								<button type="button" class="btn-hover color-9 fix-position " onclick="location.href='/board/write'">+글쓰기</button>
+								<button type="button" class="btn-hover color-9 fix-position" style="padding-bottom: 3px;" onclick="location.href='/board/write'">+글쓰기</button>
 							</div>
 						</td>
 						<td class="col-1">
@@ -43,23 +44,25 @@
 							<input class="form-control me-2" type="search" placeholder="검색 내용" name="q" id="query">
 						</td>
 						<td class="col-1" >
-							<span class="btn btn-light" onclick="search()">검색</span> 
+							<span><button type="button" class="btn btn-light" onclick="search()" style=" margin-top: 0px; margin-left: -40px; border-radius: 8px; height: 38px;
+   							 font-size: 15px;">검색</button></span>
 						</td>
 					</tr>
-				</table>
+				</table> 
 				
 				<div class="container" style="margin-top: 20px;">
 					<div class="row ">
 						<div class="content-list">
 							<c:forEach var="b" items="${blist}">
-							<div class="content-list-col" data-aos="fade-right">
-									<h5 class="mt-1 border-top pt-5" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
+								<div class="content-list-col" data-aos="fade-right">
+									<h5 class="mt-1 border-top pt-5" style="margin-bottom: 25px;" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'"><strong>${b.bTitle}</strong></h5>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">종목 : ${b.bCategory}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">장소 : ${b.bLocation}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
-									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">모집인원 : ${b.bUserCount}명</p>
-									<button class="btn-hover color-8 write-btn" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}">참가신청</button>
-							</div>	
+									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">모집인원 : ${b.applyCount}/${b.bUserCount}명</p>
+									<button class="btn-hover color-8" style="width: 115px; height: 50px;" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">상세보기</button>
+									<span><button class="btn-hover color-3" style="width: 115px; height: 50px;" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">${b.bIsFull eq 1 ? '모집마감': '모집중'}</button></span>
+								</div>	
 							</c:forEach>
 						</div>
 					</div>

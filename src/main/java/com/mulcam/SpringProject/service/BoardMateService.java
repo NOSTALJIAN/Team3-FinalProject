@@ -31,5 +31,19 @@ public interface BoardMateService {
 
 	List<Board> getDoneList(String uid);
 
+	List<Board> getMyDoneList(String uid);
+
+	void increaseApplyCount(int bid);
+
+	List<BoardMate> getGMList(String uid, int bid);
+
+	int getUserCount(int bid);
+
+	int getApplyCount(int bid);
+
+	void updateIsFull(int bid);
+
+	int getbIsFull(int bid);
+
 
 }

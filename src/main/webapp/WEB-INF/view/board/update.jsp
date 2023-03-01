@@ -10,22 +10,25 @@
 	<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppKey}&libraries=services"></script>
 	<link rel="stylesheet" href="/css/map.css" />
+	<style >
+	input {background-color: lightgray; }
+	</style>
 </head>
 
-<body style="margin-bottom: 500px; ">
+<body style="margin-bottom: 500px; background: black; color: white; ">
 	<%@ include file="../common/top.jsp" %>
 	<div style="display: flex;">
 		<div class="container" >
 			<div class="inputtb content">
 				<!-- 타이틀 -->
-				<div class="board-title" >
+				<div class="board-title" style="margin-left: 200px;" >
 				<table>
 					<tr>
 						<td class="col-8">
 							<h3 class="board-title"><strong>게시글 수정</strong></h3>
 						</td>
 						<td class="col-2">
-							<button onclick="location.href='/board/list'" class="btn-hover color-8 ">목록</button>
+							<button onclick="location.href='/board/list'" class="btn-hover color-8" style="margin-left: 160px;">목록</button>
 						</td>
 					</tr>
 				</table>
@@ -37,7 +40,7 @@
 					<input type="hidden" name="bid" value="${b.bid}" />
 					<input type="hidden" name="bAddr" id="bAddr" value="${b.bAddr}"/>
 					<input type="hidden" name="bFileName" value="${b.bFiles}">
-					<table class="board-desc" style="margin-left: 230px;">
+					<table class="board-desc" style="margin-left: 230px;width: 550px;">
 						<tr>
 							<td><input style="border: 1px solid #808080;"
 								class="board-input" type="text" placeholder="제목" name="bTitle" value="${b.bTitle}"
@@ -65,16 +68,16 @@
 								</select>
 							</td>
 						</tr>
-						<tr>
+					<!--  	<tr>
 							<td><input style="border: 1px solid #808080;" class="board-input" type="file" name="bFiles"/>${b.bFiles}</td>
-						</tr>
+						</tr>-->
 					
 						<tr>
 							<td><textarea class="board-input" name="bContent" placeholder="내용" maxlength="5000" rows="10">${b.bContent}</textarea></td>
 						</tr>
 					</table>
-					<div class="buttons" style="margin-left:  -20px;">
-						<button class="btn-hover color-8 write-btn" type="submit" value="글쓰기">수정</button>
+					<div class="buttons" style="margin-left:190px; margin-top: -4px;">
+						<button class="btn-hover color-9 write-btn" type="submit" value="글쓰기">수정</button>
 						<button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
 					</div>
 				</form>

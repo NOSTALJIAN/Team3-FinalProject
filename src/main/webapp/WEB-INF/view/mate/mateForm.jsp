@@ -54,8 +54,8 @@
 							<td>${m.likeExerList}</td>
 							<td>${m.gender}</td>
 							<td>${m.age}</td>
-							<td><button class="btn-hover color-9">채팅</button></td>
-							<td><button onclick="mateDelete('${m.receiveUser}')"  class="btn-hover color-8">친구끊기</button></td>
+							<td><button class="btn-hover color-9" style="width: 110px;">채팅</button>
+							<button onclick="mateDelete('${m.receiveUser}')"  class="btn-hover color-8" style="width: 125px;">친구끊기</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>

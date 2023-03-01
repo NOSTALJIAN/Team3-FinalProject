@@ -72,6 +72,9 @@ public interface UserService {
 
 	/** 관리자용 유저관리*/
 	void userIsDeleted(String uid, int isDeleted);
+
+	/** 닉네임 중복체크용*/
+	User CheckNickname(String data);
 	
 	
 	

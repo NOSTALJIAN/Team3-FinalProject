@@ -10,9 +10,13 @@
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppKey}&libraries=services"></script>
 			<link rel="stylesheet" href="/css/map.css" />
+			<style type="text/css">
+			input {background-color: lightgray;
+			}
+			</style>
 	</head>
 
-	<body style="margin-bottom: 500px; ">
+	<body style="margin-bottom: 500px; background: black; ">
 		<%@ include file="../common/top.jsp" %>
 		<div style="display: flex;">
 			<div class="container">
@@ -22,7 +26,7 @@
 						<table>
 							<tr>
 								<td class="col-8">
-									<h3 class="board-title"><strong>게시글 쓰기</strong></h3>
+									<h3 class="board-title" style="color: white;"><strong>게시글 쓰기</strong></h3>
 								</td>
 								<td class="col-2">
 									<button onclick="location.href='/board/list'" class="btn-hover color-8 ">목록</button>
@@ -35,22 +39,22 @@
 						<form action="/board/write" class="content-center" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="uid" value="${sessionUid}" />
 							<input type="hidden" name="bAddr" id="bAddr" />
-							<table style="margin-left: 230px; ">
+							<table style="margin-left: 230px;">
 								<tr>
-									<td><input style="border: 1px solid #808080;" class="board-input" type="text" placeholder="제목"
+									<td><input style="border: 1px solid #808080;background-color: lightgray;" class="board-input" type="text" placeholder="제목"
 											name="bTitle" maxlength="128" required /></td>
 								</tr>
 								<tr>
-									<td><input style="border: 1px solid #808080;" class="board-input" type="number" placeholder="인원수"
+									<td><input style="border: 1px solid #808080;background-color: lightgray;" class="board-input" type="number" placeholder="인원수"
 											name="bUserCount" /></td>
 								</tr>
 								<tr>
-									<td><input style="border: 1px solid #808080;" class="board-input" type="datetime-local"
+									<td><input style="border: 1px solid #808080;background-color: lightgray;" class="board-input" type="datetime-local"
 											placeholder="운동시간" name="bAppointment" maxlength="128" /></td>
 								</tr>
 								<tr>
 									<td>
-										<select name="bCategory" class="board-input" style="border: 1px solid #808080">
+										<select name="bCategory" class="board-input" style="border: 1px solid #808080 background-color: lightgray;">
 											<c:forEach var="sports" items="${sportsArray}">
 												<option value="${sports}">${sports}</option>
 											</c:forEach>
@@ -58,10 +62,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input style="border: 1px solid #808080;" class="board-input" type="file" name="bFiles" /></td>
-								</tr>
-								<tr>
-									<td><input style="border: 1px solid #808080;" class="board-input" type="text"
+									<td><input style="border: 1px solid #808080; background-color: lightgray;" class="board-input" type="text"
 											placeholder="*우측지도에서 운동장소를 검색해주세요" name="bLocation" id="bLocation" maxlength="128" required />
 									</td>
 								</tr>
@@ -70,8 +71,8 @@
 											maxlength="5000" rows="10"></textarea></td>
 								</tr>
 							</table>
-							<div class="btn-place" style="margin-left: -20px;">
-								<button class="btn-hover color-8 write-btn" type="submit" value="글쓰기"
+							<div class="btn-place" style="margin-left:150px;">
+								<button class="btn-hover color-9 write-btn" type="submit" value="글쓰기"
 									style="margin-left: -20px;">글쓰기</button>
 								<button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
 							</div>
