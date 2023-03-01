@@ -75,6 +75,12 @@
         <groupId>org.springframework.kafka</groupId>
         <artifactId>spring-kafka</artifactId>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams -->
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka-streams</artifactId>
+		    <version>3.4.0</version>
+		</dependency>
     <!--ImmutableMap 의존성 추가-->
     <dependency>
         <groupId>com.google.guava</groupId>

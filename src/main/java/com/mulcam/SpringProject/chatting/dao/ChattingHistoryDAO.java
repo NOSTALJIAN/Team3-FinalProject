@@ -12,13 +12,14 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-
 // google cache 알아보기
 @Component
 public class ChattingHistoryDAO {
 
     private final Cache<UUID, ChattingMessage> chatHistoryCache = CacheBuilder
-            .newBuilder().maximumSize(20).expireAfterWrite(10, TimeUnit.MINUTES)
+            .newBuilder()
+            .maximumSize(50)	//	최대 50개
+            .expireAfterWrite(30, TimeUnit.MINUTES)	//	30분 동안만 저장하도록
             .build();
 
     public void save(ChattingMessage chatObj){

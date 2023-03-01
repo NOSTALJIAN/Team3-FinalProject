@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
-@EnableCaching
+//@EnableCaching
 //@EnableJpaAuditing
 @SpringBootApplication
 public class Demo1Application {

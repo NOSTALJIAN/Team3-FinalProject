@@ -23,8 +23,10 @@ public class KafkaConfig {
     //Sender Config
     @Bean
     public ProducerFactory<String, ChattingMessage> producerFactory(){
-        return new DefaultKafkaProducerFactory<>(producerConfigs(),
-                null, new JsonSerializer<ChattingMessage>());
+        return 
+        		new DefaultKafkaProducerFactory<>(producerConfigs(),
+				null, 
+                new JsonSerializer<ChattingMessage>());
     }
 
     @Bean
