@@ -5,7 +5,7 @@
     
 
     <div class="flex-shrink-0 p-3 border-radius-xl sidebar-border">
-      <a href="/" class="text-color d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
+      <a href="/user/mypage" class="text-color d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
         <span class="fs-6 fw-semibold" onclick="location.href='/user/mypage'" style="margin-left: 25px;">마이페이지</span>
       </a>
       <ul class="list-unstyled ps-0 " >
@@ -93,7 +93,7 @@
           <div class="collapse" id="account-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li><a href="/user/logout" class=" text-color d-inline-flex text-decoration-none rounded">로그아웃</a></li>
-              <li><a href="#" class=" text-color d-inline-flex text-decoration-none rounded">회원탈퇴</a></li>
+              <li><a href="/user/delete" class=" text-color d-inline-flex text-decoration-none rounded">회원탈퇴</a></li>
             </ul>
           </div>
         </li>

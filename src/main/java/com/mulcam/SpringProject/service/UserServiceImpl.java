@@ -60,11 +60,19 @@ public class UserServiceImpl implements UserService{
 			User u = userDao.getUser(uid);
 			if (u.getUid() != null) {	// uid가 존재
 				if (BCrypt.checkpw(pwd, u.getPwd())) {		// 비밀번호 같은지 비교(암호화해서)
-					// 로그인을 했을때 session에 정보 저장
-					userSession.setUid(u.getUid());
-					userSession.setUname(u.getUname());
-					userSession.setNickname(u.getNickname());
-					return UserService.CORRECT_LOGIN;
+					if (u.getuIsDeleted() == 0) {
+						// 로그인을 했을때 session에 정보 저장
+						userSession.setUid(u.getUid());
+						userSession.setUname(u.getUname());
+						userSession.setNickname(u.getNickname());
+						return UserService.CORRECT_LOGIN;
+					} else if(u.getuIsDeleted() == 1) {
+						//탈퇴유저
+						return UserService.UID_DELETE;
+					} else {
+						//추방유저
+						return UserService.UID_EXILE;
+					}
 				}
 				else {		
 					// 비밀번호가 틀림, 로그인페이지로 다시이동

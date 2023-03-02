@@ -119,7 +119,25 @@ public class UserController {
 	
 	/** 로그인 페이지 */
 	@GetMapping("/login")
-	public String loginform() {
+	public String loginform(HttpServletRequest req, HttpSession session) {
+		//로그인하기전 페이지 주소 세션에 저장
+		String prevPage="";
+//		String confirm = (String) req.getParameter("confirm");
+		String confirm = (req.getParameter("confirm")==null || req.getParameter("confirm")=="") ? "0" : req.getParameter("confirm");
+		if (confirm.equals("0")) {	// 로그인 버튼을 눌러서 들어왔을경우
+			prevPage = (String) req.getHeader("REFERER");
+			if (prevPage == null) {	// 주소를 직접입력하여 들어왔을경우 board/index페이지로 이동
+				prevPage = "http://localhost:8090/board/index";
+			}
+		} else {	// 운동친구눌러서 로그인 페이지 띄웠을경우
+			prevPage = "http://localhost:8090/matching/list";
+		}
+		// 세션에 이전 페이지 저장(단, 로그인 실패시 세션에 새로 저장X)
+		if (!(prevPage.contains("/user/login"))) { 
+			// 앞에 http://localhost:8090제거
+			String url = prevPage.substring(prevPage.lastIndexOf("8090")+4);
+			userSession.setPrevPage(url);
+		}
 		return "user/login";
 	}
 	/** 로그인*/
@@ -129,14 +147,19 @@ public class UserController {
 		String pwd = req.getParameter("pwd").strip();
 		User user = service.getUser(uid);
 		int result = service.login(uid, pwd);
+		
 		switch (result) {
 		case UserService.CORRECT_LOGIN :
-			System.out.println(userSession.getUname());
+			// 이전페이지 불러오기
+			String url = userSession.getPrevPage();
+			if (url.equals(null))
+				url = "/board/index";
+			// 세션에 이름,아이디,닉네임 저장
 			session.setAttribute("sessionUid", uid);
 			session.setAttribute("sessionUname", userSession.getUname());
 			session.setAttribute("sessionNickname", userSession.getNickname());
 			model.addAttribute("msg", userSession.getNickname() + "님 환영합니다.");
-			model.addAttribute("url", "/board/index");
+			model.addAttribute("url", url);
 			return "common/alertMsg";
 		case UserService.UID_NOT_EXIST :
 			model.addAttribute("msg", "아이디를 잘못입력하셧습니다. 다시 확인해주세요.");
@@ -144,6 +167,14 @@ public class UserController {
 			return "common/alertMsg";
 		case UserService.WRONG_PASSWORD :
 			model.addAttribute("msg", "비밀번호를 잘못입력하셧습니다. 다시 확인해주세요.");
+			model.addAttribute("url", "/user/login");
+			return "common/alertMsg";
+		case UserService.UID_DELETE :
+			model.addAttribute("msg", "탈퇴처리중인 회원입니다.");
+			model.addAttribute("url", "/user/login");
+			return "common/alertMsg";
+		case UserService.UID_EXILE :
+			model.addAttribute("msg", "추방된 회원입니다.");
 			model.addAttribute("url", "/user/login");
 			return "common/alertMsg";
 		default:
@@ -246,7 +277,7 @@ public class UserController {
 		service.updatePwd(uid, newpwd);
 		
 		model.addAttribute("msg", "비밀번호 변경이 완료되었습니다.");
-		model.addAttribute("url", "/board/index");
+		model.addAttribute("url", "/user/pwdUpdate");
 		return "common/alertMsg";
 	}
 	
@@ -327,13 +358,28 @@ public class UserController {
 			return "user/admin";
 		}
 	}
-	/** 관리자페이지 처리*/
+	/** 회원 탈퇴/추방/탈퇴취소 처리*/
 	@ResponseBody
 	@GetMapping("/isDeleted")
 	void IsDeleted(@RequestParam String uid,@RequestParam String isNum ) {
-//		int isDeleted = Integer.parseInt(req.getParameter("isDeleted"));
 		int isDeleted = Integer.parseInt(isNum);
 		service.userIsDeleted(uid, isDeleted);
 	}
+	
+	/** 회원탈퇴 페이지  */
+	@GetMapping("/delete")
+	public String deleteForm() {
+		return "user/delete";
+	}
+	
+	@PostMapping("/delete")
+	public String delete(HttpSession session) {
+		String uid = userSession.getUid();
+		service.userIsDeleted(uid, 1);
+		session.invalidate();
+		return "redirect:/board/index";
+	}
+	
+	
 	
 }

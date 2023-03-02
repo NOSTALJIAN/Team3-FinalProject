@@ -34,7 +34,11 @@
 					<table>
 						<tr>
 							<th>닉네임</th>
-							<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" value="${user.nickname}" maxlength="40"  />
+							<td>
+								<input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" value="${user.nickname}" maxlength="12"  />
+								<a id="nicknameDuplication" style="font-size: 15px;">닉네임을 변경하고싶으시면 중복 확인을 해주세요</a>
+								<td><input class="btn-hover color-9" onclick="nickname_check()" type="button" value="중복 확인" 
+								style="height: 38px;width: 100px;border-radius: 8px; margin-left:-132px;margin-top: -29px;margin-bottom: 24px;"></td>
 							</td>
 						</tr>
 						<tr>
@@ -96,7 +100,40 @@
 			</div>
 		</div>
 	</div>
-			
+	<script>
+		// 기존 닉네임 저장 
+		var originNickname = document.getElementById('nickname').value; 
+		// 닉네임 중복체크
+		function nickname_check(){
+			const nickname = document.getElementById('nickname').value; 
+			const nicknameDuplication = document.getElementById('nicknameDuplication');
+			if (nickname.length < 2 || nickname.length > 13) {
+				alert('닉네임은 2글자이상 12글자 이하로 입력해주세요');
+				return false;
+			}
+			// 회원가입과 달리 닉네임 변경없을시에 텍스트 추가
+			if (nickname == originNickname) {
+				nicknameDuplication.innerText = '기존과 동일한 닉네임 입니다.';
+				nicknameDuplication.style.cssText = 'background-color:black; color:red;font-size: 15px;'
+			} else {
+				$.ajax({
+					type:'GET',
+					url: '/user/Duplication',
+					data: {'data': nickname,
+							'type': 'nickname'},
+					success: function(result){
+						if (result == 1){
+							nicknameDuplication.innerText = '중복된 닉네임입니다.';
+							nicknameDuplication.style.cssText = 'background-color:black; color:red;font-size: 15px;'
+						} else if (result == 2){
+							nicknameDuplication.innerText = '사용가능한 닉네임 입니다.';
+							nicknameDuplication.style.cssText = 'background-color:black; color:green;font-size: 15px;'
+						}
+					}
+				});
+			}
+		}
+	</script>
 	<script>
 		// hidden으로 입력한 문자열 배열로 바꾸기
 		var likeExerList = document.getElementById('likeExerList').value.replace(/\s/g,'').replace(/\[/g,'').replace(/\]/g,''); 
@@ -116,14 +153,18 @@
 				checked_num -=1;
 
 			if (checked_num > mc){
-				alert("5개까지만 선택해주세요");
+				alert('5개까지만 선택해주세요');
 				ff.checked = false;
 				checked_num -= 1;
 			}
 		}
 		function checked_submit(){
-			if(checked_num < 3){
-				alert("체크박스를 3개이상 선택해 주세요");
+			const nicknameDuplication = document.getElementById('nicknameDuplication').text;
+			if(checked_num < 3){	
+				alert('체크박스를 3개이상 선택해 주세요');
+				return false;
+			} else if (nicknameDuplication == '중복된 닉네임입니다.'){
+				alert('닉네임 중복입니다.');
 				return false;
 			} else {
 				const reg_sub = document.reg_sub;
