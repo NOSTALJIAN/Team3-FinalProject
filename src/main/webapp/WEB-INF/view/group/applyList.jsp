@@ -17,7 +17,7 @@
 		  }
 		  th, td {
 		    border-bottom: 1px solid #444444;
-		    padding: 2px;
+		    padding: 0px;
 		  }
   	</style>
 </head>
@@ -35,7 +35,7 @@
 							<th>종목</th>
 							<th>장소</th>
 							<th>시간</th>
-							<th>총인원</th>
+							<th>모집인원</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -46,13 +46,33 @@
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bCategory}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bLocation}</td>
 							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${fn:replace(apply.bAppointment, 'T', ' ')}</td>
-							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.bUserCount}</td>
+							<td onclick="location.href='/board/detail?bid=${apply.bid}&uid=${apply.uid}'">${apply.applyCount}/${apply.bUserCount}</td>
 							<td><button class="btn-hover color-8" onclick="apply(${apply.bid}, '${apply.uid}')" id="${apply.bid}">참가신청중</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>
 				</table>
 			</div>
+			
+			<ul class="pagination justify-content-center mt-4">
+					<c:if test="${currentBoardPage gt 10}">
+						<li class="page-item"><a class="page-link" href="/group/myWrite?p=${startPage - 1}&f=${field}&q=${query}">&laquo;</a></li>
+					</c:if>
+					<c:if test="${currentBoardPage le 10}">
+						<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+					</c:if>
+					<c:forEach var="page" items="${pageList}" varStatus="loop">    
+						<li class="page-item ${(currentBoardPage eq page) ? 'active' : ''}">
+							<a class="page-link" href="/group/myWrite?p=${page}&f=${field}&q=${query}">${page}</a>
+						</li>
+					</c:forEach>  
+					<c:if test="${totalPages gt endPage}">                    
+						<li class="page-item"><a class="page-link" href="/group/myWrite?p=${endPage + 1}&f=${field}&q=${query}">&raquo;</a></li>
+					</c:if>
+					<c:if test="${totalPages le endPage}">                    
+						<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+					</c:if>
+				</ul>
 		</div>
 	</div>
 	<!-- 참가 신청 -->

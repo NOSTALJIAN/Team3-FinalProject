@@ -15,15 +15,15 @@
 <body class="bg-black text-white mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
 	<%@ include file="../common/top.jsp" %>
 	<div class="container" style=" padding-bottom: 200px; margin-top: 50px;">
-		<div class="row" style="justify-content: space-evenly; margin-left:70px;">
+		<div class="row" style="justify-content: space-evenly;">
 			<!-- =================== main =================== -->
 			<div class="col-sm-9" >
-				<table class="table table-sm table-borderless" style="margin-left: 150px;">
+				<table class="table table-sm table-borderless" style="margin-left: 200px;">
 					<tr >
 						<td class="col-7">
 							<h3 style="color: white; margin-left:70px;"><strong>그룹운동 게시판</strong></h3>
 							<div class="board-list">
-								<button type="button" class="btn-hover color-9 fix-position" style="padding-bottom: 3px;" onclick="location.href='/board/write'">+글쓰기</button>
+								<button type="button" class="btn-hover color-9 fix-position" style="padding-bottom: 3px;width: 110px;" onclick="location.href='/board/write'">+글쓰기</button>
 							</div>
 						</td>
 						<td class="col-1">

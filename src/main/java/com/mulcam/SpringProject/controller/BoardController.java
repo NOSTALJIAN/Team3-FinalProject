@@ -84,7 +84,7 @@ public class BoardController {
 		model.addAttribute("sportsArray", sportsArray);
 		model.addAttribute("uid", sessionUid);
 		
-		int totalBoardNo = bsv.getBoardCount("bid", "");
+		int totalBoardNo = bsv.getBoardCountByPeriod(field, query, startDate.toString(), endDate.toString(), sessionUid);
 		int totalPages = (int) Math.ceil(totalBoardNo / 9.);
 		
 		int startPage = (int)(Math.ceil((page-0.5)/9) - 1) * 9 + 1;

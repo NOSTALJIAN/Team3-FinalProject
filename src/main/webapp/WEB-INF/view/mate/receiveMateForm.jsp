@@ -39,7 +39,6 @@
 							<th>관심운동</th>
 							<th>성별</th>
 							<th>나이</th>
-							<th>신청시간</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -56,7 +55,6 @@
 							<td>${re.likeExerList}</td>
 							<td>${re.gender}</td>
 							<td>${re.age}</td>
-							<td>${fn:replace(re.sendTime, 'T', ' ')}</td>
 							<td><button onclick="mateAccept('${re.uid}')" class="btn-hover color-9" style="width: 105px;">수락</button>
 							<button onclick="mateReject('${re.uid}')" class="btn-hover color-8" style="width: 105px;">거절</button></td>
 						</tr>
