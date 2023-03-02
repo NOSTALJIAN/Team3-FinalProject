@@ -63,10 +63,10 @@ h6:after {
     				<h6 style="margin-left: 250px;margin-top:-3px; font-size: 23px;">${gm.bid}. ${gm.bTitle}</h6>
     			</c:if>
     		</c:forEach>
-    		<button class="btn-hover color-9 write-btn" style="margin-left: 300px;margin-top: -15px;margin-bottom: -45px;">
-    		그룹채팅</button>
+    		<button class="btn-hover color-9 write-btn" style="margin-left: 300px;margin-top: -15px;margin-bottom: -45px;width: 115px;">
+    			그룹채팅</button>
     		</div>
-    		<div style="margin-top: 30px;">
+    		<div style="margin-top: 20px;">
 				<table>
 					<thead>
 						<tr>

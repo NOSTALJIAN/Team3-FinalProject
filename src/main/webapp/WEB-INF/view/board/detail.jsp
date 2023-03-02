@@ -61,7 +61,7 @@
                           </p>
                         </div>
 					</div>
-					<table class="board-view-infomation" style="margin-left: 450px; margin-top:-14px; color: white;">
+					<table class="board-view-infomation" style="margin-left: 400px; margin-top:-14px; color: white;">
 						<tr>
 							<th>운동 종목</th>
 							<td>${b.bCategory}</td>
@@ -89,17 +89,17 @@
 					</c:if>
 				</div>
 				<!-- 지도 -->
-				<div class="board-view-map" id="map" style="color: black;"></div>
+				<div class="board-view-map" id="map" style="color: black;margin-right: 100px;"></div>
         	</div>
         	<div class="">
-					<div class="board-view-content" style="text-align: left; color: white;">
+					<div class="board-view-content" style="text-align: left; color: white;padding-top: 10px;padding-left: 20px;">
 					${fn:replace(b.bContent, newline, '<br>')}
 				</div>
 				</div>
 				
 				<!-- 댓글 -->
 				<div class="col-12"></div>
-				<div class="col-12" style="margin-top: 400px; margin-left: 240px;">
+				<div class="col-12" style="margin-top: 400px; margin-left: 180px;">
 				<h3 class="detail-title" style=" margin-right:1100px;">댓글</h3>
 					<c:forEach var="reply" items="${replyList}" varStatus="loop">
 						<c:if test="${reply.rIsMine eq 0}">

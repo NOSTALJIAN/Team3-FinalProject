@@ -32,7 +32,7 @@
 		<%@ include file="../common/sidebar.jsp" %>
 		<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
 			<h5>그룹운동 참여현황</h5>
-			<div style="margin-top: 30px;">
+			<div style="margin-top: 20px;">
 			<table>
 				<thead>
 					<tr>

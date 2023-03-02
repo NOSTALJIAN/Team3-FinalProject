@@ -22,7 +22,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public List<Board> getBoardList(int page, String field, String query, String uid) {
-		int offset = (page - 1) * 10;
+		int offset = (page - 1) * 9;
 		query = "%"+query+"%";
 		List<Board> list = boardDao.getBoardList(offset, field, query, uid);
 		return list;
@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public List<Board> getBoardListByPeriod(int page, String field, String query, String startDate, String endDate, String uid) {
-		int offset = (page - 1) * 10;
+		int offset = (page - 1) * 9;
 		query = "%"+query+"%";
 		List<Board> list = boardDao.getBoardListByPeriod(offset, field, query, startDate, endDate, uid);
 		return list;
@@ -96,6 +96,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void deleteReply(int rid) {
 		replyDao.deleteReply(rid);
+	}
+
+	@Override
+	public int getBoardCountByPeriod(String field, String query, String startDate, String endDate, String uid) {
+		query = "%"+query+"%";
+		int count = boardDao.getBoardCountByPeriod(field, query, startDate, endDate, uid);
+		return count;
 	}
 
 }

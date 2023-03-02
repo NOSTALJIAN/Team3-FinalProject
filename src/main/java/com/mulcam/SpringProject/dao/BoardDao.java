@@ -39,6 +39,11 @@ public interface BoardDao {
 			+ "	WHERE b.bIsDeleted=0 AND ${field} LIKE #{query}")
 	public int getBoardCount(String field, String query);
 	
+	@Select("select count(*) from board where bIsDeleted=0 AND ${field} LIKE #{query} and bAppointment>=#{startDate} AND bAppointment<=#{endDate}" 
+			+ "AND bid NOT IN (SELECT bid FROM boardMate where uid=#{uid})")
+	int getBoardCountByPeriod(String field, String query, String startDate, String endDate, String uid);
+	
+	
 	@Select("select * from board where bid=#{bid}")
 	public Board getBoard(int bid);
 	

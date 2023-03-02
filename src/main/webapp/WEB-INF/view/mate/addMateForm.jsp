@@ -40,7 +40,6 @@
 							<th>관심운동</th>
 							<th>성별</th>
 							<th>나이</th>
-							<th>신청시간</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -57,8 +56,7 @@
 							<td>${add.likeExerList}</td>
 							<td>${add.gender}</td>
 							<td>${add.age}</td>
-							<td>${fn:replace(add.sendTime, 'T', ' ')}</td>
-							<td><button onclick="addMate('${add.receiveUser}')"  id="${add.receiveUser}" class="btn-hover color-8 write-btn">신청중</button></td>
+							<td><button onclick="addMate('${add.receiveUser}')"  id="${add.receiveUser}" class="btn-hover color-8 write-btn">친구신청중</button></td>
 						</tr>
 					</c:forEach>
 					</tbody>

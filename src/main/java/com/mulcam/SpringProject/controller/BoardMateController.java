@@ -96,11 +96,32 @@ public class BoardMateController {
 	
 	/** 운동 참가 보낸창 (guest) */
 	@GetMapping("/applyList")
-	public String applyForm(Model model) {
+	public String applyForm(HttpServletRequest req, Model model) {
 		String uid = userSession.getUid();
-		List<Board> applyList = service.getApplyList(uid);
-		
+		String page_ = req.getParameter("p");
+		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
+		List<Board> applyList = service.getApplyList(uid, page);
 		model.addAttribute("applyList", applyList);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("currentBoardPage", page);
+		
+		int totalBoardNo =  service.getApplyListCount(uid);
+		int totalPages = (int) Math.ceil(totalBoardNo / 10.);
+		
+		int startPage = (int)(Math.ceil((page-0.5)/10) - 1) * 10 + 1;
+		int endPage = Math.min(totalPages, startPage + 9);
+		List<String> pageList = new ArrayList<>();
+		for (int i = startPage; i <= endPage; i++) 
+			pageList.add(String.valueOf(i));
+		model.addAttribute("pageList", pageList);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPages", totalPages);
+		
+		String today = LocalDate.now().toString(); 
+		model.addAttribute("today", today);
+		
 		return "group/applyList";
 	}
 	
@@ -146,14 +167,14 @@ public class BoardMateController {
 	public String myWriteForm(HttpServletRequest req, Model model) {
 		String uid = userSession.getUid();
 		String page_ = req.getParameter("p");
-		List<Board> myList = service.getMyList(uid);
+		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
+		List<Board> myList = service.getMyList(uid, page);
 		model.addAttribute("myList", myList);
 		
-		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
 		HttpSession session = req.getSession();
 		session.setAttribute("currentBoardPage", page);
 		
-		int totalBoardNo = bsv.getBoardCount("bid", "");
+		int totalBoardNo = service.getMyListCount(uid);
 		int totalPages = (int) Math.ceil(totalBoardNo / 10.);
 		
 		int startPage = (int)(Math.ceil((page-0.5)/10) - 1) * 10 + 1;

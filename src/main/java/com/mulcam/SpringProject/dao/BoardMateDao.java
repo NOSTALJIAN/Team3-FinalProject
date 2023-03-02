@@ -26,24 +26,27 @@ public interface BoardMateDao {
 	@Insert("INSERT INTO boardRelationship VALUES(#{uid}, #{receiveUser}, 1, #{bid});")
 	void applyAccept(BoardMate bMate);
 
-	@Select("SELECT COUNT(*) FROM boardMate WHERE bid=#{bid} AND uid=#{uid} AND receiveUser = #{receiveUser};")
-	int confirm(BoardMate bMate);
-
-	@Select("SELECT COUNT(*) FROM boardRelationship WHERE uid=#{uid} AND uid2 = #{receiveUser}s AND bid=#{bid};")
-	int confirm2(BoardMate bMate);
-	
 	@Select("SELECT b.uid, b.bid, b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount, bm.receiveUser, b.bIsFull"
 			+ "	FROM boardMate AS bm JOIN board AS b"
-			+ "	WHERE bm.bid=b.bid AND bm.uid=#{uid} AND b.bIsDeleted=0;")
-	List<Board> getApplyList(String uid);
+			+ "	WHERE bm.bid=b.bid AND bm.uid=#{uid} AND b.bIsDeleted=0 limit 10 offset #{offset};")
+	List<Board> getApplyList(String uid, int offset);
+	
+	@Select("SELECT count(*) "
+			+ "	FROM boardMate AS bm JOIN board AS b"
+			+ "	WHERE bm.bid=b.bid AND bm.uid=#{uid} AND b.bIsDeleted=0")
+	int getApplyListCount(String uid);
 	
 	@Select("SELECT bm.bid, u.uid, u.likeExercise, u.gender, u.birthDate, bm.sendTime, b.bTitle"
 			+ "	FROM userInfo AS u JOIN boardMate AS bm JOIN board AS b"
 			+ "	WHERE u.uid=bm.uid AND bm.bid=b.bid AND bm.receiveUser=#{uid} AND bm.bid=#{bid};")
 	List<BoardMate> getReceiveList(String uid, int bid);
 	
-	@Select("SELECT * FROM board WHERE uid=#{uid} AND bIsFull=0 AND bIsDeleted=0;")
-	List<Board> getMyList(String uid);
+	
+	@Select("SELECT count(*) FROM board WHERE uid=#{uid} AND bIsFull=0 AND bIsDeleted=0;")
+	int getMyListCount(String uid);
+	
+	@Select("SELECT * FROM board WHERE uid=#{uid} AND bIsFull=0 AND bIsDeleted=0 limit 10 offset #{offset}")
+	List<Board> getMyList(String uid, int offset);
 	
 	@Select("SELECT b.uid, b.bid, b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount, b.bIsFull"
 			+ "	FROM board AS b JOIN boardRelationship as brs"
