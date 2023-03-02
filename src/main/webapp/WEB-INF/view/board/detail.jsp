@@ -83,9 +83,12 @@
 							<td>${fn:replace(b.bRegTime, 'T', ' ')}</td>
 						</tr>
 					</table>
-					<c:if test="${b.uid ne sessionUid}">
+					<c:if test="${b.uid ne sessionUid && b.applyCount ne b.bUserCount}">
 						<button class="btn-hover color-9 ms-3 col-2" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}" type="button" 
 							style="width:120px;margin-right: -400px;">참가신청</button>
+					</c:if>
+					<c:if test="${b.uid ne sessionUid && b.applyCount eq b.bUserCount}">
+						<button class="btn-hover color-8 ms-3 col-2"  type="button" style="width:120px; margin-right: -400px;" disabled>모집마감</button>
 					</c:if>
 				</div>
 				<!-- 지도 -->
@@ -253,10 +256,22 @@
     <!-- 참가 신청 -->
 	<script>
 		function apply(bid, uid){
-			  const applybid = document.getElementById(bid);
-			  console.log(bid, uid);
-			  if (applybid.innerText == '참가신청'){
-				  $.ajax({
+			// 로그인 안했을시에 알람창띄우고 로그인 페이지로 이동
+			const sessionUid = '<%=(String)session.getAttribute("sessionUid")%>';
+			if (sessionUid == 'null'){
+				if(confirm('로그인이 필요한 서비스입니다. 로그인하시겠습니까?')) {
+				 	location.href = location.href = '/user/login';
+					return true;
+				} else {
+					return false;
+				}
+				//alert('로그인이 필요한 서비스입니다.');
+			} 
+			// 로그인 했을시에 참가신청 또는 취소
+			const applybid = document.getElementById(bid);
+			console.log(bid, uid);
+			if (applybid.innerText == '참가신청'){
+				$.ajax({
 					type:'GET',
 					url: '/group/apply',
 					data: {'bid': bid, 'receiveUser': uid},
@@ -265,10 +280,10 @@
 						console.log(result);
 						applybid.style.cssText = 'background-color:black; color:white;width:120px;margin-right: -400px;'
 					}
-				  });
-			  }
-			  else if (applybid.innerText == '참가신청중'){
-				  $.ajax({
+				});
+			}
+			else if (applybid.innerText == '참가신청중'){
+				$.ajax({
 					type:'GET',
 					url: '/group/applyCancel',
 					data: {'bid': bid, 'receiveUser': uid},
@@ -277,9 +292,9 @@
 						console.log(result);
 						applybid.style.cssText = 'background-color:white; color:black;width:120px;margin-right: -400px;'
 					}
-				  });
-			  }
-		  }
+				});
+			}
+		}
 	</script>
 </body>
 </html>

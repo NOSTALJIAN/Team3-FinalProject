@@ -12,7 +12,7 @@ public class UserSession {
 	private String uname;
 	private String nickname;
 	private int currentBoardPage;
-	
+	private String prevPage;
 	
 	public String getUid() {
 		return uid;
@@ -38,12 +38,16 @@ public class UserSession {
 	public void setCurrentBoardPage(int currentBoardPage) {
 		this.currentBoardPage = currentBoardPage;
 	}
+	public String getPrevPage() {
+		return prevPage;
+	}
+	public void setPrevPage(String prevPage) {
+		this.prevPage = prevPage;
+	}
 	@Override
 	public String toString() {
 		return "UserSession [uid=" + uid + ", uname=" + uname + ", nickname=" + nickname + ", currentBoardPage="
-				+ currentBoardPage + "]";
+				+ currentBoardPage + ", prevPage=" + prevPage + "]";
 	}
-	
-	
 
 }

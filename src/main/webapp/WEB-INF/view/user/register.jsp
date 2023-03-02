@@ -52,7 +52,7 @@
 			<tr>
 				<th>닉네임</th>
 				<td>
-					<input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="10" required />
+					<input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="12" required />
 					<a id="nicknameDuplication" style="font-size: 15px;">닉네임 중복을 확인해주세요</a>
 					<td><input class="btn-hover color-9" onclick="nickname_check()" type="button" value="중복 확인" 
 						style="height: 38px;width: 100px;border-radius: 8px; margin-left:-132px;margin-top: -29px;margin-bottom: 24px;"></td>
@@ -125,8 +125,8 @@
 		// id 중복체크
 		function id_check(){
 			const uid = document.getElementById('uid').value; 
-			if (uid.length < 4 || uid.length > 21) {
-				alert('아이디는 3글자이상 20글자 이하로 입력해주세요');
+			if (uid.length < 2 || uid.length > 21) {
+				alert('아이디는 2글자이상 20글자 이하로 입력해주세요');
 				return false;
 			}
 			const idDuplication = document.getElementById('idDuplication');

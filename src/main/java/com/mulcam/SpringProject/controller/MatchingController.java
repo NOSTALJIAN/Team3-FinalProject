@@ -35,7 +35,7 @@ public class MatchingController {
 		// login안했으면 로그인페이지로(임시)
 		String uid = userSession.getUid();
 		if (uid == null)
-			return "redirect:/user/login";
+			return "redirect:/user/login?confirm=1";
 		MatchingCondition mC = service.getCondition(uid);
 		if (mC==null)
 			return "redirect:/matching/condition";
