@@ -122,7 +122,6 @@ public class UserController {
 	public String loginform(HttpServletRequest req, HttpSession session) {
 		//로그인하기전 페이지 주소 세션에 저장
 		String prevPage="";
-//		String confirm = (String) req.getParameter("confirm");
 		String confirm = (req.getParameter("confirm")==null || req.getParameter("confirm")=="") ? "0" : req.getParameter("confirm");
 		if (confirm.equals("0")) {	// 로그인 버튼을 눌러서 들어왔을경우
 			prevPage = (String) req.getHeader("REFERER");
