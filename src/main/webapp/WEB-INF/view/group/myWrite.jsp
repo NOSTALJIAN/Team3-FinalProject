@@ -16,7 +16,7 @@
 	  }
 	  th, td {
 	    border-bottom: 1px solid #444444;
-	    padding: 2px;
+	    padding: 0px;
 	  }
 	  .btn-hover.color-3 {
 	    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
@@ -30,7 +30,8 @@
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 		<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-			<h5><strong>작성글 목록</strong></h5>
+			<h5>내가 쓴글</h5>
+			<div style="margin-top: 20px;">
 			<table>
 				<thead>
 					<tr>
@@ -52,11 +53,13 @@
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bViewCount}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bReplyCount}</td>
 							<td><button onclick="location.href='/group/applyPerson?bid=${my.bid}&uid=${my.uid}'" class="btn-hover color-8 write-btn">신청자 목록</button></td>
-							<td><span><button class="btn-hover color-3 write-btn" style="width: 120px;">${my.applyCount}/${my.bUserCount} ${my.bUserCount eq my.applyCount ? '모집 마감': '모집중'}</button></span></td>
+							<td><span><button class="btn-hover color-3 write-btn" style="width: 120px;margin-left: -50px;">
+							${my.applyCount}/${my.bUserCount} ${my.bUserCount eq my.applyCount ? '모집 마감': '모집중'}</button></span></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			</div>
 			
 			<ul class="pagination justify-content-center mt-4">
 					<c:if test="${currentBoardPage gt 10}">

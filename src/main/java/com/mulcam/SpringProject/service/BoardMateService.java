@@ -19,15 +19,14 @@ public interface BoardMateService {
 
 	void applyAccept(BoardMate bMate);
 
-	int confirm(BoardMate bMate);
-
-	int confirm2(BoardMate bMate);
-
-	List<Board> getApplyList(String uid);
+	List<Board> getApplyList(String uid, int page);
 
 	List<BoardMate> getReceiveList(String uid, int bid);
 
-	List<Board> getMyList(String uid);
+	List<Board> getMyList(String uid, int page);
+	
+	int getMyListCount(String uid);
+	int getApplyListCount(String uid);
 
 	List<Board> getDoneList(String uid);
 

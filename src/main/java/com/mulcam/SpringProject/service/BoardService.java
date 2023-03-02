@@ -29,6 +29,8 @@ public interface BoardService {
 
 	public int getBoardCount(String field, String query);
 	
+	int getBoardCountByPeriod(String field, String query, String startDate, String endDate, String uid);
+	
 	public void increaseViewCount(int bid) ;
 
 	public void increaseReplyCount(int bid, int count);

@@ -22,7 +22,7 @@
   }
   th, td {
     border-bottom: 1px solid #444444;
-    padding: 10px;
+    padding: 0px;
   }
 </style>
 </head>
@@ -32,7 +32,7 @@
 		<%@ include file="../common/sidebar.jsp" %>
 		<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
 			<h5>그룹운동 수락완료 목록</h5>
-			<div style="margin-top: 30px;">
+			<div style="margin-top: 20px;">
 			<table>
 				<thead>
 					<tr>
@@ -52,7 +52,8 @@
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bLocation}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${fn:replace(done.bAppointment, 'T', ' ')}</td>
 						<td><button onclick="location.href='/group/groupMateList?bid=${done.bid}&uid=${done.uid}'" class="btn-hover color-8 write-btn">참가자 목록</button></td>
-						<td><button class="btn-hover color-3 write-btn">${done.applyCount}/${done.bUserCount} ${done.bIsFull eq 1 ? '모집 마감': '모집중'}</button></td>
+						<td><button class="btn-hover color-3 write-btn" style="margin-left: -50px;">
+							${done.applyCount}/${done.bUserCount} ${done.bIsFull eq 1 ? '모집 마감': '모집중'}</button></td>
 					<!-- <td><button class="btn-hover color-9 write-btn">그룹채팅</button></td> -->	
 					</tr>
 				</c:forEach>

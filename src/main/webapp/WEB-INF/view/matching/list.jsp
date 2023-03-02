@@ -31,19 +31,21 @@
 					<button type="button" class="btn-hover color-9 postion" onclick="location.href='/matching/condition'" style="margin-left: 200px;">
 					매칭조건
 					</button>
-							
+				<div class="board-list">
+				<a href="#"><button type="button" class="btn-hover color-3 fix-position" style="padding-bottom: 3px;width: 90px;margin-right: 70px;" onclick="location.href='#'">Top</button></a>	
+				</div>			
 				<div class="container" style="margin-top: -80px">
 			    	<div class="row d-flex justify-content-center py-vh-5 pb-0">
 			        	<div class="col-12 col-lg-10 col-xl-8">
 			        		<c:forEach var="m" items="${matchingList}">
 					      		<div class="row d-flex align-items-start" data-aos="fade-right">
 					        		<div class="col-12 col-lg-7">
-							        	<h5 class="h4 mt-3 border-top pt-5" ><strong>${m.nickname}</strong></h5>
+							        	<h4 class="h4 mt-3 border-top pt-4" style="margin-bottom: 22px;" ><strong>${m.nickname}</strong></h4>
 							        	<p>거리: ${m.distance}</p>
 							        	<p>나이: ${m.age}</p>
 							          	<p>성별: ${m.gender}</p>
 							          	<p>선택운동 : ${m.coincideExer}</p>
-							         	<button onclick="addMate('${m.uid}')" class="btn-hover color-8 write-btn"  id="${m.uid}">친구신청</button>
+							         	<button onclick="addMate('${m.uid}')" class="btn-hover color-8 write-btn"  id="${m.uid}" style="margin: 10px;">친구신청</button>
 					        		</div>
 					        		<c:if test="${empty m.uImage}">
 							        	<div class="col-12 col-lg-4 offset-lg-1 bg-black p-3 mt-4">

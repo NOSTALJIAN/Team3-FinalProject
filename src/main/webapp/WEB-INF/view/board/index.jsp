@@ -58,7 +58,7 @@
     <div class="row d-flex align-items-center">
       <div class="col-12 col-lg-7 text-lg-end" data-aos="fade-right">
         <span class="h5 text-secondary fw-lighter">What we do</span>
-        <h2 class="display-4">근처에서 같이 운동하고 싶은 친구를 찾아보세요.<br> 운동종목, 시간, 장소를 정하여 개인 또는 그룹운동을 할 수 있습니다.</h2>
+        <h2 class="display-4" style="font-size: 45px;">근처에서 같이 운동하고 싶은 친구를 찾아보세요.<br> 운동종목, 시간, 장소를 정하여 개인 또는 그룹운동을 할 수 있습니다.</h2>
       </div>
       <div class="col-12 col-lg-5" data-aos="fade-left">
         <h3 class="pt-5">운동 친구 찾기</h3>
@@ -69,7 +69,8 @@
 </svg>
 </p>
         <h3 class="border-top border-secondary pt-5 mt-5">그룹 운동</h3>
-        <p class="text-secondary">여러명이서 다같이 운동하는 그룹운동을 찾아보세요.<br> 축구, 농구, 런닝, 등산 등 어떤 운동이든 같이 할 수 있습니다.<br> 운동모임을 만들고, 찾아서 같이 운동 시너지를 만들어보세요.<br>
+        <p class="text-secondary">여러명이서 다같이 운동하는 그룹운동을 찾아보세요.<br> 축구, 농구, 런닝, 등산 등 어떤 운동이든 같이 할 수 있습니다.
+        <br> 운동모임을 만들고, 찾아서 같이 운동을 해보세요.<br>
           <a href="/board/list" class="link-fancy link-fancy-light me-2">그룹운동 GOgo</a>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
@@ -86,70 +87,66 @@
   <div class="row gx-5">
     <div class="col-12 col-md-6">
       <div class="card bg-transparent mb-5" data-aos="zoom-in-up">
-        <div class="bg-dark shadow rounded-5 p-0">
-          <img src="/img/webp/abstract3.webp" width="582" height="327" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
+        <div class="bg-dark shadow rounded-5 p-0" style="width: 480px;margin-left: 100px;">
+          <img src="https://static.hubzum.zumst.com/hubzum/2017/12/18/14/7cb9d3ff220b4335a1e575c137f0ca21.jpg" width="480" height="327" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy" style="height: 327px;width: 480px;">
           <div class="p-5">
-            <h2 class="fw-lighter">Ipsum dolor est</h2>
-            <p class="pb-4 text-secondary">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
-            <a href="#" class="link-fancy link-fancy-light">Read more</a>
+            <p style="font-weight: bold;font-size: 36px;">1.관심운동 선택하기</p>
+            <p class="pb-4 text-secondary">회원가입시 선택한 관심운동으로 운동친구를 찾아보세요.</p> 
+            <p class="pb-4 text-secondary">마이페이지에서 관심운동을 변경할 수 있습니다.</p>
           </div>
         </div>
       </div>
 
       <div class="card bg-transparent" data-aos="zoom-in-up">
-        <div class="bg-dark shadow rounded-5 p-0">
-          <img src="/img/webp/abstract2.webp" width="582" height="442" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
+        <div class="bg-dark shadow rounded-5 p-0" style="width: 480px;margin-left: 100px;">
+          <img src="/img/findfriend.png" width="480" height="442" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
           <div class="p-5">
-            <h2 class="fw-lighter">Ipsum dolor est</h2>
-            <p class="pb-4 text-secondary">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
-            <a href="#" class="link-fancy link-fancy-light">Read more</a>
+          <p style="font-weight: bold;font-size: 36px;">3.운동친구 찾기</p>
+            <p class="pb-4 text-secondary">설정한 매칭조건으로 나타난 운동친구를 찾아보세요.</p>
           </div>
         </div>
       </div>
     </div>
     <div class="col-12 col-md-6">
       <div class="p-5 pt-0 mt-5" data-aos="fade">
-        <span class="h5 text-secondary fw-lighter">What we don´t know</span>
-        <h2 class="display-4">There is a lot we don´t know. Here is a small sneak peek</h2>
+        <span class="h5 text-secondary ">How to find Health Mate</span>
+        <h2 class="display-4" style="font-size: 46px;">운동친구 찾는 방법</h2>
       </div>
       <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
-        <div class="bg-dark shadow rounded-5 p-0">
-          <img src="/img/webp/abstract17.webp" width="582" height="390" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
-          <div class="p-5">
-            <h2 class="fw-lighter">Ipsum dolor est</h2>
-            <p class="pb-4 text-secondary">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
-            <a href="#" class="link-fancy link-fancy-light">Read more</a>
+        <div class="bg-dark shadow rounded-5 p-0" style="width: 480px;">
+          <img src="/img/matchingg.png" width="480" height="390" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
+          <div class="p-5" >
+           <p style="font-weight: bold;font-size: 36px;">2.매칭조건 설정하기</p>
+            <p class="pb-4 text-secondary">같이 운동하고 싶은 종목, 거리, 성별, 나이대 등 매칭조건을 설정해보세요.</p>
           </div>
         </div>
       </div>
 
       <div class="card bg-transparent" data-aos="zoom-in-up">
-        <div class="bg-dark shadow rounded-5 p-0">
-          <img src="/img/webp/abstract4.webp" width="582" height="327" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
+        <div class="bg-dark shadow rounded-5 p-0" style="width: 480px;">
+          <img src="/img/friend.png" width="480" height="327" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
           <div class="p-5">
-            <h2 class="fw-lighter">Ipsum dolor est</h2>
-            <p class="pb-4 text-secondary">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
-            <a href="#" class="link-fancy link-fancy-light">Read more</a>
+           <p style="font-weight: bold;font-size: 36px;">4.친구신청하기</p>
+            <p class="pb-4 text-secondary">운동친구 목록에서 같이 운동하고 싶은 친구에게 친구신청을 보내 운동친구를 만들어보세요.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+</div>
 </div>
 
-</div>
 <div class="bg-dark position-relative">
   <div class="container px-vw-5 py-vh-5">
     <div class="row d-flex align-items-center">
 
       <div class="col-12 col-lg-7">
-        <img class="img-fluid rounded-5 mb-n5 shadow" src="/img/webp/person9.webp" width="512" height="512" alt="a nice person" loading="lazy" data-aos="zoom-in-right">
-        <img class="img-fluid rounded-5 ms-5 mb-n5 shadow" src="/img/webp/person11.webp" width="512" height="512" alt="another nice person" loading="lazy" data-aos="zoom-in-up">
+        <img class="img-fluid rounded-5 mb-n5 shadow" src="/img/groupList.png" style="width: 550px;height: 400px" alt="a nice person" loading="lazy" data-aos="zoom-in-right">
+        <img class="img-fluid rounded-5 ms-5 mb-n5 shadow" src="/img/groupDetail.png" style="width: 450px;height: 400px" alt="another nice person" loading="lazy" data-aos="zoom-in-up">
       </div>
       <div class="col-12 col-lg-5 bg-dark rounded-5 py-5" data-aos="fade">
-        <span class="h5 text-secondary fw-lighter">Do you like faces?</span>
-        <h2 class="display-4">We constantly adding new images to our website. Does it make sense? No!</h2>
+        <span class="h5 text-secondary fw-lighter">여러명이서 같이 운동하고싶으세요?</span>
+        <h2 class="display-4" style="font-size: 48px;">그룹운동 게시판을 통해 그룹운동을 만들거나 참가신청을 해보세요!</h2>
       </div>
     </div>
   </div>
@@ -159,14 +156,14 @@
 <div class="container px-vw-5 py-vh-5">
   <div class="row d-flex align-items-center">
     <div class="col-12 col-lg-5 text-center text-lg-end" data-aos="zoom-in-right">
-      <span class="h5 text-secondary fw-lighter">What we charge</span>
-      <h2 class="display-4">You get all our knowledge for one simple price</h2>
+      <span class="h5 text-secondary fw-lighter">How to Join Group?</span>
+      <h2 class="display-4">시간,장소에 관계없이 그룹운동에 참여해보세요!</h2>
     </div>
     <div class="col-12 col-lg-7 bg-dark rounded-5 py-vh-3 text-center my-5" data-aos="zoom-in-up">
       <h2 class="display-huge mb-5">
         <span class="fs-4 me-2 fw-light">$</span><span class="border-bottom border-5">499</span><span class="fs-6 fw-light">/day</span></h2>
-      <p class="lead text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <a href="#" class="btn btn-xl btn-light">Sign up
+      <p class="lead text-secondary">같이운동하고 싶은 종목, 시간, 장소에 상관없이 그룹운동하고 싶은 모임에 참여해보세요! 참여하고 싶은 그룹운동을 못찾겠나요? 직접 그룹운동 모임을 만들어보세요! 같이 운동하고싶은 사람을 선택할 수 있습니다.</p>
+      <a href="/board/list" class="btn btn-xl btn-light" style="font-weight: 550px;"><strong>그룹운동GOgo</strong>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
 </svg>
@@ -296,7 +293,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
     <div class="col-12 col-lg-6">
       <div class="p-5 pt-0" data-aos="fade">
         <span class="h5 text-secondary fw-lighter">What others have to say</span>
-        <h2 class="display-4">Invidunt ut labore et dolore magna aliquyam erat.</h2>
+        <h2 class="display-4" style="font-size: 40px;">실사용자들의 평점 및 후기</h2>
       </div>
       <div class="rounded-5 bg-black p-5 shadow mt-5 gradient" data-aos="zoom-in-left">
         <div class="fs-1">
@@ -347,30 +344,27 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
   <div class="container py-vh-4 text-secondary fw-lighter">
     <div class="row">
       <div class="col-12 col-lg-5 py-4 text-center text-lg-start">
-            <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="index.html">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
-    <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z"/>
-    <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z"/>
-  </svg>
-  <span class="ms-md-1 mt-1 fw-bolder me-md-5">Klar</span>
-</a>
+           <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="/board/index">
+           <i class="fa-solid fa-person-running" onclick="location.href='/board/index'" style="color: white;"></i>
+  			<span class="ms-md-1 mt-1 fw-bolder me-md-5">Gogo</span>
+		</a>
 
       </div>
       <div class="col border-end border-dark">
-        <span class="h6">Company</span>
+        <span class="h6">GitHub</span>
 <ul class="nav flex-column">
   <li class="nav-item">
-    <a href="#" class="link-fancy link-fancy-light">About us</a>
+    <a href="https://github.com/rnaqpddl123" class="link-fancy link-fancy-light">rnaqpddl123</a>
   </li>
   <li class="nav-item">
-    <a href="#" class="link-fancy link-fancy-light">Legal</a>
+    <a href="https://github.com/jihyePH" class="link-fancy link-fancy-light">jihyePH</a>
   </li>
 
   <li class="nav-item">
-    <a href="#" class="link-fancy link-fancy-light">Career</a>
+    <a href="https://github.com/znhee" class="link-fancy link-fancy-light">znhee</a>
   </li>
   <li class="nav-item">
-    <a href="#" class="link-fancy link-fancy-light">Contact</a>
+    <a href="https://github.com/NOSTALJIAN" class="link-fancy link-fancy-light">NOSTALJIAN</a>
   </li>
 </ul>
       </div>
@@ -419,15 +413,9 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
     </div>
   </div>
   <div class="container text-center small py-vh-2 border-top border-dark">Made by
-    <a href="https://templatedeck.com" class="link-fancy link-fancy-light" target="_blank">templatedeck.com</a>
+    <a href="https://templatedeck.com" class="link-fancy link-fancy-light" target="_blank">MIN</a>
   </div>
 </footer>
-
-
-
-
-
-
 
 
 <script src="/js/bootstrap.bundle.min.js"></script>

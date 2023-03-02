@@ -46,20 +46,11 @@ public class BoardMateServiceImpl implements BoardMateService {
 		bMateDao.applyCancel2(bMate);
 	}
 	
-	@Override
-	public int confirm(BoardMate bMate) {
-		int confirmNum = bMateDao.confirm(bMate);
-		return confirmNum;
-	}
-	@Override
-	public int confirm2(BoardMate bMate) {
-		int confirmNum2 = bMateDao.confirm2(bMate);
-		return confirmNum2;
-	}
 
 	@Override
-	public List<Board> getApplyList(String uid) {
-		List<Board> list = bMateDao.getApplyList(uid);
+	public List<Board> getApplyList(String uid, int page) {
+		int offset = (page-1) * 10 ;
+		List<Board> list = bMateDao.getApplyList(uid, offset);
 		return list;
 	}
 
@@ -70,10 +61,12 @@ public class BoardMateServiceImpl implements BoardMateService {
 	}
 
 	@Override
-	public List<Board> getMyList(String uid) {
-		List<Board> list = bMateDao.getMyList(uid);
+	public List<Board> getMyList(String uid, int page){
+		int offset = (page-1) * 10 ;
+		List<Board> list = bMateDao.getMyList(uid, offset);
 		return list;
 	}
+	
 
 	@Override
 	public List<Board> getDoneList(String uid) {
@@ -120,6 +113,19 @@ public class BoardMateServiceImpl implements BoardMateService {
 		int bIsFull = boardDao.getbIsFull(bid);
 		return bIsFull;
 	}
+
+	@Override
+	public int getApplyListCount(String uid) {
+		int count = bMateDao.getApplyListCount(uid);
+		return count;
+	}
+
+	@Override
+	public int getMyListCount(String uid) {
+		int count = bMateDao.getMyListCount(uid);
+		return count;
+	}
+
 
 	
 }

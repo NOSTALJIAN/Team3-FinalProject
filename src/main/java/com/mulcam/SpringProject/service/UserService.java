@@ -15,6 +15,8 @@ public interface UserService {
 	public static final int CORRECT_LOGIN=0;
 	public static final int WRONG_PASSWORD=1;
 	public static final int UID_NOT_EXIST=2;
+	public static final int UID_DELETE=3;
+	public static final int UID_EXILE=4;
 	
 	void register(User u);
 

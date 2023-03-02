@@ -9,11 +9,14 @@
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
+	<div style="margin-bottom: 600px;">
+	<div style="margin-left: 450px;margin-top: 20px;">
 	<button onclick="location.href ='/user/admin'">전체회원</button>
 	<button onclick="location.href ='/user/admin?isDeleted=0'">정상회원</button>
 	<button onclick="location.href ='/user/admin?isDeleted=1'">탈퇴예정회원</button>
 	<button onclick="location.href ='/user/admin?isDeleted=2'">추방회원</button>
-	<table border="1" style="margin: 50px; width: 80%">
+	</div>
+	<table border="1" style="margin-top:-0.5px;margin-left:170px; width: 80%">
 		<tr>
 			<th width="10%">UID</th><th width="7%">이름</th>
 			<th width="13%">email</th><th width="10%">전화번호</th>
@@ -37,11 +40,13 @@
 			<td id="${user.uid}">추방회원</td>	
 			</c:if>
 			<td><button onclick="cancle('${user.uid}')">추방/탈퇴취소</button>
-			<button onclick="delete1('${user.uid}')">탈퇴시키기</button>
+			<button onclick="delete1('${user.uid}')">강제 탈퇴</button>
 			<button onclick="exile('${user.uid}')">추방하기</button></td>
 		</tr>
 		</c:forEach>
 	</table>
+	</div>
+	
 	<script>
 	function cancle(uid){
 		const fcuid = document.getElementById(uid);
