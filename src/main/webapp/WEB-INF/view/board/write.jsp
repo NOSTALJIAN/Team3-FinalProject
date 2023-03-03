@@ -71,7 +71,7 @@
 											maxlength="5000" rows="10"></textarea></td>
 								</tr>
 							</table>
-							<div class="btn-place" style="margin-left:260px;">
+							<div class="btn-place" style="margin-left:160px;">
 								<button class="btn-hover color-9 write-btn" type="submit" value="글쓰기"
 									style="margin-left: -110px;">글쓰기</button>
 								<button class="btn-hover color-8 write-btn" type="reset" value="취소" style="margin-left: 40px;">취소</button>
