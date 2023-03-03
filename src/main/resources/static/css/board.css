@@ -262,8 +262,6 @@ select.board-input {
 
 .board-view-content {
   width: 65%;
-  height: 300px;
-  position: absolute;
   text-align: left;
 }
 
