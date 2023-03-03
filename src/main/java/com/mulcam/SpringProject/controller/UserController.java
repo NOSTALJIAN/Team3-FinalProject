@@ -120,6 +120,9 @@ public class UserController {
 	/** 로그인 페이지 */
 	@GetMapping("/login")
 	public String loginform(HttpServletRequest req, HttpSession session) {
+		if (userSession.getUid() != null) {
+			return "/board/index";
+		}
 		//로그인하기전 페이지 주소 세션에 저장
 		String prevPage="";
 		String confirm = (req.getParameter("confirm")==null || req.getParameter("confirm")=="") ? "0" : req.getParameter("confirm");
