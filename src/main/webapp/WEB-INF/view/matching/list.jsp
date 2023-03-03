@@ -23,20 +23,20 @@
 
 <body class="bg-black text-white mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
 <%@ include file="../common/top.jsp" %>
-	<div class="container" style=" padding-bottom: 300px; margin-top: 50px;">
+	<div class="container" style=" padding-bottom: 300px; margin-top: 20px;">
         <div class="row" style="justify-content: space-evenly">
             <!-- =================== main =================== -->
             <div class="col-sm-9" style="margin-top: ;" >
-				<h3 style="color: white; margin-left: 90px;"><strong>운동친구 매칭</strong></h3>
-					<button type="button" class="btn-hover color-9 postion" onclick="location.href='/matching/condition'" style="margin-left: 200px;">
+				<h3 style="color: white; margin-left: 190px;"><strong>운동친구 매칭</strong></h3>
+					<button type="button" class="btn-hover color-9 postion" onclick="location.href='/matching/condition'" style="margin-left: 300px;width: 115px;">
 					매칭조건
 					</button>
 				<div class="board-list">
-				<a href="#"><button type="button" class="btn-hover color-3 fix-position" style="padding-bottom: 3px;width: 90px;margin-right: 70px;" onclick="location.href='#'">Top</button></a>	
+				<a href="#"><button type="button" class="btn-hover color-3 fix-position" style="padding-bottom: 3px;width: 70px;margin-right: 70px;" onclick="location.href='#'">Top</button></a>	
 				</div>			
-				<div class="container" style="margin-top: -80px">
+				<div class="container" style="margin-top: -120px">
 			    	<div class="row d-flex justify-content-center py-vh-5 pb-0">
-			        	<div class="col-12 col-lg-10 col-xl-8">
+			        	<div class="col-12 col-lg-10 col-xl-8" style="margin-left: 130px;">
 			        		<c:forEach var="m" items="${matchingList}">
 					      		<div class="row d-flex align-items-start" data-aos="fade-right">
 					        		<div class="col-12 col-lg-7">
@@ -66,6 +66,7 @@
 			</div>
 		</div>
 	</div>
+		<%@ include file="../common/bottom1.jsp" %>
 	<script src="/js/bootstrap.bundle.min.js"></script>
 	<script src="/js/aos.js"></script>
 	<script>
@@ -111,12 +112,11 @@
 				success: function(result){
 					mateuid.innerText = result;
 					console.log(result);
-					mateuid.style.cssText = 'background-color:white; color:black;'
+					mateuid.style.cssText = 'background-color:white; color:white;'
 				}
 			  });
 		  }
 	  }
-	  
 	</script>
 </body>
 </html>

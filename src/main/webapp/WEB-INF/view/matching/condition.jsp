@@ -94,7 +94,8 @@
 			</div>
 		</div>
 	</div>
-	
+	<div style="margin-top: 280px;">
+	<%@ include file="../common/bottom1.jsp" %></div>
 	<script src="/js/matchingCondition.js"></script>
 	<script>
 	${mC.pGender}.checked = true;

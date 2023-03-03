@@ -42,6 +42,8 @@ public interface BoardService {
 	public void updateReply(Reply reply);
 
 	public void deleteReply(int rid);
+
+	public String getBoardState(String sessionUid, int bid);
 		
 	}
 	

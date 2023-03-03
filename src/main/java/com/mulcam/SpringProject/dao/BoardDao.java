@@ -75,5 +75,13 @@ public interface BoardDao {
 	
 	@Select("SELECT bIsFull from board where bid=#{bid}")
 	public int getbIsFull(int bid);
+
+	@Select("SELECT COUNT(*) FROM boardRelationship	WHERE bid = #{bid} AND uid2 = #{sessionUid};")
+	public int getBoardRelationShipState(String sessionUid, int bid);
+
+	@Select("SELECT COUNT(*) FROM boardMate	WHERE bid = #{bid} AND uid = #{sessionUid};")
+	public int getBoardMateState(String sessionUid, int bid);
+	
+	
 	
 }

@@ -33,6 +33,7 @@ public class UserController {
 	@Value("${naver.accessId}") private String accessId;	
 	@Value("${naver.secretKey}") private String secretKey;
 	@Value("${spring.servlet.multipart.location}") private String uploadDir;
+	@Value("${location.port}") private String locationPort;
 	
 	@Autowired private UserSession userSession;	
 	@Autowired private UserService service;
@@ -42,6 +43,8 @@ public class UserController {
 	/** 회원가입 페이지*/
 	@GetMapping("/register")
 	public String register() {
+		if (userSession.getUid() != null)
+			return "redirect:/board/index";
 		return "user/register";
 	}
 	
@@ -119,21 +122,28 @@ public class UserController {
 	
 	/** 로그인 페이지 */
 	@GetMapping("/login")
-	public String loginform(HttpServletRequest req, HttpSession session) {
+	public String loginform(HttpServletRequest req, HttpSession session, Model model) {
+		// 이미 로그인된 상태이면 알람창띄우고 메인페이지로 돌아가기
+		if (userSession.getUid() != null) {
+			model.addAttribute("msg", "이미 로그인된 상태입니다.");
+			model.addAttribute("url", "/board/index");
+			return "common/alertMsg";
+		}
+		
 		//로그인하기전 페이지 주소 세션에 저장
 		String prevPage="";
 		String confirm = (req.getParameter("confirm")==null || req.getParameter("confirm")=="") ? "0" : req.getParameter("confirm");
 		if (confirm.equals("0")) {	// 로그인 버튼을 눌러서 들어왔을경우
 			prevPage = (String) req.getHeader("REFERER");
 			if (prevPage == null) {	// 주소를 직접입력하여 들어왔을경우 board/index페이지로 이동
-				prevPage = "http://localhost:8090/board/index";
+				prevPage = locationPort + "/board/index";
 			}
 		} else {	// 운동친구눌러서 로그인 페이지 띄웠을경우
-			prevPage = "http://localhost:8090/matching/list";
+			prevPage = locationPort + "/matching/list";
 		}
 		// 세션에 이전 페이지 저장(단, 로그인 실패시 세션에 새로 저장X)
 		if (!(prevPage.contains("/user/login"))) { 
-			// 앞에 http://localhost:8090제거
+			// 앞에 http://localhost:8090이나 http://49.50.173.221:8090 제거
 			String url = prevPage.substring(prevPage.lastIndexOf("8090")+4);
 			userSession.setPrevPage(url);
 		}
@@ -151,7 +161,7 @@ public class UserController {
 		case UserService.CORRECT_LOGIN :
 			// 이전페이지 불러오기
 			String url = userSession.getPrevPage();
-			if (url.equals(null))
+			if (url == null)
 				url = "/board/index";
 			// 세션에 이름,아이디,닉네임 저장
 			session.setAttribute("sessionUid", uid);
@@ -378,7 +388,4 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/board/index";
 	}
-	
-	
-	
 }

@@ -73,5 +73,7 @@
 		});
 	}
 	</script>
+	<div style="margin-top: 280px;">
+	<%@ include file="../common/bottom1.jsp" %></div>
 </body>
 </html>

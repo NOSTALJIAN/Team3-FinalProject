@@ -19,11 +19,11 @@
   <div class="row d-flex align-items-center justify-content-center py-vh-5 rounded-4 bg-gradient rwd-table bg-black " >
     <div class="col-12 col-xl-10">
       <span class="h5 text-white fw-lighter">Our Mission</span>
-      <h1 class="display-huge mt-3 mb-3 lh-1 text-white">Find your Health mate near by you</h1>
+      <h1 class="display-huge mt-3 mb-3 lh-1 text-white"><strong>우리 같이 운동할까요?</strong></h1>
     </div>
     <div class="col-12 col-xl-8">
-      <p class="lead text-white">근처에 있는 동네 운동친구를 만들어보세요</p>
-      <p class="lead text-white">그룹운동 게시판을 통해서 다같이 운동을 해보세요</p>
+      <p class="lead text-white">근처에 있는 동네 운동친구를 만들어보세요.</p>
+      <p class="lead text-white">그룹운동 게시판을 통해서 다같이 운동을 해보세요.</p>
     </div>
     <div class="col-12 text-center">
       <a href="/user/register" class="btn btn-xl btn-light">Join us
@@ -57,8 +57,9 @@
   <div class="container px-vw-5 py-vh-5">
     <div class="row d-flex align-items-center">
       <div class="col-12 col-lg-7 text-lg-end" data-aos="fade-right">
-        <span class="h5 text-secondary fw-lighter">What we do</span>
-        <h2 class="display-4" style="font-size: 45px;">근처에서 같이 운동하고 싶은 친구를 찾아보세요.<br> 운동종목, 시간, 장소를 정하여 개인 또는 그룹운동을 할 수 있습니다.</h2>
+        <span class="h5 text-secondary fw-lighter" style="margin-right: 100px;">What we do</span>
+        <h2 class="display-4" style="font-size: 43px;font-weight: bold;">같이 운동하고 싶은 친구를<br> 근처에서 찾아보세요.<br> </h2>
+        <h4 style="font-size: 30px;text-align: center;">운동 종목, 시간, 장소를 정하여<br> 개인 또는 그룹운동을 할 수 있습니다.</h4>
       </div>
       <div class="col-12 col-lg-5" data-aos="fade-left">
         <h3 class="pt-5">운동 친구 찾기</h3>
@@ -68,7 +69,7 @@
   <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
 </svg>
 </p>
-        <h3 class="border-top border-secondary pt-5 mt-5">그룹 운동</h3>
+        <h3 class="border-top border-secondary pt-5 mt-5">그룹 운동 찾기</h3>
         <p class="text-secondary">여러명이서 다같이 운동하는 그룹운동을 찾아보세요.<br> 축구, 농구, 런닝, 등산 등 어떤 운동이든 같이 할 수 있습니다.
         <br> 운동모임을 만들고, 찾아서 같이 운동을 해보세요.<br>
           <a href="/board/list" class="link-fancy link-fancy-light me-2">그룹운동 GOgo</a>
@@ -90,9 +91,9 @@
         <div class="bg-dark shadow rounded-5 p-0" style="width: 480px;margin-left: 100px;">
           <img src="https://static.hubzum.zumst.com/hubzum/2017/12/18/14/7cb9d3ff220b4335a1e575c137f0ca21.jpg" width="480" height="327" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy" style="height: 327px;width: 480px;">
           <div class="p-5">
-            <p style="font-weight: bold;font-size: 36px;">1.관심운동 선택하기</p>
-            <p class="pb-4 text-secondary">회원가입시 선택한 관심운동으로 운동친구를 찾아보세요.</p> 
-            <p class="pb-4 text-secondary">마이페이지에서 관심운동을 변경할 수 있습니다.</p>
+            <p style="font-weight: bold;font-size: 33px;">1. 관심운동 선택하기</p>
+            <p class="pb-4 text-secondary"style="font-size: 18px;">회원가입시 선택한 관심운동으로<br> 운동친구를 찾아보세요.
+            <br>관심운동은 마이페이지에서 변경 가능합니다.</p>
           </div>
         </div>
       </div>
@@ -101,23 +102,23 @@
         <div class="bg-dark shadow rounded-5 p-0" style="width: 480px;margin-left: 100px;">
           <img src="/img/findfriend.png" width="480" height="442" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
           <div class="p-5">
-          <p style="font-weight: bold;font-size: 36px;">3.운동친구 찾기</p>
-            <p class="pb-4 text-secondary">설정한 매칭조건으로 나타난 운동친구를 찾아보세요.</p>
+          <p style="font-weight: bold;font-size: 33px;">3. 운동친구 찾기</p>
+            <p class="pb-4 text-secondary">설정한 매칭조건으로 나타난 <br>운동친구를 찾아보세요.</p>
           </div>
         </div>
       </div>
     </div>
     <div class="col-12 col-md-6">
       <div class="p-5 pt-0 mt-5" data-aos="fade">
-        <span class="h5 text-secondary ">How to find Health Mate</span>
-        <h2 class="display-4" style="font-size: 46px;">운동친구 찾는 방법</h2>
+        <span class="h5 text-secondary" style="font-size: 21px;">How to find Health Mate</span>
+        <h2 class="display-4" style="font-size: 42px;">운동친구 찾는 방법</h2>
       </div>
       <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
         <div class="bg-dark shadow rounded-5 p-0" style="width: 480px;">
           <img src="/img/matchingg.png" width="480" height="390" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
           <div class="p-5" >
-           <p style="font-weight: bold;font-size: 36px;">2.매칭조건 설정하기</p>
-            <p class="pb-4 text-secondary">같이 운동하고 싶은 종목, 거리, 성별, 나이대 등 매칭조건을 설정해보세요.</p>
+           <p style="font-weight: bold;font-size: 33px;">2. 매칭조건 설정하기</p>
+            <p class="pb-4 text-secondary">같이 운동하고 싶은 <br>종목, 거리, 성별, 나이대 등<br> 매칭조건을 설정해보세요.</p>
           </div>
         </div>
       </div>
@@ -126,8 +127,8 @@
         <div class="bg-dark shadow rounded-5 p-0" style="width: 480px;">
           <img src="/img/friend.png" width="480" height="327" alt="abstract image" class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
           <div class="p-5">
-           <p style="font-weight: bold;font-size: 36px;">4.친구신청하기</p>
-            <p class="pb-4 text-secondary">운동친구 목록에서 같이 운동하고 싶은 친구에게 친구신청을 보내 운동친구를 만들어보세요.</p>
+           <p style="font-weight: bold;font-size: 33px;">4. 친구신청하기</p>
+            <p class="pb-4 text-secondary">같이 운동하고 싶은 친구에게<br> 친구신청을 보내 운동친구를 만들어보세요.</p>
           </div>
         </div>
       </div>
@@ -145,8 +146,8 @@
         <img class="img-fluid rounded-5 ms-5 mb-n5 shadow" src="/img/groupDetail.png" style="width: 450px;height: 400px" alt="another nice person" loading="lazy" data-aos="zoom-in-up">
       </div>
       <div class="col-12 col-lg-5 bg-dark rounded-5 py-5" data-aos="fade">
-        <span class="h5 text-secondary fw-lighter">여러명이서 같이 운동하고싶으세요?</span>
-        <h2 class="display-4" style="font-size: 48px;">그룹운동 게시판을 통해 그룹운동을 만들거나 참가신청을 해보세요!</h2>
+        <span class="h5 text-secondary fw-lighter">여러명이서 같이 운동하고 싶으세요?</span>
+        <h2 class="display-4" style="font-size: 48px;">그룹운동 게시판을 통해<br> 그룹운동을 만들거나<br> 참가신청을 해보세요!</h2>
       </div>
     </div>
   </div>
@@ -156,13 +157,13 @@
 <div class="container px-vw-5 py-vh-5">
   <div class="row d-flex align-items-center">
     <div class="col-12 col-lg-5 text-center text-lg-end" data-aos="zoom-in-right">
-      <span class="h5 text-secondary fw-lighter">How to Join Group?</span>
-      <h2 class="display-4">시간,장소에 관계없이 그룹운동에 참여해보세요!</h2>
+      <span class="h5 text-secondary fw-lighter" style="margin-right: 270px;">How to Join Group?</span>
+      <h2 class="display-4" style="font-size: 45px;">시간, 장소에 관계없이 <br> 그룹운동에 참여해보세요!</h2>
     </div>
     <div class="col-12 col-lg-7 bg-dark rounded-5 py-vh-3 text-center my-5" data-aos="zoom-in-up">
       <h2 class="display-huge mb-5">
-        <span class="fs-4 me-2 fw-light">$</span><span class="border-bottom border-5">499</span><span class="fs-6 fw-light">/day</span></h2>
-      <p class="lead text-secondary">같이운동하고 싶은 종목, 시간, 장소에 상관없이 그룹운동하고 싶은 모임에 참여해보세요! 참여하고 싶은 그룹운동을 못찾겠나요? 직접 그룹운동 모임을 만들어보세요! 같이 운동하고싶은 사람을 선택할 수 있습니다.</p>
+        <span class="fs-4 me-2 fw-light"></span><span class="border-bottom border-5">365</span><span class="fs-6 fw-light">/day</span></h2>
+      <p class="lead text-secondary">같이 운동하고 싶은 종목, 시간, 장소에 상관없이<br>  그룹운동하고 싶은 모임에 참여해보세요! <br> 참여하고 싶은 그룹운동을 못찾겠나요?<br>  직접 그룹운동 모임을 만들어보세요!<br>  같이 운동하고싶은 사람을 선택할 수 있습니다.</p>
       <a href="/board/list" class="btn btn-xl btn-light" style="font-weight: 550px;"><strong>그룹운동GOgo</strong>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
@@ -182,28 +183,29 @@
   <div class="col-6 d-flex align-items-center bg-dark shadow rounded-5 p-0" data-aos="zoom-in-up">
     <div class="row d-flex justify-content-center">
       <div class="col-12">
-    <img src="/img/webp/person103.webp" width="684" height="457" alt="our CEO with some nice numbers" class="img-fluid rounded-5" loading="lazy">
+    <img src="https://blog.kakaocdn.net/dn/yl9Ol/btqGvZsrae3/7XiHULTq5QEkE2SmZ6aPT1/img.jpg" width="684" height="457" alt="our CEO with some nice numbers" class="img-fluid rounded-5" loading="lazy">
   </div>
   <div class="col-12 col-lg-10 col-xl-8 text-center my-5">
-    <p class="lead border-bottom pb-4 border-secondary">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."</p>
-    <p class="text-secondary text-center">Jane Doe, CEO</p>
+    <p class="lead border-bottom pb-4 border-secondary">"운동은 여럿이 함께 해야 엔도르핀이 2배 더 많이 나오고 운동에 따른 고통도 절반밖에 느끼지 않는 것으로 조사됐다. 
+여럿이 함께 운동한 사람은 혼자 운동한 사람보다 통증을 느끼기 시작하는 시점이 2배 더 늦어 통증을 더 잘 견디는 것으로 나타났다." 
+   </p> <p class="text-secondary text-center">주간조선,한경뉴스</p>
 </div>
 </div>
 </div>
   <div class="col-5 offset-1">
     <span class="h5 text-secondary fw-lighter">The numbers</span>
-    <h2 class="display-huge fw-bolder" data-aos="zoom-in-left">+400</h2>
+    <h2 class="display-huge fw-bolder" data-aos="zoom-in-left">200%</h2>
 <p class="h4 fw-lighter text-secondary">
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+    같이 운동할 경우 엔도르핀 2배 효과
 </p>
 
-<h2 class="display-huge fw-bolder border-top border-secondary pt-5 mt-5" data-aos="zoom-in-left">78.981</h2>
-<p class="h4 fw-lighter text-secondary">
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+<h2 class="display-huge fw-bolder border-top border-secondary pt-5 mt-5" data-aos="zoom-in-left">150%</h2>
+<p class="h4 fw-lighter text-secondary" style="font-size: 27px;">
+약물에 비해 우울증, 불안 등 정신적 증상을 완화하는데 약 1.5배 더 높은효과
 </p>
-<h2 class="display-huge fw-bolder border-top border-secondary pt-5 mt-5" data-aos="zoom-in-left">98%</h2>
+<h2 class="display-huge fw-bolder border-top border-secondary pt-5 mt-5" data-aos="zoom-in-left">50%</h2>
 <p class="h4 fw-lighter text-secondary">
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+같이 운동하면 통증 느끼는 시점<br> 2배 늦는 효과
 </p>
 </div>
   </div>
@@ -243,12 +245,13 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
 
 
         </div>
-        <p class="text-secondary lead">"Lorem ipsum dolor sit amet, consectetur tempor incididunt ut labore et dolore magna aliqua ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+        <p class="text-secondary lead">"같이GOgo를 통해서 주말 아침마다 같이 런닝할 운동친구를 찾아서 함께 런닝을 하고있습니다. 이사온지 얼마 안된 동네에서 같이 운동할 친구를 찾
+        아서 너무 즐겁고 런닝 효과도 더 높아졌습니다."</p>
         <div class="d-flex justify-content-start align-items-center border-top border-secondary pt-3">
           <img src="/img/webp/person14.webp" width="96" height="96" class="rounded-circle me-3" alt="a nice person" data-aos="fade" loading="lazy">
           <div>
-            <span class="h6 fw-5">Jane Doemunsky</span><br>
-            <small class="text-secondary">COO, The Boo Corp.</small>
+            <span class="h6 fw-5">박ㅇㅇ</span><br>
+            <small class="text-secondary">서울, 런닝/테니스/축구</small>
           </div>
         </div>
       </div>
@@ -279,12 +282,13 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
 </svg>
 
         </div>
-        <p class="text-secondary lead">"Lorem ipsum dolor sit amet, consectetur tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+        <p class="text-secondary lead">"같이Gogo에서 함께 테니스 1:1 매치를 할 운동친구를 찾았어요. 저와 수준이 비슷한 분을 만나서 같이 테니스를 치니 너무 재밌고 주기적으로
+        시간을 정해서 테니스 매치를 진행하고 있어요!"</p>
         <div class="d-flex justify-content-start align-items-center border-top border-secondary pt-3">
           <img src="/img/webp/person13.webp" width="96" height="96" class="rounded-circle me-3" alt="a nice person" data-aos="fade" loading="lazy">
           <div>
-            <span class="h6 fw-5">Jane Doemunsky</span><br>
-            <small class="text-secondary">COO, The Boo Corp.</small>
+            <span class="h6 fw-5">김ㅇㅇ</span><br>
+            <small class="text-secondary">경기, 테니스/런닝/등산</small>
           </div>
         </div>
       </div>
@@ -301,34 +305,30 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 </svg>
 
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+</svg>
 
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 </svg>
 
-
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 </svg>
 
-
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 </svg>
-
-
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-</svg>
-
 
         </div>
-        <p class="lead">"Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+        <p class="lead" style="font-size: 24px;">"그룹운동 모임을 통해서 제가 참여하고 싶은 모임에 참여하거나, 마음에 드는 모임이 없을때는 제가 그룹운동 모임을 직접 만들어서 진행하니
+        같이 운동도 하고 재미도 있고 운동효율도 올라가서 즐겁습니다."</p>
         <div class="d-flex justify-content-start align-items-center border-top pt-3">
           <img src="/img/webp/person16.webp" width="96" height="96" class="rounded-circle me-3" alt="a nice person" data-aos="fade" loading="lazy">
           <div>
-            <span class="h6 fw-5">Jane Doemunsky</span><br>
-            <small>COO, The Boo Corp.</small>
+            <span class="h6 fw-5">이ㅇㅇ</span><br>
+            <small>인천, 농구/축구/등산</small>
           </div>
         </div>
       </div>
@@ -413,7 +413,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
     </div>
   </div>
   <div class="container text-center small py-vh-2 border-top border-dark">Made by
-    <a href="https://templatedeck.com" class="link-fancy link-fancy-light" target="_blank">MIN</a>
+    <a href="https://templatedeck.com" class="link-fancy link-fancy-light" target="_blank">3조 MIN</a>
   </div>
 </footer>
 

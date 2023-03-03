@@ -22,7 +22,7 @@
 	</style>
 </head>
 
-<body style="margin-bottom: 200px; background-color: black; color: white;" class="register">
+<body style="margin-bottom: 170px; background-color: black; color: white;" class="register">
    	<%@ include file="../common/top.jsp" %>
    	<div style="margin-left: 600px; margin-top: 30px;">
 	<h3 style="color: white;">회원가입</h3>
@@ -119,7 +119,7 @@
 		</table>
 	</form>
 	</div>
-	
+	<%@ include file="../common/bottom1.jsp" %>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		// id 중복체크
@@ -148,8 +148,8 @@
 		}
 		function nickname_check(){
 			const nickname = document.getElementById('nickname').value; 
-			if (nickname.length < 4 || nickname.length > 13) {
-				alert('닉네임은 3글자이상 12글자 이하로 입력해주세요');
+			if (nickname.length < 2 || nickname.length > 13) {
+				alert('닉네임은 2글자이상 12글자 이하로 입력해주세요');
 				return false;
 			}
 			const nicknameDuplication = document.getElementById('nicknameDuplication');

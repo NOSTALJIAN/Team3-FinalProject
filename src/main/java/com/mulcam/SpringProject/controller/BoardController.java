@@ -130,9 +130,12 @@ public class BoardController {
 //		model.addAttribute("fileList", jsonFiles);
 		model.addAttribute("b", board);
 		
+		// boardmate나 boardrelationship에 등록되어있는지 확인절차
+		String state = bsv.getBoardState(sessionUid, bid);
+		model.addAttribute("state", state);
+		
 		List<Reply> replyList = bsv.getReplyList(bid);
 		model.addAttribute("replyList", replyList);
-		System.out.println(replyList);
 
 		return "board/detail";
 	}
@@ -243,7 +246,6 @@ public class BoardController {
 		
 		// 게시글의 uid와 댓글을 쓰려고 하는 사람의 uid가 같으면 isMine이 1
 		String sessionUid = userSession.getUid();
-		System.out.println(sessionUid);
 		int rIsMine = (uid.equals(sessionUid)) ? 1 : 0;
 		
 		Reply reply = new Reply(bid, sessionUid, rContent, rIsMine);
@@ -255,7 +257,6 @@ public class BoardController {
 	/** 댓글 수정 */
 	@PostMapping("/replyUpdate")
 	public String replyUpdate(HttpServletRequest req, Model model, HttpSession session) {
-		System.out.println(req.getParameter("rid"));
 		String rContent = req.getParameter("rContent");
 		int bid = Integer.parseInt(req.getParameter("bid"));
 		String uid = req.getParameter("uid"); // 게시글의 uid

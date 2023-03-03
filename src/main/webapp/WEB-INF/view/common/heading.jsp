@@ -18,6 +18,7 @@
   <meta name="HandheldFriendly" content="true">
   <title>같이운동하러Gogo</title>
   <link rel="stylesheet" href="/css/theme.min.css">
+  <link rel="stylesheet" href="/css/theme.min.css?after">
   <link rel="stylesheet" href="/css/board.css?after">
   <!-- jian adds -->
   <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js" ;></script>

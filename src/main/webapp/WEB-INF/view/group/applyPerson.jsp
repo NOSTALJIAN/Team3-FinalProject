@@ -134,5 +134,6 @@ h6:after {
 				}
 			}
 	</script>
+	<%@ include file="../common/bottom1.jsp" %>
 </body>
 </html>
