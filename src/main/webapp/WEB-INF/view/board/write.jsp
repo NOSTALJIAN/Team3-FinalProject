@@ -29,7 +29,7 @@
 									<h3 class="board-title" style="color: white;"><strong>게시글 쓰기</strong></h3>
 								</td>
 								<td class="col-2">
-									<button onclick="location.href='/board/list'" class="btn-hover color-8 ">목록</button>
+									<button onclick="location.href='/board/list'" class="btn-hover color-8" style="width: 100px;">목록</button>
 								</td>
 							</tr>
 						</table>
@@ -41,11 +41,11 @@
 							<input type="hidden" name="bAddr" id="bAddr" />
 							<table style="margin-left: 230px;">
 								<tr>
-									<td><input style="border: 1px solid #808080;background-color: lightgray;" class="board-input" type="text" placeholder="제목"
+									<td><input style="border: 1px solid #808080;background-color: lightgray;" class="board-input" type="text" placeholder="*제목"
 											name="bTitle" maxlength="128" required /></td>
 								</tr>
 								<tr>
-									<td><input style="border: 1px solid #808080;background-color: lightgray;" class="board-input" type="number" placeholder="인원수"
+									<td><input style="border: 1px solid #808080;background-color: lightgray;" class="board-input" type="number" placeholder="*모집인원"
 											name="bUserCount" /></td>
 								</tr>
 								<tr>
@@ -71,10 +71,10 @@
 											maxlength="5000" rows="10"></textarea></td>
 								</tr>
 							</table>
-							<div class="btn-place" style="margin-left:150px;">
+							<div class="btn-place" style="margin-left:260px;">
 								<button class="btn-hover color-9 write-btn" type="submit" value="글쓰기"
-									style="margin-left: -20px;">글쓰기</button>
-								<button class="btn-hover color-8 write-btn" type="reset" value="취소">취소</button>
+									style="margin-left: -110px;">글쓰기</button>
+								<button class="btn-hover color-8 write-btn" type="reset" value="취소" style="margin-left: 40px;">취소</button>
 							</div>
 						</form>
 					</div>
@@ -97,7 +97,7 @@
 					</div>
 				</div>
 		</div>
-				
+			<%@ include file="../common/bottom1.jsp" %>	
 				
 		<script src="/js/map.js?q=1"></script>
 		<script>

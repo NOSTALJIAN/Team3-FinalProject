@@ -60,7 +60,7 @@ h6:after {
 			<h5>그룹운동 참가자 목록</h5>
 			<c:forEach var="gm" items="${groupMateList}" varStatus="loop">
 				<c:if test="${loop.first}">
-    				<h6 style="margin-left: 250px;margin-top:-3px; font-size: 23px;">${gm.bid}. ${gm.bTitle}</h6>
+    				<h6 style="margin-left: 250px;margin-top:-3px; font-size: 23px;"onclick="location.href='/board/detail?bid=${gm.bid}&uid=${gm.uid}'">${gm.bid}. ${gm.bTitle}</h6>
     			</c:if>
     		</c:forEach>
     		<button class="btn-hover color-9 write-btn" style="margin-left: 300px;margin-top: -15px;margin-bottom: -45px;width: 115px;">
@@ -94,5 +94,6 @@ h6:after {
 			</div>
 		</div>
 	</div>
+	<%@ include file="../common/bottom1.jsp" %>
 </body>
 </html>

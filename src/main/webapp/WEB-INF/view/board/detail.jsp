@@ -56,7 +56,7 @@
 				<div class="detail-content">
 					<div>
 						<div>
-                          <p class="board-view-cnt" style="margin-left: 200px;">
+                          <p class="board-view-cnt" style="margin-left: 155px;">
                             <span>조회${b.bViewCount}</span> <span>댓글${b.bReplyCount}</span> <span>작성자 ${n}</span> 
                           </p>
                         </div>
@@ -99,6 +99,7 @@
 				<!-- 지도 -->
 				<div class="board-view-map" id="map" style="color: black;margin-right: 100px;"></div>
         	</div>
+        	<hr style="margin-left: 250px;">
         	<div class="">
 					<div class="board-view-content" style="text-align: left; color: white;padding-top: 10px;padding-left: 20px;">
 					${fn:replace(b.bContent, newline, '<br>')}
@@ -108,18 +109,19 @@
 				<!-- 댓글 -->
 				<div class="col-12"></div>
 				<div class="col-12" style="margin-top: 400px; margin-left: 180px;">
-				<h3 class="detail-title" style=" margin-right:1100px;">댓글</h3>
+				<h3 class="detail-title" style=" margin-right:1100px;margin-bottom: 29px;">댓글</h3>
 					<c:forEach var="reply" items="${replyList}" varStatus="loop">
 						<c:if test="${reply.rIsMine eq 0}">
 							<div class="d-flex flex-row mt-1">
 								<div class="card bg-light text-dark w-96 rounded" >
-									<div class="card-body" id="reply${loop.count}" style="width:500px; ">		
-										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
+									<div class="card-body" id="reply${loop.count}" style="width:550px; ">		
+										${fn:replace(reply.rContent, newline, '<br>')} 
 										<c:if test="${reply.uid eq sessionUid}">
-											<button onclick="replyUpdate('block', ${loop.count})" style="float: right" class="btn btn-primary">수정</button>
-											<button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right" class="btn btn-danger">삭제</button>
+											<button onclick="replyUpdate('block', ${loop.count})" style="float: right;background-color: blue;color: white;border-radius: 12px;font-size: 19px;">수정</button>
+											<button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right;background-color: red;color: white;border-radius: 12px;font-size: 19px;">삭제</button>
 										</c:if><br>    <!-- uname, regTime-->
-										${fn:replace(reply.rContent, newline, '<br>')}  <!-- content -->
+										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
+										 <!-- content -->
 									</div>
 									<!-- 댓글 수정기능 추가  -->
 									<form class="form-inline d-none" action="/board/replyUpdate" id="replyUpdate${loop.count}" method="post" >
@@ -132,8 +134,8 @@
 													<textarea class="form-control" id="rContent" name="rContent" rows="3">${fn:replace(reply.rContent, newline, '<br>')}</textarea>
 												</td>
 												<td class="col-4 d-flex">
-													<button type="submit" class="btn btn-primary">수정</button>
-													<button onclick="replyUpdate('none', ${loop.count})" class="btn btn-secondary">취소</button>
+													<button type="submit" style="float: right;background-color: blue;color: white;border-radius: 12px;font-size: 19px;">수정</button>
+													<button onclick="replyUpdate('none', ${loop.count})" style="float: right;background-color: black;color: white;border-radius: 12px;font-size: 19px;">취소</button>
 												</td>
 											</tr>
 										</table>
@@ -143,28 +145,29 @@
 						</c:if>
 						<c:if test="${reply.rIsMine eq 1}">
 							<div class="d-flex flex-row-reverse mt-1">
-								<div class="card w-96 rounded" style="margin-right: 100px; border: black;">
-									<div class="card-body text-end" id="reply${loop.count}" style="color: black;">		
-										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
+								<div class="card w-96 rounded" style="margin-right: 100px;">
+									<div class="card-body text-left" id="reply${loop.count}" style="color: black;width: 550px;">		
+										${fn:replace(reply.rContent, newline, '<br>')} 
 										<c:if test="${reply.uid eq sessionUid}">
-											<button onclick="replyUpdate('block', ${loop.count})" style="float: right" class="btn btn-primary">수정</button>
-											<button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right" class="btn btn-danger">삭제</button>
+											<button onclick="replyUpdate('block', ${loop.count})" style="float: right;background-color: blue;color: white;border-radius: 12px;font-size: 19px;">수정</button>
+											<button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right;background-color: red;color: white;border-radius: 12px;font-size: 19px;" >삭제</button>
 										</c:if><br>    <!-- uname, regTime-->
-										${fn:replace(reply.rContent, newline, '<br>')}  <!-- content -->
+										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
+										 <!-- content -->
 									</div>
 									<!-- 댓글 수정기능 추가  -->
 									<form class="form-inline d-none" style="width:680px;" action="/board/replyUpdate" id="replyUpdate${loop.count}" method="post">
 										<input type="hidden" name="bid" value="${b.bid}">     <!-- bid -->
 										<input type="hidden" name="uid" value="${b.uid}">     <!-- uid -->
 										<input type="hidden" name="rid" value="${reply.rid}">     <!-- rid -->
-										<table class="table table-borderless mt-2" style="width: 680px;border: black;">
+										<table class="table table-borderless mt-2" style="width: 580px;">
 											<tr class="d-flex">
 												<td class="col-9">
 													<textarea class="form-control" id="rContent" name="rContent" rows="3">${fn:replace(reply.rContent, newline, '<br>')}</textarea>
 												</td>
 												<td class="col-3 d-flex" >
-													<button type="submit" class="btn btn-primary" style="border: white;">수정</button>
-													<button onclick="replyUpdate('none', ${loop.count})" class="btn btn-secondary" style="border: white;">취소</button>
+													<button type="submit" style="background-color: blue;color: white;border-radius: 12px;font-size: 19px;">수정</button>
+													<button onclick="replyUpdate('none', ${loop.count})" style="background-color: black;color: white;border-radius: 12px;font-size: 19px;">취소</button>
 												</td>
 											</tr>
 										</table>
@@ -196,6 +199,7 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="../common/bottom1.jsp" %>
 	<!-- 지도 -->
 	<script>
 	  var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

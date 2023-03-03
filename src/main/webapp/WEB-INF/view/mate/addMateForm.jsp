@@ -65,7 +65,7 @@
 		</div>
 	</div>
 	
-	
+	<%@ include file="../common/bottom1.jsp" %>
 	<script>
 	function addMate(uid){
 		  const mateuid = document.getElementById(uid);
@@ -87,7 +87,7 @@
 				data: {'receiveUser': uid},
 				success: function(result){
 					mateuid.innerText = result;
-					mateuid.style.cssText = 'background-color:white; color:black;'
+					mateuid.style.cssText = 'background-color:white; color:pink;'
 				}
 			  });
 		  }

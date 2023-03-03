@@ -28,7 +28,7 @@
 							<h3 class="board-title"><strong>게시글 수정</strong></h3>
 						</td>
 						<td class="col-2">
-							<button onclick="location.href='/board/list'" class="btn-hover color-8" style="margin-left: 160px;">목록</button>
+							<button onclick="location.href='/board/list'" class="btn-hover color-8" style="margin-left: 160px;width: 100px;">목록</button>
 						</td>
 					</tr>
 				</table>
@@ -101,7 +101,7 @@
 		    </div>
 	    </div>
   </div>
-    
+    <%@ include file="../common/bottom1.jsp" %>
 	
     <script src="/js/map.js?q=1"></script>
 	<script>
