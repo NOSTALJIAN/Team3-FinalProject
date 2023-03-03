@@ -126,6 +126,18 @@ public class BoardMateServiceImpl implements BoardMateService {
 		return count;
 	}
 
+	@Override
+	public int getApplyDoneCount(String uid) {
+		int count = bMateDao.getApplyDoneCount(uid);
+		return count;
+	}
+
+	@Override
+	public int getMyDoneCount(String uid) {
+		int count = bMateDao.getMyDoneCount(uid);
+		return count;
+	}
+
 
 	
 }

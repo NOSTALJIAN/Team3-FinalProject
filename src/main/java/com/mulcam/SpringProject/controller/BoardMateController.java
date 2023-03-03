@@ -194,16 +194,39 @@ public class BoardMateController {
 	
 	/** 신청 완료 게시글 목록(guest) */
 	@GetMapping("/applyDone")
-	public String applyDoneForm(Model model) {
+	public String applyDoneForm(HttpServletRequest req, Model model) {
 		String uid = userSession.getUid();
 		List<Board> applyDoneList = service.getDoneList(uid);
 		model.addAttribute("applyDoneList", applyDoneList);
+		
+		// pagination
+		String page_ = req.getParameter("p");
+		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("currentBoardPage", page);
+		
+		int totalBoardNo = service.getApplyDoneCount(uid);
+		int totalPages = (int) Math.ceil(totalBoardNo / 10.);
+		
+		int startPage = (int)(Math.ceil((page-0.5)/10) - 1) * 10 + 1;
+		int endPage = Math.min(totalPages, startPage + 9);
+		List<String> pageList = new ArrayList<>();
+		for (int i = startPage; i <= endPage; i++) 
+			pageList.add(String.valueOf(i));
+		model.addAttribute("pageList", pageList);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPages", totalPages);
+		
+		String today = LocalDate.now().toString(); 
+		model.addAttribute("today", today);
 		return "group/applyDone";
 	}
 	
 	/** 정원 마감 게시글 목록(host) */
 	@GetMapping("/groupMade")
-	public String groupMadeForm(Model model) {
+	public String groupMadeForm(HttpServletRequest req, Model model) {
 		String uid = userSession.getUid();
 		List<Board> myDoneList = service.getMyDoneList(uid);
 		
@@ -212,6 +235,29 @@ public class BoardMateController {
 			map.put(b.getBid(), b);
 		}
 		model.addAttribute("myDoneList", map.values());
+		
+		// pagination
+		String page_ = req.getParameter("p");
+		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("currentBoardPage", page);
+		
+		int totalBoardNo = service.getMyDoneCount(uid);
+		int totalPages = (int) Math.ceil(totalBoardNo / 10.);
+		
+		int startPage = (int)(Math.ceil((page-0.5)/10) - 1) * 10 + 1;
+		int endPage = Math.min(totalPages, startPage + 9);
+		List<String> pageList = new ArrayList<>();
+		for (int i = startPage; i <= endPage; i++) 
+			pageList.add(String.valueOf(i));
+		model.addAttribute("pageList", pageList);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPages", totalPages);
+		
+		String today = LocalDate.now().toString(); 
+		model.addAttribute("today", today);
 		return "group/groupMade";
 	}
 	
