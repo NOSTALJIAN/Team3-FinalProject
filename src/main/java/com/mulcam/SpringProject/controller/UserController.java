@@ -135,7 +135,7 @@ public class UserController {
 		// 세션에 이전 페이지 저장(단, 로그인 실패시 세션에 새로 저장X)
 		if (!(prevPage.contains("/user/login"))) { 
 			// 앞에 http://localhost:8090이나 http://49.50.173.221:8090 제거
-			String url = prevPage.substring(prevPage.lastIndexOf("8090")+4);
+			String url = prevPage.substring(prevPage.lastIndexOf("8080")+4);
 			userSession.setPrevPage(url);
 		}
 		return "user/login";
