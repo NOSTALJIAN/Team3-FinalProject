@@ -73,5 +73,6 @@
 		});
 	}
 	</script>
+	<%@ include file="../common/bottom1.jsp" %>
 </body>
 </html>

@@ -22,7 +22,7 @@
 	</style>
 </head>
 
-<body style="margin-bottom: 200px; background-color: black; color: white;" class="register">
+<body style="margin-bottom: 170px; background-color: black; color: white;" class="register">
    	<%@ include file="../common/top.jsp" %>
    	<div style="margin-left: 600px; margin-top: 30px;">
 	<h3 style="color: white;">회원가입</h3>
@@ -119,7 +119,7 @@
 		</table>
 	</form>
 	</div>
-	
+	<%@ include file="../common/bottom1.jsp" %>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		// id 중복체크

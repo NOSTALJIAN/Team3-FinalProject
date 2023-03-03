@@ -23,6 +23,10 @@
 	    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
 	}
 	.pagination{--bs-pagination-color: #363a3e;}
+	.btn-hover.color-10 {
+        background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+    box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
   	</style>
 </head>
 <body style="margin-bottom: 500px; background-color: black; color: white;">
@@ -36,7 +40,7 @@
 				<thead>
 					<tr>
 						<th>제목</th>
-						<th>운동종목</th>
+						<th>종목</th>
 						<th>작성일</th>
 						<th>조회</th>
 						<th>댓글</th>
@@ -53,8 +57,15 @@
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bViewCount}</td>
 							<td onclick="location.href='/board/detail?bid=${my.bid}&uid=${my.uid}'">${my.bReplyCount}</td>
 							<td><button onclick="location.href='/group/applyPerson?bid=${my.bid}&uid=${my.uid}'" class="btn-hover color-8 write-btn">신청자 목록</button></td>
-							<td><span><button class="btn-hover color-3 write-btn" style="width: 120px;margin-left: -50px;">
-							${my.applyCount}/${my.bUserCount} ${my.bUserCount eq my.applyCount ? '모집 마감': '모집중'}</button></span></td>
+							<td>
+								<c:if test="${my.bUserCount eq my.applyCount}">
+									<button class="btn-hover color-10 write-btn" style="width: 120px;margin-left: -50px;">${my.applyCount}/${my.bUserCount} 모집마감</button>
+								</c:if>
+								<c:if test="${my.bUserCount ne my.applyCount}">
+									<button class="btn-hover color-3 write-btn" style="width: 120px;margin-left: -50px;">${my.applyCount}/${my.bUserCount} 모집중</button>
+								</c:if>
+							<!-- <button class="btn-hover color-3 write-btn" style="width: 120px;margin-left: -50px;">
+							${my.applyCount}/${my.bUserCount} ${my.bUserCount eq my.applyCount ? '모집 마감': '모집중'}</button></td> -->
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -98,5 +109,6 @@
 			  });
 		  }
 	</script>
+	<%@ include file="../common/bottom1.jsp" %>
 </body>
 </html>

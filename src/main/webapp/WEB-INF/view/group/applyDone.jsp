@@ -16,7 +16,7 @@
   text-align: center;
 }
  table {
-    width: 1200px;
+    width: 1150px;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
@@ -37,10 +37,10 @@
 				<thead>
 					<tr>
 						<th>제목</th>
-						<th>운동종목</th>
+						<th>종목</th>
 						<th>운동장소</th>
 						<th>운동시간</th>
-						<th>총인원</th>
+						<th>참가인원</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -51,7 +51,7 @@
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bCategory}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bLocation}</td>
 						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${fn:replace(done.bAppointment, 'T', ' ')}</td>
-						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bUserCount}</td>
+						<td onclick="location.href='/board/detail?bid=${done.bid}&uid=${done.uid}'">${done.bUserCount}명</td>
 						<td><button class="btn-hover color-9 write-btn" style="width: 115px;">그룹채팅</button></td>
 					</tr>
 				</c:forEach>
@@ -60,5 +60,6 @@
 		</div>
 	</div>
 </div>
+<%@ include file="../common/bottom1.jsp" %>
 </body>
 </html>

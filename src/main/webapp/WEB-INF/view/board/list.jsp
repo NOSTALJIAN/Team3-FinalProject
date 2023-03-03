@@ -9,6 +9,7 @@
 		text-align: left;
 	}
 	.pagination{--bs-pagination-color: #363a3e;}
+	
 	</style>
 </head>
 
@@ -61,7 +62,14 @@
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">날짜 : ${fn:replace(b.bAppointment, 'T', ' ')}</p>
 									<p onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">모집인원 : ${b.applyCount}/${b.bUserCount}명</p>
 									<button class="btn-hover color-8" style="width: 115px; height: 50px;" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">상세보기</button>
-									<span><button class="btn-hover color-3" style="width: 115px; height: 50px;" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">${b.bIsFull eq 1 ? '모집마감': '모집중'}</button></span>
+									<span>
+										<c:if test="${b.bIsFull eq 1}">
+											<button class="btn-hover color-8" style="width: 115px; height: 50px;">모집 마감</button>
+										</c:if>
+										<c:if test="${b.bIsFull ne 1}">
+											<button class="btn-hover color-3" style="width: 115px; height: 50px;" onclick="location.href='/board/detail?bid=${b.bid}&uid=${b.uid}'">모집중</button>
+										</c:if>
+									</span>
 								</div>	
 							</c:forEach>
 						</div>
@@ -90,7 +98,7 @@
 			</div>
 		</div>
 	</div>
-
+<%@ include file="../common/bottom1.jsp" %>
 	<script src="/js/bootstrap.bundle.min.js"></script>
 	<script src="/js/aos.js"></script>
 	<script>
@@ -155,6 +163,10 @@
 				  });
 			  }
 		  }
+	</script>
+	<!-- 모집 마감시 버튼색상 변경 -->
+	<script>
+	
 	</script>
 </body>
 </html>

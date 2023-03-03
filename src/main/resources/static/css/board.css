@@ -80,6 +80,14 @@
     background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
     box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
+.btn-hover color-7 {
+	 background-image: linear-gradient(to right, #80828b, #635f66, #97a0b3, #928c97);
+	 box-shadow: 0 4px 15px 0 rgb(154 145 167 / 75%);
+}
+.btn-hover.color-10 {
+        background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+    box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
 
 input[type='text'].board-input,
 [type='datetime-local'].board-input,
@@ -253,8 +261,6 @@ select.board-input {
 	}
 
 .board-view-content {
-  border: 2px solid rgb(255, 255, 255);
-  border-radius: 15px;
   width: 65%;
   height: 300px;
   position: absolute;
