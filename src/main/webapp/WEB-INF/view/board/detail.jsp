@@ -83,12 +83,17 @@
 							<td>${fn:replace(b.bRegTime, 'T', ' ')}</td>
 						</tr>
 					</table>
-					<c:if test="${b.uid ne sessionUid && b.applyCount ne b.bUserCount}">
-						<button class="btn-hover color-9 ms-3 col-2" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}" type="button" 
-							style="width:120px;margin-right: -400px;">참가신청</button>
+					<c:if test="${state eq '참가완료'}">
+						<button class="btn-hover color-8 ms-3 col-2"  type="button" style="width:120px; margin-right: -400px;" disabled>참가완료</button>
 					</c:if>
-					<c:if test="${b.uid ne sessionUid && b.applyCount eq b.bUserCount}">
-						<button class="btn-hover color-8 ms-3 col-2"  type="button" style="width:120px; margin-right: -400px;" disabled>모집마감</button>
+					<c:if test="${state ne '참가완료'}">
+						<c:if test="${b.uid ne sessionUid && b.applyCount ne b.bUserCount}">
+							<button class="btn-hover color-9 ms-3 col-2" onclick="apply(${b.bid}, '${b.uid}')" id="${b.bid}" type="button" 
+							style="width:120px;margin-right: -400px;">${state}</button>
+						</c:if>
+						<c:if test="${b.uid ne sessionUid && b.applyCount eq b.bUserCount}">
+							<button class="btn-hover color-8 ms-3 col-2"  type="button" style="width:120px; margin-right: -400px;" disabled>모집마감</button>
+						</c:if>
 					</c:if>
 				</div>
 				<!-- 지도 -->
