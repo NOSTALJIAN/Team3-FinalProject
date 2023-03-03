@@ -58,6 +58,25 @@
 				</tbody>
 			</table>
 		</div>
+		<ul class="pagination justify-content-center mt-4">
+			<c:if test="${currentBoardPage gt 10}">
+				<li class="page-item"><a class="page-link" href="/group/applyDone?p=${startPage - 1}&f=${field}&q=${query}">&laquo;</a></li>
+			</c:if>
+			<c:if test="${currentBoardPage le 10}">
+				<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+			</c:if>
+			<c:forEach var="page" items="${pageList}" varStatus="loop">    
+				<li class="page-item ${(currentBoardPage eq page) ? 'active' : ''}">
+					<a class="page-link" href="/group/applyDone?p=${page}&f=${field}&q=${query}">${page}</a>
+				</li>
+			</c:forEach>  
+			<c:if test="${totalPages gt endPage}">                    
+				<li class="page-item"><a class="page-link" href="/group/applyDone?p=${endPage + 1}&f=${field}&q=${query}">&raquo;</a></li>
+			</c:if>
+			<c:if test="${totalPages le endPage}">                    
+				<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+			</c:if>
+		</ul>
 	</div>
 </div>
 <%@ include file="../common/bottom1.jsp" %>

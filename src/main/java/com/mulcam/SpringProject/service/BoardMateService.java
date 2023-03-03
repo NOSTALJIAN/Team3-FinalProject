@@ -26,6 +26,7 @@ public interface BoardMateService {
 	List<Board> getMyList(String uid, int page);
 	
 	int getMyListCount(String uid);
+	
 	int getApplyListCount(String uid);
 
 	List<Board> getDoneList(String uid);
@@ -43,6 +44,10 @@ public interface BoardMateService {
 	void updateIsFull(int bid);
 
 	int getbIsFull(int bid);
+
+	int getApplyDoneCount(String uid);
+
+	int getMyDoneCount(String uid);
 
 
 }

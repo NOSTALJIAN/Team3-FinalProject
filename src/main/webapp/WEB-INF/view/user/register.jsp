@@ -148,8 +148,8 @@
 		}
 		function nickname_check(){
 			const nickname = document.getElementById('nickname').value; 
-			if (nickname.length < 4 || nickname.length > 13) {
-				alert('닉네임은 3글자이상 12글자 이하로 입력해주세요');
+			if (nickname.length < 2 || nickname.length > 13) {
+				alert('닉네임은 2글자이상 12글자 이하로 입력해주세요');
 				return false;
 			}
 			const nicknameDuplication = document.getElementById('nicknameDuplication');

@@ -105,6 +105,23 @@ public class BoardServiceImpl implements BoardService {
 		return count;
 	}
 
+	
+	@Override
+	public String getBoardState(String sessionUid, int bid) {
+		String state = "";
+		int count1 = boardDao.getBoardRelationShipState(sessionUid, bid);
+		if (count1 > 0) {
+			state = "참가완료";
+		} else {
+			int count2 = boardDao.getBoardMateState(sessionUid, bid); 
+			if (count2 > 0) {
+				state = "참가신청중";
+			} else {
+				state = "참가신청";
+			}
+		}
+		return state;
+	}
 }
 
 

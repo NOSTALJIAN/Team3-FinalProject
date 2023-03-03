@@ -33,6 +33,7 @@ public class UserController {
 	@Value("${naver.accessId}") private String accessId;	
 	@Value("${naver.secretKey}") private String secretKey;
 	@Value("${spring.servlet.multipart.location}") private String uploadDir;
+	@Value("${location.port}") private String locationPort;
 	
 	@Autowired private UserSession userSession;	
 	@Autowired private UserService service;
@@ -126,14 +127,14 @@ public class UserController {
 		if (confirm.equals("0")) {	// 로그인 버튼을 눌러서 들어왔을경우
 			prevPage = (String) req.getHeader("REFERER");
 			if (prevPage == null) {	// 주소를 직접입력하여 들어왔을경우 board/index페이지로 이동
-				prevPage = "http://localhost:8090/board/index";
+				prevPage = locationPort + "/board/index";
 			}
 		} else {	// 운동친구눌러서 로그인 페이지 띄웠을경우
-			prevPage = "http://localhost:8090/matching/list";
+			prevPage = locationPort + "/matching/list";
 		}
 		// 세션에 이전 페이지 저장(단, 로그인 실패시 세션에 새로 저장X)
 		if (!(prevPage.contains("/user/login"))) { 
-			// 앞에 http://localhost:8090제거
+			// 앞에 http://localhost:8090이나 http://49.50.173.221:8090 제거
 			String url = prevPage.substring(prevPage.lastIndexOf("8090")+4);
 			userSession.setPrevPage(url);
 		}
