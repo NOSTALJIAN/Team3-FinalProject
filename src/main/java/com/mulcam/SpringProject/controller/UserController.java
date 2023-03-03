@@ -43,6 +43,8 @@ public class UserController {
 	/** 회원가입 페이지*/
 	@GetMapping("/register")
 	public String register() {
+		if (userSession.getUid() != null)
+			return "redirect:/board/index";
 		return "user/register";
 	}
 	
@@ -120,7 +122,14 @@ public class UserController {
 	
 	/** 로그인 페이지 */
 	@GetMapping("/login")
-	public String loginform(HttpServletRequest req, HttpSession session) {
+	public String loginform(HttpServletRequest req, HttpSession session, Model model) {
+		// 이미 로그인된 상태이면 알람창띄우고 메인페이지로 돌아가기
+		if (userSession.getUid() != null) {
+			model.addAttribute("msg", "이미 로그인된 상태입니다.");
+			model.addAttribute("url", "/board/index");
+			return "common/alertMsg";
+		}
+		
 		//로그인하기전 페이지 주소 세션에 저장
 		String prevPage="";
 		String confirm = (req.getParameter("confirm")==null || req.getParameter("confirm")=="") ? "0" : req.getParameter("confirm");
@@ -152,7 +161,7 @@ public class UserController {
 		case UserService.CORRECT_LOGIN :
 			// 이전페이지 불러오기
 			String url = userSession.getPrevPage();
-			if (url.equals(null))
+			if (url == null)
 				url = "/board/index";
 			// 세션에 이름,아이디,닉네임 저장
 			session.setAttribute("sessionUid", uid);
@@ -379,7 +388,4 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/board/index";
 	}
-	
-	
-	
 }
