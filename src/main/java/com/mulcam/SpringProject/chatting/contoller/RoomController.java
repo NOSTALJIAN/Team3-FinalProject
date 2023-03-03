@@ -22,14 +22,20 @@ public class RoomController {
 	
 	private final ChatService chatService;
 	
-	@GetMapping("/{cid}")
-	public String joinRoom(@PathVariable(required = false) int cid, Model model) {
-		List<ChatMsg> chatList = chatService.findAllChatByRoomId(cid);
-		
-		model.addAttribute("cid", cid);
-		model.addAttribute("chatList", chatList);
+	@GetMapping("/chatroom")
+	public String chatRoom() {
 		return "chat/chatroom";
 	}
+	
+	
+//	@GetMapping("/{cid}")
+//	public String joinRoom(@PathVariable(required = false) int cid, Model model) {
+//		List<ChatMsg> chatList = chatService.findAllChatByRoomId(cid);
+//		
+//		model.addAttribute("cid", cid);
+//		model.addAttribute("chatList", chatList);
+//		return "chat/chatroom";
+//	}
 	
 	@PostMapping("/room")
 	public String createRoom(RoomForm form) {

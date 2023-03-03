@@ -18,6 +18,7 @@
 var stompClient = null;
 var cid = $('cid').val();
 var chatList = $('chatList').val();
+var Stomp;
 
 function setConnected(connected) {
   $('#connect').prop('disabled', connected);
@@ -32,7 +33,7 @@ function setConnected(connected) {
 
 function connect() {
   var socket = new SockJS('/ws/chat');
-  stompClient = Stomp.over(socket);
+  var stompClient = Stomp.over(socket);
   stompClient.connect({}, function (frame) {
     setConnected(true);
     console.log('연결 성공! ' + frame);

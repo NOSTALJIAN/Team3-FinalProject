@@ -60,7 +60,7 @@
 											<td>${m.gender}</td>
 											<td>${m.age}</td>
 											<!-- <td><button onclick="window.open('http://localhost:8080/chat/${m.receiveUser}')" -->
-											<td><button onclick="window.open('http://localhost:8080/chat')" class="btn-hover color-9"
+											<td><button onclick="window.open('localhost:8080/chat/')" class="btn-hover color-9"
 													style="width: 110px;">채팅</button>
 												<button onclick="mateDelete('${m.receiveUser}')" class="btn-hover color-8"
 													style="width: 125px;">친구끊기</button>
