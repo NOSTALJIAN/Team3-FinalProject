@@ -6,31 +6,28 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-import com.mulcam.SpringProject.chatting.common.TeamColor;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Configuration
+@RequiredArgsConstructor
 @EnableWebSocketMessageBroker
-public class StompWebSocketConfig implements WebSocketMessageBrokerConfigurer {
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/stomp/chat")
+		registry.addEndpoint("/ws/chat")
 				.setAllowedOriginPatterns("*")
 				.withSockJS();
 	}
 	
-	/*
-	 * 어플리케이션 내부에서 사용할 path를 지정
-	 */
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
-		log.debug(TeamColor.CSK + "configureMessageBroker");
 		
-		//	client에서 send 요청을 처리
-		registry.setApplicationDestinationPrefixes("/pub");
-		registry.enableSimpleBroker("/sub");
+		//	클라이언트에서 보낸 메세지를 받을 prefix
+		registry.setApplicationDestinationPrefixes("/send");
+		
+		//	해당 주소를 구독하고 있는 클라이언트들에게 메세지 전달
+		registry.enableSimpleBroker("/room");
 	}
 }
