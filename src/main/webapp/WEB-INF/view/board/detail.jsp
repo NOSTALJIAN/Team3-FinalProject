@@ -26,13 +26,13 @@
 		<div class="row" style="justify-content: space-evenly">
 			<!-- =================== main =================== -->
 			<div style="margin-top: 19px;">
-				<div style="display: flex; margin-left: 340px;">
+				<div style="display: flex; margin-left: 340px;margin-bottom: 20px;">
 					<h3 class="detail-title" style=" margin-top: 25px;">${b.bTitle}</h3>
 					<div class="detail-btn">
-					<button onclick="location.href='/board/list'" class="btn-hover color-8 ms-3 col-2" style="width: 100px" type="button">목록</button>
+					<button onclick="location.href='/board/list'" class="btn-hover color-8 ms-3 col-2" style="width: 80px;" type="button">목록</button>
 					<!-- 본인만 수정 가능 -->
 					<c:if test="${b.uid eq sessionUid}">
-						<button onclick="location.href='/board/update?bid=${b.bid}'" class="btn-hover color-9 ms-3 col-2" style="width: 100px" type="button" value="수정">수정</button>
+						<button onclick="location.href='/board/update?bid=${b.bid}'" class="btn-hover color-9 ms-3 col-2" style="width: 80px" type="button" value="수정">수정</button>
 					</c:if>
 					<c:if test="${b.uid ne sessionUid}">
 						<!--   <a href="#" class="ms-3 disabled-link"><i class="far fa-edit"></i> 수정</a>   -->
@@ -40,7 +40,7 @@
 					
 					<!-- 본인 또는 관리자만 삭제 가능 -->
 					<c:if test="${b.uid eq sessionUid || b.uid eq 'admin'}">
-						<button onclick="location.href='/board/delete?bid=${b.bid}'" class="btn-hover color-8 ms-3 col-2" style="width: 100px" type="button" value="삭제">삭제</button>
+						<button onclick="location.href='/board/delete?bid=${b.bid}'" class="btn-hover color-8 ms-3 col-2" style="width: 80px" type="button" value="삭제">삭제</button>
 					</c:if>
 					<c:if test="${b.uid ne sessionUid}">
 						<!--  <a href="#" class="ms-3 disabled-link"><i class="fas fa-trash-alt"></i> 삭제</a> -->
@@ -191,7 +191,7 @@
 										<textarea class="form-control" id="rContent" name="rContent" rows="3"></textarea>
 									</td>
 									<td class="col-2">
-										<button type="submit" class="btn-hover color-8">제출</button>
+										<button type="submit" class="btn-hover color-8" style="width: 100px;">제출</button>
 									</td>
 								</tr>
 							</table>
