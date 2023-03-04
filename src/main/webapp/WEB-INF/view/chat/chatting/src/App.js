@@ -1,26 +1,67 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Main from './Pages/Main';
-import Signin from './Pages/Signin';
-import Signup from './Pages/Signup';
-import NotFound from './Pages/NotFound';
-import CreateRoom from './Pages/CreateRoom';
-import Room from './Pages/Room';
-import JoinRoom from './Pages/JoinRoom';
+import React, { useState } from 'react';
+import SockJsClient from 'react-stomp';
+import './App.css';
+import Input from './components/Input/Input';
+import LoginForm from './components/LoginForm';
+import Messages from './components/Messages/Messages';
+import chatAPI from './services/chatapi';
+import { randomColor } from './utils/common';
 
-function App() {
+const SOCKET_URL = 'http://localhost:8080/ws/chat';
+
+const App = () => {
+  const [messages, setMessages] = useState([]);
+  const [user, setUser] = useState(null);
+
+  let onConnected = () => {
+    console.log('Connected!!');
+  };
+
+  let onMessageReceived = (msg) => {
+    console.log('New Message Received!!', msg);
+    setMessages(messages.concat(msg));
+  };
+
+  let onSendMessage = (msgText) => {
+    chatAPI
+      .sendMessage(user.username, msgText)
+      .then((res) => {
+        console.log('Sent', res);
+      })
+      .catch((err) => {
+        console.log('Error Occured while sending message to api');
+      });
+  };
+
+  let handleLoginSubmit = (username) => {
+    console.log(username, ' Logged in..');
+
+    setUser({
+      username: username,
+      color: randomColor(),
+    });
+  };
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/chat/" element={<Signin />} />
-        <Route path="/chat/signup" element={<Signup />} />
-        <Route path="/chat/main" element={<Main />}></Route>
-        <Route path="/chat/room/create" element={<CreateRoom />} />
-        <Route path="/chat/room/join" element={<JoinRoom />} />
-        <Route path="/chat/room" element={<Room />} />
-        <Route path="/chat/*" element={<NotFound />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      {!!user ? (
+        <>
+          <SockJsClient
+            url={SOCKET_URL}
+            topics={['/topic/group']}
+            onConnect={onConnected}
+            onDisconnect={console.log('Disconnected!')}
+            onMessage={(msg) => onMessageReceived(msg)}
+            debug={false}
+          />
+          <Messages messages={messages} currentUser={user} />
+          <Input onSendMessage={onSendMessage} />
+        </>
+      ) : (
+        <LoginForm onSubmit={handleLoginSubmit} />
+      )}
+    </div>
   );
-}
+};
 
 export default App;
