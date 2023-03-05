@@ -5,19 +5,18 @@
 <head>
 	<%@ include file="../common/heading.jsp" %>
 	<meta charset="UTF-8">
-	<title>그룹운동 마이페이지</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/sidebars.css">
     <style>
 		  table {
-		    width: 1100px;
+		    width: 1200px;
 		    border-top: 1px solid #444444;
 		    border-collapse: collapse;
 		  }
 		  th, td {
 		    border-bottom: 1px solid #444444;
-		    padding: 0px;
+		    padding: 2px;
 		  }
 		  .btn-hover.color-10 {
         background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
@@ -53,10 +52,10 @@
 							<td><button class="btn-hover color-8" onclick="apply(${apply.bid}, '${apply.uid}')" id="${apply.bid}">참가신청중</button></td>
 							<td>
 								<c:if test="${apply.bIsFull eq 1}">
-								<button class="btn-hover color-10 write-btn" style="margin-left: -50px;">${apply.applyCount}/${apply.bUserCount} 모집 마감</button>
+								<button class="btn-hover color-10 write-btn" style="margin-left: -10px;">${apply.applyCount}/${apply.bUserCount} 모집 마감</button>
 							</c:if>
 							<c:if test="${apply.bIsFull ne 1}">
-								<button class="btn-hover color-3 write-btn" style="margin-left: -50px;">${apply.applyCount}/${apply.bUserCount} 모집중</button>
+								<button class="btn-hover color-3 write-btn" style="margin-left: -10px;">${apply.applyCount}/${apply.bUserCount} 모집중</button>
 							</c:if>
 							</td>
 						</tr>
