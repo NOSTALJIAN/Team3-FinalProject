@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="/css/sidebars.css">
 	<style>
 	  table {
-	    width: 1100px;
+	    width: 1300px;
 	    border-top: 1px solid #444444;
 	    border-collapse: collapse;
 	  }

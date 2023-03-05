@@ -16,13 +16,14 @@
   text-align: center;
 }
  table {
-    width: 1150px;
+    width: 1300px;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
   th, td {
     border-bottom: 1px solid #444444;
-    padding-right: 5px;
+    padding-right: 3px;
+     padding: 2px;
   }
 </style>
 </head>

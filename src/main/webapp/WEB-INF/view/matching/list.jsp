@@ -14,7 +14,7 @@
     box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 	}
 	img {
-    max-width: 300px;
+    width: 300px;
     height: 300px;
     border-radius: 70%;
 	}
