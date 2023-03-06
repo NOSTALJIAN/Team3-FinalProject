@@ -9,16 +9,18 @@ public class Reply {
 	private String rContent;
 	private LocalDateTime rRegTime;
 	private int rIsMine;
+	private String nickname;
 	
 	public Reply() {}
 	
 	/** 댓글 등록시 필요한 생성자*/
-	public Reply(int bid, String uid, String rContent, int rIsMine) {
+	public Reply(int bid, String uid, String rContent, int rIsMine, String nickname) {
 		super();
 		this.bid = bid;
 		this.uid = uid;
 		this.rContent = rContent;
 		this.rIsMine = rIsMine;
+		this.nickname = nickname;
 	}
 	
 	/** 댓글 수정시 필요한 생성자*/
@@ -27,8 +29,8 @@ public class Reply {
 		this.rid = rid;
 		this.rContent = rContent;
 	}
-	
-	public Reply(int rid, int bid, String uid, String rContent, LocalDateTime rRegTime, int rIsMine) {
+
+	public Reply(int rid, int bid, String uid, String rContent, LocalDateTime rRegTime, int rIsMine, String nickname) {
 		super();
 		this.rid = rid;
 		this.bid = bid;
@@ -36,6 +38,7 @@ public class Reply {
 		this.rContent = rContent;
 		this.rRegTime = rRegTime;
 		this.rIsMine = rIsMine;
+		this.nickname = nickname;
 	}
 
 	public int getRid() {
@@ -86,10 +89,18 @@ public class Reply {
 		this.rIsMine = rIsMine;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	@Override
 	public String toString() {
 		return "Reply [rid=" + rid + ", bid=" + bid + ", uid=" + uid + ", rContent=" + rContent + ", rRegTime="
-				+ rRegTime + ", rIsMine=" + rIsMine + "]";
+				+ rRegTime + ", rIsMine=" + rIsMine + ", nickname=" + nickname + "]";
 	}
 
 }
