@@ -39,7 +39,7 @@
 					</c:if>
 					
 					<!-- 본인 또는 관리자만 삭제 가능 -->
-					<c:if test="${b.uid eq sessionUid || b.uid eq 'admin'}">
+					<c:if test="${b.uid eq sessionUid || sessionUid eq 'admin'}">
 						<button onclick="location.href='/board/delete?bid=${b.bid}'" class="btn-hover color-8 ms-3 col-2" style="width: 80px" type="button" value="삭제">삭제</button>
 					</c:if>
 					<c:if test="${b.uid ne sessionUid}">
@@ -154,7 +154,7 @@
 											<button onclick="replyUpdate('block', ${loop.count})" style="float: right;background-color: blue;color: white;border-radius: 12px;font-size: 19px;">수정</button>
 											<button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right;background-color: red;color: white;border-radius: 12px;font-size: 19px;" >삭제</button>
 										</c:if><br>    <!-- uname, regTime-->
-										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
+										${reply.nickname}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
 										 <!-- content -->
 									</div>
 									<!-- 댓글 수정기능 추가  -->
