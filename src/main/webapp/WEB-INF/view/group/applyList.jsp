@@ -18,6 +18,7 @@
 		    border-bottom: 1px solid #444444;
 		    padding: 2px;
 		  }
+		  .pagination{--bs-pagination-color: #363a3e;}
 		  .btn-hover.color-10 {
         background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
     box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
