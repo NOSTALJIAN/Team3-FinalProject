@@ -236,6 +236,12 @@
 	          var infowindow = new kakao.maps.InfoWindow({
 	              content: '<div style="width:150px;text-align:center;padding:6px 0;">${b.bLocation}</div>'
 	          });
+	          // 마커 클릭 시 해당 장소 정보가 포함된 지도를 브라우저 또는 카카오 지도 앱에서 볼 수 있습니다
+	          kakao.maps.event.addListener(marker, 'click', function () {
+	              var position = this.getPosition();
+	              var url = 'https://map.kakao.com/?q=' + '${b.bAddr} '+ '${b.bLocation}';
+	              window.open(url, '_blank');
+	          });
 	          infowindow.open(map, marker);
 	
 	          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
