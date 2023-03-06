@@ -28,6 +28,7 @@
         background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
     box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
 }
+.pagination{--bs-pagination-color: #363a3e;}
 </style>
 </head>
 <body style="margin-bottom: 400px; background-color: black; color: white;">

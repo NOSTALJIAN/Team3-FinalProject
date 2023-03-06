@@ -25,6 +25,7 @@
     padding-right: 3px;
      padding: 2px;
   }
+  .pagination{--bs-pagination-color: #363a3e;}
 </style>
 </head>
 <body style="margin-bottom: 100px; background-color: black; color: white;">
