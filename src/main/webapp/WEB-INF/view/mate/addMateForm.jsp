@@ -30,7 +30,7 @@
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 		<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-   			<h5>보낸 신구신청</h5>
+   			<h5>보낸 친구신청</h5>
    			<div style="margin-top: 30px;">
 				<table>
 					<thead>
