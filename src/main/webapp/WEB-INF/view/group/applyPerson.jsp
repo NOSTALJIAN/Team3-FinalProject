@@ -5,7 +5,6 @@
 <head>
 	<%@ include file="../common/heading.jsp" %>
 	<meta charset="UTF-8">
-	<title>그룹운동 마이페이지</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/sidebars.css">

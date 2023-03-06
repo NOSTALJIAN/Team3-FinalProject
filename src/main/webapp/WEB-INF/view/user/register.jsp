@@ -31,59 +31,59 @@
 			 <tr>
 				<th>아이디</th>
 				<td>
-					<input style="width: 250px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" id="uid" placeholder="*아이디" maxlength="12" required />
+					<input style="width: 280px;" class="form-control bg-gray-800 border-dark " type="text" name="uid" id="uid" placeholder="*아이디" maxlength="12" required />
 					<a id="idDuplication" style="font-size: 15px;">아이디 중복을 확인해주세요</a>
 				<td><input class="btn-hover color-9" onclick="id_check()" type="button" value="중복 확인"
-					style="height: 38px;width: 100px;border-radius: 8px; margin-left:-132px;margin-top: -29px;margin-bottom: 24px;"></td>
+					style="height: 38px;width: 100px;border-radius: 8px; margin-left:-210px;margin-top: -29px;margin-bottom: 24px;"></td>
 				</td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd" id="pwd" placeholder="*비밀번호" maxlength="60" required /></td>
+				<td><input style="width: 280px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd" id="pwd" placeholder="*비밀번호" maxlength="60" required /></td>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd2"  id="pwd2" placeholder="*비밀번호 확인" maxlength="60" required /></td>
+				<td><input style="width: 280px;" class="form-control  bg-gray-800 border-dark" type="password" name="pwd2"  id="pwd2" placeholder="*비밀번호 확인" maxlength="60" required /></td>
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="uname" id="uname" placeholder="*이름" maxlength="10" required /></td>
+				<td><input style="width: 280px;" class="form-control  bg-gray-800 border-dark" type="text" name="uname" id="uname" placeholder="*이름" maxlength="10" required /></td>
 			</tr>
 			<tr>
 				<th>닉네임</th>
 				<td>
-					<input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="12" required />
+					<input style="width: 280px;" class="form-control  bg-gray-800 border-dark" type="text" name="nickname" id="nickname" placeholder="*닉네임" maxlength="12" required />
 					<a id="nicknameDuplication" style="font-size: 15px;">닉네임 중복을 확인해주세요</a>
 					<td><input class="btn-hover color-9" onclick="nickname_check()" type="button" value="중복 확인" 
-						style="height: 38px;width: 100px;border-radius: 8px; margin-left:-132px;margin-top: -29px;margin-bottom: 24px;"></td>
+						style="height: 38px;width: 100px;border-radius: 8px; margin-left:-210px;margin-top: -29px;margin-bottom: 24px;"></td>
 				</td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" id="email" placeholder="*이메일" maxlength="40"  />
-					수신<input type="radio" name="emailCheck" value="1" checked />
+				<td><input style="width: 280px;" class="form-control  bg-gray-800 border-dark" type="email" name="email" id="email" placeholder="*이메일" maxlength="40"  />
+					수신<input style="margin-right: 50px;" type="radio" name="emailCheck" value="1" checked />
 				 수신거부<input type="radio" name="emailCheck" value="0" />
 				</td>
 			</tr>
 			<tr>
 				<th>휴대폰번호</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="tel" name="phoneNum" id="phoneNum" placeholder="('-'없이 번호만 입력)" maxlength="40" />
+				<td><input style="width: 280px;" class="form-control  bg-gray-800 border-dark" type="tel" name="phoneNum" id="phoneNum" placeholder="('-'없이 번호만 입력)" maxlength="40" />
 				</td>
 			</tr>
 			<tr>
 				<th>생년월일</th>
-				<td><input style="width: 250px;" class="form-control  bg-gray-800 border-dark" type="number" name="birthDate" id="birthDate" placeholder="ex) 20230101" />
+				<td><input style="width: 280px;" class="form-control  bg-gray-800 border-dark" type="number" name="birthDate" id="birthDate" placeholder="ex) 20230101" />
 				</td>
 			</tr>
 			<tr>
 				<th>성별</th>
-				<td>여자<input type="radio" name="gender" value="여"  checked/>
+				<td>여자<input style="margin-right: 50px;" type="radio" name="gender" value="여" checked/>
 				 남자<input type="radio" name="gender" value="남" />
 				</td>
 			</tr>
 			<tr>
 				<th>주소</th>
-				<td><input class="form-control  bg-gray-800 border-dark" style="height: 38px;" type="text" id="postcode" name="postcode" placeholder="우편번호" /></td>
+				<td><input class="form-control  bg-gray-800 border-dark" style="height: 38px;width: 450px;" type="text" id="postcode" name="postcode" placeholder="우편번호" /></td>
 					<td  style="padding-bottom: 25px;"><span style="margin-left: -50px;margin-top: -29px;">
 					<input class="btn-hover color-8" style="height: 40px;border-radius: 8px;margin-bottom: 0px;margin-top: 0px;" type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" /></span></td>
 			</tr>
@@ -91,7 +91,7 @@
 				<th></th>
 				<td><input class="form-control  bg-gray-800 border-dark" type="text" id="addr" name="addr" placeholder="주소" />
 				<br><input class="form-control  bg-gray-800 border-dark" type="text" id="detailAddr" name="detailAddr" placeholder="상세주소" />
-				<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+				<div id="wrap" style="display:none;border:1px solid;width:450px;height:300px;margin:5px 0;position:relative">
 				<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 				</div>
 				</td>

@@ -16,13 +16,13 @@
   text-align: center;
 }
  table {
-    width: 1200px;
+    width: 1300px;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
   th, td {
     border-bottom: 1px solid #444444;
-    padding: 0px;
+    padding: 2px;
   }
   .btn-hover.color-10 {
         background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);

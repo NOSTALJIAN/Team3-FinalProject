@@ -18,7 +18,7 @@
     <meta name="author" content="Holger Koenemann">
     <meta name="generator" content="Eleventy v2.0.0">
     <meta name="HandheldFriendly" content="true">
-    <title>GOgo</title>
+	<title>같이운동하러Gogo</title>
     <link rel="stylesheet" href="/css/theme.min.css">
     <script src="https://kit.fontawesome.com/954572746d.js" crossorigin="anonymous"></script>
   </head>
