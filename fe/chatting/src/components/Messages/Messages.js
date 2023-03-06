@@ -3,6 +3,7 @@ import React from 'react';
 const Messages = ({ messages, currentUser }) => {
   let renderMessage = (message) => {
     const timestamp = new Date().getTime();
+    console.log(timestamp);
     const date = new Date(timestamp);
     // const year = date.getFullYear().toString().slice(-2); //년도 뒤에 두자리
     // const month = ('0' + (date.getMonth() + 1)).slice(-2); //월 2자리 (01, 02 ... 12)
