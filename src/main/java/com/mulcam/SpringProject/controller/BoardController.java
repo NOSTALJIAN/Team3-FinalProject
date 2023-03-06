@@ -242,13 +242,14 @@ public class BoardController {
 		String rContent = req.getParameter("rContent");
 		int bid = Integer.parseInt(req.getParameter("bid"));
 		String uid = req.getParameter("uid"); // 게시글의 uid
+		String nickname = req.getParameter("nickname");
 		int count = 1;
 		
 		// 게시글의 uid와 댓글을 쓰려고 하는 사람의 uid가 같으면 isMine이 1
 		String sessionUid = userSession.getUid();
 		int rIsMine = (uid.equals(sessionUid)) ? 1 : 0;
 		
-		Reply reply = new Reply(bid, sessionUid, rContent, rIsMine);
+		Reply reply = new Reply(bid, sessionUid, rContent, rIsMine, nickname);
 		bsv.insertReply(reply);
 		bsv.increaseReplyCount(bid, count);
 		return "redirect:/board/detail?bid=" + bid + "&uid=" + uid;

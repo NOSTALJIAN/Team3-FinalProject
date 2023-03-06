@@ -13,7 +13,7 @@ import com.mulcam.SpringProject.entity.Reply;
 	@Mapper
 	public interface ReplyDao {
 
-	@Select("SELECT r.rid, r.bid, r.uid, r.rContent, r.rRegTime, r.rIsMine "
+	@Select("SELECT r.rid, r.bid, r.uid, r.rContent, r.rRegTime, r.rIsMine, u.nickname "
 			+ "	FROM boardReply AS r"
 			+ "	JOIN users AS u"
 			+ "	ON r.uid=u.uid"

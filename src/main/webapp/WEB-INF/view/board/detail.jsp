@@ -122,7 +122,7 @@
 											<button onclick="replyUpdate('block', ${loop.count})" style="float: right;background-color: blue;color: white;border-radius: 12px;font-size: 19px;">수정</button>
 											<button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right;background-color: red;color: white;border-radius: 12px;font-size: 19px;">삭제</button>
 										</c:if><br>    <!-- uname, regTime-->
-										${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
+										${reply.nickname}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
 										 <!-- content -->
 									</div>
 									<!-- 댓글 수정기능 추가  -->
