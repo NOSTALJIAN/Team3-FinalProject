@@ -84,18 +84,18 @@
 				
 				<ul class="pagination justify-content-center mt-4">
 					<c:if test="${currentBoardPage gt 10}">
-						<li class="page-item"><a class="page-link" href="/board/list?p=${startPage - 1}&f=${field}&q=${query}">&laquo;</a></li>
+						<li class="page-item"><a class="page-link" href="/board/list?p=${startPage - 1}&f=${field}&q=${query}&period=${period}&bFull=${bFull}">&laquo;</a></li>
 					</c:if>
 					<c:if test="${currentBoardPage le 10}">
 						<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
 					</c:if>
 					<c:forEach var="page" items="${pageList}" varStatus="loop">    
 						<li class="page-item ${(currentBoardPage eq page) ? 'active' : ''}">
-							<a class="page-link" href="/board/list?p=${page}&f=${field}&q=${query}">${page}</a>
+							<a class="page-link" href="/board/list?p=${page}&f=${field}&q=${query}&period=${period}&bFull=${bFull}">${page}</a>
 						</li>
 					</c:forEach>  
 					<c:if test="${totalPages gt endPage}">                    
-						<li class="page-item"><a class="page-link" href="/board/list?p=${endPage + 1}&f=${field}&q=${query}">&raquo;</a></li>
+						<li class="page-item"><a class="page-link" href="/board/list?p=${endPage + 1}&f=${field}&q=${query}&period=${period}&bFull=${bFull}">&raquo;</a></li>
 					</c:if>
 					<c:if test="${totalPages le endPage}">                    
 						<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
@@ -137,7 +137,7 @@
     		const period = document.getElementById("period").value;
     		const bFull = document.getElementById("bFull").value;
     		console.log("search()", field, query, period, bFull);
-    		location.href = "/board/list?p=${currentBoardPage}&f=" + field + "&q=" + query +"&period=" + period +"&bFull=" + bFull;
+    		location.href = "/board/list?p=1&f=" + field + "&q=" + query +"&period=" + period +"&bFull=" + bFull;
     	}
 	</script>
 	<!-- 참가 신청 -->

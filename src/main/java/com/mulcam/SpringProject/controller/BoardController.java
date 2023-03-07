@@ -95,6 +95,8 @@ public class BoardController {
 		model.addAttribute("blist", list);
 		model.addAttribute("sportsArray", sportsArray);
 		model.addAttribute("uid", sessionUid);
+		model.addAttribute("bFull", bFull);
+		model.addAttribute("period", period);
 		
 		int totalPages = (int) Math.ceil(totalBoardNo / 9.);
 		int startPage = (int)(Math.ceil((page-0.5)/9) - 1) * 9 + 1;
