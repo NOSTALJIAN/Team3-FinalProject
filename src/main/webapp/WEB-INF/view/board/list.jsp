@@ -21,11 +21,17 @@
 			<div class="col-sm-9" >
 				<table class="table table-sm table-borderless" style="margin-left: 200px;">
 					<tr >
-						<td class="col-7">
+						<td class="col-6">
 							<h3 style="color: white; margin-left:70px;"><strong>그룹운동 게시판</strong></h3>
 							<div class="board-list">
 								<button type="button" class="btn-hover color-9 fix-position" style="padding-bottom: 3px;width: 110px;" onclick="location.href='/board/write'">+글쓰기</button>
 							</div>
+						</td>
+						<td class="col-1">
+							<select class="form-select me-2" name="bFull" id="bFull" style="width: 103%;">
+								<option value="all" selected>모두</option>
+								<option value="notFull">모집중</option>
+							</select>
 						</td>
 						<td class="col-1">
 							<select class="form-select me-2" name="f" id="field" style="width: 103%;">
@@ -129,8 +135,9 @@
     		const field = document.getElementById("field").value;
     		const query = document.getElementById("query").value;
     		const period = document.getElementById("period").value;
-    		console.log("search()", field, query, period);
-    		location.href = "/board/list?p=${currentBoardPage}&f=" + field + "&q=" + query +"&period=" + period;
+    		const bFull = document.getElementById("bFull").value;
+    		console.log("search()", field, query, period, bFull);
+    		location.href = "/board/list?p=${currentBoardPage}&f=" + field + "&q=" + query +"&period=" + period +"&bFull=" + bFull;
     	}
 	</script>
 	<!-- 참가 신청 -->
