@@ -6,8 +6,31 @@ import LoginForm from './components/LoginForm';
 import Messages from './components/Messages/Messages';
 import chatAPI from './services/chatapi';
 import { randomColor } from './utils/common';
+import mongoose from 'mongoose';
 
 const SOCKET_URL = 'http://localhost:8080/ws/chat';
+
+const chatSchema = new mongoose.Schema(
+  {
+    sender: {
+      type: String,
+      required: true,
+    },
+    recipient: {
+      type: String,
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
+const Chat = mongoose.model('Chat', chatSchema);
+
+module.exports = Chat;
 
 const App = () => {
   const [messages, setMessages] = useState([]);

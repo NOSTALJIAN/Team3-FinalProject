@@ -176,4 +176,8 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 
+	@Override
+	public User checkUserWithSessionKey(String sessionId) {
+		return userDao.checkUserWithSessionKey(sessionId);
+	}
 }

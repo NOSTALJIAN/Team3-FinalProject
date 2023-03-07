@@ -18,13 +18,13 @@
     <meta name="author" content="Holger Koenemann">
     <meta name="generator" content="Eleventy v2.0.0">
     <meta name="HandheldFriendly" content="true">
-	<title>같이운동하러Gogo</title>
+    <title>같이운동하러Gogo</title>
+    <!-- <script src="/js/login.js"></script> -->
     <link rel="stylesheet" href="/css/theme.min.css">
     <script src="https://kit.fontawesome.com/954572746d.js" crossorigin="anonymous"></script>
   </head>
 
   <body class="d-flex h-100 w-100 bg-black text-white" data-bs-spy="scroll" data-bs-target="#navScroll">
-
     <div class="h-100 container-fluid">
       <div class="h-100 row d-flex align-items-stretch">
 
@@ -32,7 +32,7 @@
 
           <header class="mb-auto py-vh-2 col-12">
             <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="/board/index">
-             <i class="fa-solid fa-person-running" onclick="location.href='/board/index'" style="color: white;"></i>
+              <i class="fa-solid fa-person-running" onclick="location.href='/board/index'" style="color: white;"></i>
               <span class="ms-md-1 mt-1 fw-bolder me-md-5">GOgo</span>
             </a>
 
@@ -55,8 +55,7 @@
                 </div>
 
                 <input type="submit" value="로그인" class="btn btn-white btn-xl mb-4"> </input>
-                <a href="/user/register" aria-label="Download this template"
-                class="btn btn-white btn-xl mb-4">회원가입</a>
+                <a href="/user/register" aria-label="Download this template" class="btn btn-white btn-xl mb-4">회원가입</a>
               </div>
             </form>
 

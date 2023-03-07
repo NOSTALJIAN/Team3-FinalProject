@@ -2,14 +2,19 @@ package com.mulcam.SpringProject.controller;
 
 import java.io.File;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.jasper.tagplugins.jstl.core.Out;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +33,7 @@ import com.mulcam.SpringProject.service.UserService;
 import com.mulcam.SpringProject.session.UserSession;
 
 @Controller
+@Repository
 @RequestMapping("/user")
 public class UserController {
 	@Value("${naver.accessId}") private String accessId;	
@@ -39,6 +45,26 @@ public class UserController {
 	@Autowired private UserService service;
 	@Autowired private MapUtill mapUtill;
 	@Autowired private ExerciseUtill eserciseUtill;
+	
+	@Autowired SqlSession sqlSession;
+	private static String namespace ="com.mulcam.SpringProject.chatting.mappers.LoginMapper";
+	public User readMemberWithIDPW(String uid, String pwd) throws Exception{
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("uid", uid);
+		paramMap.put("pwd", pwd);
+		System.out.println(paramMap);
+		return sqlSession.selectOne(namespace+".login", paramMap);
+	}
+	public int checkOverId(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".checkOverId",user_id);
+	}
+	public User getUserInfo(int id) throws Exception{
+		return sqlSession.selectOne(namespace+".getUserInfo",id);
+	}
+	public List<User> userList() throws Exception{
+		return sqlSession.selectList(namespace+".userList");
+	}
 	
 	/** 회원가입 페이지*/
 	@GetMapping("/register")
@@ -169,6 +195,11 @@ public class UserController {
 			session.setAttribute("sessionNickname", userSession.getNickname());
 			model.addAttribute("msg", userSession.getNickname() + "님 환영합니다.");
 			model.addAttribute("url", url);
+			String LOGIN_ID = uid;
+			String LOGIN_NICKNAME = userSession.getNickname();
+//			session.setAttribute(LOGIN_NICKNAME, userSession.getNickname());
+			System.out.println(LOGIN_ID);
+			System.out.println(LOGIN_NICKNAME);
 			return "common/alertMsg";
 		case UserService.UID_NOT_EXIST :
 			model.addAttribute("msg", "아이디를 잘못입력하셧습니다. 다시 확인해주세요.");

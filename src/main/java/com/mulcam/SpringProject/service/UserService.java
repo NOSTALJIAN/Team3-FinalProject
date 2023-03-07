@@ -3,8 +3,10 @@ package com.mulcam.SpringProject.service;
 import java.io.File;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mulcam.SpringProject.dao.UserDao;
 import com.mulcam.SpringProject.entity.MatchingCondition;
 import com.mulcam.SpringProject.entity.Mate;
 import com.mulcam.SpringProject.entity.User;
@@ -78,6 +80,6 @@ public interface UserService {
 	/** 닉네임 중복체크용*/
 	User CheckNickname(String data);
 	
-	
-	
+    /** 이전에 로그인한 적이 있는지, 즉 유효시간이 넘지 않은 세션을 가지고 있는지 체크 */
+    public User checkUserWithSessionKey(String sessionId);
 }
