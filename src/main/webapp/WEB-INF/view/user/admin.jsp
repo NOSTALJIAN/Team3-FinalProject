@@ -13,7 +13,7 @@
 	<div style="margin-left: 450px;margin-top: 20px;">
 	<button onclick="location.href ='/user/admin'">전체회원</button>
 	<button onclick="location.href ='/user/admin?isDeleted=0'">정상회원</button>
-	<button onclick="location.href ='/user/admin?isDeleted=1'">탈퇴예정회원</button>
+	<button onclick="location.href ='/user/admin?isDeleted=1'">탈퇴회원</button>
 	<button onclick="location.href ='/user/admin?isDeleted=2'">추방회원</button>
 	</div>
 	<table border="1" style="margin-top:-0.5px;margin-left:170px; width: 80%">
@@ -39,8 +39,7 @@
 			<c:if test="${user.uIsDeleted eq 2}">
 			<td id="${user.uid}">추방회원</td>	
 			</c:if>
-			<td><button onclick="cancle('${user.uid}')">추방/탈퇴취소</button>
-			<button onclick="delete1('${user.uid}')">강제 탈퇴</button>
+			<td><button onclick="cancle('${user.uid}')">추방취소</button>
 			<button onclick="exile('${user.uid}')">추방하기</button></td>
 		</tr>
 		</c:forEach>

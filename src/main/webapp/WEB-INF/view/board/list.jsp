@@ -21,11 +21,17 @@
 			<div class="col-sm-9" >
 				<table class="table table-sm table-borderless" style="margin-left: 200px;">
 					<tr >
-						<td class="col-7">
+						<td class="col-6">
 							<h3 style="color: white; margin-left:70px;"><strong>그룹운동 게시판</strong></h3>
 							<div class="board-list">
 								<button type="button" class="btn-hover color-9 fix-position" style="padding-bottom: 3px;width: 110px;" onclick="location.href='/board/write'">+글쓰기</button>
 							</div>
+						</td>
+						<td class="col-1">
+							<select class="form-select me-2" name="bFull" id="bFull" style="width: 103%;">
+								<option value="all" selected>모두</option>
+								<option value="notFull">모집중</option>
+							</select>
 						</td>
 						<td class="col-1">
 							<select class="form-select me-2" name="f" id="field" style="width: 103%;">
@@ -78,18 +84,18 @@
 				
 				<ul class="pagination justify-content-center mt-4">
 					<c:if test="${currentBoardPage gt 10}">
-						<li class="page-item"><a class="page-link" href="/board/list?p=${startPage - 1}&f=${field}&q=${query}">&laquo;</a></li>
+						<li class="page-item"><a class="page-link" href="/board/list?p=${startPage - 1}&f=${field}&q=${query}&period=${period}&bFull=${bFull}">&laquo;</a></li>
 					</c:if>
 					<c:if test="${currentBoardPage le 10}">
 						<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
 					</c:if>
 					<c:forEach var="page" items="${pageList}" varStatus="loop">    
 						<li class="page-item ${(currentBoardPage eq page) ? 'active' : ''}">
-							<a class="page-link" href="/board/list?p=${page}&f=${field}&q=${query}">${page}</a>
+							<a class="page-link" href="/board/list?p=${page}&f=${field}&q=${query}&period=${period}&bFull=${bFull}">${page}</a>
 						</li>
 					</c:forEach>  
 					<c:if test="${totalPages gt endPage}">                    
-						<li class="page-item"><a class="page-link" href="/board/list?p=${endPage + 1}&f=${field}&q=${query}">&raquo;</a></li>
+						<li class="page-item"><a class="page-link" href="/board/list?p=${endPage + 1}&f=${field}&q=${query}&period=${period}&bFull=${bFull}">&raquo;</a></li>
 					</c:if>
 					<c:if test="${totalPages le endPage}">                    
 						<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
@@ -129,8 +135,9 @@
     		const field = document.getElementById("field").value;
     		const query = document.getElementById("query").value;
     		const period = document.getElementById("period").value;
-    		console.log("search()", field, query, period);
-    		location.href = "/board/list?p=${currentBoardPage}&f=" + field + "&q=" + query +"&period=" + period;
+    		const bFull = document.getElementById("bFull").value;
+    		console.log("search()", field, query, period, bFull);
+    		location.href = "/board/list?p=1&f=" + field + "&q=" + query +"&period=" + period +"&bFull=" + bFull;
     	}
 	</script>
 	<!-- 참가 신청 -->
