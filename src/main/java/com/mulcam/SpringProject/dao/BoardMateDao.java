@@ -26,7 +26,7 @@ public interface BoardMateDao {
 	@Insert("INSERT INTO boardRelationship VALUES(#{uid}, #{receiveUser}, 1, #{bid});")
 	void applyAccept(BoardMate bMate);
 
-	@Select("SELECT b.uid, b.bid, b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount, bm.receiveUser, b.bIsFull"
+	@Select("SELECT b.uid, b.bid, b.bTitle, b.bCategory, b.bLocation, b.bAppointment, b.bUserCount, bm.receiveUser, b.bIsFull, b.applyCount"
 			+ "	FROM boardMate AS bm JOIN board AS b"
 			+ "	WHERE bm.bid=b.bid AND bm.uid=#{uid} AND b.bIsDeleted=0 limit 10 offset #{offset};")
 	List<Board> getApplyList(String uid, int offset);

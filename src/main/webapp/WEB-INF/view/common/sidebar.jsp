@@ -54,8 +54,8 @@
           </span>
           <div class="collapse" id="message-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="/chat/test" class="text-color d-inline-flex text-decoration-none rounded">1:1 채팅</a></li>
-              <li><a href="/chat/room" class=" text-color d-inline-flex text-decoration-none rounded">그룹채팅</a></li>
+              <li><a href="#" class="text-color d-inline-flex text-decoration-none rounded">1:1 채팅</a></li>
+              <li><a href="#" class=" text-color d-inline-flex text-decoration-none rounded">그룹채팅</a></li>
             </ul>
           </div>
         </li>

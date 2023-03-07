@@ -180,8 +180,8 @@
                         <div class="card-body" id="reply${loop.count}">		
                           ${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
                           <c:if test="${reply.uid eq sessionUid}">
-                            <button onclick="replyUpdate('block', ${loop.count})" style="float: right">수정</button>
-                            <button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right">삭제</button>
+                            <button onclick="replyUpdate('block', '${loop.count}')" style="float: right">수정</button>
+                            <button onclick="deleteConfirm('${b.bid}', '${reply.rid}')" style="float: right">삭제</button>
                           </c:if><br>    <!-- uname, regTime-->
                           ${fn:replace(reply.rContent, newline, '<br>')}  <!-- content -->
                         </div>
@@ -200,7 +200,7 @@
                               </td>
                               <td class="col-4">
                                 <button type="submit" class="btn btn-primary">수정</button>
-                                <button onclick="replyUpdate('none', ${loop.count})" class="btn btn-primary">취소</button>
+                                <button onclick="replyUpdate('none', '${loop.count}')" class="btn btn-primary">취소</button>
                               </td>
                             </tr>
                           </table>
@@ -214,8 +214,8 @@
                         <div class="card-body text-end" id="reply${loop.count}">		
                           ${reply.uid}&nbsp;&nbsp;${fn:replace(reply.rRegTime,'T',' ')}
                           <c:if test="${reply.uid eq sessionUid}">
-                            <button onclick="replyUpdate('block', ${loop.count})" style="float: right">수정</button>
-                            <button onclick="deleteConfirm(${b.bid}, ${reply.rid})" style="float: right">삭제</button>
+                            <button onclick="replyUpdate('block', '${loop.count}')" style="float: right">수정</button>
+                            <button onclick="deleteConfirm('${b.bid}', '${reply.rid}')" style="float: right">삭제</button>
                           </c:if><br>    <!-- uname, regTime-->
                           ${fn:replace(reply.rContent, newline, '<br>')}  <!-- content -->
                         </div>
@@ -234,7 +234,7 @@
                               </td>
                               <td class="col-2">
                                 <button type="submit" class="btn btn-primary">수정</button>
-                                <button onclick="replyUpdate('none', ${loop.count})" class="btn btn-primary">취소</button>
+                                <button onclick="replyUpdate('none', '${loop.count}')" class="btn btn-primary">취소</button>
                               </td>
                             </tr>
                           </table>

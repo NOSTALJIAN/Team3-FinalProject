@@ -56,9 +56,12 @@ public class BoardController {
 		String query = req.getParameter("q");
 		String period = req.getParameter("period");
 		String sessionUid = userSession.getUid();
-		
+		String bFull = req.getParameter("bFull");
+		int bIsFull = 0;
+		List<Board> list = null;
 		LocalDate startDate = LocalDate.now();
 		LocalDate endDate = null;
+		int totalBoardNo = 0;
 		
 		// 일주일, 한달 내의 게시글만 보여주기
 		if (period == null) {
@@ -74,8 +77,17 @@ public class BoardController {
 		int page = (page_ == null || page_.equals("")) ? 1 : Integer.parseInt(page_);
 		field = (field == null || field.equals("")) ? "bCategory" : field;
 		query = (query == null || query.equals("")) ? "" : query;
-		List<Board> list = bsv.getBoardListByPeriod(page, field, query, startDate.toString(), endDate.toString(), sessionUid);
 		
+		// 모집중인 게시글만 보여주기
+		if (bFull == null || bFull.equals("all") || bFull == "") {
+			list = bsv.getBoardListByPeriod(page, field, query, startDate.toString(), endDate.toString(), sessionUid);
+			totalBoardNo = bsv.getBoardCountByPeriod(field, query, startDate.toString(), endDate.toString(), sessionUid);
+		} else {
+			bIsFull = 0;
+			list = bsv.getBoardListByPeriodFull(page, field, query, startDate.toString(), endDate.toString(), sessionUid, bIsFull);
+			totalBoardNo = bsv.getBoardCountByPeriodFull(field, query, startDate.toString(), endDate.toString(), sessionUid, bIsFull);
+		} 
+
 		HttpSession session = req.getSession();
 		session.setAttribute("currentBoardPage", page);
 		model.addAttribute("field", field);
@@ -83,10 +95,10 @@ public class BoardController {
 		model.addAttribute("blist", list);
 		model.addAttribute("sportsArray", sportsArray);
 		model.addAttribute("uid", sessionUid);
+		model.addAttribute("bFull", bFull);
+		model.addAttribute("period", period);
 		
-		int totalBoardNo = bsv.getBoardCountByPeriod(field, query, startDate.toString(), endDate.toString(), sessionUid);
 		int totalPages = (int) Math.ceil(totalBoardNo / 9.);
-		
 		int startPage = (int)(Math.ceil((page-0.5)/9) - 1) * 9 + 1;
 		int endPage = Math.min(totalPages, startPage + 8);
 		List<String> pageList = new ArrayList<>();

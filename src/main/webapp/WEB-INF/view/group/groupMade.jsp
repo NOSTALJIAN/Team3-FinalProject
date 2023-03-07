@@ -36,7 +36,7 @@
 	<div style="display: flex;">
 		<%@ include file="../common/sidebar.jsp" %>
 		<div class="myPage-size" style="margin-top: 60px; margin-left: 180px;">
-			<h5>그룹운동 수락완료 목록</h5>
+			<h5>그룹운동 수락 목록</h5>
 			<div style="margin-top: 20px;">
 			<table>
 				<thead>
