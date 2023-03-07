@@ -79,7 +79,7 @@ public class BoardController {
 		query = (query == null || query.equals("")) ? "" : query;
 		
 		// 모집중인 게시글만 보여주기
-		if (bFull == null || bFull.equals("all")) {
+		if (bFull == null || bFull.equals("all") || bFull == "") {
 			list = bsv.getBoardListByPeriod(page, field, query, startDate.toString(), endDate.toString(), sessionUid);
 			totalBoardNo = bsv.getBoardCountByPeriod(field, query, startDate.toString(), endDate.toString(), sessionUid);
 		} else {
