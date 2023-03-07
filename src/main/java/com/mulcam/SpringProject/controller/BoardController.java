@@ -79,7 +79,7 @@ public class BoardController {
 		query = (query == null || query.equals("")) ? "" : query;
 		
 		// 모집중인 게시글만 보여주기
-		if (bFull == null || bFull.equals("all")) {
+		if (bFull == null || bFull.equals("all") || bFull == "") {
 			list = bsv.getBoardListByPeriod(page, field, query, startDate.toString(), endDate.toString(), sessionUid);
 			totalBoardNo = bsv.getBoardCountByPeriod(field, query, startDate.toString(), endDate.toString(), sessionUid);
 		} else {
@@ -95,6 +95,8 @@ public class BoardController {
 		model.addAttribute("blist", list);
 		model.addAttribute("sportsArray", sportsArray);
 		model.addAttribute("uid", sessionUid);
+		model.addAttribute("bFull", bFull);
+		model.addAttribute("period", period);
 		
 		int totalPages = (int) Math.ceil(totalBoardNo / 9.);
 		int startPage = (int)(Math.ceil((page-0.5)/9) - 1) * 9 + 1;
