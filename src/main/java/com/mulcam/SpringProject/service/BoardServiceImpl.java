@@ -35,6 +35,14 @@ public class BoardServiceImpl implements BoardService {
 		List<Board> list = boardDao.getBoardListByPeriod(offset, field, query, startDate, endDate, uid);
 		return list;
 	}
+	
+	@Override
+	public List<Board> getBoardListByPeriodFull(int page, String field, String query, String startDate, String endDate, String uid, int bIsFull) {
+		int offset = (page - 1) * 9;
+		query = "%"+query+"%";
+		List<Board> list = boardDao.getBoardListByPeriodFull(offset, field, query, startDate, endDate, uid, bIsFull);
+		return list;
+	}
 
 	@Override
 	public Board getBoard(int bid) {
@@ -104,7 +112,13 @@ public class BoardServiceImpl implements BoardService {
 		int count = boardDao.getBoardCountByPeriod(field, query, startDate, endDate, uid);
 		return count;
 	}
-
+	
+	@Override
+	public int getBoardCountByPeriodFull(String field, String query, String startDate, String endDate, String uid, int bIsFull) {
+		query = "%"+query+"%";
+		int count = boardDao.getBoardCountByPeriodFull(field, query, startDate, endDate, uid, bIsFull);
+		return count;
+	}
 	
 	@Override
 	public String getBoardState(String sessionUid, int bid) {
@@ -122,6 +136,7 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return state;
 	}
+
 }
 
 

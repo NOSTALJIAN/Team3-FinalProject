@@ -44,7 +44,10 @@ public interface BoardService {
 	public void deleteReply(int rid);
 
 	public String getBoardState(String sessionUid, int bid);
-		
+
+	public List<Board> getBoardListByPeriodFull(int page, String field, String query, String startDate, String endDate, String uid, int bIsFull);
+	
+	int getBoardCountByPeriodFull(String field, String query, String startDate, String endDate, String uid, int bIsFull);
 	}
 	
 
